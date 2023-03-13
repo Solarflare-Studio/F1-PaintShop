@@ -28,15 +28,8 @@
       sizes="16x16"
       href="./assets/images/favicon-16x16.png"
     />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css"
-      rel="stylesheet"
-    />
-    <link href="./style.css" />
+
+    <!-- <link href="./style.css" /> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
     <script>
@@ -94,11 +87,9 @@
         ::-webkit-scrollbar {
           width: 8px;
         }
-
         ::-webkit-scrollbar-thumb {
           @apply bg-brand rounded-lg;
         }
-
         ::-webkit-scrollbar-thumb:hover {
           @apply bg-brand;
         }
@@ -114,36 +105,60 @@
         .menu-item {
           @apply text-netural text-2xl font-Titillium font-normal py-1;
         }
-        .menu-item.active {
+        .menu-item button[aria-selected="true"] {
           @apply font-bold;
         }
         .language-option {
           @apply py-3 text-netural text-xl font-Titillium;
         }
-        .tab.active {
-          @apply border-netural border-2 border-b-0 rounded-tl-lg opacity-100 !important;
+        .pattent_check_wrp input:checked + label > div {
+          @apply flex justify-between pl-2 pr-4 py-1 text-netural bg-brand rounded-br-[28px] -mt-[36px] z-0 relative;
         }
-        /* .tab[aria-selected="false"] span {
-          @apply hidden;
-        } */
-        .tab.active::after,
-        .tab.active::before {
-          @apply content-[''] border-2 border-netural absolute -bottom-1 w-[500px] h-2 border-t-0;
+        .pattent_check_wrp input:checked + label > div img {
+          @apply w-4;
         }
-        .tab.active::after {
-          @apply border-r-0 left-full rounded-bl-lg;
+        .pattent_check_wrp input:checked + label > figure {
+          @apply border-brand;
         }
-        .tab.active::before {
-          @apply border-l-0 right-full rounded-br-lg;
+        .prev-btn {
+          @apply bg-transparent border-2 border-netural text-netural text-2xl w-full py-2 rounded-md font-F1PaintShopFont basis-1/2;
+        }
+        .next-btn {
+          @apply border-2 border-brand bg-brand text-netural text-2xl w-full py-2 rounded-md font-F1PaintShopFont basis-1/2;
         }
         .tab {
-          @apply rounded-tr-lg border-t-2 border-r-2 border-netural relative flex justify-center items-center px-4 py-2 text-sm text-netural font-medium font-F1PaintShopFont min-w-[20%] opacity-50;
+          @apply px-2;
         }
-        .tab.prev-tab {
-          @apply border-r-0 border-l-2 rounded-tr-none rounded-tl-lg;
+        .tab.activeTab {
+          @apply px-0;
         }
-        .pattent_check_wrp input:checked + label > div {
-          @apply flex;
+        .tab button {
+          @apply w-full px-4 py-2 border-t-2 border-r-2 rounded-tr-lg border-netural relative;
+        }
+        .tab.activeTab button {
+          @apply flex border-l-2 border-r-2 rounded-tl-lg;
+        }
+        .tab.activeTab span {
+          @apply block  text-xs text-netural font-medium font-F1PaintShopFont;
+        }
+        .tab.prevTab button {
+          @apply border-r-0 border-l-2 rounded-tl-lg rounded-tr-none;
+        }
+        .tab.activeTab button[aria-selected="true"]::after,
+        .tab.activeTab button[aria-selected="true"]::before {
+          @apply content-[''] border-2 border-netural absolute -bottom-1 w-[800px] h-2 border-t-0;
+        }
+        .tab.activeTab button[aria-selected="true"]::after {
+          @apply border-r-0 left-full rounded-bl-lg;
+        }
+        .tab.activeTab button[aria-selected="true"]::before {
+          @apply border-l-0 right-full rounded-br-lg;
+        }
+        .tab:first-child button[aria-selected="true"] {
+          @apply border-l-0 rounded-tl-none;
+        }
+        .tab:last-child button[aria-selected="true"] {
+          @apply border-r-0 rounded-tr-none;
         }
       }
     </style>
@@ -151,7 +166,7 @@
   <body
     class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center"
   >
-    <header class="fixed w-full">
+    <header class="w-full">
       <div class="container mx-auto p-6 flex justify-between items-center">
         <figure>
           <img src="./assets/images/F1_Logo.svg" alt="Logo" />
@@ -173,7 +188,7 @@
         tabindex="-1"
         aria-labelledby="drawer-label"
       >
-        <div class="relative py-6 flex justify-between items-center">
+        <div class="relative z-40 py-6 flex justify-between items-center">
           <figure>
             <img src="./assets/images/F1_Logo_light.svg" alt="Logo" />
           </figure>
@@ -273,7 +288,7 @@
 
     <main>
       <div
-        class="justify-center items-center flex-col h-screen text-center hidden lg:flex"
+        class="justify-center items-center flex-col h-[89vh] text-center hidden lg:flex"
       >
         <img src="./assets/images/rotate_image.svg" alt="Loading..." />
         <h1
@@ -290,7 +305,7 @@
       <div class="container mx-auto px-6 lg:hidden">
         <div
           id="loadingContent"
-          class="flex justify-center items-center flex-col h-screen text-center"
+          class="flex justify-center items-center flex-col h-[89vh] text-center"
         >
           <img src="./assets/images/loading.svg" alt="Loading..." />
           <h1
@@ -310,7 +325,7 @@
         </div>
         <!-- end of loading content -->
         <div
-          class="flex justify-center items-center flex-col h-screen text-center px-2 hidden"
+          class="flex justify-center items-center flex-col h-[89vh] text-center px-2 hidden"
           id="welcomeContent"
         >
           <h1
@@ -336,65 +351,338 @@
       </div>
       <div
         id="pattenContent"
-        class="h-screen flex justify-between items-center flex-col text-center hidden"
+        class="h-[89vh] flex justify-between items-center flex-col text-center hidden"
       >
-        <figure class="w-full h-full">
-          <img
-            src="./assets/images/patten_img.png"
-            alt="Patten"
-            class="w-full h-[50vh]"
-          />
-        </figure>
-        <div class="w-full h-full -z-[1]">
-          <div class="w-full text-right overflow-hidden pb-1">
-            <button class="p-4">
+        <div class="w-full h-full flex flex-col justify-center items-center">
+          <figure class="w-full h-full flex justify-center items-center">
+            <img src="./assets/images/paint_demo.png" alt="Patten" />
+          </figure>
+          <div class="w-full text-right overflow-hidden pb-5 -z[1]">
+            <button class="p-4" id="tabToggle" onclick="handleTabToggle()">
               <img src="./assets/images/double_arrow.svg" alt="Down Arrow" />
             </button>
-            <div class="flex gap-x-3 justify-center items-center">
-              <h2 class="tab active">
-                <figure>
-                  <img
-                    src="./assets/images/patten_icon.svg"
-                    alt="Patten Icon"
-                  />
-                </figure>
-                <span class="ml-2 border-b-2 border-netural">PATTERN</span>
-              </h2>
-              <h2 class="tab">
-                <figure>
-                  <img
-                    src="./assets/images/spray_paint_icon.svg"
-                    alt="Paint Icon"
-                  />
-                </figure>
-                <span class="ml-2 border-b-2 border-netural hidden">PAINT</span>
-              </h2>
-              <h2 class="tab">
-                <figure>
-                  <img src="./assets/images/tag_icon.svg" alt="tag_icon Icon" />
-                </figure>
-                <span class="ml-2 border-b-2 border-netural hidden">TAG</span>
-              </h2>
-              <h2 class="tab">
-                <figure>
-                  <img
-                    src="./assets/images/sponsor_icon.svg"
-                    alt="Sponsor Icon"
-                  />
-                </figure>
-                <span class="ml-2 border-b-2 border-netural hidden"
-                  >SPONSOR</span
+
+            <ul
+              class="flex justify-between -mb-px text-sm font-medium text-center pb-5"
+              id="myTab"
+              data-tabs-toggle="#tabContant"
+              role="tablist"
+            >
+              <li role="presentation" class="tab activeTab">
+                <button
+                  id="patten-tab"
+                  data-tabs-target="#patten"
+                  type="button"
+                  role="tab"
+                  aria-controls="patten"
+                  aria-selected="false"
                 >
-              </h2>
+                  <figure>
+                    <img
+                      src="./assets/images/patten_icon.svg"
+                      alt="Patten Icon"
+                      class="w-5 h-5"
+                    />
+                  </figure>
+                  <span class="ml-1 border-b-2 border-netural hidden"
+                    >PATTERN</span
+                  >
+                </button>
+              </li>
+              <li role="presentation" class="tab">
+                <button
+                  id="paint-tab"
+                  data-tabs-target="#paint"
+                  type="button"
+                  role="tab"
+                  aria-controls="paint"
+                  aria-selected="false"
+                >
+                  <figure>
+                    <img
+                      src="./assets/images/spray_paint_icon.svg"
+                      alt="Paint Icon"
+                      class="w-5 h-5"
+                    />
+                  </figure>
+                  <span class="ml-1 border-b-2 border-netural hidden"
+                    >PAINT</span
+                  >
+                </button>
+              </li>
+              <li role="presentation" class="tab">
+                <button
+                  id="tag-tab"
+                  data-tabs-target="#tag"
+                  type="button"
+                  role="tab"
+                  aria-controls="tag"
+                  aria-selected="false"
+                >
+                  <figure>
+                    <img
+                      src="./assets/images/tag_icon.svg"
+                      alt="tag_icon Icon"
+                      class="w-5 h-5"
+                    />
+                  </figure>
+                  <span class="ml-1 border-b-2 border-netural hidden">TAG</span>
+                </button>
+              </li>
+              <li role="presentation" class="tab">
+                <button
+                  id="sponsor-tab"
+                  data-tabs-target="#sponsor"
+                  type="button"
+                  role="tab"
+                  aria-controls="sponsor"
+                  aria-selected="false"
+                >
+                  <figure>
+                    <img
+                      src="./assets/images/sponsor_icon.svg"
+                      alt="Sponsor Icon"
+                      class="w-5 h-5"
+                    />
+                  </figure>
+                  <span class="ml-1 border-b-2 border-netural hidden"
+                    >SPONSOR</span
+                  >
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="tabContant" class="min-h-[40vh] bg-primary w-full -z-0">
+          <div class="container mx-auto p-4">
+            <div id="tab" class="w-full">
+              <div
+                id="patten"
+                role="tabpanel"
+                aria-labelledby="patten-tab"
+                class="min-h-[35vh] flex flex-col justify-between items-center gap-4"
+              >
+                <div
+                  class="max-h-[27vh] overflow-y-auto grid grid-cols-2 gap-4 pr-3 w-full"
+                >
+                  <div class="pattent_check_wrp">
+                    <input
+                      id="pattent1"
+                      type="radio"
+                      name="pattten"
+                      class="w-full h-full hidden"
+                      checked
+                    />
+                    <label for="pattent1" class="relative">
+                      <figure class="rounded-br-[28px]">
+                        <img
+                          src="./assets/images/patten/patten-1.png"
+                          alt="pattten 1"
+                          class="rounded-br-[28px] w-full h-full"
+                        />
+                      </figure>
+                      <div class="hidden">
+                        <span>Patten 1</span>
+                        <img
+                          src="./assets/images/check_mark.svg"
+                          alt="checked"
+                        />
+                      </div>
+                    </label>
+                  </div>
+                  <div class="pattent_check_wrp">
+                    <input
+                      id="pattent2"
+                      type="radio"
+                      name="pattten"
+                      class="w-full h-full hidden"
+                    />
+                    <label for="pattent2" class="relative">
+                      <figure class="rounded-br-[28px]">
+                        <img
+                          src="./assets/images/patten/patten-2.png"
+                          alt="pattten 2"
+                          class="w-full h-full rounded-br-[28px]"
+                        />
+                      </figure>
+                      <div class="hidden">
+                        <span>Patten 2</span>
+                        <img
+                          src="./assets/images/check_mark.svg"
+                          alt="checked"
+                        />
+                      </div>
+                    </label>
+                  </div>
+                  <div class="pattent_check_wrp">
+                    <input
+                      id="pattent3"
+                      type="radio"
+                      name="pattten"
+                      class="w-full h-full hidden"
+                    />
+                    <label for="pattent3" class="relative">
+                      <figure class="rounded-br-[28px]">
+                        <img
+                          src="./assets/images/patten/patten-3.png"
+                          alt="pattten 3"
+                          class="w-full h-full rounded-br-[28px]"
+                        />
+                      </figure>
+                      <div class="hidden">
+                        <span>Patten 3</span>
+                        <img
+                          src="./assets/images/check_mark.svg"
+                          alt="checked"
+                        />
+                      </div>
+                    </label>
+                  </div>
+                  <div class="pattent_check_wrp">
+                    <input
+                      id="pattent4"
+                      type="radio"
+                      name="pattten"
+                      class="w-full h-full hidden"
+                    />
+                    <label for="pattent4" class="relative">
+                      <figure class="rounded-br-[28px]">
+                        <img
+                          src="./assets/images/patten/patten-2.png"
+                          alt="pattten 2"
+                          class="w-full h-full rounded-br-[28px]"
+                        />
+                      </figure>
+                      <div class="hidden">
+                        <span>Patten 4</span>
+                        <img
+                          src="./assets/images/check_mark.svg"
+                          alt="checked"
+                        />
+                      </div>
+                    </label>
+                  </div>
+                  <div class="pattent_check_wrp">
+                    <input
+                      id="pattent5"
+                      type="radio"
+                      name="pattten"
+                      class="w-full h-full hidden"
+                    />
+                    <label for="pattent5" class="relative">
+                      <figure class="rounded-br-[28px]">
+                        <img
+                          src="./assets/images/patten/patten-2.png"
+                          alt="pattten 5"
+                          class="w-full h-full rounded-br-[28px]"
+                        />
+                      </figure>
+                      <div class="hidden">
+                        <span>Patten 5</span>
+                        <img
+                          src="./assets/images/check_mark.svg"
+                          alt="checked"
+                        />
+                      </div>
+                    </label>
+                  </div>
+                  <div class="pattent_check_wrp">
+                    <input
+                      id="pattent6"
+                      type="radio"
+                      name="pattten"
+                      class="w-full h-full hidden"
+                    />
+                    <label for="pattent6" class="relative">
+                      <figure class="rounded-br-[28px]">
+                        <img
+                          src="./assets/images/patten/patten-2.png"
+                          alt="pattten 2"
+                          class="w-full h-full rounded-br-[28px]"
+                        />
+                      </figure>
+                      <div class="hidden">
+                        <span>Patten 6</span>
+                        <img
+                          src="./assets/images/check_mark.svg"
+                          alt="checked"
+                        />
+                      </div>
+                    </label>
+                  </div>
+                  <div class="pattent_check_wrp">
+                    <input
+                      id="pattent7"
+                      type="radio"
+                      name="pattten"
+                      class="w-full h-full hidden"
+                    />
+                    <label for="pattent7" class="relative">
+                      <figure class="rounded-br-[28px]">
+                        <img
+                          src="./assets/images/patten/patten-2.png"
+                          alt="pattten 7"
+                          class="w-full h-full rounded-br-[28px]"
+                        />
+                      </figure>
+                      <div class="hidden">
+                        <span>Patten 7</span>
+                        <img
+                          src="./assets/images/check_mark.svg"
+                          alt="checked"
+                        />
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center gap-x-3 w-full">
+                  <button type="button" id="prevBtn" class="prev-btn">
+                    BACK
+                  </button>
+                  <button type="button" id="prevBtn" class="next-btn">
+                    NEXT
+                  </button>
+                </div>
+              </div>
+
+              <div id="paint" role="tabpanel" aria-labelledby="paint-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  This is some placeholder content the
+                  <strong class="font-medium text-gray-800 dark:text-white"
+                    >Dashboard tab's associated content</strong
+                  >. Clicking another tab will toggle the visibility of this one
+                  for the next. The tab JavaScript swaps classes to control the
+                  content visibility and styling.
+                </p>
+              </div>
+              <div id="tag" role="tabpanel" aria-labelledby="tag-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  This is some placeholder content the
+                  <strong class="font-medium text-gray-800 dark:text-white"
+                    >Settings tab's associated content</strong
+                  >. Clicking another tab will toggle the visibility of this one
+                  for the next. The tab JavaScript swaps classes to control the
+                  content visibility and styling.
+                </p>
+              </div>
+              <div id="sponsor" role="tabpanel" aria-labelledby="sponsor-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  This is some placeholder content the
+                  <strong class="font-medium text-gray-800 dark:text-white"
+                    >Contacts tab's associated content</strong
+                  >. Clicking another tab will toggle the visibility of this one
+                  for the next. The tab JavaScript swaps classes to control the
+                  content visibility and styling.
+                </p>
+              </div>
             </div>
           </div>
-          <div class="min-h-[300px] bg-primary"></div>
         </div>
       </div>
       <!--end of patten content -->
       <div
         id="tutorial"
-        class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center"
+        class="hidden fixed top-0 h-[89vh] w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center"
       >
         <figure class="w-[30vh] h-[30vh] relative">
           <img
@@ -425,7 +713,7 @@
       <!--end of tutorial-->
       <div
         id="pattenTutorial"
-        class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center"
+        class="hidden fixed top-0 h-[88vh] w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center"
       >
         <div class="bg-netural relative p-4 px-6 w-72 rounded-md opacity-95">
           <h1
