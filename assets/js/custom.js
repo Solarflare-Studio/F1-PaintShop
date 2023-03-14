@@ -4,20 +4,25 @@ const pattenContent = document.querySelector("#pattenContent");
 
 const tutorial = document.querySelector("#tutorial");
 const pattenTutorial = document.querySelector("#pattenTutorial");
+const paintTutorial = document.querySelector("#paintTutorial");
+const tagTutorial = document.querySelector("#tagTutorial");
+const sponsorTutorial = document.querySelector("#sponsorTutorial");
 const menu = document.querySelector("#menu");
 const progress = document.querySelector("#file");
 const dropdownArrow = document.querySelector("#dropdownArrow");
 const dropdownElm = document.querySelector("#languageSelect");
-const tabToggle = document.querySelector("#tabToggle");
+const zoomIn = document.querySelector("#zoomIn");
+const zoomOut = document.querySelector("#zoomOut");
 const tabContent = document.querySelector("#tabContent");
-const prevBtn = document.querySelector("#prevBtn");
-const nextBtn = document.querySelector("#nextBtn");
-let selectedLanguage = document.querySelector("#selectedLanguage");
 const f1PaintTab = document.querySelectorAll(".tab button");
 const tabContentWrp = document.querySelectorAll(".tab-content-wrp");
+const prevBtn = document.querySelector("#prevBtn");
+const nextBtn = document.querySelector("#nextBtn");
 
+let selectedLanguage = document.querySelector("#selectedLanguage");
 let loadingProgress = 0;
 selectedLanguage.innerHTML = "Language 1";
+
 move();
 function move() {
   if (loadingProgress == 0) {
@@ -35,6 +40,7 @@ function move() {
     }
   }
 }
+
 // Redirect to welcome layout
 function welcome() {
   if (loadingProgress === 100) {
@@ -44,7 +50,7 @@ function welcome() {
   }
 }
 
-// select language
+// Language Select Handler
 function handleLanguageSelect() {
   dropdownArrow.classList.toggle("rotate-180");
 }
@@ -71,14 +77,33 @@ function handleTutorial() {
 }
 
 // Redirect to patten layout
-function handlePattenTutorial() {
+function handleCloseTutorial() {
   pattenTutorial.classList.add("hidden");
+  paintTutorial.classList.add('hidden')
+  tagTutorial.classList.add('hidden')
+  sponsorTutorial.classList.add("hidden");
 }
 
-//tab content hide/show
+// Tab content toggle Handler
 function handleTabToggle() {
-  tabToggle.classList.toggle("rotate-180");
+  zoomIn.classList.toggle("hidden");
+  zoomOut.classList.toggle("hidden");
   tabContent.classList.toggle("hidden");
+}
+
+// Paint Tutorial Handler
+function handlePaintTutorial(){
+  paintTutorial.classList.remove('hidden')
+}
+
+// Tag Tutorial Handler
+function handleTagTutorial(){
+  tagTutorial.classList.remove('hidden')
+}
+
+// Sponsor Tutorial Handler
+function handleSponsorTutorial(){
+  sponsorTutorial.classList.remove('hidden')
 }
 
 // Add click event listener to each box
