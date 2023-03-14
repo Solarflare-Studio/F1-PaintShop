@@ -10,8 +10,11 @@ const dropdownArrow = document.querySelector("#dropdownArrow");
 const dropdownElm = document.querySelector("#languageSelect");
 const tabToggle = document.querySelector("#tabToggle");
 const tabContent = document.querySelector("#tabContent");
+const prevBtn = document.querySelector("#prevBtn");
+const nextBtn = document.querySelector("#nextBtn");
 let selectedLanguage = document.querySelector("#selectedLanguage");
 const f1PaintTab = document.querySelectorAll(".tab button");
+const tabContentWrp = document.querySelectorAll(".tab-content-wrp");
 
 let loadingProgress = 0;
 selectedLanguage.innerHTML = "Language 1";
@@ -108,4 +111,61 @@ f1PaintTab.forEach((box) => {
       nextElement.classList.remove("prevTab");
     }
   });
+});
+
+// Next Button Handler
+nextBtn.addEventListener("click", () => {
+  prevBtn.classList.remove("opacity-50");
+  const activeTab = document.querySelector(".activeTab");
+  const nextElement = activeTab.nextElementSibling;
+  if (!nextElement) return;
+
+  const currTabId = nextElement.childNodes[1].id;
+  if (nextElement) {
+    tabContentWrp.forEach((elm) => {
+      const currElmId = `${elm.id}-tab`;
+      if (currElmId === currTabId) {
+        elm.classList.remove("hidden");
+      } else {
+        elm.classList.add("hidden");
+      }
+    });
+    activeTab.classList.remove("activeTab");
+    nextElement.classList.add("activeTab");
+  }
+
+  const newActiveTab = document.querySelector(".activeTab");
+  const newNextElement = newActiveTab.nextElementSibling;
+  if (!newNextElement) {
+    nextBtn.classList.add("opacity-50");
+    return;
+  }
+});
+
+// Previous Button Handler
+prevBtn.addEventListener("click", () => {
+  nextBtn.classList.remove("opacity-50");
+  let activeTab = document.querySelector(".activeTab");
+  const previousElement = activeTab.previousElementSibling;
+
+  const currTabId = previousElement.childNodes[1].id;
+  if (previousElement) {
+    tabContentWrp.forEach((elm) => {
+      const currElmId = `${elm.id}-tab`;
+      if (currElmId === currTabId) {
+        elm.classList.remove("hidden");
+      } else {
+        elm.classList.add("hidden");
+      }
+    });
+    activeTab.classList.remove("activeTab");
+    previousElement.classList.add("activeTab");
+  }
+  let newActiveTab = document.querySelector(".activeTab");
+
+  const newPreviousElement = newActiveTab.previousElementSibling;
+  if (!newPreviousElement) {
+    prevBtn.classList.add("opacity-50");
+    return;
+  }
 });

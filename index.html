@@ -460,7 +460,7 @@
                 id="patten"
                 role="tabpanel"
                 aria-labelledby="patten-tab"
-                class="min-h-[35vh] flex flex-col justify-between items-center gap-4"
+                class="min-h-[35vh] flex flex-col justify-between items-center gap-4 tab-content-wrp"
               >
                 <div
                   class="max-h-[27vh] overflow-y-auto grid grid-cols-2 gap-4 pr-3 w-full"
@@ -637,7 +637,12 @@
                 </div>
               </div>
 
-              <div id="paint" role="tabpanel" aria-labelledby="paint-tab">
+              <div
+                id="paint"
+                role="tabpanel"
+                aria-labelledby="paint-tab"
+                class="tab-content-wrp"
+              >
                 <p class="text-sm text-gray-500 dark:text-gray-400">
                   This is some placeholder content the
                   <strong class="font-medium text-gray-800 dark:text-white"
@@ -647,7 +652,12 @@
                   content visibility and styling.
                 </p>
               </div>
-              <div id="tag" role="tabpanel" aria-labelledby="tag-tab">
+              <div
+                id="tag"
+                role="tabpanel"
+                aria-labelledby="tag-tab"
+                class="tab-content-wrp"
+              >
                 <p class="text-sm text-gray-500 dark:text-gray-400">
                   This is some placeholder content the
                   <strong class="font-medium text-gray-800 dark:text-white"
@@ -657,7 +667,12 @@
                   content visibility and styling.
                 </p>
               </div>
-              <div id="sponsor" role="tabpanel" aria-labelledby="sponsor-tab">
+              <div
+                id="sponsor"
+                role="tabpanel"
+                aria-labelledby="sponsor-tab"
+                class="tab-content-wrp"
+              >
                 <p class="text-sm text-gray-500 dark:text-gray-400">
                   This is some placeholder content the
                   <strong class="font-medium text-gray-800 dark:text-white"
@@ -670,8 +685,10 @@
             </div>
 
             <div class="flex justify-between items-center gap-x-3 w-full">
-              <button type="button" id="prevBtn" class="prev-btn">BACK</button>
-              <button type="button" id="prevBtn" class="next-btn">NEXT</button>
+              <button type="button" id="prevBtn" class="prev-btn opacity-50">
+                BACK
+              </button>
+              <button type="button" id="nextBtn" class="next-btn">NEXT</button>
             </div>
           </div>
         </div>
