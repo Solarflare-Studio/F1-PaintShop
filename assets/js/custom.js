@@ -120,7 +120,7 @@ f1PaintTab.forEach((box) => {
     f1PaintTab.forEach((box) => {
       const parentElm = box.closest("li");
       parentElm.classList.remove("activeTab");
-      parentElm.classList.remove("prevTab");
+      // parentElm.classList.remove("prevTab");
     });
 
     // Add the active class to the clicked element
@@ -133,14 +133,26 @@ f1PaintTab.forEach((box) => {
 
     // Remove a class from the next element
     if (nextElement) {
-      nextElement.classList.remove("prevTab");
+      // nextElement.classList.remove("prevTab");
     }
+    // adding class to prevTag
+    let breakNow = true;
+    f1PaintTab.forEach((ele) => {
+      const parentElmOfLi = ele.closest("li");
+      if (parentElmOfLi.id !== parentElm.id && breakNow) {
+        parentElmOfLi.classList.add("prevTab");
+      } else {
+        breakNow = false;
+        parentElmOfLi.classList.remove("prevTab");
+      }
+    });
   });
 });
 
 // Next Button Handler
 nextBtn.addEventListener("click", () => {
   prevBtn.classList.remove("opacity-50");
+  prevBtn.removeAttribute("disabled");
   const activeTab = document.querySelector(".activeTab");
   const nextElement = activeTab.nextElementSibling;
   if (!nextElement) return;
@@ -160,11 +172,23 @@ nextBtn.addEventListener("click", () => {
   }
 
   const newActiveTab = document.querySelector(".activeTab");
-  const newNextElement = newActiveTab.nextElementSibling;
-  if (!newNextElement) {
-    nextBtn.classList.add("opacity-50");
-    return;
-  }
+  // const newNextElement = newActiveTab.nextElementSibling;
+  // if (!newNextElement) {
+  //   nextBtn.classList.add("opacity-50");
+  //   nextBtn
+  // }
+
+  // adding class to prevTag
+  let breakNow = true;
+  f1PaintTab.forEach((ele) => {
+    const parentElmOfLi = ele.closest("li");
+    if (parentElmOfLi.id !== newActiveTab.id && breakNow) {
+      parentElmOfLi.classList.add("prevTab");
+    } else {
+      breakNow = false;
+      parentElmOfLi.classList.remove("prevTab");
+    }
+  });
 });
 
 // Previous Button Handler
@@ -191,6 +215,18 @@ prevBtn.addEventListener("click", () => {
   const newPreviousElement = newActiveTab.previousElementSibling;
   if (!newPreviousElement) {
     prevBtn.classList.add("opacity-50");
-    return;
+    prevBtn.setAttribute("disabled", true);
   }
+
+  // adding class to prevTag
+  let breakNow = true;
+  f1PaintTab.forEach((ele) => {
+    const parentElmOfLi = ele.closest("li");
+    if (parentElmOfLi.id !== newActiveTab.id && breakNow) {
+      parentElmOfLi.classList.add("prevTab");
+    } else {
+      breakNow = false;
+      parentElmOfLi.classList.remove("prevTab");
+    }
+  });
 });
