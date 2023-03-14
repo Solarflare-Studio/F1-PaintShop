@@ -9,7 +9,7 @@ const progress = document.querySelector("#file");
 const dropdownArrow = document.querySelector("#dropdownArrow");
 const dropdownElm = document.querySelector("#languageSelect");
 const tabToggle = document.querySelector("#tabToggle");
-const tabContant = document.querySelector("#tabContant");
+const tabContent = document.querySelector("#tabContent");
 let selectedLanguage = document.querySelector("#selectedLanguage");
 const f1PaintTab = document.querySelectorAll(".tab button");
 
@@ -27,13 +27,13 @@ function move() {
       } else {
         loadingProgress++;
         progress.value = loadingProgress;
-        weclome();
+        welcome();
       }
     }
   }
 }
 // Redirect to welcome layout
-function weclome() {
+function welcome() {
   if (loadingProgress === 100) {
     menu.classList.remove("hidden");
     welcomeContent.classList.remove("hidden");
@@ -42,10 +42,10 @@ function weclome() {
 }
 
 // select language
-function handlelanguageSelect() {
+function handleLanguageSelect() {
   dropdownArrow.classList.toggle("rotate-180");
 }
-function handlelanguageChange(e) {
+function handleLanguageChange(e) {
   selectedLanguage.innerHTML = e;
 }
 window.addEventListener("click", (event) => {
@@ -61,7 +61,7 @@ function handleWelcomeNext() {
   tutorial.classList.remove("hidden");
 }
 
-// Redirect to titorial layout
+// Redirect to tutorial layout
 function handleTutorial() {
   pattenTutorial.classList.remove("hidden");
   tutorial.classList.add("hidden");
@@ -72,10 +72,10 @@ function handlePattenTutorial() {
   pattenTutorial.classList.add("hidden");
 }
 
-//tab contant hide/show
+//tab content hide/show
 function handleTabToggle() {
   tabToggle.classList.toggle("rotate-180");
-  tabContant.classList.toggle("hidden");
+  tabContent.classList.toggle("hidden");
 }
 
 // Add click event listener to each box
