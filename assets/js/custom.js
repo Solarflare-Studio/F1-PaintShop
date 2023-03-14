@@ -79,8 +79,8 @@ function handleTutorial() {
 // Redirect to patten layout
 function handleCloseTutorial() {
   pattenTutorial.classList.add("hidden");
-  paintTutorial.classList.add('hidden')
-  tagTutorial.classList.add('hidden')
+  paintTutorial.classList.add("hidden");
+  tagTutorial.classList.add("hidden");
   sponsorTutorial.classList.add("hidden");
 }
 
@@ -92,18 +92,18 @@ function handleTabToggle() {
 }
 
 // Paint Tutorial Handler
-function handlePaintTutorial(){
-  paintTutorial.classList.remove('hidden')
+function handlePaintTutorial() {
+  paintTutorial.classList.remove("hidden");
 }
 
 // Tag Tutorial Handler
-function handleTagTutorial(){
-  tagTutorial.classList.remove('hidden')
+function handleTagTutorial() {
+  tagTutorial.classList.remove("hidden");
 }
 
 // Sponsor Tutorial Handler
-function handleSponsorTutorial(){
-  sponsorTutorial.classList.remove('hidden')
+function handleSponsorTutorial() {
+  sponsorTutorial.classList.remove("hidden");
 }
 
 // Add click event listener to each box
@@ -131,10 +131,15 @@ f1PaintTab.forEach((box) => {
       previousElement.classList.add("prevTab");
     }
 
-    // Remove a class from the next element
-    if (nextElement) {
-      // nextElement.classList.remove("prevTab");
+    // enabling back button
+    if (parentElm.id === "patten-li") {
+      prevBtn.setAttribute("disabled", true);
+      prevBtn.classList.add("opacity-50");
+    } else {
+      prevBtn.removeAttribute("disabled");
+      prevBtn.classList.remove("opacity-50");
     }
+
     // adding class to prevTag
     let breakNow = true;
     f1PaintTab.forEach((ele) => {
