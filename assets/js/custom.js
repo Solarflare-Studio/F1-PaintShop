@@ -1,14 +1,14 @@
 const loadingContent = document.querySelector("#loadingContent");
 const welcomeContent = document.querySelector("#welcomeContent");
-const pattenContent = document.querySelector("#pattenContent");
-
+const patternContent = document.querySelector("#patternContent");
 const tutorial = document.querySelector("#tutorial");
-const pattenTutorial = document.querySelector("#pattenTutorial");
-const paintTutorial = document.querySelector("#paintTutorial");
-const tagTutorial = document.querySelector("#tagTutorial");
-const sponsorTutorial = document.querySelector("#sponsorTutorial");
+const patternTutorialContent = document.querySelector("#patternTutorial");
+const paintTutorialContent = document.querySelector("#paintTutorial");
+const tagTutorialContent = document.querySelector("#tagTutorial");
+const sponsorTutorialContent = document.querySelector("#sponsorTutorial");
 const menu = document.querySelector("#menu");
-const progress = document.querySelector("#file");
+const welcomeProgress = document.querySelector("#welcomeProgress");
+const finalProgress = document.querySelector("#finalProgress");
 const dropdownArrow = document.querySelector("#dropdownArrow");
 const dropdownElm = document.querySelector("#languageSelect");
 const zoomIn = document.querySelector("#zoomIn");
@@ -18,11 +18,19 @@ const f1PaintTab = document.querySelectorAll(".tab button");
 const tabContentWrp = document.querySelectorAll(".tab-content-wrp");
 const prevBtn = document.querySelector("#prevBtn");
 const nextBtn = document.querySelector("#nextBtn");
-
+const TabHead = document.querySelector("#TabHead");
+const tabBody = document.querySelector("#tabBody");
+const comeToLifeContent = document.querySelector("#comeToLifeContent");
+const cameraTutorial = document.querySelector("#cameraTutorial");
+const finishSelectionContent = document.querySelector(
+  "#finishSelectionContent"
+);
+const finishSelectionLoading = document.querySelector(
+  "#finishSelectionLoading"
+);
 let selectedLanguage = document.querySelector("#selectedLanguage");
 let loadingProgress = 0;
 selectedLanguage.innerHTML = "Language 1";
-
 move();
 function move() {
   if (loadingProgress == 0) {
@@ -33,23 +41,24 @@ function move() {
         clearInterval(id);
         loadingProgress = 0;
       } else {
-        loadingProgress++;
-        progress.value = loadingProgress;
-        welcome();
+        if (nextBtn.classList.contains("submit")) {
+          finalProgress.value = loadingProgress++;
+          loadingProgress === 100 && handleComeToLife();
+        } else {
+          welcomeProgress.value = loadingProgress++;
+          loadingProgress === 100 && welcome();
+        }
       }
     }
   }
 }
 
-// Redirect to welcome layout
+// Welcome Handler
 function welcome() {
-  if (loadingProgress === 100) {
-    menu.classList.remove("hidden");
-    welcomeContent.classList.remove("hidden");
-    loadingContent.classList.add("hidden");
-  }
+  menu.classList.remove("hidden");
+  welcomeContent.classList.remove("hidden");
+  loadingContent.classList.add("hidden");
 }
-
 // Language Select Handler
 function handleLanguageSelect() {
 /* ben  uihandlelanguageSelect();	*/
@@ -64,33 +73,30 @@ window.addEventListener("click", (event) => {
     dropdownArrow.classList.remove("rotate-180");
   }
 });
-
-// Redirect to patten layout
+// Pattern Layout Handler
 function handleWelcomeNext() {
-  pattenContent.classList.remove("hidden");
+  patternContent.classList.remove("hidden");
   welcomeContent.classList.add("hidden");
   tutorial.classList.remove("hidden");
 }
-
-// Redirect to tutorial layout
+// Tutorial popup Handler
 function handleTutorial() {
-  pattenTutorial.classList.remove("hidden");
+  // tabTutorial("pattern-tab");
   tutorial.classList.add("hidden");
 }
 
 // Redirect to patten layout
 /* ben added id to handleCloseTutorial */
 function handleCloseTutorial(id) {
-  pattenTutorial.classList.add("hidden");
-  paintTutorial.classList.add("hidden");
-  tagTutorial.classList.add("hidden");
-  sponsorTutorial.classList.add("hidden");
+  patternTutorialContent.classList.add("hidden");
+  paintTutorialContent.classList.add("hidden");
+  tagTutorialContent.classList.add("hidden");
+  sponsorTutorialContent.classList.add("hidden");
 	if(id==0) {
 		 introNextPage(0); // ben
 	}  
 }
-
-// Tab content toggle Handler
+// Zoom In/Out Handler
 function handleTabToggle() {
   zoomIn.classList.toggle("hidden");
   zoomOut.classList.toggle("hidden");
@@ -125,6 +131,17 @@ function handleSponsorTutorial() {
     alreadyShownSponsorTutorial=true;
     sponsorTutorial.classList.remove("hidden");
   }
+}
+
+// Come to Life Handler
+function handleComeToLife() {
+  comeToLifeContent.classList.remove("hidden");
+  patternContent.classList.add("hidden");
+  finishSelectionLoading.classList.add("hidden");
+}
+// Camera Tutorial Handler
+function handleCameraTutorial() {
+  cameraTutorial.classList.remove("hidden");
 }
 
 // Add click event listener to each box
@@ -167,37 +184,31 @@ f1PaintTab.forEach((box) => {
     });
     //=============
 
-
-
-
+    const parentElmBtn = currTarget.closest("li Button");
     // Get the previous and next elements
     const previousElement = parentElm.previousElementSibling;
     const nextElement = parentElm.nextElementSibling;
-
     // Remove the active class from all boxes
     f1PaintTab.forEach((box) => {
       const parentElm = box.closest("li");
       parentElm.classList.remove("activeTab");
-      // parentElm.classList.remove("prevTab");
     });
-
     // Add the active class to the clicked element
     parentElm.classList.add("activeTab");
-
     // Add a class to the previous element
     if (previousElement) {
       previousElement.classList.add("prevTab");
     }
-
     // enabling back button
-    if (parentElm.id === "patten-li") {
+    if (parentElm.id === "pattern-li") {
       prevBtn.setAttribute("disabled", true);
       prevBtn.classList.add("opacity-50");
     } else {
       prevBtn.removeAttribute("disabled");
       prevBtn.classList.remove("opacity-50");
     }
-
+    console.log(parentElmBtn.id);
+    tabTutorial(parentElmBtn.id);
     // adding class to prevTag
     let breakNow = true;
     f1PaintTab.forEach((ele) => {
@@ -218,6 +229,18 @@ nextBtn.addEventListener("click", () => {
   prevBtn.removeAttribute("disabled");
   const activeTab = document.querySelector(".activeTab");
   const nextElement = activeTab.nextElementSibling;
+  if (!nextElement && !nextBtn.classList.contains("submit")) {
+    TabHead.classList.add("hidden");
+    tabBody.classList.add("hidden");
+    finishSelectionContent.classList.remove("hidden");
+    nextBtn.classList.add("submit");
+    tabContent.classList.remove("bg-primary");
+    return;
+  }
+  if (nextBtn.classList.contains("submit")) {
+    finishSelectionLoading.classList.remove("hidden");
+    move();
+  }
   if (!nextElement) return;
 	/* ben added */
 	switch (nextElement.id) {
@@ -248,21 +271,17 @@ nextBtn.addEventListener("click", () => {
       const currElmId = `${elm.id}-tab`;
       if (currElmId === currTabId) {
         elm.classList.remove("hidden");
+        tabTutorial(currElmId);
       } else {
         elm.classList.add("hidden");
       }
+      
     });
     activeTab.classList.remove("activeTab");
     nextElement.classList.add("activeTab");
   }
-
   const newActiveTab = document.querySelector(".activeTab");
-  // const newNextElement = newActiveTab.nextElementSibling;
-  // if (!newNextElement) {
-  //   nextBtn.classList.add("opacity-50");
-  //   nextBtn
-  // }
-
+  const newNextElement = newActiveTab.nextElementSibling;
   // adding class to prevTag
   let breakNow = true;
   f1PaintTab.forEach((ele) => {
@@ -278,6 +297,14 @@ nextBtn.addEventListener("click", () => {
 
 // Previous Button Handler
 prevBtn.addEventListener("click", () => {
+  if (!finishSelectionContent.classList.contains("hidden")) {
+    TabHead.classList.remove("hidden");
+    tabBody.classList.remove("hidden");
+    finishSelectionContent.classList.add("hidden");
+    nextBtn.classList.remove("submit");
+    tabContent.classList.add("bg-primary");
+    return;
+  }
   nextBtn.classList.remove("opacity-50");
   let activeTab = document.querySelector(".activeTab");
   const previousElement = activeTab.previousElementSibling;
@@ -309,7 +336,9 @@ prevBtn.addEventListener("click", () => {
       const currElmId = `${elm.id}-tab`;
       if (currElmId === currTabId) {
         elm.classList.remove("hidden");
+        tabTutorial(currElmId);
       } else {
+        console.log(elm);
         elm.classList.add("hidden");
       }
     });
@@ -317,13 +346,11 @@ prevBtn.addEventListener("click", () => {
     previousElement.classList.add("activeTab");
   }
   let newActiveTab = document.querySelector(".activeTab");
-
   const newPreviousElement = newActiveTab.previousElementSibling;
   if (!newPreviousElement) {
     prevBtn.classList.add("opacity-50");
     prevBtn.setAttribute("disabled", true);
   }
-
   // adding class to prevTag
   let breakNow = true;
   f1PaintTab.forEach((ele) => {
