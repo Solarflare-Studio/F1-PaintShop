@@ -203,18 +203,21 @@ nextBtn.addEventListener("click", () => {
   if (!nextElement) return;
 	/* ben added */
 	switch (nextElement.id) {
-    case "patten-li":
-      changeTab(1);
-      break;
-    case "paint-li":
-      changeTab(2);
-      break;
-    case "tag-li":
-      changeTab(3);
-      break;
-    case "sponsor-li":
-      changeTab(4);
-      break;
+		case "patten-li":
+			changeTab(1);
+			break;
+		  case "paint-li":
+			changeTab(2);
+			handlePaintTutorial();
+			break;
+		  case "tag-li":
+			changeTab(3);
+			handleTagTutorial();
+			break;
+		  case "sponsor-li":
+			changeTab(4);
+			handleSponsorTutorial()
+			break;	
 	}
 	//
   const currTabId = nextElement.childNodes[1].id;
@@ -258,18 +261,21 @@ prevBtn.addEventListener("click", () => {
   const previousElement = activeTab.previousElementSibling;
 	/* ben added */
 	switch (previousElement.id) {
-    case "patten-li":
-      changeTab(1);
-      break;
-    case "paint-li":
-      changeTab(2);
-      break;
-    case "tag-li":
-      changeTab(3);
-      break;
-    case "sponsor-li":
-      changeTab(4);
-      break;
+		case "patten-li":
+			changeTab(1);
+			break;
+		  case "paint-li":
+			changeTab(2);
+			handlePaintTutorial();
+			break;
+		  case "tag-li":
+			changeTab(3);
+			handleTagTutorial();
+			break;
+		  case "sponsor-li":
+			changeTab(4);
+			handleSponsorTutorial()
+			break;
 	}
 	//
   const currTabId = previousElement.childNodes[1].id;
