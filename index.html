@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--ben    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  -->
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" /> <!--ben-->    
+<!--    <link rel="stylesheet" href="./sfPaint.css">--> <!--ben, will remove as I remove my old html-->
+
     <title>F1 PaintShop</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700&display=swap"
@@ -264,8 +267,8 @@
           <h2
             class="text-netural text-2xl font-medium font-F1PaintShopBoldFont mb-2"
           >
-            LANGUAGE
-          </h2>
+          ><div id="LK_language">LANGUAGE</div> <!--ben-->
+        </h2>
           <div class="relative" id="languageSelect">
             <button
               id="languageSelectBtn"
@@ -290,8 +293,8 @@
               id="dropdown"
               class="z-10 hidden w-full bg-secondary px-4 !translate-y-12 rounded-md text-left"
             >
-              <ul aria-labelledby="languageSelectBtn">
-                <li
+            <ul aria-labelledby="languageSelectBtn" id="languageChoices" > <!--ben-->
+              <li
                   class="language-option"
                   onclick="handleLanguageChange('Language 1')"
                 >
@@ -310,8 +313,8 @@
           <hr class="border-netural border-t-2 mb-3 mt-6" />
           <ul class="relative text-right list-none py-3">
             <li class="menu-item">T&CS</li>
-            <li class="menu-item">SECURITY</li>
-            <li class="menu-item">OTHER LINKS</li>
+            <li class="menu-item"><div id="LK_security">SECURITY</div></li> <!--ben-->
+            <li class="menu-item"><div id="LK_otherlinks">OTHER LINKS</div></li> <!--ben-->
           </ul>
         </div>
       </div>
@@ -359,18 +362,21 @@
           class="flex justify-center items-center flex-col h-[89vh] text-center px-2 hidden"
           id="welcomeContent"
         >
-          <h1
+        <!--ben added LK -->
+        <h1 id="LK_welcomeContent_01"
             class="w-auto text-netural text-2xl font-medium mt-2 border-b-2 border-netural pb-2 font-F1PaintShopBoldFont"
           >
             WELCOME
           </h1>
-          <p
+          <!--ben added LK -->
+          <p id="LK_welcomeContent_02"
             class="text-netural text-2xl leading-7 font-extralight py-3 font-Titillium pt-3 pb-10"
           >
             Time to customise your very own F1 Car. Get ready to deck out your
             very own livery and make unique to your style.
           </p>
-          <button
+          <!--ben-->
+          <button id="nextButton"        
             type="button"
             class="bg-brand text-netural text-2xl px-16 py-2 rounded-md font-F1PaintShopFont"
             onclick="handleWelcomeNext()"
@@ -506,9 +512,14 @@
                 aria-labelledby="patten-tab"
                 class="tab-content-wrp"
               >
-                <div
+              <!--ben add id-->
+                <div id="layer1patterns_ins"
                   class="max-h-[30vh] overflow-y-auto grid grid-cols-2 gap-4 pr-3 w-full"
                 >
+
+                <!-- ben removed below placeholders, as are dynamically added -->
+                <!--
+
                   <div class="pattent_check_wrp">
                     <input
                       id="pattent1"
@@ -678,6 +689,9 @@
                       </div>
                     </label>
                   </div>
+                   
+                  ben removed above placeholders -->
+
                 </div>
               </div>
               <div
@@ -687,22 +701,22 @@
                 class="min-h-[30vh] tab-content-wrp"
               >
                 <div>
-                  <span class="label">BASE COLOUR</span>
-                  <div class="color-picker bg-brand"></div>
+                  <span class="label">BASE PAINT</span> <!--ben -->
+                  <div class="color-picker bg-brand" id="basepaintbutton" onclick="onChangePaint(0);"></div> <!--ben-->
                 </div>
                 <div class="flex gap-x-6">
                   <div class="basis-1/2">
-                    <span class="label">PRIMARY COLOUR</span>
-                    <div class="color-picker bg[#151320]"></div>
+                    <span class="label">PRIMARY PAINT</span>
+                    <div class="color-picker bg[#151320]" id="basepaintbutton" onclick="onChangePaint(1);"></div> <!--ben-->
                   </div>
                   <div class="basis-1/2">
-                    <span class="label">SECONDARY COLOUR</span>
-                    <div class="color-picker bg-netural"></div>
+                    <span class="label">SECONDARY PAINT</span>
+                    <div class="color-picker bg-netural" id="basepaintbutton" onclick="onChangePaint(2);"></div> <!--ben-->
                   </div>
                 </div>
                 <hr class="my-4 border-netural border-b-2" />
                 <div>
-                  <span class="label">RANDOMISE COLOURS</span>
+                  <span class="label">RANDOMISE PAINT</span>
                   <div
                     class="color-picker bg-netural flex justify-center items-center"
                   >
@@ -713,6 +727,40 @@
                   </div>
                 </div>
               </div>
+
+<!--ben temporary paint selector page
+this page is shown in place of the Paint tab page, until you press 'confirm', see figma
+-->
+<div id="paintachannelblock" class="f1patterncolours hidden">
+  <div id="whichchanneltext">WHICH CHANNEL</div>
+  <div>
+      <div id="colourPickerContainer" class="colourscontainer">
+          <div style="height:15px"></div>
+          <div id="coloursample" class="coloursample"></div>
+          <div id="coloursexpanded_2" class="coloursexpanded_2">
+              <div class="centreddiv">
+                  <div class="colourWheelPicker" id="colourWheelPicker"></div>  <!-- see js for the current colour picker code -->
+              </div>
+          </div>
+      </div>     
+  </div>
+  <div id="glosstypeblock">
+      <div class="flex3">
+          <div id="glossbutton" class="blackButton button" onclick="onMaterialbutton(0);">GLOSS</div>
+          <div id="mattebutton" class="blackButton button" onclick="onMaterialbutton(1);">MATTE</div>
+          <div id="metallicbutton" class="blackButton button" onclick="onMaterialbutton(2);">METALLIC</div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
               <div
                 id="tag"
                 role="tabpanel"
@@ -738,9 +786,12 @@
                     <div class="color-picker bg-[#343434]"></div>
                   </div>
                 </div>
-                <div
-                  class="max-h-[20vh] overflow-y-auto grid grid-cols-2 gap-4 pr-3 w-full mt-3"
+                <!--ben add id-->
+                <div id="layer2tags_ins"
+                      class="max-h-[20vh] overflow-y-auto grid grid-cols-2 gap-4 pr-3 w-full mt-3"
                 >
+
+                <!-- ben removed below tag placeholders
                   <div class="pattent_check_wrp">
                     <input
                       id="tag1"
@@ -833,6 +884,7 @@
                       </div>
                     </label>
                   </div>
+              -->
                 </div>
               </div>
               <div
@@ -845,9 +897,13 @@
                   <span class="label">SPONSOR COLOUR</span>
                   <div class="color-picker bg-[#02BFFE]"></div>
                 </div>
-                <div
-                  class="max-h-[20vh] overflow-y-auto grid grid-cols-2 gap-4 pr-3 w-full mt-3"
+                <!--ben add id layer3sponsors_ins -->
+                <div id="layer3sponsors_ins"
+                    class="max-h-[20vh] overflow-y-auto grid grid-cols-2 gap-4 pr-3 w-full mt-3"
                 >
+
+                <!--ben removed below sponsor placeholders
+
                   <div class="pattent_check_wrp">
                     <input
                       id="sponsor1"
@@ -941,6 +997,9 @@
                     </label>
                   </div>
                 </div>
+
+                -->
+
               </div>
             </div>
 
@@ -1005,10 +1064,11 @@
           >
             Let’s get started then. Choose your pattern.
           </p>
+          <!-- ben added id to handleCloseTutorial below -->
           <button
             type="button"
             class="bg-brand text-netural text-2xl px-16 py-4 rounded-md font-F1PaintShopFont w-full"
-            onclick="handleCloseTutorial()"
+            onclick="handleCloseTutorial(0)"
           >
             OK!
           </button>
@@ -1031,10 +1091,11 @@
           >
             Looking good already, now get colourful.
           </p>
+          <!-- ben added id to handleCloseTutorial below -->
           <button
             type="button"
             class="bg-brand text-netural text-2xl px-16 py-4 rounded-md font-F1PaintShopFont w-full"
-            onclick="handleCloseTutorial()"
+            onclick="handleCloseTutorial(1)"
           >
             OK!
           </button>
@@ -1057,10 +1118,11 @@
           >
             Get personal, add your own tag.
           </p>
+          <!-- ben added id to handleCloseTutorial below -->
           <button
             type="button"
             class="bg-brand text-netural text-2xl px-16 py-4 rounded-md font-F1PaintShopFont w-full"
-            onclick="handleCloseTutorial()"
+            onclick="handleCloseTutorial(2)"
           >
             OK!
           </button>
@@ -1083,10 +1145,11 @@
           >
             Finishing touches... add some sponsors.
           </p>
+          <!-- ben added id to handleCloseTutorial below -->
           <button
             type="button"
             class="bg-brand text-netural text-2xl px-16 py-4 rounded-md font-F1PaintShopFont w-full"
-            onclick="handleCloseTutorial()"
+            onclick="handleCloseTutorial(3)"
           >
             OK!
           </button>
