@@ -238,7 +238,11 @@ nextBtn.addEventListener("click", () => {
 			break;	
 	}
 	//
+  /* ben i found this crashed in build but worked in dev!? strange! so I replaced 
   const currTabId = nextElement.childNodes[1].id;
+  */
+ 	const currTabId = nextElement.children[0].id;
+
   if (nextElement) {
     tabContentWrp.forEach((elm) => {
       const currElmId = `${elm.id}-tab`;
@@ -296,7 +300,10 @@ prevBtn.addEventListener("click", () => {
 			break;
 	}
 	//
+  /* ben i found this crashed in build but worked in dev!? strange! so I replaced 
   const currTabId = previousElement.childNodes[1].id;
+  */
+  const currTabId = previousElement.children[0].id;
   if (previousElement) {
     tabContentWrp.forEach((elm) => {
       const currElmId = `${elm.id}-tab`;
