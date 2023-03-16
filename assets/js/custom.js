@@ -151,6 +151,24 @@ f1PaintTab.forEach((box) => {
     }
     //
 
+    /* ben 
+    I think there's a bug in the code when combining use of next and tabs?
+    if you use next to advance to the tags tab, then click back to the patterns tab, it doesnt clear the previous tags contents.
+    I added a quick fix, but not sure if its best */
+    //=============
+    const currTabId = event.currentTarget.id;
+    tabContentWrp.forEach((elm) => {
+      const currElmId = `${elm.id}-tab`;
+      if (currElmId === currTabId) {
+      elm.classList.remove("hidden");
+      } else {
+      elm.classList.add("hidden");
+      }
+    });
+    //=============
+
+
+
 
     // Get the previous and next elements
     const previousElement = parentElm.previousElementSibling;
