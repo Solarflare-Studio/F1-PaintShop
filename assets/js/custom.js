@@ -18,6 +18,7 @@ const f1PaintTab = document.querySelectorAll(".tab button");
 const tabContentWrp = document.querySelectorAll(".tab-content-wrp");
 const prevBtn = document.querySelector("#prevBtn");
 const nextBtn = document.querySelector("#nextBtn");
+const allTabs = document.querySelector("#allTabs");
 const TabHead = document.querySelector("#TabHead");
 const tabBody = document.querySelector("#tabBody");
 const comeToLifeContent = document.querySelector("#comeToLifeContent");
@@ -55,7 +56,7 @@ function move() {
 
 // Welcome Handler
 function welcome() {
-  menu.classList.remove("hidden");
+  menu.classList.remove("invisible");
   welcomeContent.classList.remove("hidden");
   loadingContent.classList.add("hidden");
 }
@@ -100,7 +101,7 @@ function handleCloseTutorial(id) {
 function handleTabToggle() {
   zoomIn.classList.toggle("hidden");
   zoomOut.classList.toggle("hidden");
-  tabContent.classList.toggle("hidden");
+  tabBody.classList.toggle("hidden");
 }
 
 // Paint Tutorial Handler
@@ -139,11 +140,43 @@ function handleComeToLife() {
   patternContent.classList.add("hidden");
   finishSelectionLoading.classList.add("hidden");
 }
+
 // Camera Tutorial Handler
 function handleCameraTutorial() {
   cameraTutorial.classList.remove("hidden");
 }
 
+// Tab Tutorial Handler
+let patternTutorial = true;
+let paintTutorial = true;
+let TagTutorial = true;
+let sponsorTutorial = true;
+function tabTutorial(currElmId) {
+  if (currElmId === "pattern-tab") {
+    if (patternTutorial) {
+      patternTutorial = false;
+      patternTutorialContant.classList.remove("hidden");
+    }
+  }
+  if (currElmId === "paint-tab") {
+    if (paintTutorial) {
+      paintTutorial = false;
+      paintTutorialContant.classList.remove("hidden");
+    }
+  }
+  if (currElmId === "tag-tab") {
+    if (TagTutorial) {
+      TagTutorial = false;
+      tagTutorialContant.classList.remove("hidden");
+    }
+  }
+  if (currElmId === "sponsor-tab") {
+    if (sponsorTutorial) {
+      sponsorTutorial = false;
+      sponsorTutorialContant.classList.remove("hidden");
+    }
+  }
+}
 // Add click event listener to each box
 f1PaintTab.forEach((box) => {
   box.addEventListener("click", (event) => {
@@ -275,7 +308,7 @@ nextBtn.addEventListener("click", () => {
       } else {
         elm.classList.add("hidden");
       }
-      
+
     });
     activeTab.classList.remove("activeTab");
     nextElement.classList.add("activeTab");
