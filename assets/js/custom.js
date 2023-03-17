@@ -24,6 +24,9 @@ const tabBody = document.querySelector("#tabBody");
 const comeToLifeContent = document.querySelector("#comeToLifeContent");
 const cameraTutorial = document.querySelector("#cameraTutorial");
 const paintachannelblock = document.querySelector("#paintachannelblock");
+const WebAR = document.querySelector("#WebAR");
+const scanImgTutorial = document.querySelector("#scanImgTutorial");
+const body = document.querySelector("body");
 
 const finishSelectionContent = document.querySelector(
   "#finishSelectionContent"
@@ -143,11 +146,23 @@ function handleComeToLife() {
   finishSelectionLoading.classList.add("hidden");
 }
 
+// Back to Tab Handler
+function handleBackToTabs() {
+  comeToLifeContent.classList.add("hidden");
+  patternContent.classList.remove("hidden");
+}
+
 // Camera Tutorial Handler
 function handleCameraTutorial() {
   cameraTutorial.classList.remove("hidden");
 }
-
+function handleCameraAccess(){
+  WebAR.classList.remove('hidden')
+  cameraTutorial.classList.add('hidden')
+  comeToLifeContent.classList.add('hidden')
+  body.classList.add('!bg-webARBack')
+  
+}
 
 // Tab Tutorial Handler
 let alreadyShownPatternTutorial = true;
@@ -181,35 +196,11 @@ function tabTutorial(currElmId) {
       }
       break;
   }
-//   if (currElmId === "pattern-tab") {
-//     if (alreadyShownPatternTutorial) {
-//       alreadyShownPatternTutorial = false;
-//       patternTutorialContent.classList.remove("hidden");
-//     }
-//   }
-//   if (currElmId === "paint-tab") {
-//     if (alreadyShownPaintTutorial) {
-//       alreadyShownPaintTutorial = false;
-//       paintTutorialContent.classList.remove("hidden");
-//     }
-//   }
-//   if (currElmId === "tag-tab") {
-//     if (alreadyShownTagTutorial) {
-//       alreadyShownTagTutorial = false;
-//       tagTutorialContent.classList.remove("hidden");
-//     }
-//   }
-//   if (currElmId === "sponsor-tab") {
-//     if (alreadyShownSponsorTutorial) {
-//       alreadyShownSponsorTutorial = false;
-//       sponsorTutorialContent.classList.remove("hidden");
-//     }
-//   }
- }
+}
 
-function onChangePaint(){
-  tabBody.classList.add('hidden')
-  paintachannelblock.classList.remove('hidden')
+function onChangePaint() {
+  tabBody.classList.add("hidden");
+  paintachannelblock.classList.remove("hidden");
 }
 
 // Add click event listener to each box
@@ -243,8 +234,8 @@ f1PaintTab.forEach((box) => {
     }
     // console.log(parentElmBtn.id);
     tabTutorial(parentElmBtn.id);
-    tabBody.classList.remove('hidden')
-    paintachannelblock.classList.add('hidden')
+    tabBody.classList.remove("hidden");
+    paintachannelblock.classList.add("hidden");
     // adding class to prevTag
     let breakNow = true;
     f1PaintTab.forEach((ele) => {
@@ -270,7 +261,7 @@ nextBtn.addEventListener("click", () => {
     finishSelectionContent.classList.remove("hidden");
     nextBtn.classList.add("submit");
     tabBody.classList.remove("bg-primary");
-    
+
     return;
   }
   if (nextBtn.classList.contains("submit")) {
@@ -1458,7 +1449,7 @@ function changeTab(id) {} // this function is here for your convenience too
   function ft(t) {
     return {
       boxSizing: "border-box",
-      border: t.borderWidth + "px solid " + t.borderColor,
+      // border: t.borderWidth + "px solid " + t.borderColor,
     };
   }
   function ht(t, n, i) {
@@ -1531,6 +1522,7 @@ function changeTab(id) {} // this function is here for your convenience too
       );
     })(I);
   function bt(t) {
+    console.log(t.r)
     var n = t.r,
       i = t.url,
       r = n,
@@ -1545,6 +1537,7 @@ function changeTab(id) {} // this function is here for your convenience too
           (t.isActive ? "IroHandle--isActive" : ""),
         style: {
           "-webkit-tap-highlight-color": "rgba(0, 0, 0, 0);",
+          // transform: "translate(" + vt(t.x) + ", " + vt(t.y) + ")",
           transform: "translate(" + vt(t.x) + ", " + vt(t.y) + ")",
           willChange: "transform",
           top: vt(-n),
@@ -1591,9 +1584,136 @@ function changeTab(id) {} // this function is here for your convenience too
           fill: t.fill,
           "stroke-width": 2,
           stroke: "#fff",
-        })
+        }),
     );
   }
+    // saturation js
+    function yt(e) {
+      var t = st(e),
+        r = t.width,
+        u = t.height,
+        o = t.radius,
+        l = e.colors,
+        s = e.parent,
+        n = e.activeIndex,
+        c = void 0 !== n && n < e.colors.length ? e.colors[n] : e.color,
+        a = (function (t, n) {
+          return [
+            [
+              [0, "#fff"],
+              [100, "hsl(" + n.hue + ",100%,50%)"],
+            ],
+            [
+              [0, "rgba(0,0,0,0)"],
+              [100, "#000"],
+            ],
+          ];
+        })(0, c),
+        f = l.map(function (t) {
+          return (function (t, n) {
+            var i = st(t),
+              r = i.width,
+              e = i.height,
+              u = i.radius,
+              o = n.hsv,
+              l = u,
+              s = r - 2 * u,
+              c = e - 2 * u;
+            return { x: l + (o.s / 100) * s, y: l + (c - (o.v / 100) * c) };
+          })(e, t);
+        });
+      return h(
+        gt,
+        Object.assign({}, e, {
+          onInput: function (t, n, i) {
+            if (0 === i) {
+              var r = at(e, t, n, f);
+              null !== r
+                ? s.setActiveColor(r)
+                : ((s.inputActive = !0),
+                  (c.hsv = ct(e, t, n)),
+                  e.onInput(i, e.id));
+            } else 1 === i && ((s.inputActive = !0), (c.hsv = ct(e, t, n)));
+            e.onInput(i, e.id);
+          },
+        }),
+        function (t, n, i) {
+          return  h(
+            "div",
+            Object.assign({}, n, {
+              className: "saturation-wrp",
+              style: Object.assign(
+                {},
+                i
+              ),
+            }),
+            h("div", {
+              className: "label !mt-2",
+              innerHTML:'SATURATION',
+              style: Object.assign(
+                {},
+              
+              ),
+            }),
+            h(
+              "div",
+              Object.assign({}, n, {
+                className: "IroBox",
+                style: Object.assign(
+                  {},
+                  // { width: vt(r), height: vt(u), position: "relative" },
+                  { width: '100%', height: vt(u), position: "relative" },
+                  i
+                ),
+              }),
+              h("div", {
+                className: "IroBox",
+                style: Object.assign(
+                  {},
+                  { width: "100%", height: "100%", borderRadius: vt(8) },
+                  ft(e),
+                  {
+                    background:
+                      ht("linear", "to bottom", a[1]) +
+                      "," +
+                      ht("linear", "to right", a[0]),
+                  }
+                ),
+              }),
+              l
+                .filter(function (t) {
+                  return t !== c;
+                })
+                .map(function (t) {
+                  return h(bt, {
+                    isActive: !1,
+                    index: t.index,
+                    fill: t.hslString,
+                    r: e.handleRadius,
+                    url: e.handleSvg,
+                    props: e.handleProps,
+                    x: f[t.index].x,
+                    y: f[t.index].y,
+                  });
+                }),
+              h(bt, {
+                isActive: !0,
+                index: c.index,
+                fill: c.hslString,
+                r: e.activeHandleRadius || e.handleRadius,
+                url: e.handleSvg,
+                props: e.handleProps,
+                x: f[c.index].x,
+                y: f[c.index].y,
+              })
+            )
+          );
+
+        
+        }
+      );
+    }
+  //hue js
   function pt(e) {
     var t = e.activeIndex,
       u = void 0 !== t && t < e.colors.length ? e.colors[t] : e.color,
@@ -1703,165 +1823,126 @@ function changeTab(id) {} // this function is here for your convenience too
             e.onInput(i, e.id);
         },
       }),
-     
       function (t, n, i) {
-        return h(
+        return  h(
           "div",
           Object.assign({}, n, {
-            className: "IroSlider",
+            className: "colorPicker_wrp !flex justify-between items-end gap-x-4 !mt-0",
             style: Object.assign(
-              {},
-              {
-                position: "relative",
-                // width: vt(r),
-                height: vt(o),
-                // borderRadius: vt(l),
-                background:
-                  "conic-gradient(#ccc 25%, #fff 0 50%, #ccc 0 75%, #fff 0)",
-                backgroundSize: "8px 8px",
-              },
               i
             ),
           }),
-        
-          h("div", {
-            className: "IroSliderGradient",
-            style: Object.assign(
-              {},
-              {
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "40px",
-                borderRadius: "5px",
-                background: ht(
-                  "linear",
-                  "horizontal" === e.layoutDirection ? "to top" : "to right",
-                  c
+          h(
+            "div",
+            Object.assign({}, n, {
+              className: "hue_picker_wrp !mt-0",
+              style: Object.assign(
+                {},
+                {
+                  position: "relative",
+                  display: 'inline-block',
+                  position: "relative",
+                  width: vt(266),
+                  
+                  borderRadius: vt(5),
+                },
+                i
+              ),
+            }),
+            h(
+              "div",
+              Object.assign({}, n, {
+                className: "label  !mt-2 text-netural",
+               innerHTML:'HUE',
+                style: Object.assign(
+                  {},
+                  {
+                  
+                  },
+                 
+                  i
                 ),
-              },
-              ft(e)
+              }),
+            
             ),
-          }),
-          h(bt, {
-            isActive: !0,
-            index: u.index,
-            r: e.handleRadius,
-            url: e.handleSvg,
-            props: e.handleProps,
-            x: s.x,
-            y: s.y,
-          })
-        );
-      }
-    );
-  }
-  function yt(e) {
-    var t = st(e),
-      r = t.width,
-      u = t.height,
-      o = t.radius,
-      l = e.colors,
-      s = e.parent,
-      n = e.activeIndex,
-      c = void 0 !== n && n < e.colors.length ? e.colors[n] : e.color,
-      a = (function (t, n) {
-        return [
-          [
-            [0, "#fff"],
-            [100, "hsl(" + n.hue + ",100%,50%)"],
-          ],
-          [
-            [0, "rgba(0,0,0,0)"],
-            [100, "#000"],
-          ],
-        ];
-      })(0, c),
-      f = l.map(function (t) {
-        return (function (t, n) {
-          var i = st(t),
-            r = i.width,
-            e = i.height,
-            u = i.radius,
-            o = n.hsv,
-            l = u,
-            s = r - 2 * u,
-            c = e - 2 * u;
-          return { x: l + (o.s / 100) * s, y: l + (c - (o.v / 100) * c) };
-        })(e, t);
-      });
-    return h(
-      gt,
-      Object.assign({}, e, {
-        onInput: function (t, n, i) {
-          if (0 === i) {
-            var r = at(e, t, n, f);
-            null !== r
-              ? s.setActiveColor(r)
-              : ((s.inputActive = !0),
-                (c.hsv = ct(e, t, n)),
-                e.onInput(i, e.id));
-          } else 1 === i && ((s.inputActive = !0), (c.hsv = ct(e, t, n)));
-          e.onInput(i, e.id);
-        },
-      }),
-      function (t, n, i) {
-        return h(
-          "div",
-          Object.assign({}, n, {
-            className: "IroBox",
-            style: Object.assign(
-              {},
-              // { width: vt(r), height: vt(u), position: "relative" },
-              { width: '100%', height: '64px', position: "relative" },
-              i
-            ),
-          }),
-          h("div", {
-            className: "IroBox",
-            style: Object.assign(
-              {},
-              { width: "100%", height: "100%", borderRadius: vt(o) },
-              ft(e),
-              {
-                background:
-                  ht("linear", "to bottom", a[1]) +
-                  "," +
-                  ht("linear", "to right", a[0]),
-              }
-            ),
-          }),
-          l
-            .filter(function (t) {
-              return t !== c;
-            })
-            .map(function (t) {
-              return h(bt, {
-                isActive: !1,
-                index: t.index,
-                fill: t.hslString,
+            h(
+              "div",
+              Object.assign({}, n, {
+                className: "IroSlider !mt-0 ",
+                style: Object.assign(
+                  {},
+                  {
+                    position: "relative",
+                    // width: vt(r),
+                    // height: vt(o),
+                    width: '100%',
+                    height: vt(40),
+                    borderRadius: vt(5),
+                    // background:
+                    //   "conic-gradient(#ccc 25%, #fff 0 50%, #ccc 0 75%, #fff 0)",
+                    backgroundSize: "8px 8px",
+                  },
+                  i
+                ),
+              }),
+              h("div", {
+                className: "IroSliderGradient ",
+                style: Object.assign(
+                  {},
+                  {
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: vt(5),
+                    background: ht(
+                      "linear",
+                      "horizontal" === e.layoutDirection ? "to top" : "to right",
+                      c
+                    ),
+                  },
+                  ft(e)
+                ),
+              }),
+              h(bt, {
+                isActive: !0,
+                index: u.index,
                 r: e.handleRadius,
                 url: e.handleSvg,
                 props: e.handleProps,
-                x: f[t.index].x,
-                y: f[t.index].y,
-              });
+                x: s.x,
+                y: s.y,
+              })
+            )
+          ),
+          h(
+            "div",
+            Object.assign({}, n, {
+              className: "picked-color-wrp !mt-0",
+             
+              style: Object.assign(
+                {},
+                {
+                  display: 'inline-block',
+                  width:'45px',
+                  height:'40px',
+                  background:'#fff',
+                  borderRadius:'5px',
+                },
+               
+                i
+              ),
             }),
-          h(bt, {
-            isActive: !0,
-            index: c.index,
-            fill: c.hslString,
-            r: e.activeHandleRadius || e.handleRadius,
-            url: e.handleSvg,
-            props: e.handleProps,
-            x: f[c.index].x,
-            y: f[c.index].y,
-          })
+          
+          )
+
         );
+    
       }
     );
   }
+
   (bt.defaultProps = {
     fill: "none",
     x: 0,
@@ -2170,8 +2251,8 @@ function changeTab(id) {} // this function is here for your convenience too
       colors: [],
       padding: 6,
       layoutDirection: "vertical",
-      // borderColor: "#fff",
-      // borderWidth: 0,
+      borderColor: "#fff",
+      borderWidth: 0,
       handleRadius: 8,
       activeHandleRadius: null,
       handleSvg: null,
@@ -2264,10 +2345,6 @@ function createColourpicker() {
   const forcedsizeofcolourpicker = window.innerWidth * 0.5;
   const forcedheightofcolourpicker = window.innerHeight * 0.08;
 
-  if (colorPatternPicker != 0) {
-    // remove old; this is necessary, as the colourwheel library sets sizes up on creation
-    document.getElementById("colourWheelPicker").children[0].remove();
-  }
 
   //
   colorPatternPicker = new iro.ColorPicker("#colourWheelPicker", {
@@ -2275,9 +2352,8 @@ function createColourpicker() {
     width: forcedsizeofcolourpicker,
     boxHeight: forcedheightofcolourpicker,
     color: "rgb(255, 0, 0)",
-    // borderWidth: 1,
-    // borderColor: "#fff",
-    borderRadius:"5px",
+    borderWidth: 1,
+    borderColor: "#fff",
     layout: [
       {
         component: iro.ui.Box,

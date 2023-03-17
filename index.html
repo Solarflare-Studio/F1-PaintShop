@@ -62,11 +62,13 @@
             },
             backgroundImage: {
               generaPenal: "url('./assets/images/general-penal-bg-image.png')",
+              webARBack: "url('./assets/images/webAR_back.png')",
             },
           },
         },
       };
     </script>
+   
     <style type="text/tailwindcss">
       @font-face {
         font-family: "F1PaintShopFont";
@@ -155,7 +157,7 @@
           @apply border-2 border-brand bg-brand text-netural text-2xl w-full py-2 rounded-md font-F1PaintShopFont basis-1/2;
         }
         .tab {
-          @apply px-2 opacity-60;
+          @apply px-2 opacity-60 h-11 flex justify-center items-center;
         }
         .tab.activeTab {
           @apply px-0 opacity-100;
@@ -229,15 +231,15 @@
     </style>
   </head>
   <body
-    class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center"
+    class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center overflow-hidden"
   >
-    <header class="w-full">
+    <header class="w-full pointer-events-none">
       <div class="mx-auto p-6 flex justify-between items-center">
         <figure>
           <img src="./assets/images/F1_Logo.svg" alt="Logo" />
         </figure>
         <button
-          class="text-white rounded-lg bg-netural p-3 invisible lg:hidden z-30 cursor-pointer"
+          class="text-white rounded-lg bg-netural p-3 invisible lg:hidden z-30 cursor-pointer pointer-events-auto"
           type="button"
           id="menu"
           data-drawer-target="drawer-example"
@@ -249,7 +251,7 @@
       </div>
       <div
         id="drawer-example"
-        class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] bg-center fixed top-0 left-0 z-30 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-transparent w-full before:bg-brand before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-80 before:z-0 before:left-0 container-fluid"
+        class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] bg-center fixed top-0 left-0 z-30 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-transparent w-full before:bg-brand before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-80 before:z-0 before:left-0 container-fluid pointer-events-auto"
         tabindex="-1"
         aria-labelledby="drawer-label"
       >
@@ -353,7 +355,7 @@
       </div>
     </header>
     <!-- end of header -->
-    <main>
+    <main class=" h-[calc(100vh-118px)]" >
       <div
         class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex"
       >
@@ -418,14 +420,17 @@
       <!--end of welcome content -->
       <div
         id="patternContent"
-        class="h-[calc(100vh-118px)] flex justify-between items-center flex-col text-center hidden bg-gradient-to-b from-[#15132000] to-[#151320a3]"
+        class="h-[calc(100vh-118px)] flex justify-between items-center flex-col text-center hidden"
       >
         <figure class="w-full h-full flex justify-center items-center">
           <img src="./assets/images/paint_demo.png" alt="pattern" />
         </figure>
         <div class="h-full"></div>
-        <div id="tabContent" class="w-full absolute bottom-0">
-          <div id="TabHead" class="w-full text-right overflow-hidden">
+        <div
+          id="tabContent"
+          class="w-full absolute bottom-0 "
+        >
+          <div id="TabHead" class="w-full text-right overflow-hidden bg-gradient-to-b from-[#15132000] to-[#151320eb] ">
             <button class="p-4" onclick="handleTabToggle()">
               <img
                 src="./assets/images/zoom_In.svg"
@@ -441,7 +446,7 @@
             </button>
 
             <ul
-              class="flex justify-around -mb-px text-sm font-medium text-center pb-5"
+              class="flex justify-around -mb-px text-sm font-medium text-center pb-2"
               data-tabs-toggle="#tabContent"
               role="tablist"
             >
@@ -529,9 +534,9 @@
               </li>
             </ul>
           </div>
-          <div id="tabBody" class="bg-primary text-left mx-auto p-4">
-            <div class="max-w-[337px]   mx-auto">
-              <div id="allTabs" class=" min-h-[255px]">
+          <div id="tabBody" class="bg-primary text-left mx-auto p-4 min-h-[360px] max-h-[360px]">
+            <div class="max-w-[337px] mx-auto">
+              <div id="allTabs" class="min-h-[255px]">
                 <div
                   id="pattern"
                   role="tabpanel"
@@ -735,7 +740,7 @@
                     ></div>
                     <!--ben-->
                   </div>
-                  <div class="flex gap-x-6">
+                  <div class="flex gap-x-6 items-end">
                     <div class="basis-1/2">
                       <span class="label">PRIMARY COLOUR</span>
                       <div
@@ -780,7 +785,7 @@
                   aria-labelledby="tag-tab"
                   class="tab-content-wrp"
                 >
-                  <div class="flex gap-x-3">
+                  <div class="flex gap-x-3 items-end">
                     <div class="basis-1/3">
                       <span class="label">YOUR TAG</span>
                       <!-- ben add id and value -->
@@ -1064,9 +1069,9 @@
           </div>
           <div
             id="paintachannelblock"
-            class="f1patterncolours bg-primary text-left p-4 hidden  min-h-[350px]"
+            class="f1patterncolours bg-primary text-left p-4 hidden min-h-[350px]"
           >
-            <div class="max-w-[337px]  mx-auto">
+            <div class="max-w-[337px] mx-auto">
               <div id="whichchanneltext" class="label">WHICH CHANNEL</div>
               <div>
                 <div id="colourPickerContainer" class="colourscontainer">
@@ -1082,7 +1087,7 @@
                   </div>
                 </div>
               </div>
-              <div id="glosstypeblock" class="mt-8">
+              <div id="glosstypeblock" class="mt-4">
                 <div class="flex3 flex gap-x-3">
                   <div
                     id="glossbutton"
@@ -1268,8 +1273,10 @@
         <p
           class="text-netural text-xl leading-7 font-extralight font-Titillium pt-3 pb-7 px-6"
         >
-          Time to see your custom design in WebAR. Get ready to see your work of
-          art up close and personal in the real world.
+          Time to see your custom design<br />
+          in WebAR. Get ready to see your<br />
+          work of art up close and<br />
+          personal in the real world.
         </p>
         <div class="flex flex-col justify-between items-center gap-y-3 w-full">
           <button
@@ -1284,7 +1291,7 @@
             type="button"
             id="prevBtn"
             class="!w-auto py-2.5 px-14 prev-btn"
-            disabled
+            onclick="handleBackToTabs()"
           >
             BACK
           </button>
@@ -1295,16 +1302,49 @@
         id="cameraTutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
       >
-        <div class="tutorial-wrp">
+        <div class="tutorial-wrp" id="cameraTutorialPopup">
           <h1 class="tutorial-heading">ALLOW CAMERA</h1>
           <p class="text-xl font-medium font-Titillium leading-7 pt-3 pb-4">
             To access the augmented reality experience, you must allow camera
             access for it to work.
           </p>
-          <button type="button" class="next-btn !py-3">OK!</button>
+          <button
+            type="button"
+            class="next-btn !py-3"
+            onclick="handleCameraAccess()"
+          >
+            OK!
+          </button>
         </div>
       </div>
       <!--end of Camera tutorial-->
+      <div id="WebAR" class="hidden">
+        <video id="video" class="fixed h-screen top-0">
+          Video stream not available.
+        </video>
+        <div
+          id="scanImgTutorial"
+          class="fixed h-screen top-0 w-full text-center flex justify-center items-center"
+        >
+          <div class="tutorial-wrp">
+            <h1 class="tutorial-heading">TUTORIAL</h1>
+            <p class="tutorial-paragraph">
+              Scan image target to see your F1 car design in front of you.
+            </p>
+            <img
+              src="./assets/images/scan_tutorial.svg"
+              alt="How To Scan"
+              class="w-full h-36 pb-2"
+            />
+            <button type="button" class="next-btn !py-3">OK!</button>
+          </div>
+        </div>
+        <!--end of scan Tutorial-->
+        <div class="fixed bottom-0 w-full h-full">
+          <button id="startbutton">Take photo</button>
+        </div>
+      </div>
+      <!--end of Camera access-->
     </main>
     <!-- end of main -->
     <script src="./assets/js/custom.js"></script>
