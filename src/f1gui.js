@@ -4,6 +4,7 @@ import {DEBUG_MODE} from './adminuser'
 
 const totalfilestoloadperc = 85;
 var currentProgress = 0;
+export var percentageTexturesLoaded = 0;
 var isAutoSelectingPattern = true; // to indicate whether user has actually clicked on thumb or part of auto procedure setting up
 let selectedLanguage = document.querySelector("#selectedLanguage");
 selectedLanguage.innerHTML = "English";
@@ -56,6 +57,7 @@ export function updateProgress(percent,msg) {
         // const progress = document.getElementById("progress");
         currentProgress = currentProgress + percent;
         // progress.style.width = ((currentProgress / totalfilestoloadperc)*100) + "%";
+        percentageTexturesLoaded = (currentProgress / totalfilestoloadperc) *100.0;
         if(DEBUG_MODE)
             console.log(">> percent loaded = " + currentProgress + " - " + msg);
     }
