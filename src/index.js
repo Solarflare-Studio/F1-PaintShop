@@ -145,7 +145,7 @@ var f1Layers = new F1Layers(f1User.isHelmet, customMapRenderSize,f1fnames);
 var f1MetalRough = new F1MetalRough(f1User.isHelmet, customRoughMapRenderSize,f1fnames);
 // var f1PostRender = new F1PostRender(f1User.isHelmet, renderSize,f1fnames);
 var f1SpecialFX =  new F1SpecialFX(f1User.isHelmet, renderSize,f1fnames, sfxBloomRenderSize);
-var f1Text = new F1Text(f1Layers.mapUniforms, f1MetalRough.mapUniforms,f1SpecialFX.mapUniforms);
+var f1Text = new F1Text(f1Layers.mapUniforms, f1MetalRough.mapUniforms,f1SpecialFX.mapUniforms,f1User.isHelmet);
 var f1Ribbons = new F1Ribbons(f1Materials);
 
 

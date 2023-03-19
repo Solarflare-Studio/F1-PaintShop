@@ -164,7 +164,7 @@ class F1Garage {
             })        
             .start()               
         }
-        if(this.floorMode == 1) { // intro floor
+        if(this.floorMode == 1) { // floor circle spread
             self.garageSFXMaterial.uniforms.dimmer.value = 0.5;
 
             new TWEEN.Tween(self.garageSFXMaterial.uniforms.fTime)
@@ -425,7 +425,8 @@ class F1Garage {
                     float tr = vt * maxr;
 
 
-                    vec2 norm = vec2(cf, rf) - vec2(19.0,33.0 );
+                    // vec2 norm = vec2(cf, rf) - vec2(19.0,33.0 );
+                    vec2 norm = vec2(cf, rf) - vec2(19.0,35.0 ); // real centre
                     norm.x *= 2.0;
 
                     // circle splash

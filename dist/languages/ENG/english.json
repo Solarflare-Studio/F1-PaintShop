@@ -6,7 +6,7 @@
   },
   {
     "name": "LK_welcome_01",
-    "text": "Time to customise your very own F1 Car. Get ready to deck out your very own livery and make unique to your style."
+    "text": "Time to customise your very<br />own F1 Car. Get ready to deck<br />out your very own livery and<br />make unique to your style."
   },
   {
     "name": "LK_welcome_02",
@@ -86,7 +86,7 @@
   },
   {
     "name": "LK_tutorial_19",
-    "text": "Time to see your custom design in WebAR. Get ready to see your work of art up close and personal in the real world."
+    "text": "Time to see your custom design<br />in WebAR. Get ready to see your<br />work of art up close and<br />personal in the real world."
   },      
   {
     "name": "LK_tutorial_20",
@@ -127,7 +127,7 @@
   },
   {
     "name": "LK_turndevice_02",
-    "text": "This experience requires your device to be held portrait, please turn to proceed."
+    "text": "This experience requires your device to be held portrait,<br />please turn to proceed."
   },
   {
     "name": "LK_start_title",

@@ -158,7 +158,7 @@
     "name": "Varsity",
     "id": 2001,
     "layer": 1,
-    "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag01_thumb.jpg",
+    "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag01_thumb.png",
     "image": "car/smallblankimage.png",
     "style": 1,
     "Channels": [
@@ -180,7 +180,7 @@
       "name": "Circle",
       "id": 2002,
       "layer": 1,
-      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag02_thumb.jpg",
+      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag02_thumb.png",
       "image": "car/03_Tags/Tag_02/1k/F1PS_CarV10_Tag02_1k.png",
       "style": 2,
       "Channels": [
@@ -202,7 +202,7 @@
       "name": "Chevron",
       "id": 2003,
       "layer": 1,
-      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag03_thumb.jpg",
+      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag03_thumb.png",
       "image": "car/03_Tags/Tag_03/1k/F1PS_CarV10_Tag03_1k.png",
       "style": 3,
       "Channels": [
@@ -224,7 +224,7 @@
       "name": "Chevron",
       "id": 2004,
       "layer": 1,
-      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag04_thumb.jpg",
+      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag04_thumb.png",
       "image": "car/03_Tags/Tag_04/1k/F1PS_CarV10_Tag04_1k.png",
       "style": 4,
       "Channels": [
@@ -246,7 +246,7 @@
       "name": "Chevron",
       "id": 2005,
       "layer": 1,
-      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag05_thumb.jpg",
+      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag05_thumb.png",
       "image": "car/03_Tags/Tag_05/1k/F1PS_CarV10_Tag05_1k.png",
       "style": 5,
       "Channels": [
@@ -268,7 +268,7 @@
       "name": "Chevron",
       "id": 2006,
       "layer": 1,
-      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag06_thumb.jpg",
+      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag06_thumb.png",
       "image": "car/smallblankimage.png",
       "style": 6,
       "Channels": [
@@ -290,7 +290,7 @@
       "name": "Chevron",
       "id": 2007,
       "layer": 1,
-      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag07_thumb.jpg",
+      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag07_thumb.png",
       "image": "car/smallblankimage.png",
       "style": 7,
       "Channels": [
@@ -312,7 +312,7 @@
       "name": "Chevron",
       "id": 2008,
       "layer": 1,
-      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag08_thumb.jpg",
+      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag08_thumb.png",
       "image": "car/03_Tags/Tag_08/1k/F1PS_CarV10_Tag08_1k.png",
       "style": 8,
       "Channels": [
@@ -334,7 +334,7 @@
       "name": "Chevron",
       "id": 2009,
       "layer": 1,
-      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag09_thumb.jpg",
+      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag09_thumb.png",
       "image": "car/03_Tags/Tag_09/1k/F1PS_CarV10_Tag09_1k.png",
       "style": 9,
       "Channels": [

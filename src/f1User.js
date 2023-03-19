@@ -43,7 +43,12 @@ class F1User {
         
         DEBUG_MODE=this.userConsole;
 
-        
+        // if no uuid, then need to go back to www registration then
+        if(!this.userConsole && this.userID == 'noID') {
+            // TODO
+            // window.location.href = 'https://www.mapflaps.com';
+
+        }
         
         if(this.forcecar && this.userCarOrHelmet!='h') this.userCarOrHelmet='c';
         const aUserParam = params.get('u');

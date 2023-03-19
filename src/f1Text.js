@@ -4,11 +4,12 @@ import {DEBUG_MODE} from './adminuser'
 class F1Text {
 
    
-    constructor(f1Layers_mapUniforms, f1MetalRough_mapUniforms,f1SpecialFX_mapUniforms) {
+    constructor(f1Layers_mapUniforms, f1MetalRough_mapUniforms,f1SpecialFX_mapUniforms,isHelmet) {
 
         this.f1Layers_mapUniforms = f1Layers_mapUniforms;
         this.f1MetalRough_mapUniforms = f1MetalRough_mapUniforms;
         this.f1SpecialFX_mapUniforms = f1SpecialFX_mapUniforms;
+        this.isHelmet = isHelmet;
         this.fontstyle = 0;
         this.processJSON = 0;
 
@@ -32,6 +33,19 @@ class F1Text {
 
 
         // this.f1Garagemat = f1Garage.garageWall.material;
+
+        this.helmetloco = [ 0.179, 0.0, 0.171, 90];
+        this.locosstylemodsHelmet = new Array();
+        this.locosstylemodsHelmet.push([0.179, 0.0, 0.187, 90]);
+        this.locosstylemodsHelmet.push([0.179, 0.0, 0.171, 90]);
+        this.locosstylemodsHelmet.push([0.179, 0.001, 0.157, 90]);
+        this.locosstylemodsHelmet.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmet.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmet.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmet.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmet.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmet.push([0.179, -0.001, 0.135, 90]);
+
 
         this.locos = new Array();
         // x,y,size, rotation
@@ -310,8 +324,10 @@ class F1Text {
         // }
 
         this.drawTextAt(0,context);
-        this.drawTextAt(1,context);
-        this.drawTextAt(2,context);
+        if(!this.isHelmet) {
+            this.drawTextAt(1,context);
+            this.drawTextAt(2,context);
+        }
         // this.drawTextAt(3,context);
         // this.drawTextAt(4,context);
         // // this.drawTextAt(5,context);
@@ -396,9 +412,16 @@ class F1Text {
         var needsgapoutline = false;
 
         sizemodifier = 0.75;
-        this.locos[0] = this.locosstylemods[styletype-1];
-        this.locos[1] = this.locosstylemods2[styletype-1];
-        this.locos[2] = this.locosstylemods3[styletype-1];
+        if(!this.isHelmet) {
+            this.locos[0] = this.locosstylemods[styletype-1];
+            this.locos[1] = this.locosstylemods2[styletype-1];
+            this.locos[2] = this.locosstylemods3[styletype-1];
+        }
+        else {
+            // this.locos[0] = this.helmetloco;
+            this.locos[0] = this.locosstylemodsHelmet[styletype-1];
+            
+        }
 
 
         switch (styletype) {
@@ -415,7 +438,7 @@ class F1Text {
                 break;
             case 3:
                 fontdesc += "F1PaintShopWideFont";
-                sizemodifier = 0.5;
+                sizemodifier = 0.45;
                 needsoutline = false;
                 break;
             case 4:

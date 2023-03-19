@@ -110,12 +110,11 @@
        }
       ]
     },  
-
     {
       "name": "Varsity",
       "id": 2001,
       "layer": 1,
-      "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag01_thumb.jpg",
+      "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag01_thumb.png",
       "image": "car/smallblankimage.png",
       "style": 1,
       "Channels": [
@@ -137,8 +136,8 @@
         "name": "Circle",
         "id": 2002,
         "layer": 1,
-        "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag02_thumb.jpg",
-        "image": "car/03_Tags/Tag_02/1k/F1PS_CarV10_Tag02_1k.png",
+        "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag02_thumb.png",
+        "image": "helmet/03_Tags/Pat_02/1k/F1PS_HelmetV08_Tag02_1k.png",
         "style": 2,
         "Channels": [
          {
@@ -159,8 +158,8 @@
         "name": "Chevron",
         "id": 2003,
         "layer": 1,
-        "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag03_thumb.jpg",
-        "image": "car/03_Tags/Tag_03/1k/F1PS_CarV10_Tag03_1k.png",
+        "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag03_thumb.png",
+        "image": "helmet/03_Tags/Pat_03/1k/F1PS_HelmetV08_Tag03_1k.png",
         "style": 3,
         "Channels": [
          {
@@ -181,8 +180,8 @@
         "name": "Chevron",
         "id": 2004,
         "layer": 1,
-        "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag04_thumb.jpg",
-        "image": "car/03_Tags/Tag_04/1k/F1PS_CarV10_Tag04_1k.png",
+        "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag04_thumb.png",
+        "image": "helmet/03_Tags/Pat_04/1k/F1PS_HelmetV08_Tag04_1k.png",
         "style": 4,
         "Channels": [
          {
@@ -203,8 +202,8 @@
         "name": "Chevron",
         "id": 2005,
         "layer": 1,
-        "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag05_thumb.jpg",
-        "image": "car/03_Tags/Tag_05/1k/F1PS_CarV10_Tag05_1k.png",
+        "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag05_thumb.png",
+        "image": "helmet/03_Tags/Pat_05/1k/F1PS_HelmetV08_Tag05_1k.png",
         "style": 5,
         "Channels": [
          {
@@ -225,8 +224,8 @@
         "name": "Chevron",
         "id": 2006,
         "layer": 1,
-        "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag06_thumb.jpg",
-        "image": "car/smallblankimage.png",
+        "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag06_thumb.png",
+        "image": "helmet/smallblankimage.png",
         "style": 6,
         "Channels": [
          {
@@ -247,8 +246,8 @@
         "name": "Chevron",
         "id": 2007,
         "layer": 1,
-        "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag07_thumb.jpg",
-        "image": "car/smallblankimage.png",
+        "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag07_thumb.png",
+        "image": "helmet/smallblankimage.png",
         "style": 7,
         "Channels": [
          {
@@ -269,8 +268,8 @@
         "name": "Chevron",
         "id": 2008,
         "layer": 1,
-        "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag08_thumb.jpg",
-        "image": "car/03_Tags/Tag_08/1k/F1PS_CarV10_Tag08_1k.png",
+        "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag08_thumb.png",
+        "image": "helmet/03_Tags/Pat_08/1k/F1PS_HelmetV08_Tag08_1k.png",
         "style": 8,
         "Channels": [
          {
@@ -291,8 +290,8 @@
         "name": "Chevron",
         "id": 2009,
         "layer": 1,
-        "thumbnail": "car/03_Tags/_Thumbs/F1PS_Tag09_thumb.jpg",
-        "image": "car/03_Tags/Tag_09/1k/F1PS_CarV10_Tag09_1k.png",
+        "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag09_thumb.png",
+        "image": "helmet/03_Tags/Pat_09/1k/F1PS_HelmetV08_Tag09_1k.png",
         "style": 9,
         "Channels": [
          {
@@ -313,8 +312,8 @@
       "name": "Pat_01",
       "id": 3001,
       "layer": 2,
-      "thumbnail": "car/04_Sponsors/_Thumbs/F1PS_Pat01_Sponsor_thumb.jpg",
-      "image": "car/04_Sponsors/Pat_01/2k/F1PS_CarV10_Pat01_Sponsor_2k.png",
+      "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat01_Sponsor_thumb.jpg",
+      "image": "helmet/04_Sponsors/Pat_01/2k/F1PS_HelmetV05_Pat01_Sponsor_2k.png",
       "Channels": [
         {
           "channelName": "Chan 1",
@@ -334,8 +333,8 @@
      "name": "Pat_02",
      "id": 3002,
      "layer": 2,
-     "thumbnail": "car/04_Sponsors/_Thumbs/F1PS_Pat02_Sponsor_thumb.jpg",
-     "image": "car/04_Sponsors/Pat_02/2k/F1PS_CarV10_Pat02_Sponsor_2k.png",
+     "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat02_Sponsor_thumb.jpg",
+     "image": "helmet/04_Sponsors/Pat_02/2k/F1PS_HelmetV05_Pat02_Sponsor_2k.png",
      "Channels": [
       {
         "channelName": "Chan 1",
@@ -355,8 +354,8 @@
         "name": "Pat_03",
         "id": 3003,
         "layer": 2,
-        "thumbnail": "car/04_Sponsors/_Thumbs/F1PS_Pat03_Sponsor_thumb.jpg",
-        "image": "car/04_Sponsors/Pat_03/2k/F1PS_CarV10_Pat03_Sponsor_2k.png",
+        "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat03_Sponsor_thumb.jpg",
+        "image": "helmet/04_Sponsors/Pat_03/2k/F1PS_HelmetV05_Pat03_Sponsor_2k.png",
         "style": 0,
         "Channels": [
           {
@@ -377,8 +376,8 @@
        "name": "Pat_04",
        "id": 3004,
        "layer": 2,
-       "thumbnail": "car/04_Sponsors/_Thumbs/F1PS_Pat04_Sponsor_thumb.jpg",
-       "image": "car/04_Sponsors/Pat_04/2k/F1PS_CarV10_Pat04_Sponsor_2k.png",
+       "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat04_Sponsor_thumb.jpg",
+       "image": "helmet/04_Sponsors/Pat_04/2k/F1PS_HelmetV05_Pat04_Sponsor_2k.png",
        "Channels": [
         {
           "channelName": "Chan 1",
@@ -398,8 +397,8 @@
         "name": "Pat_05",
         "id": 3005,
         "layer": 2,
-        "thumbnail": "car/04_Sponsors/_Thumbs/F1PS_Pat05_Sponsor_thumb.jpg",
-        "image": "car/04_Sponsors/Pat_05/2k/F1PS_CarV10_Pat05_Sponsor_2k.png",
+        "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat05_Sponsor_thumb.jpg",
+        "image": "helmet/04_Sponsors/Pat_05/2k/F1PS_HelmetV05_Pat05_Sponsor_2k.png",
         "style": 0,
         "Channels": [
           {
@@ -420,8 +419,8 @@
        "name": "Pat_06",
        "id": 3006,
        "layer": 2,
-       "thumbnail": "car/04_Sponsors/_Thumbs/F1PS_Pat06_Sponsor_thumb.jpg",
-       "image": "car/04_Sponsors/Pat_06/2k/F1PS_CarV10_Pat06_Sponsor_2k.png",
+       "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat06_Sponsor_thumb.jpg",
+       "image": "helmet/04_Sponsors/Pat_06/2k/F1PS_HelmetV05_Pat06_Sponsor_2k.png",
        "Channels": [
         {
           "channelName": "Chan 1",
@@ -441,8 +440,8 @@
         "name": "Pat_07",
         "id": 3007,
         "layer": 2,
-        "thumbnail": "car/04_Sponsors/_Thumbs/F1PS_Pat07_Sponsor_thumb.jpg",
-        "image": "car/04_Sponsors/Pat_07/2k/F1PS_CarV10_Pat07_Sponsor_2k.png",
+        "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat07_Sponsor_thumb.jpg",
+        "image": "helmet/04_Sponsors/Pat_07/2k/F1PS_HelmetV05_Pat07_Sponsor_2k.png",
         "style": 0,
         "Channels": [
           {
@@ -463,8 +462,8 @@
        "name": "Pat_08",
        "id": 3008,
        "layer": 2,
-       "thumbnail": "car/04_Sponsors/_Thumbs/F1PS_Pat08_Sponsor_thumb.jpg",
-       "image": "car/04_Sponsors/Pat_08/2k/F1PS_CarV10_Pat08_Sponsor_2k.png",
+       "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat08_Sponsor_thumb.jpg",
+       "image": "helmet/04_Sponsors/Pat_08/2k/F1PS_HelmetV05_Pat08_Sponsor_2k.png",
        "Channels": [
         {
           "channelName": "Chan 1",
@@ -484,8 +483,8 @@
         "name": "Pat_09",
         "id": 3009,
         "layer": 2,
-        "thumbnail": "car/04_Sponsors/_Thumbs/F1PS_Pat09_Sponsor_thumb.jpg",
-        "image": "car/04_Sponsors/Pat_09/2k/F1PS_CarV10_Pat09_Sponsor_2k.png",
+        "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat09_Sponsor_thumb.jpg",
+        "image": "helmet/04_Sponsors/Pat_09/2k/F1PS_HelmetV05_Pat09_Sponsor_2k.png",
         "style": 0,
         "Channels": [
          {
