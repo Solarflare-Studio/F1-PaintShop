@@ -1,11 +1,3 @@
-/*!
- * iro.js v5.5.2 colour wheel
- * 2016-2021 James Daniel
- * github.com/jaames/iro.js
- *
- * BEN, unfortunately, i don't have the uncompressed source for colour wheel
- */
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
