@@ -1,0 +1,272 @@
+{
+  "dialogues": [
+  {
+  "name": "LK_welcome_heading",
+  "text": "BIENVENUE"
+  },
+  {
+  "name": "LK_welcome_01",
+  "text": "C'est le moment de personnaliser votre propre voiture de Formule 1. Préparez-vous à personnaliser votre livrée unique et à la rendre à votre image."
+  },
+  {
+  "name": "LK_welcome_02",
+  "text": "SUIVANT"
+  },
+  {
+  "name": "LK_tutorial_01",
+  "text": "TUTORIEL"
+  },
+  {
+  "name": "LK_tutorial_02",
+  "text": "Pour jeter un coup d'œil sur votre chef-d'œuvre, appuyez et faites glisser l'écran pour déplacer la caméra et pincez pour zoomer ou dézoomer."
+  },
+  {
+  "name": "LK_tutorial_03",
+  "text": "OK !"
+  },
+  {
+  "name": "LK_tutorial_04",
+  "text": "MOTIF"
+  },
+  {
+  "name": "LK_tutorial_05",
+  "text": "Commençons alors. Choisissez votre motif."
+  },
+  {
+  "name": "LK_tutorial_06",
+  "text": "OK !"
+  },
+  {
+  "name": "LK_tutorial_07",
+  "text": "PEINTURE"
+  },
+  {
+  "name": "LK_tutorial_08",
+  "text": "Ça commence à avoir de l'allure, maintenant apportez de la couleur."
+  },
+  {
+  "name": "LK_tutorial_09",
+  "text": "OK !"
+  },
+  {
+  "name": "LK_tutorial_10",
+  "text": "TAG"
+  },
+  {
+  "name": "LK_tutorial_11",
+  "text": "Personnalisez, ajoutez votre propre tag."
+  },
+  {
+  "name": "LK_tutorial_12",
+  "text": "OK !"
+  },
+  {
+  "name": "LK_tutorial_13",
+  "text": "PARRAINAGE"
+  },
+  {
+  "name": "LK_tutorial_14",
+  "text": "Les touches finales... ajoutez des sponsors."
+  },
+  {
+  "name": "LK_tutorial_15",
+  "text": "OK !"
+  },
+  {
+  "name": "LK_tutorial_16",
+  "text": "ATELIER DE PEINTURE F1"
+  },
+  {
+  "name": "LK_tutorial_17",
+  "text": "Votre design F1 est en train d'être pulvérisé..."
+  },
+  {
+  "name": "LK_tutorial_18",
+  "text": "RENDRE RÉEL"
+  },
+  {
+  "name": "LK_tutorial_19",
+  "text": "Il est temps de voir votre conception personnalisée en WebAR. Préparez-vous à voir votre œuvre d'art de près dans le monde réel."
+  },
+  {
+  "name": "LK_tutorial_20",
+  "text": "LANCEMENT AR"
+  },
+  {
+  "name": "LK_tutorial_21",
+  "text": "RETOUR"
+  },
+  {
+    "name": "LK_menu_title",
+    "text": "MENU"
+    },
+    {
+    "name": "LK_menu_close",
+    "text": "Fermer le menu"
+    },
+    {
+    "name": "LK_menu_language",
+    "text": "LANGUE"
+    },
+    {
+    "name": "LK_menu_terms",
+    "text": "CGV"
+    },
+    {
+    "name": "LK_menu_security",
+    "text": "SÉCURITÉ"
+    },
+    {
+    "name": "LK_menu_otherlinks",
+    "text": "AUTRES LIENS"
+    },
+    {
+    "name": "LK_turndevice_01",
+    "text": "TOURNEZ VOTRE APPAREIL"
+    },
+    {
+    "name": "LK_turndevice_02",
+    "text": "Cette expérience nécessite que votre appareil soit maintenu en mode portrait, veuillez tourner pour continuer."
+    },
+    {
+    "name": "LK_start_title",
+    "text": "F1 PaintShop"
+    },
+    {
+    "name": "LK_info_prepping",
+    "text": "Nous préparons juste le garage pour vous maintenant..."
+    },
+    {
+    "name": "LK_tab_01",
+    "text": "MODÈLE"
+    },
+    {
+    "name": "LK_tab_02",
+    "text": "PEINTURE"
+    },
+    {
+    "name": "LK_tab_03",
+    "text": "ÉTIQUETTE"
+    },
+    {
+    "name": "LK_tab_04",
+    "text": "SPONSOR"
+    },
+    {
+    "name": "LK_final_heading",
+    "text": "FINIR"
+    },
+    {
+    "name": "LK_final_01",
+    "text": " Si vous êtes satisfait, appuyez sur suivant, si vous voulez changer, appuyez sur retour pour modifier votre conception."
+    },
+    {
+    "name": "LK_final_back",
+    "text": "RETOUR"
+    },
+    {
+    "name": "LK_final_next",
+    "text": "SUIVANT"
+    },
+    {
+    "name": "LK_mat_gloss",
+    "text": "BRILLANT"
+    },
+    {
+    "name": "LK_mat_matte",
+    "text": "MAT"
+    },
+    {
+    "name": "LK_mat_metallic",
+    "text": "MÉTALLIQUE"
+    },
+    {
+      "name": "LK_paint_base",
+      "text": "BASE"
+    },
+    {
+      "name": "LK_paint_primary",
+      "text": "PRIMARY"
+    },
+    {
+      "name": "LK_paint_secondary",
+      "text": "SECONDARY"
+    },
+    {
+      "name": "LK_paint_random",
+      "text": "RANDOMISE"
+    },
+    {
+      "name": "LK_tag_yours",
+      "text": "YOUR TAG"
+    },
+    {
+      "name": "LK_tag_paint",
+      "text": "TAG"
+    },
+    {
+      "name": "LK_tagstyle_paint",
+      "text": "STYLE"
+    },
+    {
+      "name": "LK_sponsor_paint",
+      "text": "SPONSOR"
+    },
+    {
+      "name": "LK_tagstyle_paint",
+      "text": "STYLE"
+    },
+    {
+      "name": "LK_colourConfirmButton",
+      "text": "CONFIRM"
+    },
+    {
+      "name": "LK_AR_welcome_1",
+      "text": "AUGMENTED REALITY!"
+    },
+    {
+      "name": "LK_AR_welcome_2",
+      "text": "Get Ready!"
+    },
+    {
+      "name": "LK_AR_findMarker_1",
+      "text": "TUTORIAL"
+    },
+    {
+      "name": "LK_AR_findMarker_2",
+      "text": "Scan image target to see your F1 car design in front of you."
+    },
+    {
+      "name": "LK_AR_findMarker_3",
+      "text": "Scan image target to see your F1 helmet design in front of you."
+    },
+    {
+      "name": "LK_AR_findMarker_4",
+      "text": "FIND MARKER"
+    },
+    {
+      "name": "LK_AR_explore_4",
+      "text": "EXPLORE"
+    },
+    {
+      "name": "LK_AR_explore_5",
+      "text": "Now walk around and see your design! Tap the camera button to snap a photo or hit finish to end."
+    },
+    {
+      "name": "l_AR_text_3",
+      "text": "NEXT"
+    },
+    {
+      "name": "l_AR_text_4",
+      "text": "BACK"
+    },
+    {
+      "name": "l_AR_text_5",
+      "text": "OK"
+    },
+    {
+      "name": "l_AR_text_6",
+      "text": "FINISH"
+    }
+    ]
+  }
