@@ -99,3 +99,16 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# ignore the dist/*.* files (but still include subfolders of ./dist/
+dist/*.css
+dist/*.gif
+dist/*.ttf
+dist/*.txt
+dist/*.jpg
+dist/*.png
+dist/*.js
+dist/*.svg
+dist/*.webmanifest
+dist/*.html
+dist/main.js
