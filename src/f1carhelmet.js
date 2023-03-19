@@ -212,7 +212,7 @@ class F1CarHelmet {
             filetypelist.push( 8 ); filecomplete.push(false);
             // filelist.push('./assets/garage/walls.jpg' ); // garage walls
             // filetypelist.push( 9 );
-            filelist.push('./assets/sfx/scenebackground.jpg' ); // garage walls
+            filelist.push('./assets/textures/scenebackgroundimage.jpg' ); // garage walls
             filetypelist.push( 13 ); filecomplete.push(false);
 
             // filelist.push('./assets/sfx/ribbon2.png'); // ribbon textures..

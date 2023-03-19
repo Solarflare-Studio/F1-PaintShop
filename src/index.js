@@ -825,8 +825,7 @@ function introNextPage(nextPage) {
 
 		// HTML TODO
 		document.getElementById('canvas-positioner').style.display='block';
-		// document.getElementById('oldmaincontainerblock').style.display ="block";
-
+		
 
 		setSize(window.innerWidth,window.innerHeight );
 		// prep and do car intro
@@ -1840,7 +1839,7 @@ function postRenderProcess() {
 //==================================
 function checkFilesHaveSaved() {
 
-	f1Gui.updateProgress2(25 + (f1Aws.filessavedcount * 25));
+	// f1Gui.updateProgress2(25 + (f1Aws.filessavedcount * 25));
 
 	if(DEBUG_MODE)
 		console.log(f1Aws.filessavedcount);
@@ -1851,7 +1850,7 @@ function checkFilesHaveSaved() {
 		}, 200);
 	}
 	else {
-		f1Gui.updateProgress2(100);
+		// f1Gui.updateProgress2(100);
 		setTimeout(function() {
 			f1Gui.showPage(7);
 		},500);
@@ -2492,6 +2491,10 @@ function handleWelcomeNext() {
   patternContent.classList.remove("hidden");
   welcomeContent.classList.add("hidden");
   tutorial.classList.remove("hidden");
+
+//  document.getElementById('canvas-positioner').style.display='block';
+
+
 }
 // Tutorial popup Handler
 function handleTutorial() {

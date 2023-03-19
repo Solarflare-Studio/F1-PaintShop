@@ -97,18 +97,18 @@ class F1Gui {
     //         console.log(">> percent loaded = " + this.currentProgress + " - " + msg);
     // }
     //===================================
-    updateProgress2(percent) {
-        const maxprogress = 100;
-        // const progress = document.getElementById("progress2");
-        this.currentProgress = this.currentProgress + percent;
-        // progress.style.width = ((this.currentProgress / maxprogress)*100) + "%";
-        console.log(">> percent loaded = " + this.currentProgress);
-        console.log('>>>> ' + percent + "%");
+    // updateProgress2(percent) {
+    //     const maxprogress = 100;
+    //     // const progress = document.getElementById("progress2");
+    //     this.currentProgress = this.currentProgress + percent;
+    //     // progress.style.width = ((this.currentProgress / maxprogress)*100) + "%";
+    //     console.log(">> percent loaded = " + this.currentProgress);
+    //     console.log('>>>> ' + percent + "%");
 
 
-        document.getElementById("progress2").style.width = percent + "%";
+    //     document.getElementById("progress2").style.width = percent + "%";
 
-    }
+    // }
 
 
 
