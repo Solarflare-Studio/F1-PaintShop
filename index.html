@@ -36,8 +36,8 @@
       sizes="16x16"
       href="./assets/images/favicon-16x16.png"
     />
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
     <script>
       tailwind.config = {
@@ -57,7 +57,30 @@
               F1PaintShopWideFont: ["F1PaintShopWideFont"],
               F1PaintShopBoldFont: ["F1PaintShopBoldFont"],
             },
+            fontSize: {
+              xs: "0.91vh", // 7px
+              sm: "1.3vh", // 10px
+              base: "1.8vh", // 14px
+              md: "2.3vh", // 18px
+              xl: "2.5vh", // 20px
+              "2xl": "3.3vh", // 24px
+            },
+            lineHeight: {
+              1: "2.08vh", //16px
+              2: "",
+              6: "3.4vh", //28px
+              7: "3.9vh", //30px
+            },
             spacing: {
+              1: "0.52vh", //4px
+              2: "1vh", // 8px
+              3: "1.56vh", //12px
+              4: "2.08vh", // 16px
+              5: "2.6vh", //20px
+              7: "3.64vh", //28px
+              9: "4.55vh", //35px
+              12: "6.25vh", //48px
+              16: "8.3vh", //64px
               62: "248px",
             },
             backgroundImage: {
@@ -68,7 +91,7 @@
         },
       };
     </script>
-   
+  
     <style type="text/tailwindcss">
       @font-face {
         font-family: "F1PaintShopFont";
@@ -96,150 +119,132 @@
         font-weight: normal;
         font-style: normal;
       }
-      @layer utilities {
-        ::-webkit-scrollbar {
-          width: 9px;
-        }
-        ::-webkit-scrollbar-track {
-          @apply bg-secondary rounded-lg;
-        }
-        ::-webkit-scrollbar-thumb {
-          @apply bg-brand rounded-lg;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          @apply bg-brand;
-        }
-        progress::-webkit-progress-value {
-          @apply bg-netural;
-        }
-        progress::-webkit-scrollbar-track,
-        progress::-webkit-progress-bar {
-          @apply bg-transparent;
-        }
+      ::-webkit-scrollbar {
+        width: 9px;
+      }
 
-        div[drawer-backdrop] {
-          @apply hidden;
-        }
-        .menu-item {
-          @apply text-netural text-2xl font-Titillium font-normal py-1;
-        }
-        .menu-item button[aria-selected="true"] {
-          @apply font-bold;
-        }
-        .language-option {
-          @apply py-3 text-netural text-xl font-Titillium;
-        }
-        .patternt_check_wrp input:checked + label > div {
-          @apply w-full flex  justify-between pl-1 pr-4 py-1 text-netural bg-brand rounded-br-[18px] -mt-[20px] z-0 relative;
-        }
-        .patternt_check_wrp input:checked + label > div img {
-          @apply w-4;
-        }
-        .patternt_check_wrp input:checked + label > figure {
-          @apply border-2 border-brand;
-        }
-        .patternt_check_wrp label {
-          @apply bg-netural min-h-[69px] rounded-br-[18px] flex justify-end items-end flex-col;
-        }
-        .patternt_check_wrp label > div span {
-          @apply text-[8px] font-normal font-F1PaintShopFont leading-[9px];
-        }
-        .patternt_check_wrp label figure {
-          @apply w-full;
-        }
-        .patternt_check_wrp label figure img {
-          @apply h-[69px];
-        }
-        .prev-btn {
-          @apply bg-transparent border-2 border-netural text-netural text-2xl w-full py-2 rounded-md font-F1PaintShopFont basis-1/2;
-        }
-        .next-btn {
-          @apply border-2 border-brand bg-brand text-netural text-2xl w-full py-2 rounded-md font-F1PaintShopFont basis-1/2;
-        }
-        .tab {
-          @apply px-2 opacity-60 h-11 flex justify-center items-center;
-        }
-        .tab.activeTab {
-          @apply px-0 opacity-100;
-        }
-        .tab {
-          @apply w-1/5 border-t-2 border-r-2 rounded-tr-lg border-netural relative mr-2;
-        }
-        .tab button {
-          @apply w-full px-0 py-2;
-        }
-        .tab button img {
-          @apply mx-auto;
-        }
-        .tab.activeTab {
-          @apply w-2/5 border-l-2 border-r-2 rounded-tl-lg;
-        }
-        .tab.activeTab button {
-          @apply px-2 flex mx-auto justify-center items-center;
-        }
-        .tab.activeTab span {
-          @apply block  text-xs text-netural font-medium font-F1PaintShopFont;
-        }
-        .tab.prevTab {
-          @apply border-r-0 border-l-2 rounded-tl-lg rounded-tr-none ml-2;
-        }
-        .tab.activeTab::after,
-        .tab.activeTab::before {
-          @apply content-[''] border-2 border-netural absolute -bottom-1 w-[800px] h-2 border-t-0;
-        }
-        .tab.activeTab::after {
-          @apply border-r-0 left-full rounded-bl-lg;
-        }
-        .tab.activeTab::before {
-          @apply border-l-0 right-full rounded-br-lg;
-        }
-        .tab.activeTab:first-child {
-          @apply border-l-0 rounded-tl-none;
-        }
-        .tab.activeTab:last-child {
-          @apply border-r-0 rounded-tr-none  after:border-0;
-        }
-        .label {
-          @apply text-netural my-2 block text-[10px] tracking-wider font-F1PaintShopFont font-medium;
-        }
-        .color-picker {
-          @apply h-[43px] w-full  border-2 border-netural rounded-md;
-        }
-        #sponsor .patternt_check_wrp label,
-        #tag .patternt_check_wrp label {
-          @apply text-[10px];
-        }
-        .container-fluid {
-          @apply mx-auto px-6;
-        }
-        .heading {
-          @apply w-auto text-netural text-2xl font-medium mt-2 border-b-2 border-netural pb-2 font-F1PaintShopBoldFont;
-        }
-        .tutorial-wrp {
-          @apply bg-netural relative p-4 w-62 rounded-md opacity-95;
-        }
-        .tutorial-heading {
-          @apply w-36 mx-auto text-2xl font-bold font-F1PaintShopBoldFont border-b-2 border-black pb-2;
-        }
-        .tutorial-paragraph {
-          @apply text-xl leading-6 font-normal font-Titillium pt-2 pb-3;
-        }
-        .button {
-          @apply border-2 border-netural rounded-[5px] text-sm font-Inter text-netural text-center p-4 font-bold;
-        }
+      ::-webkit-scrollbar-track {
+        @apply bg-secondary rounded-lg;
+      }
+      ::-webkit-scrollbar-thumb {
+        @apply bg-brand rounded-lg;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        @apply bg-brand;
+      }
+      progress::-webkit-progress-value {
+        @apply bg-netural h-5;
+      }
+      progress::-webkit-scrollbar-track,
+      progress::-webkit-progress-bar {
+        @apply bg-transparent;
+      }
+      .menu-item {
+        @apply text-2xl leading-6 font-Titillium font-normal py-1.5;
+      }
+      .menu-item.active {
+        @apply font-bold;
+      }
+      .menu-heading {
+        @apply text-netural text-2xl leading-7 font-medium font-F1PaintShopBoldFont;
+      }
+      .language-option {
+        @apply py-3 text-netural text-xl font-Titillium;
+      }
+      .heading {
+        @apply w-auto text-netural text-2xl font-medium border-b-2 border-netural pb-1 font-F1PaintShopBoldFont;
+      }
+      .tutorial-wrp {
+        @apply bg-netural relative p-4 max-w-[252px] rounded-md opacity-90 text-black;
+      }
+      .tutorial-heading {
+        @apply w-40 mx-auto text-2xl font-bold font-F1PaintShopBoldFont border-b-2 border-black pb-1;
+      }
+      .tutorial-paragraph {
+        @apply text-xl leading-6 font-normal font-Titillium pt-2 pb-3;
+      }
+      .prev-btn {
+        @apply bg-transparent border-2 border-netural text-netural text-2xl  py-2 rounded-md font-F1PaintShopFont;
+      }
+      .next-btn {
+        @apply border-2 border-brand bg-brand text-netural text-2xl px-16  py-2 rounded-md font-F1PaintShopFont;
+      }
+      .tab {
+        @apply w-1/5 border-t-2 border-r-2  rounded-tr-lg border-netural relative mr-2 px-2 opacity-60 h-9    flex justify-center items-center;
+      }
+      .tab.activeTab {
+        @apply w-2/5 border-l-2 border-r-2 rounded-tl-lg px-0 opacity-100;
+      }
+      .tab.prevTab {
+        @apply border-r-0 border-l-2 rounded-tl-lg rounded-tr-none ml-2;
+      }
+      .tab.activeTab::after,
+      .tab.activeTab::before {
+        @apply content-[''] border-2 border-netural absolute -bottom-1 w-[800px] h-2 border-t-0;
+      }
+      .tab.activeTab::after {
+        @apply border-r-0 left-full rounded-bl-lg;
+      }
+      .tab.activeTab::before {
+        @apply border-l-0 right-full rounded-br-lg;
+      }
+      .tab.activeTab:first-child {
+        @apply border-l-0 rounded-tl-none;
+      }
+      .tab.activeTab:last-child {
+        @apply border-r-0 rounded-tr-none  after:border-0;
+      }
+      .tab button {
+        @apply w-full px-0 py-2;
+      }
+      .tab.activeTab button {
+        @apply px-2 flex mx-auto justify-center items-center;
+      }
+      .tab button img {
+        @apply mx-auto;
+      }
+      .tab.activeTab span {
+        @apply block  text-sm text-netural font-bold font-F1PaintShopFont;
+      }
+      .patternt_check_wrp input:checked + label > div {
+        @apply w-full flex  justify-between pl-1 pr-4 py-1 text-netural bg-brand rounded-br-[18px] -mt-[10%] z-0 relative;
+      }
+      patternt_check_wrp input:checked + label > div img {
+        @apply w-4;
+      }
+      .patternt_check_wrp input:checked + label > figure {
+        @apply border-2 border-brand;
+      }
+      .patternt_check_wrp label {
+        @apply bg-netural min-h-[8.8vh] rounded-br-[18px] flex justify-end items-end flex-col;
+      }
+      .patternt_check_wrp label > div span {
+        @apply text-[8px] font-normal font-F1PaintShopFont leading-[9px];
+      }
+      .patternt_check_wrp label figure {
+        @apply w-full;
+      }
+      .label {
+        @apply text-netural my-1.5  text-[10px] tracking-wider font-F1PaintShopFont font-bold line-clamp-1;
+      }
+      .color-picker {
+        @apply h-[5vh] w-full  border-2 border-netural rounded-md cursor-pointer;
+      }
+      .button {
+        @apply border-2 border-netural rounded-[5px] text-[1.92vh] font-Inter text-netural text-center p-3 font-bold;
       }
     </style>
   </head>
   <body
-    class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center overflow-hidden"
+    class="bg-generaPenal text-netural bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center overflow-hidden"
   >
-    <header class="w-full pointer-events-none">
-      <div class="mx-auto p-6 flex justify-between items-center">
+    <header>
+      <div class="mx-auto p-[1.5em] flex justify-between items-center">
         <figure>
           <img src="./assets/images/F1_Logo.svg" alt="Logo" />
         </figure>
         <button
-          class="text-white rounded-lg bg-netural p-3 invisible lg:hidden z-30 cursor-pointer pointer-events-auto"
+          class="text-white rounded-lg bg-netural p-[12px] lg:hidden invisible pointer-events-auto cursor-pointer"
           type="button"
           id="menu"
           data-drawer-target="drawer-example"
@@ -249,123 +254,130 @@
           <img src="./assets/images/hamburger_icon.svg" />
         </button>
       </div>
+      <!-- drawer component -->
       <div
         id="drawer-example"
-        class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] bg-center fixed top-0 left-0 z-30 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-transparent w-full before:bg-brand before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-80 before:z-0 before:left-0 container-fluid pointer-events-auto"
+        class="fixed top-0 left-0 z-50 overflow-hidden transition-transform -translate-x-full bg-generaPenal bg-cover w-full sm:w-80 before:bg-brand before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-80 before:z-0 before:left-0"
         tabindex="-1"
         aria-labelledby="drawer-label"
       >
-        <div class="relative z-30 py-6 flex justify-between items-center">
-          <figure>
-            <img src="./assets/images/F1_Logo_light.svg" alt="Logo" />
-          </figure>
-          <button
-            type="button"
-            data-drawer-hide="drawer-example"
-            aria-controls="drawer-example"
-            class="text-netural"
-          >
-            <svg
-              aria-hidden="true"
-              class="w-8 h-8 m-0"
-              fill="#ffffff"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <span class="sr-only">Close menu</span>
-          </button>
-        </div>
-        <div class="relative text-right mt-6">
-          <h2
-            class="text-netural text-2xl font-medium font-F1PaintShopBoldFont"
-          >
-            MENU
-          </h2>
-          <hr class="border-netural border-t-2 my-3" />
-          <ul class="list-none py-3">
-            <li class="menu-item active">ITEM 1</li>
-            <li class="menu-item">ITEM 2</li>
-            <li class="menu-item">ITEM 3</li>
-            <li class="menu-item">ITEM 4</li>
-          </ul>
-          <hr class="border-netural border-t-2 my-3" />
-          <h2
-            class="text-netural text-2xl font-medium font-F1PaintShopBoldFont mb-2"
-          >
-            <div id="LK_language">LANGUAGE</div>
-            <!--ben-->
-          </h2>
-          <div class="relative" id="languageSelect">
+        <div class="overflow-y-auto p-4 h-screen">
+          <div class="flex justify-between items-center relative py-6">
+            <figure>
+              <img src="./assets/images/F1_Logo_light.svg" alt="Logo" />
+            </figure>
             <button
-              id="languageSelectBtn"
-              data-dropdown-toggle="dropdown"
-              class="w-full text-primary text-xl font-Titillium bg-netural relative text-left rounded-md pl-4 pr-16 h-12"
               type="button"
-              onclick="handleLanguageSelect()"
+              data-drawer-hide="drawer-example"
+              aria-controls="drawer-example"
+              class="text-netural"
             >
-              <pre id="selectedLanguage"></pre>
-              <span
-                class="absolute right-0 top-0 bg-primary h-12 w-16 rounded-md flex justify-center items-center"
+              <svg
+                aria-hidden="true"
+                class="w-8 h-8 m-0"
+                fill="#ffffff"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <img
-                  src="./assets/images/dropdown_arrow.svg"
-                  alt="arrow"
-                  id="dropdownArrow"
-                />
-              </span>
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span class="sr-only">Close menu</span>
             </button>
-            <!-- Dropdown menu -->
-            <div
-              id="dropdown"
-              class="z-10 hidden w-full bg-secondary px-4 !translate-y-12 rounded-md text-left"
-            >
-              <ul aria-labelledby="languageSelectBtn" id="languageChoices">
-                <!--ben-->
-                <li
-                  class="language-option"
-                  onclick="handleLanguageChange('Language 1')"
-                >
-                  Language 1
-                </li>
-                <hr class="border-netural border-t-2" />
-                <li
-                  class="language-option"
-                  onclick="handleLanguageChange('Language 2')"
-                >
-                  Language 2
-                </li>
-              </ul>
-            </div>
           </div>
-          <hr class="border-netural border-t-2 mb-3 mt-6" />
-          <ul class="relative text-right list-none py-3">
-            <li class="menu-item">T&CS</li>
-            <li class="menu-item"><div id="LK_security">SECURITY</div></li>
-            <!--ben-->
-            <li class="menu-item"><div id="LK_otherlinks">OTHER LINKS</div></li>
-            <!--ben-->
-          </ul>
+
+          <div class="relative text-right">
+            <h2 class="menu-heading">MENU</h2>
+            <hr class="border-netural border-t-2 my-3" />
+            <ul class="list-none py-3">
+              <li class="menu-item active">ITEM 1</li>
+              <li class="menu-item">ITEM 2</li>
+              <li class="menu-item">ITEM 3</li>
+              <li class="menu-item">ITEM 4</li>
+            </ul>
+            <hr class="border-netural border-t-2 my-3" />
+            <h2 class="menu-heading mb-2">
+              <div id="LK_language">LANGUAGE</div>
+              <!--ben-->
+            </h2>
+            <div class="relative" id="languageSelect">
+              <button
+                id="languageSelectBtn"
+                data-dropdown-toggle="dropdown"
+                class="w-full text-primary text-xl leading-6 font-Titillium bg-netural relative text-left rounded-md pl-[16px] pr-16 h-12"
+                type="button"
+                onclick="handleLanguageSelect()"
+              >
+                <pre id="selectedLanguage">Language 1</pre>
+                <span
+                  class="absolute right-0 top-0 bg-primary h-12 w-16 p-[12px] rounded-md flex justify-center items-center"
+                >
+                  <img
+                    src="./assets/images/dropdown_arrow.svg"
+                    alt="arrow"
+                    id="dropdownArrow"
+                  />
+                </span>
+              </button>
+              <!-- Dropdown menu -->
+              <div
+                id="dropdown"
+                class="z-10 hidden w-full bg-secondary px-4 !translate-y-12 rounded-md text-left"
+              >
+                <ul aria-labelledby="languageSelectBtn" id="languageChoices">
+                  <!--ben-->
+                  <li
+                    class="language-option"
+                    onclick="handleLanguageChange('Language 1')"
+                  >
+                    Language 1
+                  </li>
+                  <hr class="border-netural border-t-2" />
+                  <li
+                    class="language-option"
+                    onclick="handleLanguageChange('Language 2')"
+                  >
+                    Language 2
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr class="border-netural border-t-2 mb-3 mt-6" />
+            <ul class="relative text-right list-none py-3">
+              <li class="menu-item">T&CS</li>
+              <li class="menu-item"><div id="LK_security">SECURITY</div></li>
+                <!--ben-->
+              <li class="menu-item">
+                <div id="LK_otherlinks">OTHER LINKS</div>
+              </li>
+              <!--ben-->
+            </ul>
+          </div>
         </div>
       </div>
     </header>
-    <!-- end of header -->
-    <main class=" h-[calc(100vh-118px)]" >
+    <main class="h-[calc(100vh-92px)]">
       <div
         class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex"
       >
-        <img src="./assets/images/rotate_image.svg" alt="Loading..." />
+        <figure class="w-[17.18vh] h-[4.94vh]">
+          <img
+            src="./assets/images/rotate_image.svg"
+            alt="Loading..."
+            class="w-full h-full"
+          />
+        </figure>
         <h1
-          class="text-netural text-2xl font-medium mt-2 font-F1PaintShopBoldFont"
+          class="text-netural text-2xl font-medium mt-5 font-F1PaintShopBoldFont"
         >
           TURN YOUR DEVICE
         </h1>
-        <p class="text-netural text-sm font-normal py-3 font-Titillium">
+        <p
+          class="text-netural text-base leading-1 font-normal py-3 font-Titillium italic"
+        >
           This experience requires your device to be held<br />
           portrait, please turn to proceed.
         </p>
@@ -376,20 +388,27 @@
         id="loadingContent"
         class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center lg:hidden"
       >
-        <img src="./assets/images/loading.svg" alt="Loading..." />
+        <figure class="w-[12.8vh] h-[12.8vh]">
+          <img
+            src="./assets/images/loading.svg"
+            alt="Loading..."
+            class="w-full h-full"
+          />
+        </figure>
+
         <h1
-          class="text-netural text-2xl font-medium mt-2 font-F1PaintShopBoldFont"
+          class="text-netural text-2xl leading-6 font-medium mt-2 font-F1PaintShopBoldFont"
         >
           F1 PAINTSHOP
         </h1>
-        <p class="text-netural text-sm font-normal py-3 font-Titillium">
+        <p class="text-netural text-base font-normal pb-3 pt-4 font-Titillium">
           We’re just prepping the garage for you now...
         </p>
         <progress
           id="welcomeProgress"
-          value=""
+          value="0"
           max="100"
-          class="w-[259px] rounded-full h-4 p-1 border border-2 border-netural"
+          class="w-[32.4vh] rounded-full h-4 p-1 border border-2 border-netural"
         ></progress>
       </div>
       <!-- end of loading content -->
@@ -401,7 +420,7 @@
         <h1 id="LK_welcomeContent_01" class="heading">WELCOME</h1>
         <p
           id="LK_welcomeContent_02"
-          class="text-netural text-xl leading-7 font-normal font-Titillium pt-3 pb-7"
+          class="text-normal text-[2.6vh] leading-6 font-Titillium pt-3 pb-7"
         >
           Time to customise your very<br />
           own F1 Car. Get ready to deck<br />
@@ -409,28 +428,29 @@
           make unique to your style.
         </p>
         <!--ben-->
-        <button
-          type="button"
-          class="bg-brand text-netural text-2xl px-16 py-3 rounded-md font-F1PaintShopFont"
-          onclick="handleWelcomeNext()"
-        >
+        <button type="button" class="next-btn" onclick="handleWelcomeNext()">
           NEXT
         </button>
       </div>
       <!--end of welcome content -->
       <div
         id="patternContent"
-        class="h-[calc(100vh-118px)] flex justify-between items-center flex-col text-center hidden"
+        class="h-[calc(100vh-92px)] flex justify-between items-center flex-col text-center hidden"
       >
-        <figure class="w-full h-full flex justify-center items-center">
-          <img src="./assets/images/paint_demo.png" alt="pattern" />
-        </figure>
-        <div class="h-full"></div>
-        <div
-          id="tabContent"
-          class="w-full absolute bottom-0 "
-        >
-          <div id="TabHead" class="w-full text-right overflow-hidden bg-gradient-to-b from-[#15132000] to-[#151320eb] ">
+        <div class="w-full h-full flex justify-center items-center">
+          <figure class="w-[35vh]">
+            <img
+              src="./assets/images/paint_demo.png"
+              alt="pattern"
+              class="w-full h-full"
+            />
+          </figure>
+        </div>
+        <div id="tabContent" class="w-full">
+          <div
+            id="TabHead"
+            class="text-right overflow-hidden bg-gradient-to-t from-[#151320] to-[rgba(21, 19, 32, 0)]"
+          >
             <button class="p-4" onclick="handleTabToggle()">
               <img
                 src="./assets/images/zoom_In.svg"
@@ -444,9 +464,8 @@
                 class="hidden"
               />
             </button>
-
             <ul
-              class="flex justify-around -mb-px text-sm font-medium text-center pb-2"
+              class="flex justify-around text-sm font-medium text-center pb-2"
               data-tabs-toggle="#tabContent"
               role="tablist"
             >
@@ -534,9 +553,14 @@
               </li>
             </ul>
           </div>
-          <div id="tabBody" class="bg-primary text-left mx-auto p-4 min-h-[360px] max-h-[360px]">
-            <div class="max-w-[337px] mx-auto">
-              <div id="allTabs" class="min-h-[255px]">
+          <div
+            id="tabBody"
+            class="bg-primary text-left mx-auto p-4 overflow-y-auto bg-gradient-to-t from-[#151320] to-[rgba(21, 19, 32, 0)]"
+          >
+            <div
+              class="max-w-[337px] mx-auto min-h-[38vh] max-h-[38vh] flex flex-col justify-end items-center"
+            >
+              <div id="allTabs" class="w-full">
                 <div
                   id="pattern"
                   role="tabpanel"
@@ -546,7 +570,7 @@
                   <!--ben add id-->
                   <div
                     id="layer1patterns_ins"
-                    class="max-h-[220px] overflow-y-auto grid grid-cols-2 gap-x-3 gap-y-2 pr-3 w-full"
+                    class="max-h-[30vh] overflow-y-auto grid grid-cols-2 gap-x-3 gap-y-2 pr-3 w-full"
                   >
                     <!-- ben removed below placeholders, as are dynamically added -->
 
@@ -728,10 +752,23 @@
                   id="paint"
                   role="tabpanel"
                   aria-labelledby="paint-tab"
-                  class="min-h-[220px] tab-content-wrp"
+                  class="tab-content-wrp"
                 >
                   <div>
-                    <span class="label">BASE COLOUR</span>
+                    <span
+                      data-tooltip-target="base-color"
+                      type="button"
+                      class="label"
+                      >BASE COLOUR</span
+                    >
+                    <div
+                      id="base-color"
+                      role="tooltip"
+                      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-secondary rounded-lg shadow-sm opacity-0 tooltip"
+                    >
+                      BASE COLOUR
+                      <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
                     <!--ben -->
                     <div
                       class="color-picker bg-brand"
@@ -742,7 +779,20 @@
                   </div>
                   <div class="flex gap-x-6 items-end">
                     <div class="basis-1/2">
-                      <span class="label">PRIMARY COLOUR</span>
+                      <span
+                        data-tooltip-target="primary-color"
+                        type="button"
+                        class="label"
+                        >PRIMARY COLOUR</span
+                      >
+                      <div
+                        id="primary-color"
+                        role="tooltip"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-secondary rounded-lg shadow-sm opacity-0 tooltip"
+                      >
+                        PRIMARY COLOUR
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                      </div>
                       <div
                         class="color-picker bg[#151320]"
                         id="primarypaintbutton"
@@ -751,7 +801,20 @@
                       <!--ben-->
                     </div>
                     <div class="basis-1/2">
-                      <span class="label">SECONDARY COLOUR</span>
+                      <span
+                        data-tooltip-target="secondary-color"
+                        type="button"
+                        class="label"
+                        >SECONDARY COLOUR</span
+                      >
+                      <div
+                        id="secondary-color"
+                        role="tooltip"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-secondary rounded-lg shadow-sm opacity-0 tooltip"
+                      >
+                        SECONDARY COLOUR
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                      </div>
                       <div
                         class="color-picker bg-netural"
                         id="secondarypaintbutton"
@@ -762,14 +825,28 @@
                   </div>
                   <hr class="my-4 border-netural border-b-2" />
                   <div>
-                    <span class="label">RANDOMISE COLOURS</span>
+                    <span
+                      data-tooltip-target="randomise-color"
+                      type="button"
+                      class="label"
+                      >RANDOMISE COLOURS</span
+                    >
                     <div
-                      class="color-picker bg-netural flex justify-center items-center"
+                      id="randomise-color"
+                      role="tooltip"
+                      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-secondary rounded-lg shadow-sm opacity-0 tooltip"
+                    >
+                      RANDOMISE COLOURS
+                      <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                    <div
+                      class="color-picker bg-netural flex justify-center items-center py-1"
                       onclick="onRandomPaint();"
                     >
                       <img
                         src="./assets/images/random_color.svg"
                         alt="'Random Color"
+                        class="w-full h-full"
                       />
                     </div>
                   </div>
@@ -787,7 +864,20 @@
                 >
                   <div class="flex gap-x-3 items-end">
                     <div class="basis-1/3">
-                      <span class="label">YOUR TAG</span>
+                      <span
+                        data-tooltip-target="your-tag"
+                        type="button"
+                        class="label"
+                        >YOUR TAG</span
+                      >
+                      <div
+                        id="your-tag"
+                        role="tooltip"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-secondary rounded-lg shadow-sm opacity-0 tooltip"
+                      >
+                        YOUR TAG
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                      </div>
                       <!-- ben add id and value -->
                       <input
                         id="taginput"
@@ -799,7 +889,20 @@
                       />
                     </div>
                     <div class="basis-1/3">
-                      <span class="label">TAG COLOUR</span>
+                      <span
+                        data-tooltip-target="tag-color"
+                        type="button"
+                        class="label"
+                        >TAG COLOUR</span
+                      >
+                      <div
+                        id="tag-color"
+                        role="tooltip"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-secondary rounded-lg shadow-sm opacity-0 tooltip"
+                      >
+                        TAG COLOUR
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                      </div>
                       <div
                         class="color-picker bg-[#013AB8]"
                         id="tagpaintbutton"
@@ -808,7 +911,20 @@
                       <!--ben-->
                     </div>
                     <div class="basis-1/3">
-                      <span class="label">STYLE COLOUR</span>
+                      <span
+                        data-tooltip-target="style-color"
+                        type="button"
+                        class="label"
+                        >STYLE COLOUR</span
+                      >
+                      <div
+                        id="style-color"
+                        role="tooltip"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-secondary rounded-lg shadow-sm opacity-0 tooltip"
+                      >
+                        STYLE COLOUR
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                      </div>
                       <div
                         class="color-picker bg-[#343434]"
                         id="tagstylepaintbutton"
@@ -820,7 +936,7 @@
                   <!--ben add id-->
                   <div
                     id="layer2tags_ins"
-                    class="max-h-[150px] overflow-y-auto grid grid-cols-2 gap-x-3 gap-y-2 pr-3 w-full mt-3"
+                    class="max-h-[19vh] overflow-y-auto grid grid-cols-2 gap-x-3 gap-y-2 pr-3 w-full mt-3"
                   >
                     <!-- ben removed below tag placeholders -->
                     <div class="patternt_check_wrp">
@@ -925,7 +1041,21 @@
                   class="tab-content-wrp"
                 >
                   <div>
-                    <span class="label">SPONSOR PAINT</span>
+                    <span class="label"></span>
+                    <span
+                      data-tooltip-target="sponsor-paint"
+                      type="button"
+                      class="label"
+                      >SPONSOR PAINT</span
+                    >
+                    <div
+                      id="sponsor-paint"
+                      role="tooltip"
+                      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-secondary rounded-lg shadow-sm opacity-0 tooltip"
+                    >
+                      SPONSOR PAINT
+                      <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
                     <div
                       class="color-picker bg-[#02BFFE]"
                       id="sponsorpaintbutton"
@@ -936,7 +1066,7 @@
                   <!--ben add id layer3sponsors_ins -->
                   <div
                     id="layer3sponsors_ins"
-                    class="max-h-[150px] overflow-y-auto grid grid-cols-2 gap-x-3 gap-y-2 pr-3 w-full mt-3"
+                    class="max-h-[19vh] overflow-y-auto grid grid-cols-2 gap-x-3 gap-y-2 pr-3 w-full mt-3"
                   >
                     <!--ben removed below sponsor placeholders -->
                     <div class="patternt_check_wrp">
@@ -1038,7 +1168,7 @@
 
               <div
                 id="finishSelectionContent"
-                class="w-full h-full flex flex-col justify-center items-center hidden"
+                class="w-full h-full flex flex-col justify-center items-center text-center hidden"
               >
                 <h1 class="heading px-6">FINISH</h1>
                 <p
@@ -1050,17 +1180,21 @@
               </div>
               <!--end of Finish Tab Selection-->
               <div
-                class="flex justify-between items-center gap-x-2 w-full mt-4"
+                class="flex justify-between items-center gap-x-2 w-full mt-3"
               >
                 <button
                   type="button"
                   id="prevBtn"
-                  class="prev-btn opacity-50"
+                  class="prev-btn opacity-50 w-full !text-xl"
                   disabled
                 >
                   BACK
                 </button>
-                <button type="button" id="nextBtn" class="next-btn">
+                <button
+                  type="button"
+                  id="nextBtn"
+                  class="next-btn w-full !text-xl !px-0"
+                >
                   NEXT
                 </button>
               </div>
@@ -1069,7 +1203,7 @@
           </div>
           <div
             id="paintachannelblock"
-            class="f1patterncolours bg-primary text-left p-4 hidden min-h-[350px]"
+            class="f1patterncolours bg-primary text-left p-4 hidden min-h-[40vh] bg-gradient-to-b from-[#151320] to-[rgba(21, 19, 32, 0)]"
           >
             <div class="max-w-[337px] mx-auto">
               <div id="whichchanneltext" class="label">WHICH CHANNEL</div>
@@ -1112,7 +1246,9 @@
                   </div>
                 </div>
               </div>
-              <button type="button" class="next-btn mt-4">CONFIRM</button>
+              <button type="button" class="next-btn w-full mt-4">
+                CONFIRM
+              </button>
             </div>
           </div>
         </div>
@@ -1122,7 +1258,7 @@
         id="tutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
       >
-        <figure class="relative">
+        <figure class="relative w-[34.63vh] h-[29.94vh]">
           <img
             src="./assets/images/tutorial_img.svg"
             alt="tutorial"
@@ -1132,12 +1268,15 @@
         <div class="tutorial-wrp">
           <h1 class="tutorial-heading">TUTORIAL</h1>
           <p class="tutorial-paragraph">
-            To take a look at your masterpiece, tap and drag the screen to move
-            the camera around, and pinch to zoom in and out.
+            To take a look at your<br />
+            masterpiece, tap and<br />
+            drag the screen to move<br />
+            the camera around, and<br />
+            pinch to zoom in and out.
           </p>
           <button
             type="button"
-            class="next-btn !py-3"
+            class="next-btn w-full"
             onclick="handleTutorial()"
           >
             OK!
@@ -1151,13 +1290,14 @@
       >
         <div class="tutorial-wrp">
           <h1 class="tutorial-heading">PATTERN</h1>
-          <p class="tutorial-paragraph min-h-[140px]">
-            Let’s get started then. Choose your pattern.
+          <p class="tutorial-paragraph">
+            Let’s get started then.<br />
+            Choose your pattern.
           </p>
           <!-- ben added id to handleCloseTutorial below -->
           <button
             type="button"
-            class="next-btn !py-3"
+            class="next-btn w-full"
             onclick="handleCloseTutorial(0)"
           >
             OK!
@@ -1176,13 +1316,14 @@
           >
             PAINT
           </h1>
-          <p class="tutorial-paragraph min-h-[140px]">
-            Looking good already, now get colourful.
+          <p class="tutorial-paragraph">
+            Looking good already,<br />
+            now get colourful.
           </p>
           <!-- ben added id to handleCloseTutorial below -->
           <button
             type="button"
-            class="next-btn !py-3"
+            class="next-btn w-full"
             onclick="handleCloseTutorial(1)"
           >
             OK!
@@ -1201,13 +1342,14 @@
           >
             TAG
           </h1>
-          <p class="tutorial-paragraph min-h-[140px]">
-            Get personal, add your own tag.
+          <p class="tutorial-paragraph">
+            Get personal, add your<br />
+            own tag.
           </p>
           <!-- ben added id to handleCloseTutorial below -->
           <button
             type="button"
-            class="next-btn !py-3"
+            class="next-btn w-full"
             onclick="handleCloseTutorial()"
           >
             OK!
@@ -1220,16 +1362,15 @@
         id="sponsorTutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
       >
-        <div class="bg-netural relative p-4 px-6 w-64 rounded-md opacity-95">
+        <div class="tutorial-wrp">
           <h1 class="tutorial-heading">SPONSOR</h1>
-          <p
-            class="text-xl font-medium font-Titillium leading-6 pt-3 pb-4 min-h-[150px] px-4"
-          >
-            Finishing touches... add some sponsors.
+          <p class="tutorial-paragraph">
+            Finishing touches...<br />
+            add some sponsors.
           </p>
           <button
             type="button"
-            class="bg-brand text-netural text-2xl px-16 py-4 rounded-md font-F1PaintShopFont w-full"
+            class="next-btn w-full"
             onclick="handleCloseTutorial()"
           >
             OK!
@@ -1253,7 +1394,9 @@
           >
             F1 PAINTSHOP
           </h1>
-          <p class="text-netural text-sm font-normal py-3 font-Titillium">
+          <p
+            class="text-netural text-base font-normal pb-3 pt-2 font-Titillium"
+          >
             Your F1 design is being sprayed on...
           </p>
           <progress
@@ -1271,7 +1414,7 @@
       >
         <h1 class="heading">COME TO LIFE</h1>
         <p
-          class="text-netural text-xl leading-7 font-extralight font-Titillium pt-3 pb-7 px-6"
+          class="text-netural text-xl leading-6 font-extralight font-Titillium pt-3 pb-7 px-6"
         >
           Time to see your custom design<br />
           in WebAR. Get ready to see your<br />
@@ -1282,7 +1425,7 @@
           <button
             type="button"
             id="nextBtn"
-            class="!w-auto py-2 px-14 next-btn"
+            class="py-2 !px-14 next-btn"
             onclick="handleCameraTutorial()"
           >
             NEXT
@@ -1290,7 +1433,7 @@
           <button
             type="button"
             id="prevBtn"
-            class="!w-auto py-2.5 px-14 prev-btn"
+            class="py-2 !px-14 prev-btn"
             onclick="handleBackToTabs()"
           >
             BACK
@@ -1304,7 +1447,7 @@
       >
         <div class="tutorial-wrp" id="cameraTutorialPopup">
           <h1 class="tutorial-heading">ALLOW CAMERA</h1>
-          <p class="text-xl font-medium font-Titillium leading-7 pt-3 pb-4">
+          <p class="tutorial-paragraph pt-3 pb-4">
             To access the augmented reality experience, you must allow camera
             access for it to work.
           </p>
@@ -1318,10 +1461,10 @@
         </div>
       </div>
       <!--end of Camera tutorial-->
+
       <div id="WebAR" class="hidden">
-        <video id="video" class="fixed h-screen top-0">
-          Video stream not available.
-        </video>
+        <video id="video" class="fixed h-screen top-0" autoplay></video>
+
         <div
           id="scanImgTutorial"
           class="fixed h-screen top-0 w-full text-center flex justify-center items-center"
@@ -1336,17 +1479,40 @@
               alt="How To Scan"
               class="w-full h-36 pb-2"
             />
+            <button
+              type="button"
+              class="next-btn !py-3"
+              onclick="handleScanTutorial()"
+            >
+              OK!
+            </button>
+          </div>
+        </div>
+        <div
+          id="exploreTutorial"
+          class="fixed h-screen top-0 w-full text-center flex justify-center items-center hidden"
+        >
+          <div class="tutorial-wrp">
+            <h1 class="tutorial-heading">EXPLORE</h1>
+            <p class="tutorial-paragraph">
+              Now walk around and<br />
+              see your design! Tap<br />
+              the camera button to<br />
+              snap a photo or hit<br />
+              finish to end.
+            </p>
+
             <button type="button" class="next-btn !py-3">OK!</button>
           </div>
         </div>
         <!--end of scan Tutorial-->
-        <div class="fixed bottom-0 w-full h-full">
-          <button id="startbutton">Take photo</button>
+        <div class="w-full h-full">
+          <canvas id="canvas" class="w-full h-screen"></canvas>
+          <button id="start-camera" class=""></button>
         </div>
       </div>
       <!--end of Camera access-->
     </main>
-    <!-- end of main -->
     <script src="./assets/js/custom.js"></script>
   </body>
 </html>

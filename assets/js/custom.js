@@ -1,42 +1,46 @@
+const body = document.querySelector("body");
+// menu selectors
+const dropdownArrow = document.querySelector("#dropdownArrow");
+const dropdownElm = document.querySelector("#languageSelect");
+const menu = document.querySelector("#menu");
+let selectedLanguage = document.querySelector("#selectedLanguage");
+// progress bar selector
+const welcomeProgress = document.querySelector("#welcomeProgress");
+const finalProgress = document.querySelector("#finalProgress");
+//content selector
 const loadingContent = document.querySelector("#loadingContent");
 const welcomeContent = document.querySelector("#welcomeContent");
 const patternContent = document.querySelector("#patternContent");
 const tutorial = document.querySelector("#tutorial");
+const paintachannelblock = document.querySelector("#paintachannelblock");
+const WebAR = document.querySelector("#WebAR");
+//tutorial content selector
 const patternTutorialContent = document.querySelector("#patternTutorial");
 const paintTutorialContent = document.querySelector("#paintTutorial");
 const tagTutorialContent = document.querySelector("#tagTutorial");
 const sponsorTutorialContent = document.querySelector("#sponsorTutorial");
-const menu = document.querySelector("#menu");
-const welcomeProgress = document.querySelector("#welcomeProgress");
-const finalProgress = document.querySelector("#finalProgress");
-const dropdownArrow = document.querySelector("#dropdownArrow");
-const dropdownElm = document.querySelector("#languageSelect");
-const zoomIn = document.querySelector("#zoomIn");
-const zoomOut = document.querySelector("#zoomOut");
-const tabContent = document.querySelector("#tabContent");
-const f1PaintTab = document.querySelectorAll(".tab button");
-const tabContentWrp = document.querySelectorAll(".tab-content-wrp");
+const comeToLifeContent = document.querySelector("#comeToLifeContent");
+const cameraTutorial = document.querySelector("#cameraTutorial");
+const cameraTutorialPopup = document.querySelector("#cameraTutorialPopups");
+const scanImgTutorial = document.querySelector("#scanImgTutorial");
+const exploreTutorial = document.querySelector("#exploreTutorial");
+
+
+//button selector
 const prevBtn = document.querySelector("#prevBtn");
 const nextBtn = document.querySelector("#nextBtn");
+//zoom IN/OUT selector
+const zoomIn = document.querySelector("#zoomIn");
+const zoomOut = document.querySelector("#zoomOut");
+//tab selector
+const f1PaintTab = document.querySelectorAll(".tab button");
+const tabContentWrp = document.querySelectorAll(".tab-content-wrp");
 const allTabs = document.querySelector("#allTabs");
 const TabHead = document.querySelector("#TabHead");
 const tabBody = document.querySelector("#tabBody");
-const comeToLifeContent = document.querySelector("#comeToLifeContent");
-const cameraTutorial = document.querySelector("#cameraTutorial");
-const paintachannelblock = document.querySelector("#paintachannelblock");
-const WebAR = document.querySelector("#WebAR");
-const scanImgTutorial = document.querySelector("#scanImgTutorial");
-const body = document.querySelector("body");
 
-const finishSelectionContent = document.querySelector(
-  "#finishSelectionContent"
-);
-const finishSelectionLoading = document.querySelector(
-  "#finishSelectionLoading"
-);
-let selectedLanguage = document.querySelector("#selectedLanguage");
+//Progress handler
 let loadingProgress = 0;
-selectedLanguage.innerHTML = "Language 1";
 move();
 function move() {
   if (loadingProgress == 0) {
@@ -59,12 +63,6 @@ function move() {
   }
 }
 
-// Welcome Handler
-function welcome() {
-  menu.classList.remove("invisible");
-  welcomeContent.classList.remove("hidden");
-  loadingContent.classList.add("hidden");
-}
 // Language Select Handler
 function handleLanguageSelect() {
   /* ben  uihandlelanguageSelect();	*/
@@ -79,13 +77,21 @@ window.addEventListener("click", (event) => {
     dropdownArrow.classList.remove("rotate-180");
   }
 });
+
+// Welcome Handler
+function welcome() {
+  menu.classList.remove("invisible");
+  welcomeContent.classList.remove("hidden");
+  loadingContent.classList.add("hidden");
+}
+
 // Pattern Layout Handler
 function handleWelcomeNext() {
   patternContent.classList.remove("hidden");
   welcomeContent.classList.add("hidden");
   tutorial.classList.remove("hidden");
 }
-// Tutorial popup Handler
+
 function handleTutorial() {
   tabTutorial("pattern-tab");
   tutorial.classList.add("hidden");
@@ -101,67 +107,6 @@ function handleCloseTutorial(id) {
   if (id == 0) {
     introNextPage(0); // ben
   }
-}
-// Zoom In/Out Handler
-function handleTabToggle() {
-  zoomIn.classList.toggle("hidden");
-  zoomOut.classList.toggle("hidden");
-  tabBody.classList.toggle("hidden");
-}
-
-// Paint Tutorial Handler
-/* ben added one time only tutorials */
-// var alreadyShownPaintTutorial = false;
-// function handlePaintTutorial() {
-// 	if(!alreadyShownPaintTutorial) {
-// 		alreadyShownPaintTutorial=true;
-// 		paintTutorial.classList.remove("hidden");
-// 	}
-// }
-
-// Tag Tutorial Handler
-/* ben added one time only tutorials */
-// var alreadyShownTagTutorial = false;
-// function handleTagTutorial() {
-//   if(!alreadyShownTagTutorial) {
-//     alreadyShownTagTutorial=true;
-//     tagTutorial.classList.remove("hidden");
-//   }
-// }
-
-// Sponsor Tutorial Handler
-/* ben added one time only tutorials */
-// var alreadyShownSponsorTutorial = false;
-// function handleSponsorTutorial() {
-//   if(!alreadyShownSponsorTutorial) {
-//     alreadyShownSponsorTutorial=true;
-//     sponsorTutorial.classList.remove("hidden");
-//   }
-// }
-
-// Come to Life Handler
-function handleComeToLife() {
-  comeToLifeContent.classList.remove("hidden");
-  patternContent.classList.add("hidden");
-  finishSelectionLoading.classList.add("hidden");
-}
-
-// Back to Tab Handler
-function handleBackToTabs() {
-  comeToLifeContent.classList.add("hidden");
-  patternContent.classList.remove("hidden");
-}
-
-// Camera Tutorial Handler
-function handleCameraTutorial() {
-  cameraTutorial.classList.remove("hidden");
-}
-function handleCameraAccess(){
-  WebAR.classList.remove('hidden')
-  cameraTutorial.classList.add('hidden')
-  comeToLifeContent.classList.add('hidden')
-  body.classList.add('!bg-webARBack')
-  
 }
 
 // Tab Tutorial Handler
@@ -198,9 +143,47 @@ function tabTutorial(currElmId) {
   }
 }
 
+// Zoom In/Out Handler
+function handleTabToggle() {
+  zoomIn.classList.toggle("hidden");
+  zoomOut.classList.toggle("hidden");
+  tabBody.classList.toggle("hidden");
+}
+
+// Come to Life Handler
+function handleComeToLife() {
+  comeToLifeContent.classList.remove("hidden");
+  patternContent.classList.add("hidden");
+  finishSelectionLoading.classList.add("hidden");
+}
+
+// Back to Tab Handler
+function handleBackToTabs() {
+  comeToLifeContent.classList.add("hidden");
+  patternContent.classList.remove("hidden");
+}
+
+// Camera Tutorial Handler
+ function  handleCameraTutorial() {
+    cameraTutorial.classList.remove("hidden");
+
+
+}
+async function handleCameraAccess() {
+  WebAR.classList.remove("hidden");
+  cameraTutorial.classList.add("hidden");
+  comeToLifeContent.classList.add("hidden");
+  body.classList.add("!bg-webARBack");
+}
+
+// color picker handler
 function onChangePaint() {
   tabBody.classList.add("hidden");
   paintachannelblock.classList.remove("hidden");
+}
+function handleScanTutorial(){
+    scanImgTutorial.classList.add('hidden')
+    exploreTutorial.classList.remove('hidden')
 }
 
 // Add click event listener to each box
@@ -261,6 +244,7 @@ nextBtn.addEventListener("click", () => {
     finishSelectionContent.classList.remove("hidden");
     nextBtn.classList.add("submit");
     tabBody.classList.remove("bg-primary");
+    
 
     return;
   }
@@ -310,7 +294,7 @@ prevBtn.addEventListener("click", () => {
   nextBtn.classList.remove("opacity-50");
   let activeTab = document.querySelector(".activeTab");
   const previousElement = activeTab.previousElementSibling;
-  const currTabId = previousElement.childNodes[1].id;
+  const currTabId = previousElement.childNodes[0].id;
   if (previousElement) {
     tabContentWrp.forEach((elm) => {
       const currElmId = `${elm.id}-tab`;
@@ -1522,7 +1506,7 @@ function changeTab(id) {} // this function is here for your convenience too
       );
     })(I);
   function bt(t) {
-    console.log(t.r)
+    console.log(t.r);
     var n = t.r,
       i = t.url,
       r = n,
@@ -1584,135 +1568,127 @@ function changeTab(id) {} // this function is here for your convenience too
           fill: t.fill,
           "stroke-width": 2,
           stroke: "#fff",
-        }),
+        })
     );
   }
-    // saturation js
-    function yt(e) {
-      var t = st(e),
-        r = t.width,
-        u = t.height,
-        o = t.radius,
-        l = e.colors,
-        s = e.parent,
-        n = e.activeIndex,
-        c = void 0 !== n && n < e.colors.length ? e.colors[n] : e.color,
-        a = (function (t, n) {
-          return [
-            [
-              [0, "#fff"],
-              [100, "hsl(" + n.hue + ",100%,50%)"],
-            ],
-            [
-              [0, "rgba(0,0,0,0)"],
-              [100, "#000"],
-            ],
-          ];
-        })(0, c),
-        f = l.map(function (t) {
-          return (function (t, n) {
-            var i = st(t),
-              r = i.width,
-              e = i.height,
-              u = i.radius,
-              o = n.hsv,
-              l = u,
-              s = r - 2 * u,
-              c = e - 2 * u;
-            return { x: l + (o.s / 100) * s, y: l + (c - (o.v / 100) * c) };
-          })(e, t);
-        });
-      return h(
-        gt,
-        Object.assign({}, e, {
-          onInput: function (t, n, i) {
-            if (0 === i) {
-              var r = at(e, t, n, f);
-              null !== r
-                ? s.setActiveColor(r)
-                : ((s.inputActive = !0),
-                  (c.hsv = ct(e, t, n)),
-                  e.onInput(i, e.id));
-            } else 1 === i && ((s.inputActive = !0), (c.hsv = ct(e, t, n)));
-            e.onInput(i, e.id);
-          },
-        }),
-        function (t, n, i) {
-          return  h(
+  // saturation js
+  function yt(e) {
+    var t = st(e),
+      r = t.width,
+      u = t.height,
+      o = t.radius,
+      l = e.colors,
+      s = e.parent,
+      n = e.activeIndex,
+      c = void 0 !== n && n < e.colors.length ? e.colors[n] : e.color,
+      a = (function (t, n) {
+        return [
+          [
+            [0, "#fff"],
+            [100, "hsl(" + n.hue + ",100%,50%)"],
+          ],
+          [
+            [0, "rgba(0,0,0,0)"],
+            [100, "#000"],
+          ],
+        ];
+      })(0, c),
+      f = l.map(function (t) {
+        return (function (t, n) {
+          var i = st(t),
+            r = i.width,
+            e = i.height,
+            u = i.radius,
+            o = n.hsv,
+            l = u,
+            s = r - 2 * u,
+            c = e - 2 * u;
+          return { x: l + (o.s / 100) * s, y: l + (c - (o.v / 100) * c) };
+        })(e, t);
+      });
+    return h(
+      gt,
+      Object.assign({}, e, {
+        onInput: function (t, n, i) {
+          if (0 === i) {
+            var r = at(e, t, n, f);
+            null !== r
+              ? s.setActiveColor(r)
+              : ((s.inputActive = !0),
+                (c.hsv = ct(e, t, n)),
+                e.onInput(i, e.id));
+          } else 1 === i && ((s.inputActive = !0), (c.hsv = ct(e, t, n)));
+          e.onInput(i, e.id);
+        },
+      }),
+      function (t, n, i) {
+        return h(
+          "div",
+          Object.assign({}, n, {
+            className: "saturation-wrp",
+            style: Object.assign({}, i),
+          }),
+          h("div", {
+            className: "label ",
+            innerHTML: "SATURATION",
+            style: Object.assign({}),
+          }),
+          h(
             "div",
             Object.assign({}, n, {
-              className: "saturation-wrp",
+              className: "IroBox",
               style: Object.assign(
                 {},
+                // { width: vt(r), height: vt(u), position: "relative" },
+                { width: "100%", height: vt(u), position: "relative" },
                 i
               ),
             }),
             h("div", {
-              className: "label !mt-2",
-              innerHTML:'SATURATION',
+              className: "IroBox",
               style: Object.assign(
                 {},
-              
+                { width: "100%", height: "100%", borderRadius: vt(8) },
+                ft(e),
+                {
+                  background:
+                    ht("linear", "to bottom", a[1]) +
+                    "," +
+                    ht("linear", "to right", a[0]),
+                }
               ),
             }),
-            h(
-              "div",
-              Object.assign({}, n, {
-                className: "IroBox",
-                style: Object.assign(
-                  {},
-                  // { width: vt(r), height: vt(u), position: "relative" },
-                  { width: '100%', height: vt(u), position: "relative" },
-                  i
-                ),
-              }),
-              h("div", {
-                className: "IroBox",
-                style: Object.assign(
-                  {},
-                  { width: "100%", height: "100%", borderRadius: vt(8) },
-                  ft(e),
-                  {
-                    background:
-                      ht("linear", "to bottom", a[1]) +
-                      "," +
-                      ht("linear", "to right", a[0]),
-                  }
-                ),
-              }),
-              l
-                .filter(function (t) {
-                  return t !== c;
-                })
-                .map(function (t) {
-                  return h(bt, {
-                    isActive: !1,
-                    index: t.index,
-                    fill: t.hslString,
-                    r: e.handleRadius,
-                    url: e.handleSvg,
-                    props: e.handleProps,
-                    x: f[t.index].x,
-                    y: f[t.index].y,
-                  });
-                }),
-              h(bt, {
-                isActive: !0,
-                index: c.index,
-                fill: c.hslString,
-                r: e.activeHandleRadius || e.handleRadius,
-                url: e.handleSvg,
-                props: e.handleProps,
-                x: f[c.index].x,
-                y: f[c.index].y,
+            l
+              .filter(function (t) {
+                return t !== c;
               })
-            )
-          );
-
-        
-        }
-      );
-    }
+              .map(function (t) {
+                return h(bt, {
+                  isActive: !1,
+                  index: t.index,
+                  fill: t.hslString,
+                  r: e.handleRadius,
+                  url: e.handleSvg,
+                  props: e.handleProps,
+                  x: f[t.index].x,
+                  y: f[t.index].y,
+                });
+              }),
+            h(bt, {
+              isActive: !0,
+              index: c.index,
+              fill: c.hslString,
+              r: e.activeHandleRadius || e.handleRadius,
+              url: e.handleSvg,
+              props: e.handleProps,
+              x: f[c.index].x,
+              y: f[c.index].y,
+            })
+          )
+        );
+      }
+    );
+  }
   //hue js
   function pt(e) {
     var t = e.activeIndex,
@@ -1824,13 +1800,12 @@ function changeTab(id) {} // this function is here for your convenience too
         },
       }),
       function (t, n, i) {
-        return  h(
+        return h(
           "div",
           Object.assign({}, n, {
-            className: "colorPicker_wrp !flex justify-between items-end gap-x-4 !mt-0",
-            style: Object.assign(
-              i
-            ),
+            className:
+              "colorPicker_wrp !flex justify-between items-end gap-x-4 !mt-0",
+            style: Object.assign(i),
           }),
           h(
             "div",
@@ -1840,10 +1815,10 @@ function changeTab(id) {} // this function is here for your convenience too
                 {},
                 {
                   position: "relative",
-                  display: 'inline-block',
+                  display: "inline-block",
                   position: "relative",
                   width: vt(266),
-                  
+
                   borderRadius: vt(5),
                 },
                 i
@@ -1852,18 +1827,15 @@ function changeTab(id) {} // this function is here for your convenience too
             h(
               "div",
               Object.assign({}, n, {
-                className: "label  !mt-2 text-netural",
-               innerHTML:'HUE',
+                className: "label   text-netural",
+                innerHTML: "HUE",
                 style: Object.assign(
                   {},
-                  {
-                  
-                  },
-                 
+                  {},
+
                   i
                 ),
-              }),
-            
+              })
             ),
             h(
               "div",
@@ -1875,7 +1847,7 @@ function changeTab(id) {} // this function is here for your convenience too
                     position: "relative",
                     // width: vt(r),
                     // height: vt(o),
-                    width: '100%',
+                    width: "100%",
                     height: vt(40),
                     borderRadius: vt(5),
                     // background:
@@ -1898,7 +1870,9 @@ function changeTab(id) {} // this function is here for your convenience too
                     borderRadius: vt(5),
                     background: ht(
                       "linear",
-                      "horizontal" === e.layoutDirection ? "to top" : "to right",
+                      "horizontal" === e.layoutDirection
+                        ? "to top"
+                        : "to right",
                       c
                     ),
                   },
@@ -1920,25 +1894,22 @@ function changeTab(id) {} // this function is here for your convenience too
             "div",
             Object.assign({}, n, {
               className: "picked-color-wrp !mt-0",
-             
+
               style: Object.assign(
                 {},
                 {
-                  display: 'inline-block',
-                  width:'45px',
-                  height:'40px',
-                  background:'#fff',
-                  borderRadius:'5px',
+                  display: "inline-block",
+                  width: "45px",
+                  height: "40px",
+                  background: "#fff",
+                  borderRadius: "5px",
                 },
-               
+
                 i
               ),
-            }),
-          
+            })
           )
-
         );
-    
       }
     );
   }
@@ -2344,7 +2315,6 @@ function createColourpicker() {
   // It's all sliders
   const forcedsizeofcolourpicker = window.innerWidth * 0.5;
   const forcedheightofcolourpicker = window.innerHeight * 0.08;
-
 
   //
   colorPatternPicker = new iro.ColorPicker("#colourWheelPicker", {
