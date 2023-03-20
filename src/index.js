@@ -664,7 +664,7 @@ var wasincolourpicker = false;
 function minMax(tabstakencareof,mode) {
 
 
-  if(haveminimized) { // woz max
+  if(haveminimized) { // woz max 3d
 	var posy = window.innerHeight;
 	var top = window.innerHeight-f1Gui.bestToolPosY;
 
@@ -1226,7 +1226,12 @@ function createSpotLight(intensity) {
 //==================================================
 function setSize(w,h) {
 	// set out gui
-	f1Gui.setSize(w,h,renderer,camera,colorPatternPicker);
+
+	if(haveminimized) 
+		f1Gui.setRendererSize(w,window.innerHeight, renderer,camera);
+	else
+		f1Gui.setSize(w,h,renderer,camera,colorPatternPicker);
+
 	createColourpicker();
 }
 

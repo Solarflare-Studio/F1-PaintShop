@@ -67,7 +67,9 @@
 }
 
 .transparenttabblock {
-	background-color: rgba(21,20,32,0.75)!important;
+	/* background-color: rgba(21,20,32,0.75)!important; */
+	/* background: linear-gradient(to top, rgba(21,20,32,0.75) 0%, rgba(21,20,32,0.75) 66.66%, rgba(21,20,32,0) 100%); */
+	background: linear-gradient(to top, rgba(21, 20, 32, 0.9) 0%, rgba(21, 20, 32, 0.75) 66.66%, rgba(21, 20, 32, 0) 100%)!important;
 }
 
 

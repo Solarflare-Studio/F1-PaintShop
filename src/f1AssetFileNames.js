@@ -4,7 +4,7 @@ class F1AssetFileNames {
 
     constructor() {
         // this.car_files = [ './assets/car/F1PS_F1_Car_V03_NewUV.glb',            // 3d model glb
-        this.car_files = [ './assets/car/F1PS_F1_Car_V11_Rev2.glb',            // 3d model glb
+        this.car_files = [ './assets/car/F1PS_F1_Car_V11_Rev3.glb',            // 3d model glb
                             './assets/textures/smallblackimage.jpg',     // customisable base colour map
                             './assets/car/00_CustomMainMaps/V10/512/F1PS_Car_Custom_V10_Normal.jpg',        // customisable normal
                             './assets/car/00_CustomMainMaps/V10/512/F1PS_Car_Custom_V10_AO.jpg',            // customisable ao
