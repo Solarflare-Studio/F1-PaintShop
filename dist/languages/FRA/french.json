@@ -206,15 +206,11 @@
   },
   {
     "name": "LK_tagstyle_paint",
-    "text": "STYLE"
+    "text": "BASE"
   },
   {
     "name": "LK_sponsor_paint",
     "text": "SPONSOR"
-  },
-  {
-    "name": "LK_tagstyle_paint",
-    "text": "STYLE"
   },
   {
     "name": "LK_colourConfirmButton",

@@ -10,7 +10,7 @@
       "Channels": [
        {
         "channelName": "Chan 1",
-        "defaultColour": "71,71,71"
+        "defaultColour": "150,5,5"
        },
        {
         "channelName": "Chan 2",
@@ -18,7 +18,7 @@
        },
        {
         "channelName": "Chan 3",
-        "defaultColour": "255,30,0"
+        "defaultColour": "255,0,200"
        }
       ]
     },
@@ -80,11 +80,11 @@
        },
        {
         "channelName": "Chan 2",
-        "defaultColour": "233,186,87"
+        "defaultColour": "231,201,138"
        },
        {
         "channelName": "Chan 3",
-        "defaultColour": "14,85,14"
+        "defaultColour": "44,107,44"
        }
       ]
     },  
@@ -98,15 +98,15 @@
       "Channels": [
        {
         "channelName": "Chan 1",
-        "defaultColour": "248,248,248"
+        "defaultColour": "26,32,90"
        },
        {
         "channelName": "Chan 2",
-        "defaultColour": "0,249,174"
+        "defaultColour": "50,255,50"
        },
        {
         "channelName": "Chan 3",
-        "defaultColour": "0,96,215"
+        "defaultColour": "255,0,200"
        }
       ]
     },  

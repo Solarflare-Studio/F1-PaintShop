@@ -256,6 +256,7 @@
           data-drawer-target="drawer-example"
           data-drawer-show="drawer-example"
           aria-controls="drawer-example"
+          style="padding-left: 0.7rem!important;padding-right: 0.7rem!important;padding-top: 0.82rem!important;padding-bottom: 0.82rem;!important"
         >
           <img src="./assets/images/hamburger_icon.svg" />
         </button>
@@ -1076,6 +1077,7 @@
               <div
                 class="flex justify-between items-center gap-x-2 w-full mt-4"
                 id="f1nextbackbuttons"
+                style="bottom:0;position: relative;"
               >
                 <button
                   type="button"
@@ -1165,11 +1167,11 @@
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
       >
         <figure class="relative">
-          <img
+          <!-- <img
             src="./assets/images/tutorial_img.svg"
             alt="tutorial"
             class="w-full h-full"
-          />
+          /> -->
         </figure>
         <div class="tutorial-wrp">
           <h1 class="tutorial-heading"><div id="LK_tutorial_01">TUTORIAL</div></h1>
@@ -1195,8 +1197,9 @@
       >
         <div class="tutorial-wrp">
           <h1 class="tutorial-heading"><div id="LK_tutorial_04">PATTERN</div></h1>
-          <p class="tutorial-paragraph min-h-[140px]" id="LK_tutorial_05">
-            Let’s get started then. Choose your pattern.
+          <!-- <p class="tutorial-paragraph min-h-[140px]" id="LK_tutorial_05"> -->
+          <p class="tutorial-paragraph" id="LK_tutorial_05">
+              Let’s get started then. Choose your pattern.
           </p>
           <!-- ben added id to handleCloseTutorial below -->
           <button
@@ -1224,8 +1227,9 @@
             PAINT
             </div>
           </h1>
-          <p class="tutorial-paragraph min-h-[140px]" id="LK_tutorial_08">
-            Looking good already, now get colourful.
+          <!-- <p class="tutorial-paragraph min-h-[140px]" id="LK_tutorial_08"> -->
+          <p class="tutorial-paragraph" id="LK_tutorial_08">
+              Looking good already, now get colourful.
           </p>
           <!-- ben added id to handleCloseTutorial below -->
           <button
@@ -1253,8 +1257,9 @@
             TAG
             </div>
           </h1>
-          <p class="tutorial-paragraph min-h-[140px]" id="LK_tutorial_11">
-            Get personal, add your own tag.
+          <!-- <p class="tutorial-paragraph min-h-[140px]" id="LK_tutorial_11"> -->
+          <p class="tutorial-paragraph" id="LK_tutorial_11">
+              Get personal, add your own tag.
           </p>
           <!-- ben added id to handleCloseTutorial below -->
           <button
@@ -1276,8 +1281,9 @@
       >
         <div class="bg-netural relative p-4 px-6 w-64 rounded-md opacity-95">
           <h1 class="tutorial-heading"><div id="LK_tutorial_13">SPONSOR</div></h1>
+          <!-- class="text-xl font-medium font-Titillium leading-6 pt-3 pb-4 min-h-[150px] px-4" -->
           <p
-            class="text-xl font-medium font-Titillium leading-6 pt-3 pb-4 min-h-[150px] px-4"
+            class="text-xl font-medium font-Titillium leading-6 pt-3 pb-4 px-4"
             id="LK_tutorial_14">
             Finishing touches... add some sponsors.
           </p>
@@ -1419,7 +1425,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)">v0.5.0.1</div><br><div id="fpsindicator" style="position: absolute;"></div>
+    <div id="versionid" onclick="onConsole(0)">v0.5.0.6</div><br><div id="fpsindicator" style="position: absolute;"></div>
     <div id="console" class="hidden">
       <div class="console">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>

@@ -265,6 +265,8 @@ function createColourpicker() {
 				// also tint helmet visor
 				if(f1User.isHelmet) {
 					f1CarHelmet.visorMesh.material.color = new THREE.Color( color.hexString);
+					f1CarHelmet.visorMesh.material.color.multiplyScalar(0.135);
+
 					f1CarHelmet.visorMesh.material.needsUpdate = true;
 				}
 
@@ -834,7 +836,7 @@ function introNextPage(nextPage) {
 
 		// HTML TODO
 		document.getElementById('canvas-positioner').style.display='block';
-		
+
 
 		setSize(window.innerWidth,window.innerHeight );
 		// prep and do car intro
@@ -1305,6 +1307,16 @@ function backNextPage(backornext) {
 //==================================================
 // gui tabs
 function changeTab(which, dontdofloorfx) {
+
+	// address the html buttons moving up and down...
+	const buttonblock = document.getElementById('f1nextbackbuttons');
+	if(which==1 || which==3) {
+		buttonblock.style = "margin-top: 1rem!important";
+	} else if( which==2 || which==4) {
+		buttonblock.style = "margin-top: 0.5rem!important";
+	}
+
+
 	if(f1Gui.pickingColour) {
 		f1Gui.pickingColour = false;
 
@@ -1457,6 +1469,8 @@ function onDefaultPaint() {
 			// also tint helmet visor
 			if(f1User.isHelmet) {
 				f1CarHelmet.visorMesh.material.color = new THREE.Color( tmp1);
+				f1CarHelmet.visorMesh.material.color.multiplyScalar(0.135);
+
 				f1CarHelmet.visorMesh.material.needsUpdate = true;
 			}
 
@@ -1549,6 +1563,8 @@ function onRandomPaint() {
 			// also tint helmet visor
 			if(f1User.isHelmet) {
 				f1CarHelmet.visorMesh.material.color = new THREE.Color( tmp1);
+				f1CarHelmet.visorMesh.material.color.multiplyScalar(0.135);
+
 				f1CarHelmet.visorMesh.material.needsUpdate = true;
 			}			
 		}
@@ -2375,6 +2391,13 @@ function handleWelcomeNext() {
   patternContent.classList.remove("hidden");
   welcomeContent.classList.add("hidden");
   tutorial.classList.remove("hidden");
+
+  controls.enabled = false;
+  camera.position.set(camto.x,camto.y,camto.z);
+
+  document.getElementById('canvas-positioner').style.display='block';
+
+  
 }
 // Tutorial popup Handler
 function handleTutorial() {

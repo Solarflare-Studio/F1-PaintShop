@@ -345,6 +345,7 @@ class PatternItems {
                             // also tint helmet visor
                             if(self.isHelmet) {
                                 self.visormaterial.color = new THREE.Color( newcol );
+                                self.visormaterial.color.multiplyScalar(0.135);
                                 self.visormaterial.needsUpdate = true;
                             }		                            
                         }

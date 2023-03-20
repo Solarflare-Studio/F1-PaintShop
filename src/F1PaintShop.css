@@ -69,3 +69,12 @@
 .transparenttabblock {
 	background-color: rgba(21,20,32,0.75)!important;
 }
+
+
+#welcomeProgress::-webkit-progress-value {
+    background-color: white!important;
+}
+
+#selectedLanguage {
+	font-family: 'Titillium Web', sans-serif!important;
+}

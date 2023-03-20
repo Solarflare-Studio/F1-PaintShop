@@ -120,7 +120,7 @@ class F1CarHelmet {
             this.theVisorMaterial = new THREE.MeshStandardMaterial({ // pbr
                 name: 'theVisorMaterial',
                 fog: false,
-                metalness: 0.6,
+                metalness: 0.8,
                 roughness: 0.2,
                 // metalness: 1.,
                 // roughness: 1.,
