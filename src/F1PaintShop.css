@@ -65,3 +65,7 @@
 	z-index: 3;
 
 }
+
+.transparenttabblock {
+	background-color: rgba(21,20,32,0.75)!important;
+}

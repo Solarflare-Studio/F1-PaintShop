@@ -657,9 +657,10 @@ function expandDropdown(e) {
 
 
 //==================================================
-var haveminimized = false;
+var haveminimized = false; // gui that is
 var wasincolourpicker = false;
-function minMax(tabstakencareof) {
+function minMax(tabstakencareof,mode) {
+
 
   if(haveminimized) { // woz max
 	var posy = window.innerHeight;
@@ -667,10 +668,12 @@ function minMax(tabstakencareof) {
 
 	if(!tabstakencareof) {
 		if (!wasincolourpicker) {
-			tabBody.classList.toggle("hidden");
+			if(mode!=2)
+				tabBody.classList.toggle("hidden");
 		}
 		else {
-			paintachannelblock.classList.remove("hidden");
+			if(mode!=2)
+				paintachannelblock.classList.remove("hidden");
 		}
 		// document.getElementById('tabContent').style.bottom = 0;
 	}
@@ -681,7 +684,8 @@ function minMax(tabstakencareof) {
 	)
 	.onUpdate(function(d) {
 		f1Gui.setRendererSize(window.innerWidth, d.value, renderer,camera);
-		document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
+		if(mode!=2)
+			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
 		haveminimized=false;
 	})
 	.onComplete(function () {
@@ -692,7 +696,8 @@ function minMax(tabstakencareof) {
 			else {
 				// paintachannelblock.classList.remove("hidden");
 			}
-			document.getElementById('tabContent').style.bottom = 0;
+			if(mode!=2)
+				document.getElementById('tabContent').style.bottom = 0;
 		}
 	})
 	.start()
@@ -708,20 +713,24 @@ function minMax(tabstakencareof) {
 	)
 	.onUpdate(function(d) {
 		f1Gui.setRendererSize(window.innerWidth, d.value, renderer,camera);
-		document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
+		if(mode!=2)
+			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
 
 		haveminimized=true;
 	})
 	.onComplete(function () {
 		if(!tabstakencareof) {
 			if (paintachannelblock.classList.contains("hidden")) {
-				tabBody.classList.toggle("hidden");
+				if(mode!=2)
+					tabBody.classList.toggle("hidden");
 			}
 			else {
-				paintachannelblock.classList.add("hidden");
+				if(mode!=2)
+					paintachannelblock.classList.add("hidden");
 				wasincolourpicker = true;
 			}
-			document.getElementById('tabContent').style.bottom = 0;
+			if(mode!=2)
+				document.getElementById('tabContent').style.bottom = 0;
 		}
 	})
 	.start()
@@ -1801,7 +1810,7 @@ function postRenderProcess() {
 		// include user id, datetime, helmet or car and language
 		var helmetParam = "";
 		if(f1User.isHelmet) {
-			helmetParam = "&m=h&v=" + processJSON.liveryData['Layers'][0].Channels[2].tint;
+			helmetParam = "&m=h&v=" + encodeURIComponent(processJSON.liveryData['Layers'][0].Channels[2].tint);
 		}
 		const params = '?u=' + f1User.userID + '&d='+ datetime + '&l=' + f1User.languageCode + helmetParam;
 		// marker f1 fanzone ar version latest V2
@@ -2321,7 +2330,11 @@ function move() {
       } else {
         if (nextBtn.classList.contains("submit")) {
           finalProgress.value = loadingProgress++;
-          loadingProgress === 100 && handleComeToLife();
+		  if(loadingProgress === 100) {
+			handleComeToLife();
+			document.getElementById('canvas-positioner').style.display='none';
+		  }
+        //   loadingProgress === 100 && handleComeToLife();
         } else {
 
 			// texture loading too
@@ -2385,7 +2398,7 @@ function handleTabToggle() {
   zoomIn.classList.toggle("hidden");
   zoomOut.classList.toggle("hidden");
 
-  minMax();
+  minMax(false,1);
 
 
 
@@ -2402,11 +2415,25 @@ function handleComeToLife() {
 // Back to Tab Handler
 function handleBackToTabs() {
 
-	document.getElementById('canvas-positioner').style.display='block';
-
-
 	comeToLifeContent.classList.add("hidden");
 	patternContent.classList.remove("hidden");
+
+	// ben
+	document.getElementById('canvas-positioner').style.display='block';
+	// jump back to first patterns tab
+	TabHead.classList.remove("hidden");
+	allTabs.classList.remove("hidden");
+	finishSelectionContent.classList.add("hidden");
+	nextBtn.classList.remove("submit");
+	tabBody.classList.add("bg-primary");
+
+	// bens mod
+	tabBody.classList.remove('transparenttabblock');
+
+	if(haveminimized) {
+	  minMax(false,2);
+	}
+	tabboxes[0].click();
 }
 
 // Camera Tutorial Handler
@@ -2472,7 +2499,7 @@ f1PaintTab.forEach((box) => {
 	box.addEventListener("click", (event) => {
 
 	  if(haveminimized) {
-		minMax(true);
+		minMax(true,1);
 	  }
 
 	  const currTarget = event.target;
@@ -2591,24 +2618,29 @@ nextBtn.addEventListener("click", () => {
 
 	}
 
-	// todo launchar
-
-
 	if (!nextElement && !nextBtn.classList.contains("submit")) {
 	  TabHead.classList.add("hidden");
 	  allTabs.classList.toggle("hidden");
 	  finishSelectionContent.classList.remove("hidden");
 	  nextBtn.classList.add("submit");
-	  tabBody.classList.remove("bg-primary");
-  
+
+
+	  // ben change to allow tab background though transparent
+	  tabBody.classList.add('transparenttabblock');
+	//   tabBody.classList.remove("bg-primary");
+
+	  // maximize 3D
+	  if(!haveminimized) {
+		minMax(false,2);
+	  }
+
+
 	  return;
 	}
 	if (nextBtn.classList.contains("submit")) {
 	  finishSelectionLoading.classList.remove("hidden");
 
 	  // ben
-	  document.getElementById('canvas-positioner').style.display='none';
-
 	  doBuildBasemap=true; // start save process
 
 	  move();
@@ -2658,6 +2690,15 @@ prevBtn.addEventListener("click", () => {
 	  finishSelectionContent.classList.add("hidden");
 	  nextBtn.classList.remove("submit");
 	  tabBody.classList.add("bg-primary");
+
+	  // bens mod
+	  tabBody.classList.remove('transparenttabblock');
+
+	  if(haveminimized) {
+		minMax(false,2);
+	  }
+
+
 	  return;
 	}
 	nextBtn.classList.remove("opacity-50");
