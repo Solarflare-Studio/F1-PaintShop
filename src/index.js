@@ -1214,7 +1214,7 @@ function createSpotLight(intensity) {
 
 	if(!f1CarHelmet.theModel)
 		if(DEBUG_MODE)
-			console.log("not readu***********************");
+			console.log(">> model not ready");
 
 	// light.target.position = new THREE.Vector3(0,0,0);// f1CarHelmet.theModelRoot.position;
 	light.target.position.set( new THREE.Vector3(0,0,0));//f1CarHelmet.theModelRoot.position;
@@ -1280,7 +1280,7 @@ function onPatternPicked(which,thefile,thepatternelement)
 	// adds spinner while loading pattern v0509
 	const imgElement = thepatternelement;
 	const overlayElement = document.createElement('img');
-	overlayElement.src = './assets/inapp/F1_LoadingAnim_Wheel-256.gif'; // set the source of the overlay image
+	overlayElement.src = './assets/inapp/F1_LoadingAnim_WheelV2-256.gif'; // set the source of the overlay image
 	overlayElement.alt = 'overlay'; // set the alternative text for the overlay image
 	overlayElement.style.transform = 'translate(-50%, -50%)';
 	overlayElement.style.position = 'absolute'; // set the position of the overlay image

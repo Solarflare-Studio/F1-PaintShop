@@ -127,6 +127,14 @@ class F1User {
         if(DEBUG_MODE) {
             document.getElementById('versionid').classList.add('console');
             document.getElementById('versionid').classList.add('console_button');	
+            document.getElementById('versionid').style.color='black';
+            document.getElementById('versionid').style.opacity=1.;
+
+        }
+        else {
+
+            // to implement at release = hide version number
+            // document.getElementById('versionid').innerHTML="";
         }
     
 

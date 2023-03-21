@@ -391,7 +391,7 @@
         class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center lg:hidden"
       >
         <!-- <img src="./assets/images/loading.svg" alt="Loading..." /> -->
-        <img src="./assets/inapp/F1_LoadingAnim_Wheel-256.gif" alt="Loading..." width="99" height="99" />
+        <img src="./assets/inapp/F1_LoadingAnim_WheelV2-256.gif" alt="Loading..." width="99" height="99" />
         <h1
           class="text-netural text-2xl font-medium mt-2 font-F1PaintShopBoldFont"
           id="LK_start_title"
@@ -1167,12 +1167,13 @@
         id="tutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
       >
-        <figure class="relative">
-          <!-- <img
-            src="./assets/images/tutorial_img.svg"
+        <figure class="relative"  style="height: 30%!important;">
+          <!-- src="./assets/inapp/tutorial_img.svg" -->
+          <img
+            src="./assets/inapp/pinchrotate.png"
             alt="tutorial"
             class="w-full h-full"
-          /> -->
+          />
         </figure>
         <div class="tutorial-wrp">
           <h1 class="tutorial-heading"><div id="LK_tutorial_01">TUTORIAL</div></h1>
@@ -1308,7 +1309,7 @@
         <div class="relative">
             <!-- src="./assets/images/loading.svg" -->
           <img
-            src="./assets/inapp/F1_LoadingAnim_Wheel-256.gif" alt="Loading..." width="99" height="99"
+            src="./assets/inapp/F1_LoadingAnim_WheelV2-256.gif" alt="Loading..." width="99" height="99"
             alt="Loading..."
             class="mx-auto"
           />
@@ -1347,7 +1348,7 @@
         </p>
         <div class="flex flex-col justify-between items-center gap-y-3 w-full">
           <div id="launchbutton" class="!w-auto py-2 px-14 next-btn" style="width:12em!important;">
-            <a id="launchbuttonlink" target="_blank" href="www.mapflaps.com"><div id="LK_tutorial_20">LAUNCH AR</div></a>
+            <a id="launchbuttonlink" target="_blank" href="www.mapflaps.com"><div id="LK_tutorial_20">NEXT</div></a>
           </div>
           <!--
           <button
@@ -1426,8 +1427,8 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)">v0.5.1.0</div><br><div id="fpsindicator" style="position: absolute;"></div>
-    <div id="console" class="hidden">
+    <div id="versionid" onclick="onConsole(0)">v0.5.1.0</div>
+    <div id="console" class="hidden"><br><div id="fpsindicator"></div>
       <div class="console">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>
         <div class="console_button consoleshrunk consoleexpander" id="toneexpander">

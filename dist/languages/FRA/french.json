@@ -90,7 +90,7 @@
   },
   {
   "name": "LK_tutorial_20",
-  "text": "LANCEMENT AR"
+  "text": "NEXT"
   },
   {
   "name": "LK_tutorial_21",
@@ -253,13 +253,21 @@
     "text": "TROUVER LE MARQUEUR"
   },
   {
-    "name": "LK_AR_explore_4",
-    "text": "EXPLORER"
+    "name": "LK_AR_explore_01",
+    "text": "EXPLORE"
   },
   {
-    "name": "LK_AR_explore_5",
-    "text": "Maintenant, promenez-vous et voyez votre conception! Appuyez sur le bouton de la caméra pour prendre une photo ou appuyez sur Terminer pour terminer."
+    "name": "LK_AR_explore_02",
+    "text": "Admire your design from every angle. Walk around the car and see it come to life."
   },
+  {
+    "name": "LK_AR_share_01",
+    "text": "SHARE"
+  },
+  {
+    "name": "LK_AR_share_02",
+    "text": "Tap the camera button to snap a pic. Hold to create a video. Share on socials."
+  },  
   {
     "name": "LK_AR_button_next",
     "text": "SUIVANT"

@@ -7,19 +7,13 @@
     opacity: 0.5;
 }
 
-#versionid {
-    position: absolute;
-    top:0;
-    color:yellow;
-    opacity:0.5;
-}
-
 
 #console {
+	text-align: left;
 	position: absolute;
-    top: 3em;
+    top: 0em;
     left: 0;
-	text-align: center;
+	/* text-align: center; */
 	max-width: 20%;
 	z-index: 5;
 }
@@ -60,16 +54,19 @@
     font-size: 0.9em;
 	width: 6em;
 	height: 3em;
-	color: white;
 	top: 0;
 	z-index: 3;
+
+    color:yellow;
+	opacity:0.5;
 
 }
 
 .transparenttabblock {
 	/* background-color: rgba(21,20,32,0.75)!important; */
 	/* background: linear-gradient(to top, rgba(21,20,32,0.75) 0%, rgba(21,20,32,0.75) 66.66%, rgba(21,20,32,0) 100%); */
-	background: linear-gradient(to top, rgba(21, 20, 32, 0.9) 0%, rgba(21, 20, 32, 0.75) 66.66%, rgba(21, 20, 32, 0) 100%)!important;
+	/* background: linear-gradient(to top, rgba(21, 20, 32, 0.9) 0%, rgba(21, 20, 32, 0.75) 66.66%, rgba(21, 20, 32, 0) 100%)!important; */
+	background: linear-gradient(to top, rgba(21, 20, 32, 0.99) 0%,rgba(21, 20, 32, 0.99) 30%, rgba(21, 20, 32, 0.75) 66.66%, rgba(21, 20, 32, 0) 100%)!important;
 }
 
 
