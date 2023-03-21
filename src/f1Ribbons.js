@@ -61,10 +61,10 @@ class F1Ribbons {
         this.root.visible=this.enabled;
         this.enableGlow = true;
         // this.ribbonGeometry = new THREE.PlaneGeometry(200, 15, 64,2);
-        this.ribbonGeometry = new THREE.PlaneGeometry(1500, 80, 64,2);
+        this.ribbonGeometry = new THREE.PlaneGeometry(1500, 80, 256,8);
         // this.ribbonGeometry = new THREE.CylinderGeometry(50, 50, 1500, 6, 64, true);
 
-        this.ribbonGeometry2 = new THREE.PlaneGeometry(1100, 35, 64,2);
+        // this.ribbonGeometry2 = new THREE.PlaneGeometry(1100, 35, 64,2);
         this.carChangeTween = 0;
         this.carChangeDelta = 0.0;
         this.countbetweenribbons = 0;

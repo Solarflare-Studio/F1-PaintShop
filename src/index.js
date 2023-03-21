@@ -1268,12 +1268,27 @@ function onPatternPicked(which,thefile,thepatternelement)
 	var currentLayer = f1Gui.currentPage-1;
 	if(f1Gui.currentPage>1) currentLayer--;
 
+	// ok - todo, put loading spinner over selected thumb until loaded?
 	if(currentLayer==0)
 		document.getElementById('layer1patterns_ins').classList.add('disabledButton');
 	else if(currentLayer==1)
 		document.getElementById('layer2tags_ins').classList.add('disabledButton');
 	else if(currentLayer==2)
 		document.getElementById('layer3sponsors_ins').classList.add('disabledButton');
+
+
+	// adds spinner while loading pattern v0509
+	const imgElement = thepatternelement;
+	const overlayElement = document.createElement('img');
+	overlayElement.src = './assets/inapp/F1_LoadingAnim_Wheel-256.gif'; // set the source of the overlay image
+	overlayElement.alt = 'overlay'; // set the alternative text for the overlay image
+	overlayElement.style.transform = 'translate(-50%, -50%)';
+	overlayElement.style.position = 'absolute'; // set the position of the overlay image
+	overlayElement.style.top = '50%';
+	overlayElement.style.left = '50%';
+	imgElement.parentElement.appendChild(overlayElement);
+	//
+
 
 
 	if(!getAutoSelectingPattern())	{

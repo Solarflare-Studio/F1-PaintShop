@@ -231,6 +231,12 @@ class PatternItems {
         const texture = new THREE.TextureLoader().load(url, (tex) => {
             clearTimeout(self.patternLoaderTimeout);
 
+            // remove loading spinner since v0509
+            const overlayElement = self.thepatternelement.parentElement.children[1];
+            self.thepatternelement.parentElement.removeChild(overlayElement);
+            //
+
+
             if(!getAutoSelectingPattern()) 
                 self.f1Garage.startFloorMode(1); // radial 
 
