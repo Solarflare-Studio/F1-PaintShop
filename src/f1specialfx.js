@@ -378,7 +378,7 @@ class F1SpecialFX {
     //======================
     setupBloom(scene, camera,renderer,renderSize,f1Garage) {
 
-      const ribbonbloomRenderSize = 512;
+      const ribbonbloomRenderSize = 1024;
 
       // setup static scene
       // const staticscene = new THREE.Scene();
