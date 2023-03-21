@@ -80,3 +80,21 @@
 #selectedLanguage {
 	font-family: 'Titillium Web', sans-serif!important;
 }
+
+body {
+/* force allow full screen for screen grab */
+@media screen and (min-width: 1024px) {
+	/* force allow full screen for screen grab */
+	.lg\:bg-\[length\:100\%_120\%\] {
+		background-size: inherit !important;
+	
+	}
+
+
+}
+}
+
+.lg {
+	display: block!important;
+
+}

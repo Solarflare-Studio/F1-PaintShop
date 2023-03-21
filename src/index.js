@@ -76,12 +76,12 @@ window.onConsole = onConsole;
 //===================================
 const f1User = new F1User();
 
-var renderSize = 1024;
-// var renderSize = 2048;
+//var renderSize = 1024;
+ var renderSize = 2048; // for screen grab
 
 var customMapRenderSize = 2048;	// probably unneccesary
 var customRoughMapRenderSize = 1024;
-var sfxBloomRenderSize = 512;
+var sfxBloomRenderSize = 2048;
 
 const camfrom = new THREE.Vector3(165.0,52.3,-3.7);
 const camto = new THREE.Vector3(44.0,36.0,90.0);
@@ -851,6 +851,8 @@ function introNextPage(nextPage) {
 		// helpers.visible = true;
 		// scene.add( helpers );
 		controls.enabled = false;
+
+		controls.autoRotate=true; // for screen grab
 
 		const carinduration = 3500;	// delays 500 first
 		const carwireduration = 5000;  // delays 800 first

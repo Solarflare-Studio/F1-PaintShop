@@ -548,7 +548,7 @@ class F1Ribbons {
         this.ribbonMesh.position.set(5,20,-105 );
 
         this.createBentMesh();
-        this.root.add(this.ribbonMesh);
+        // this.root.add(this.ribbonMesh);
 
 
         // ok, another ribbon
