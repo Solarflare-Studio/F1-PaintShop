@@ -31,14 +31,18 @@ class F1User {
         //     document.getElementById('introhelmetbutton').classList.add('hidden');
         // }
         
-        this.userID = (params.get('uuid') ? params.get('uuid') : "noID"); // user id
-        this.userName = (params.get('n') ? params.get('n') : "no name"); // user name
+        // this.userID = (params.get('uuid') ? params.get('uuid') : "noID"); // user id
+        const uuidParam = params.get('uuid');
+        const uuid = uuidParam ? uuidParam.replace(/['"]+/g, '') : "noID";
+        this.userID = uuid;
+
+        this.userName = (params.get('n') ? params.get('n').toLowerCase() : "no name"); // user name
         this.userEmail = (params.get('e') ? params.get('e') : "no email"); // user email
-        this.userCarOrHelmet = (params.get('m') ? params.get('m') : "c"); // car or helmet
+        this.userCarOrHelmet = (params.get('m') ? params.get('m').toLowerCase() : "c"); // car or helmet
 
         this.userConsole = (params.get('c') ? params.get('c') : 0); // console
         
-        this.languageCode = (params.get('l') ? params.get('l') : "ENG"); // language
+        this.languageCode = (params.get('l') ? params.get('l').toUpperCase() : "ENG"); // language
         // this.languageCode = "ENG";
         
         DEBUG_MODE=this.userConsole;
@@ -62,6 +66,8 @@ class F1User {
         this.userEmail = (this.userEmail.replace(/['"]+/g, ''));
         this.userCarOrHelmet = (this.userCarOrHelmet.replace(/['"]+/g, ''));
         this.languageCode = (this.languageCode.replace(/['"]+/g, ''));
+
+        
 
         if(DEBUG_MODE)
             console.log(">> ** name:" + this.userName + ", id:" + this.userID + ", email:"+ this.userEmail + ", model:"+ this.userCarOrHelmet + ", lang:" + this.languageCode);
