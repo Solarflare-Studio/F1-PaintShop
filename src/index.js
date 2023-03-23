@@ -987,6 +987,10 @@ function onPatternPicked(which,thefile,thepatternelement)
 	else if(currentLayer==2)
 		document.getElementById('layer3sponsors_ins').classList.add('disabledButton');
 
+	// also disable tabs at this point
+	document.getElementById('TabHead').classList.add('disabledButton');
+
+
 
 	// adds spinner while loading pattern v0509
 	const imgElement = thepatternelement;

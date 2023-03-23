@@ -224,6 +224,8 @@ class PatternItems {
                 else if(self.currentLayer==2)
                     document.getElementById('layer3sponsors_ins').classList.remove('disabledButton');
         
+                document.getElementById('TabHead').classList.remove('disabledButton');
+
 
                 if(self.currentLayer==0) { // base
                     self.mapUniforms.texture1Base.value = tex;
@@ -411,11 +413,16 @@ class PatternItems {
         if(patternsData['Patterns'][which].id == -1 && currentLayer!=0) { // a null one
             if(currentLayer==0) {
                 document.getElementById('layer1patterns_ins').classList.remove('disabledButton');
+            	// also disable tabs at this point
+                document.getElementById('TabHead').classList.remove('disabledButton');
+
                 // never!
             }
             else if(currentLayer==1) {
                 isNone=true;
                 document.getElementById('layer2tags_ins').classList.remove('disabledButton');
+                document.getElementById('TabHead').classList.remove('disabledButton');
+
                 // document.getElementById('taginput').classList.add('disabledButton');
                 // document.getElementById('tagpaintbutton').classList.add('disabledButton');
                 // document.getElementById('tagstylepaintbutton').classList.add('disabledButton');                
@@ -435,6 +442,8 @@ class PatternItems {
                 isNone=true;
 
                 document.getElementById('layer3sponsors_ins').classList.remove('disabledButton');
+                document.getElementById('TabHead').classList.remove('disabledButton');
+
                 mapUniforms.useDecal.value = 0;
                 f1MetalRoughmapUniforms.useDecal.value = 0;
 
