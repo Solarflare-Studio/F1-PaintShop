@@ -1,0 +1,315 @@
+{
+  "dialogues": [  
+    {
+      "name": "LK_welcome_heading",
+      "text": "LK_welcome_heading"
+    },
+    {
+      "name": "LK_welcome_01",
+      "text": "LK_welcome_01"
+    },
+    {
+      "name": "LK_welcome_02",
+      "text": "LK_welcome_02"
+    },
+    {
+      "name": "LK_tutorial_01",
+      "text": "LK_tutorial_01"
+    },
+    {
+      "name": "LK_tutorial_02",
+      "text": "LK_tutorial_02"
+    },
+    {
+      "name": "LK_tutorial_03",
+      "text": "LK_tutorial_03!"
+    },
+    {
+      "name": "LK_tutorial_04",
+      "text": "LK_tutorial_04"
+    },
+    {
+      "name": "LK_tutorial_05",
+      "text": "LK_tutorial_05"
+    },
+    {
+      "name": "LK_tutorial_06",
+      "text": "LK_tutorial_06!"
+    },
+    {
+      "name": "LK_tutorial_07",
+      "text": "LK_tutorial_07"
+    },
+    {
+      "name": "LK_tutorial_08",
+      "text": "LK_tutorial_08."
+    },
+    {
+      "name": "LK_tutorial_09",
+      "text": "LK_tutorial_09!"
+    },
+    {
+      "name": "LK_tutorial_10",
+      "text": "LK_tutorial_10"
+    },
+    {
+      "name": "LK_tutorial_11",
+      "text": "LK_tutorial_11."
+    },
+    {
+      "name": "LK_tutorial_12",
+      "text": "LK_tutorial_12!"
+    },
+    {
+      "name": "LK_tutorial_13",
+      "text": "LK_tutorial_13"
+    },
+    {
+      "name": "LK_tutorial_14",
+      "text": "LK_tutorial_14."
+    },
+    {
+      "name": "LK_tutorial_15",
+      "text": "LK_tutorial_15!"
+    },
+    {
+      "name": "LK_tutorial_16",
+      "text": "LK_tutorial_16"
+    },
+    {
+      "name": "LK_tutorial_17",
+      "text": "LK_tutorial_17."
+    },
+    {
+      "name": "LK_tutorial_18",
+      "text": "LK_tutorial_18"
+    },
+    {
+      "name": "LK_tutorial_19",
+      "text": "LK_tutorial_19"
+    },      
+    {
+      "name": "LK_tutorial_20",
+      "text": "LK_tutorial_20"
+    },
+    {
+      "name": "LK_tutorial_21",
+      "text": "LK_tutorial_21"
+    },
+    {
+      "name": "LK_menu_title",
+      "text": "LK_menu_title"
+    },
+    {
+      "name": "LK_menu_close",
+      "text": "LK_menu_close"
+    },
+    {
+      "name": "LK_menu_language",
+      "text": "LK_menu_language"
+    },
+    {
+      "name": "LK_menu_terms",
+      "text": "LK_menu_terms"
+    },
+    {
+      "name": "LK_menu_security",
+      "text": "LK_menu_security"
+    },
+    {
+      "name": "LK_menu_otherlinks",
+      "text": "LK_menu_otherlinks"
+    },
+    {
+      "name": "LK_turndevice_01",
+      "text": "LK_turndevice_01"
+    },
+    {
+      "name": "LK_turndevice_02",
+      "text": "LK_turndevice_02"
+    },
+    {
+      "name": "LK_start_title",
+      "text": "LK_start_title"
+    },
+    {
+      "name": "LK_info_prepping",
+      "text": "LK_info_prepping"
+    },
+    {
+      "name": "LK_tab_01",
+      "text": "LK_tab_01"
+    },
+    {
+      "name": "LK_tab_02",
+      "text": "LK_tab_02"
+    },
+    {
+      "name": "LK_tab_03",
+      "text": "LK_tab_03"
+    },    
+    {
+      "name": "LK_tab_04",
+      "text": "LK_tab_04"
+    },    
+    {
+      "name": "LK_final_heading",
+      "text": "LK_final_heading"
+    },    
+    {
+      "name": "LK_final_01",
+      "text": "LK_final_01"
+    },    
+    {
+      "name": "LK_final_back",
+      "text": "LK_final_back"
+    },    
+    {
+      "name": "LK_final_next",
+      "text": "LK_final_next"
+    },
+    {
+      "name": "LK_mat_gloss",
+      "text": "LK_mat_gloss"
+    },      
+    {
+      "name": "LK_mat_matte",
+      "text": "LK_mat_matte"
+    },      
+    {
+      "name": "LK_mat_metallic",
+      "text": "LK_mat_metallic"
+    },
+    {
+      "name": "LK_paint_base",
+      "text": "LK_paint_base"
+    },
+    {
+      "name": "LK_paint_primary",
+      "text": "LK_paint_primary"
+    },
+    {
+      "name": "LK_paint_secondary",
+      "text": "LK_paint_secondary"
+    },
+    {
+      "name": "LK_paint_random",
+      "text": "LK_paint_random"
+    },
+    {
+      "name": "LK_tag_yours",
+      "text": "LK_tag_yours"
+    },
+    {
+      "name": "LK_tag_paint",
+      "text": "LK_tag_paint"
+    },
+    {
+      "name": "LK_tagstyle_paint",
+      "text": "LK_tagstyle_paint"
+    },
+    {
+      "name": "LK_sponsor_paint",
+      "text": "LK_sponsor_paint"
+    },
+    {
+      "name": "LK_colourConfirmButton",
+      "text": "LK_colourConfirmButton"
+    },
+    {
+      "name": "LK_AR_welcome_1",
+      "text": "LK_AR_welcome_1"
+    },
+    {
+      "name": "LK_AR_welcome_2",
+      "text": "LK_AR_welcome_2"
+    },
+    {
+      "name": "LK_AR_welcome_3",
+      "text": "LK_AR_welcome_3!"
+    },
+    {
+      "name": "LK_AR_welcome_4",
+      "text": "LK_AR_welcome_4"
+    },
+    {
+      "name": "LK_AR_welcome_5",
+      "text": "LK_AR_welcome_5"
+    },
+  
+    {
+      "name": "LK_AR_cameraRequest_1",
+      "text": "LK_AR_cameraRequest_1"
+    },
+    {
+      "name": "LK_AR_cameraSuccess_1",
+      "text": "LK_AR_cameraSuccess_1"
+    },
+    {
+      "name": "LK_AR_cameraError_1",
+      "text": "LK_AR_cameraError_1"
+    },
+    {
+      "name": "LK_AR_findMarker_1",
+      "text": "LK_AR_findMarker_1"
+    },
+    {
+      "name": "LK_AR_findMarker_2",
+      "text": "LK_AR_findMarker_2"
+    },
+    {
+      "name": "LK_AR_findMarker_3",
+      "text": "LK_AR_findMarker_3"
+    },
+    {
+      "name": "LK_AR_findMarker_4",
+      "text": "LK_AR_findMarker_4"
+    },
+    {
+      "name": "LK_AR_findMarker_5",
+      "text": "LK_AR_findMarker_5"
+    },    
+    {
+      "name": "LK_AR_explore_01",
+      "text": "LK_AR_explore_01"
+    },
+    {
+      "name": "LK_AR_explore_02",
+      "text": "LK_AR_explore_02"
+    },
+    {
+      "name": "LK_AR_share_01",
+      "text": "LK_AR_share_01"
+    },
+    {
+      "name": "LK_AR_share_02",
+      "text": "LK_AR_share_02"
+    },  
+    {
+      "name": "LK_AR_button_next",
+      "text": "LK_AR_button_next"
+    },
+    {
+      "name": "LK_AR_button_back",
+      "text": "LK_AR_button_back"
+    },
+    {
+      "name": "LK_AR_button_ok",
+      "text": "LK_AR_button_ok"
+    },
+    {
+      "name": "LK_AR_button_finish",
+      "text": "LK_AR_button_finish"
+    },
+    {
+      "name": "LK_AR_button_download",
+      "text": "LK_AR_button_download"
+    },
+    {
+      "name": "LK_AR_button_share",
+      "text": "LK_AR_button_share"
+    }
+  ]
+  }
+  
+  

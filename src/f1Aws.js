@@ -7,6 +7,7 @@ class F1Aws {
     constructor() {
         this.languageSettingsJson = 0;
         this.preloadlanguagecode = "";
+        this.keepLanguageKeys = "";
         this.init();
     }
     init() {
@@ -48,9 +49,18 @@ class F1Aws {
     }
 
     //======================
+    applyLanguageKeys() {
+        for(var i=0;i<this.keepLanguageKeys.length;i++) {
+            const textElement = document.getElementById(dialogues[i].name);
+            if(textElement)
+                textElement.innerHTML = dialogues[i].text;
+        }
+    }
+    //======================
     haveLoadedLanguageFile(data,f1aws) {
         f1aws.languageText = JSON.parse(data);
         const dialogues = f1aws.languageText['dialogues'];
+        this.keepLanguageKeys = dialogues;
         for(var i=0;i<dialogues.length;i++) {
             const textElement = document.getElementById(dialogues[i].name);
             if(textElement)

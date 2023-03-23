@@ -33,30 +33,3 @@
     ]
 }
     
-
-{
-  "settings":[
-    {"ARmarkerL_x":0.909,
-    "ARmarkerL_y":-1.625,
-    "ARmarkerL_z":-0.137,
-    "ARmarkerL_s":3.341,
-    "ARmarkerL_r":90.961,
-    "ARmarkerR_x":0.279,
-    "ARmarkerR_y":3.309,
-    "ARmarkerR_z":0.054,
-    "ARmarkerR_s":4.028,
-    "ARmarkerR_r":-3.323,
-    "ARmarkerHL_x":0.239,
-    "ARmarkerHL_y":-4.245,
-    "ARmarkerHL_z":-2.971,
-    "ARmarkerHL_s":19.364,
-    "ARmarkerHL_r":0,
-    "ARmarkerHL_rz":-77.075,
-    "ARmarkerHR_x":0.113,
-    "ARmarkerHR_y":0.589,
-    "ARmarkerHR_z":-0.301,
-    "ARmarkerHR_s":2.83,
-    "ARmarkerHR_r":0,
-    "ARlight_i":3.43,
-    "ARenv_i":0.92
-  }]}

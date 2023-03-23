@@ -31,6 +31,13 @@ class F1User {
         //     document.getElementById('introhelmetbutton').classList.add('hidden');
         // }
         
+/*
+
+also:  example of an URL we'd link users to would be https://webactivationaddress.com/?uuid=69f59c273b6e669ac32a6dd5e1b2cb63333d8b004f9696447aee2d422ce63763&lan=en
+
+*/
+
+
         // this.userID = (params.get('uuid') ? params.get('uuid') : "noID"); // user id
         const uuidParam = params.get('uuid');
         const uuid = uuidParam ? uuidParam.replace(/['"]+/g, '') : "noID";
@@ -42,7 +49,7 @@ class F1User {
 
         this.userConsole = (params.get('c') ? params.get('c') : 0); // console
         
-        this.languageCode = (params.get('l') ? params.get('l').toUpperCase() : "ENG"); // language
+        this.languageCode = (params.get('lan') ? params.get('lan').toUpperCase() : "EN"); // language
         // this.languageCode = "ENG";
         
         DEBUG_MODE=this.userConsole;

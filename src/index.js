@@ -296,6 +296,8 @@ createColourpicker();
 //==================================================
 function onloaded()
 {
+	f1Aws.applyLanguageKeys();
+
 	// TODO NEW HTML
 	return;
 	if(DEBUG_MODE) {
@@ -1848,7 +1850,7 @@ function postRenderProcess() {
 		if(f1User.isHelmet) {
 			helmetParam = "&m=h&v=" + encodeURIComponent(processJSON.liveryData['Layers'][0].Channels[2].tint);
 		}
-		const params = '?u=' + f1User.userID + '&d='+ datetime + '&l=' + f1User.languageCode + helmetParam;
+		const params = '?uuid=' + f1User.userID + '&d='+ datetime + '&lan=' + f1User.languageCode + helmetParam;
 		// marker f1 fanzone ar version latest V2
 		const thearlink = 'https://solarflarestudio.8thwall.app/f1-fanzone-ar-v2/' + params;
 		// const thearlink = 'https://solarflarestudio.8thwall.app/f1-fanzone-ar-v2/?u=' + f1User.userID + '&d='+ datetime;// +'&m=c&t='+(new Date());
@@ -2414,6 +2416,8 @@ function handleWelcomeNext() {
 
   controls.enabled = false;
   camera.position.set(camto.x,camto.y,camto.z);
+
+  document.getElementById('welcomeContent').style.display = 'none';
 
   document.getElementById('canvas-positioner').style.display='block';
 

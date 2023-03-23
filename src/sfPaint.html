@@ -39,8 +39,11 @@
       href="./assets/images/favicon-16x16.png"
     />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="./tailwind.css"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script> -->
+    <script src="./js/flowbite.min.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -244,6 +247,7 @@
   <body
     class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center overflow-hidden"
     style="overflow: hidden;user-select: none;"
+    onload="onloaded()"
   >
 
 <!-- Google Tag Manager (noscript) -->
@@ -258,11 +262,12 @@
   </div>
   <!--ben end of webgl-->
 
-    <header class="w-full pointer-events-none">
+    <header class="w-full pointer-events-none"
+    style="position: absolute;">
       <div class="mx-auto p-6 flex justify-between items-center">
         <figure>
           <!-- ben added style to show logo over 3d canvas-->
-          <img src="./assets/images/F1_Logo.svg" alt="Logo" style="z-index: 30; position: relative;"/> 
+          <img src="./assets/inapp/F1_Logo.svg" alt="Logo" style="z-index: 30; position: relative;"/> 
         </figure>
         <button
           class="text-white rounded-lg bg-netural p-3 invisible lg:hidden z-30 cursor-pointer pointer-events-auto"
@@ -284,7 +289,8 @@
       >
         <div class="relative z-30 py-6 flex justify-between items-center">
           <figure>
-            <img src="./assets/images/F1_Logo_light.svg" alt="Logo" />
+            <!-- <img src="./assets/images/F1_Logo_light.svg" alt="Logo" /> -->
+            <img src="./assets/inapp/F1_Logo_light.svg" alt="Logo" />
           </figure>
           <button
             type="button"
@@ -383,10 +389,14 @@
       </div>
     </header>
     <!-- end of header -->
-    <main class=" h-[calc(100vh-118px)]" >
-      <div
-        class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex"
+    <!-- <main class=" h-[calc(100vh-118px)]" > -->
+    <main class=" h-[calc(100vh)]">
+        <div
+        class="justify-center items-center flex-col h-[calc(100vh)] text-center hidden lg:flex"
       >
+      <!-- class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex" -->
+
+
         <img src="./assets/images/rotate_image.svg" alt="Loading..." />
         <h1
           class="text-netural text-2xl font-medium mt-2 font-F1PaintShopBoldFont"
@@ -403,8 +413,10 @@
 
       <div
         id="loadingContent"
-        class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center lg:hidden"
+        class="flex justify-center items-center flex-col h-[calc(100vh)] text-center lg:hidden"
       >
+      <!-- class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center lg:hidden" -->
+
         <!-- <img src="./assets/images/loading.svg" alt="Loading..." /> -->
         <img src="./assets/inapp/F1_LoadingAnim_WheelV2-256.gif" alt="Loading..." width="99" height="99" />
         <h1
@@ -424,10 +436,17 @@
         ></progress>
       </div>
       <!-- end of loading content -->
+      <!-- class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden container-fluid lg:hidden" -->
       <div
-        class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden container-fluid lg:hidden"
+        class="flex justify-center items-center flex-col h-[calc(100vh)] text-center hidden container-fluid lg:hidden"
         id="welcomeContent"
       >
+      <!-- style="    position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      width: 100%;" -->
+
         <!--ben added LK -->
         <h1 id="LK_welcome_heading" class="heading">WELCOME</h1>
         <p
@@ -449,9 +468,10 @@
         </button>
       </div>
       <!--end of welcome content -->
+      <!-- class="h-[calc(100vh-118px)] flex justify-between items-center flex-col text-center hidden" -->
       <div
         id="patternContent"
-        class="h-[calc(100vh-118px)] flex justify-between items-center flex-col text-center hidden"
+        class="h-[calc(100vh)] flex justify-between items-center flex-col text-center hidden"
       >
         <figure class="w-full h-full flex justify-center items-center">
           <img src="./assets/images/paint_demo.png" alt="pattern" />
@@ -462,7 +482,9 @@
           class="w-full absolute bottom-0 "
           style="pointer-events: none;"
         >
-          <div id="TabHead" class="w-full text-right overflow-hidden bg-gradient-to-b from-[#15132000] to-[#151320eb] ">
+          <div id="TabHead" class="w-full text-right overflow-hidden bg-gradient-to-b from-[#15132000] to-[#151320eb] "
+            style="pointer-events:none;"
+          >
             <button class="p-4" onclick="handleTabToggle()" style="pointer-events: all;">
               <img
                 src="./assets/images/zoom_In.svg"
@@ -573,8 +595,8 @@
             </ul>
           </div>
           <div id="tabBody" class="bg-primary text-left mx-auto p-4 min-h-[360px] max-h-[360px]"
-                style="pointer-events: all;"
-          >
+          style="pointer-events:all"
+           >
             <div class="max-w-[337px] mx-auto">
               <div id="allTabs" class="min-h-[255px]">
                 <div
@@ -1304,9 +1326,10 @@
             id="LK_tutorial_14">
             Finishing touches... add some sponsors.
           </p>
+          <!-- class="bg-brand text-netural text-2xl px-16 py-4 rounded-md font-F1PaintShopFont w-full" -->
           <button
             type="button"
-            class="bg-brand text-netural text-2xl px-16 py-4 rounded-md font-F1PaintShopFont w-full"
+            class="bg-brand text-netural text-2xl py-4 rounded-md font-F1PaintShopFont w-full"
             onclick="handleCloseTutorial()"
           >
             <div id="LK_tutorial_15">
@@ -1347,8 +1370,9 @@
         </div>
       </div>
       <!--end of Finish Loading-->
+      <!-- class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center px-2 hidden container-fluid" -->
       <div
-        class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center px-2 hidden container-fluid"
+        class="flex justify-center items-center flex-col h-[calc(100vh)] text-center px-2 hidden container-fluid"
         id="comeToLifeContent"
       >
         <h1 class="heading" id="LK_tutorial_18">COME TO LIFE</h1>
@@ -1442,7 +1466,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)">v0.5.1.3</div>
+    <div id="versionid" onclick="onConsole(0)">v0.5.1.4</div>
     <div id="console" class="hidden"><br><div id="fpsindicator"></div>
       <div class="console">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>

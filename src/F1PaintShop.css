@@ -55,7 +55,7 @@
 	width: 6em;
 	height: 3em;
 	top: 0;
-	z-index: 3;
+	z-index: 999;
 
     color:yellow;
 	opacity:0.5;
@@ -67,6 +67,11 @@
 	/* background: linear-gradient(to top, rgba(21,20,32,0.75) 0%, rgba(21,20,32,0.75) 66.66%, rgba(21,20,32,0) 100%); */
 	/* background: linear-gradient(to top, rgba(21, 20, 32, 0.9) 0%, rgba(21, 20, 32, 0.75) 66.66%, rgba(21, 20, 32, 0) 100%)!important; */
 	background: linear-gradient(to top, rgba(21, 20, 32, 0.99) 0%,rgba(21, 20, 32, 0.99) 30%, rgba(21, 20, 32, 0.75) 66.66%, rgba(21, 20, 32, 0) 100%)!important;
+	pointer-events: none!important;
+}
+
+#f1nextbackbuttons {
+	pointer-events: all;
 }
 
 
@@ -77,3 +82,12 @@
 #selectedLanguage {
 	font-family: 'Titillium Web', sans-serif!important;
 }
+
+h1 {
+	width: fit-content!important;
+}
+
+/* 
+.testhtml {
+	font-size: 20px!important;
+} */

@@ -2,7 +2,7 @@
 "languages": [  
   {
     "name": "ENGLISH",
-    "code": "ENG",
+    "code": "en",
     "description": "English",
     "iconimage": "english.jpg",
     "file": "english.json",
@@ -10,10 +10,18 @@
   },
   {
     "name": "FRENCH",
-    "code": "FRA",
+    "code": "fr",
     "description": "Français",
     "iconimage": "french.jpg",
     "file": "french.json",
+    "fontfile": ""
+  },
+    {
+    "name": "DEBUG",
+    "code": "debug",
+    "description": "Debug",
+    "iconimage": "debug.jpg",
+    "file": "debug.json",
     "fontfile": ""
   }
 ]
