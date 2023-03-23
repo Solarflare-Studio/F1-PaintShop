@@ -158,63 +158,7 @@ class PatternItems {
             else if(patternsData['Patterns'][i].layer==2)
                 layer3SponsorsDiv.appendChild(thumbContainer);
 //
-/*
-            var thumbContainer = document.createElement("div");
-            thumbContainer.classList.add("patternContainer");
 
-            var thumbimage = document.createElement("div");
-            thumbimage.classList.add("pattern");
-            thumbimage.setAttribute('patternId', patternsData['Patterns'][i].id);
-            thumbimage.setAttribute('onClick', "onPatternPicked("+ (i) +",'" + patternsData['Patterns'][i].image + "',this)");
-
-
-            var thumbdescription = document.createElement("div");
-            thumbdescription.innerHTML=patternsData['Patterns'][i].name;
-            thumbdescription.classList.add("patterndescription");
-            thumbdescription.classList.add("hidden");
-
-
-
-            thumbimage.appendChild(thumbdescription);
-
-
-            if( patternsData['Patterns'][i].id==-1) {
-
-                thumbimage.style.backgroundSize='contain'; // todo doesnt work on all browsers
-                thumbimage.style.backgroundRepeat ='no-repeat'; 
-                thumbimage.style.backgroundRepeatX = 'no-repeat';
-                thumbimage.style.backgroundPosition = 'center';
-
-                thumbimage.style.backgroundImage = "url('./assets/inapp/noneicon.png')";
-                thumbContainer.appendChild(thumbimage);
-
-                if(patternsData['Patterns'][i].layer==0)
-                    layer1PatternDiv.appendChild(thumbContainer); 
-                else if(patternsData['Patterns'][i].layer==1)
-                    layer2TagsDiv.appendChild(thumbContainer);
-                else if(patternsData['Patterns'][i].layer==2)
-                    layer3DecalsDiv.appendChild(thumbContainer); 
-                else
-                    alert("error layer overflow");//layer2PatternDiv.appendChild(thumbimage);                 
-            }
-            else {
-                var thethumbfile = patternsData['Patterns'][i].thumbnail;
-
-                // aws thumbs
-                f1Aws.loadfromAWS('patterns',thethumbfile,5,this.haveReadThumb,this,thumbimage);
-
-                thumbContainer.appendChild(thumbimage);
-
-                if(patternsData['Patterns'][i].layer==0)
-                    layer1PatternDiv.appendChild(thumbContainer); 
-                else if(patternsData['Patterns'][i].layer==1)
-                    layer2TagsDiv.appendChild(thumbContainer);
-                else if(patternsData['Patterns'][i].layer==2)
-                    layer3DecalsDiv.appendChild(thumbContainer); 
-                else
-                    alert("error layer overflow");//layer2PatternDiv.appendChild(thumbimage);                 
-            }
-            */
         }
     }
     //======

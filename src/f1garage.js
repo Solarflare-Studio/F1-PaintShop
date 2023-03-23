@@ -30,7 +30,6 @@ class F1Garage {
         });
         this.plinthSidesMat = this.newGarageMat();
         this.plinthSidesMat.color = new THREE.Color( 0x322020)
-        // this.plinthSidesMat.color = new THREE.Color( 0x929292);
 
         this.plinthSidesMat.transparent = false;
 
@@ -40,9 +39,6 @@ class F1Garage {
 
         this.garageMaterial.needsUpdate = true;
 
-
-        // let garagePlinthSideMaterial = f1materials.newGarageMat();
-        // garagePlinthSideMaterial.color = new THREE.Color(0x5f0505);
         this.garageShaderMaterial();
 
 
@@ -51,35 +47,24 @@ class F1Garage {
         let garageFloorSides = new THREE.Mesh( new THREE.CylinderGeometry( 80, 80, 10, 32, 1, true ), this.plinthSidesMat );
         garageFloorSides.layers.set(3); // with glow
         // garageFloorSides.layers.set(1); // without
-        // garageFloorSides.position.set(0,-5,0);
         garageFloorSides.position.set(0,-5.9,0);
 
 
         garageFloorSFX.layers.set(3); // try on glow layer
         // garageFloorSFX.layers.set(1); // not glow layer
         garageFloorSFX.rotateX((Math.PI / 180)*-90);
-//        garageFloorSFX.position.set(0,.2,0);
         garageFloorSFX.position.set(0,-.2,0);
-
 
         garageFloor.layers.set(1);
         garageFloor.rotateX((Math.PI / 180)*-90);
         garageFloor.receiveShadow = true;
-
         
-        // debug new floor
+        // new floor
         this.garageRoot.add(garageFloor);
-
-
         this.garageRoot.add(garageFloorSides);
-
         this.garageRoot.add(garageFloorSFX);
 
-
-
-
         this.garageRoot.position.set(0,20,-20);
-
         
         // and shadow layer
         const shadowmaterial = new THREE.ShadowMaterial();
@@ -89,15 +74,12 @@ class F1Garage {
         shadowmaterial.needsUpdate=true;
 
         let garageFloorShadow = new THREE.Mesh( new THREE.PlaneGeometry(512,512), shadowmaterial );
-        // let garageFloorShadow = new THREE.Mesh( this.planeGeometry, new THREE.MeshBasicMaterial({color:new THREE.Color(0xff00ff),side:THREE.DoubleSide}) );
 
         garageFloorShadow.position.set(0.0,0.05,0.0);
-        // garageFloorShadow.scale.set(0.5,1,0.5);
         
 
         garageFloorShadow.layers.set(1);
         garageFloorShadow.scale.set(0.5,0.5,0.5);
-        // garageFloorShadow.scale.set(0.5,0.5,0.5);
         garageFloorShadow.rotateX((Math.PI / 180)*90);
         garageFloorShadow.receiveShadow = true;
         this.garageRoot.add(garageFloorShadow);
@@ -288,22 +270,6 @@ class F1Garage {
                 vViewDirTangent = mTBN * viewDir;
             
                 gl_Position = projectionMatrix * mvPos;
-
-
-/*                vec3 pos = position;
-
-
-                vec4 worldPosition = modelViewMatrix * vec4(pos, 1.0);
-                vWorldPosition = worldPosition.xyz;
-                vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-                gl_Position = projectionMatrix * mvPosition;
-*/
-
-                // vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-                // gl_Position = projectionMatrix * mvPosition;
-              
-                // Calculate distance from camera
-                // viewerDistance = length(mvPosition.xyz);    // not currently used
             }
             `,
             fragmentShader: `
@@ -472,8 +438,8 @@ class F1Garage {
             blendSrc: THREE.SrcAlphaFactor,
             blendDst: THREE.OneMinusSrcAlphaFactor,
             // alphaTest: 0.1,
-          depthWrite: false, // disable writing to depth buffer
-          depthTest: true, // disable depth testing            
+            depthWrite: false, // disable writing to depth buffer
+            depthTest: true, // disable depth testing            
 
 
         //     side: THREE.FrontSide,
@@ -496,384 +462,3 @@ class F1Garage {
 
 export { F1Garage };
 
-
-
-/*
-
-struct HexInfo {
-    vec2 xy;
-    float row;
-    float column;
-    int oddRow;
-    int oddColumn;
-};
-
-HexInfo getHex(vec2 p)
-{    
-    HexInfo hi;
-    // The hexagon centers: Two sets of repeat hexagons are required to fill in the space, and
-    // the two sets are stored in a "vec4" in order to group some calculations together. The hexagon
-    // center we'll eventually use will depend upon which is closest to the current point. Since 
-    // the central hexagon point is unique, it doubles as the unique hexagon ID.
-    
-    vec4 hC = floor(vec4(p, p - vec2(1, .5))/s.xyxy) + .5;
-    
-    // Centering the coordinates with the hexagon centers above.
-    vec4 h = vec4(p - hC.xy*s, p - (hC.zw + .5)*s);
-    hi.xy = h.xy;
-    
-    vec4 result=dot(h.xy, h.xy) < dot(h.zw, h.zw) 
-        ? vec4(h.xy, hC.xy) 
-        : vec4(h.zw, hC.zw + .5);
-
-    hi.xy = result.xy;
-    
-    hi.row = hC.y;
-    hi.column = hC.x;
-    hi.oddColumn = 0;
-    hi.oddRow = 0;
-    
-    
-    if(int(hi.row) % 2 == 0) hi.oddRow = 1;
-    if(int(hi.column) % 2 == 0) hi.oddColumn = 1;
-    
-    return hi;
-    
-    // Nearest hexagon center (with respect to p) to the current point. In other words, when
-    // "h.xy" is zero, we're at the center. We're also returning the corresponding hexagon ID -
-    // in the form of the hexagonal central point.
-    //
-    // On a side note, I sometimes compare hex distances, but I noticed that Iomateron compared
-    // the squared Euclidian version, which seems neater, so I've adopted that.
-//    return dot(h.xy, h.xy) < dot(h.zw, h.zw) 
-//        ? vec4(h.xy, hC.xy) 
-//        : vec4(h.zw, hC.zw + .5);
-}
-
-void mainImage(out vec4 fragColor, in vec2 fragCoord)
-{
-    // Aspect correct screen coordinates.
-	vec2 u = (fragCoord - iResolution.xy*.5)/iResolution.y;
-    
-    // Scaling, translating, then converting it to a hexagonal grid cell coordinate and
-    // a unique coordinate ID. The resultant vector contains everything you need to produce a
-    // pretty pattern, so what you do from here is up to you.
-    HexInfo h = getHex(u*5. + s.yx);
-    
-    // The beauty of working with hexagonal centers is that the relative edge distance will simply 
-    // be the value of the 2D isofield for a hexagon.
-    float eDist = hex(h.xy); // Edge distance.
-
-    // Initiate the background to a white color, putting in some dark borders.
-    vec3 col = mix(vec3(0.), vec3(1), smoothstep(0., .03, eDist - .5 + .04));  
-    
-    float d = length(h.xy);
-    col.r = 1.0 - d;
-    
-    if(h.row == 2.5) {
-        if(h.oddColumn == 1) 
-            col.g = 1.0;
-        else
-            col.b = 1.0;
-        
-    }
-    if(h.column == -.5) {
-//        col.g = 1.0;
-    }
-
-    
-    fragColor = vec4(col, 1);    
-}
-
-
-
-struct HexInfo {
-    vec2 xy;
-    float row;
-    float column;
-};
-
-HexInfo getHex(vec2 p)
-{    
-    HexInfo hi;
-    // The hexagon centers: Two sets of repeat hexagons are required to fill in the space, and
-    // the two sets are stored in a "vec4" in order to group some calculations together. The hexagon
-    // center we'll eventually use will depend upon which is closest to the current point. Since 
-    // the central hexagon point is unique, it doubles as the unique hexagon ID.
-    
-    vec4 hC = floor(vec4(p, p - vec2(1, .5))/s.xyxy) + .5;
-    
-    // Centering the coordinates with the hexagon centers above.
-    vec4 h = vec4(p - hC.xy*s, p - (hC.zw + .5)*s);
-    hi.xy = h.xy;
-    
-    vec4 result=dot(h.xy, h.xy) < dot(h.zw, h.zw) 
-        ? vec4(h.xy, hC.xy) 
-        : vec4(h.zw, hC.zw + .5);
-
-    hi.xy = result.xy;
-    
-    // Nearest hexagon center (with respect to p) to the current point. In other words, when
-    // "h.xy" is zero, we're at the center. We're also returning the corresponding hexagon ID -
-    // in the form of the hexagonal central point.
-    return hi;
-
-}
-
-void mainImage(out vec4 fragColor, in vec2 fragCoord)
-{
-    // Aspect correct screen coordinates.
-	vec2 u = (fragCoord - iResolution.xy*.5)/iResolution.y;
-    
-    // Scaling, translating, then converting it to a hexagonal grid cell coordinate and
-    // a unique coordinate ID. The resultant vector contains everything you need to produce a
-    // pretty pattern, so what you do from here is up to you.
-    HexInfo h = getHex(u*5. + s.yx);
-    
-    // The beauty of working with hexagonal centers is that the relative edge distance will simply 
-    // be the value of the 2D isofield for a hexagon.
-    float eDist = hex(h.xy); // Edge distance.
-
-    // Initiate the background to a white color, putting in some dark borders.
-    vec3 col = mix(vec3(0.), vec3(1), smoothstep(0., .03, eDist - .5 + .04));  
-    
-    float d = length(h.xy);
-    col.r = 1.0 - d;
-
-    
-    fragColor = vec4(col, 1);    
-}
-
-
-working shader toy
-#define FLAT_TOP_HEXAGON
-
-// Helper vector. If you're doing anything that involves regular triangles or hexagons, the
-// 30-60-90 triangle will be involved in some way, which has sides of 1, sqrt(3) and 2.
-const vec2 s = vec2(1.7320508, 1);
-
-float hash21(vec2 p)
-{
-    return fract(sin(dot(p, vec2(141.13, 289.97)))*43758.5453);
-}
-
-// The 2D hexagonal isosuface function: If you were to render a horizontal line and one that
-// slopes at 60 degrees, mirror, then combine them, you'd arrive at the following. As an aside,
-// the function is a bound -- as opposed to a Euclidean distance representation, but either
-// way, the result is hexagonal boundary lines.
-float hex(in vec2 p)
-{    
-    p = abs(p);
-    
-    return max(dot(p, s*.5), p.y); // Hexagon.
-}
-
-// This function returns the hexagonal grid coordinate for the grid cell, and the corresponding 
-// hexagon cell ID -- in the form of the central hexagonal point. That's basically all you need to 
-// produce a hexagonal grid.
-//
-// When working with 2D, I guess it's not that important to streamline this particular function.
-// However, if you need to raymarch a hexagonal grid, the number of operations tend to matter.
-// This one has minimal setup, one "floor" call, a couple of "dot" calls, a ternary operator, etc.
-// To use it to raymarch, you'd have to double up on everything -- in order to deal with 
-// overlapping fields from neighboring cells, so the fewer operations the better.
-
-struct HexInfo {
-    vec2 xy;
-    float row;
-    float column;
-    int oddRow;
-    int oddColumn;
-};
-
-HexInfo getHex(vec2 p)
-{    
-    HexInfo hi;
-    // The hexagon centers: Two sets of repeat hexagons are required to fill in the space, and
-    // the two sets are stored in a "vec4" in order to group some calculations together. The hexagon
-    // center we'll eventually use will depend upon which is closest to the current point. Since 
-    // the central hexagon point is unique, it doubles as the unique hexagon ID.
-    
-    vec4 hC = floor(vec4(p, p - vec2(1, .5))/s.xyxy) + .5;
-    
-    // Centering the coordinates with the hexagon centers above.
-    vec4 h = vec4(p - hC.xy*s, p - (hC.zw + .5)*s);
-    hi.xy = h.xy;
-
-    hi.row = h.z;
-    hi.column = h.w;
-
-
-    vec4 result=dot(h.xy, h.xy) < dot(h.zw, h.zw) 
-        ? vec4(h.xy, hC.xy) 
-        : vec4(h.zw, hC.zw + .5);
-
-    hi.xy = result.xy;
-    hi.row = result.z;
-
-    hi.oddColumn = 0;
-    hi.oddRow = 0;
-    
-    
-    return hi;
-    
-    // Nearest hexagon center (with respect to p) to the current point. In other words, when
-    // "h.xy" is zero, we're at the center. We're also returning the corresponding hexagon ID -
-    // in the form of the hexagonal central point.
-    //
-    // On a side note, I sometimes compare hex distances, but I noticed that Iomateron compared
-    // the squared Euclidian version, which seems neater, so I've adopted that.
-//    return dot(h.xy, h.xy) < dot(h.zw, h.zw) 
-//        ? vec4(h.xy, hC.xy) 
-//        : vec4(h.zw, hC.zw + .5);
-}
-
-void mainImage(out vec4 fragColor, in vec2 fragCoord)
-{
-    // Aspect correct screen coordinates.
-	vec2 u = (fragCoord - iResolution.xy*.5)/iResolution.y;
-    
-    // Scaling, translating, then converting it to a hexagonal grid cell coordinate and
-    // a unique coordinate ID. The resultant vector contains everything you need to produce a
-    // pretty pattern, so what you do from here is up to you.
-    HexInfo h = getHex(u*6. + s.yx);
-    
-    // The beauty of working with hexagonal centers is that the relative edge distance will simply 
-    // be the value of the 2D isofield for a hexagon.
-    float eDist = hex(h.xy); // Edge distance.
-
-    // Initiate the background to a white color, putting in some dark borders.
-    vec3 col = mix(vec3(0.), vec3(1), smoothstep(0., .03, eDist - .5 + .04));  
-    
-    float d = length(h.xy);
-    col.r = 1.0 - d;
-    
-    if(h.row >= 0.6) {
-        if(h.oddColumn == 1) 
-            col.g = 1.0;
-        else
-            col.b = 1.0;
-        
-    }
-    
-    fragColor = vec4(col, 1);    
-}
-
-*/
-
-/*
-exce
-#define FLAT_TOP_HEXAGON
-
-// Helper vector. If you're doing anything that involves regular triangles or hexagons, the
-// 30-60-90 triangle will be involved in some way, which has sides of 1, sqrt(3) and 2.
-const vec2 s = vec2(1.7320508, 1);
-
-float hash21(vec2 p)
-{
-    return fract(sin(dot(p, vec2(141.13, 289.97)))*43758.5453);
-}
-
-// The 2D hexagonal isosuface function: If you were to render a horizontal line and one that
-// slopes at 60 degrees, mirror, then combine them, you'd arrive at the following. As an aside,
-// the function is a bound -- as opposed to a Euclidean distance representation, but either
-// way, the result is hexagonal boundary lines.
-float hex(in vec2 p)
-{    
-    p = abs(p);
-    
-    return max(dot(p, s*.5), p.y); // Hexagon.
-}
-
-// This function returns the hexagonal grid coordinate for the grid cell, and the corresponding 
-// hexagon cell ID -- in the form of the central hexagonal point. That's basically all you need to 
-// produce a hexagonal grid.
-//
-// When working with 2D, I guess it's not that important to streamline this particular function.
-// However, if you need to raymarch a hexagonal grid, the number of operations tend to matter.
-// This one has minimal setup, one "floor" call, a couple of "dot" calls, a ternary operator, etc.
-// To use it to raymarch, you'd have to double up on everything -- in order to deal with 
-// overlapping fields from neighboring cells, so the fewer operations the better.
-
-struct HexInfo {
-    vec2 xy;
-    float row;
-    float column;
-    int oddRow;
-    int oddColumn;
-};
-
-HexInfo getHex(vec2 p)
-{    
-    HexInfo hi;
-    // The hexagon centers: Two sets of repeat hexagons are required to fill in the space, and
-    // the two sets are stored in a "vec4" in order to group some calculations together. The hexagon
-    // center we'll eventually use will depend upon which is closest to the current point. Since 
-    // the central hexagon point is unique, it doubles as the unique hexagon ID.
-    
-    vec4 hC = floor(vec4(p, p - vec2(1, .5))/s.xyxy) + .5;
-    
-    // Centering the coordinates with the hexagon centers above.
-    vec4 h = vec4(p - hC.xy*s, p - (hC.zw + .5)*s);
-    hi.xy = h.xy;
-
-    hi.row = h.z;
-    hi.column = h.w;
-
-
-    vec4 result=dot(h.xy, h.xy) < dot(h.zw, h.zw) 
-        ? vec4(h.xy, hC.xy) 
-        : vec4(h.zw, hC.zw + .5);
-
-    hi.xy = result.xy;
-    hi.column = result.z;
-    hi.row = result.w;
-
-    hi.oddColumn = 0;
-    hi.oddRow = 0;
-    
-    
-    return hi;
-    
-    // Nearest hexagon center (with respect to p) to the current point. In other words, when
-    // "h.xy" is zero, we're at the center. We're also returning the corresponding hexagon ID -
-    // in the form of the hexagonal central point.
-    //
-    // On a side note, I sometimes compare hex distances, but I noticed that Iomateron compared
-    // the squared Euclidian version, which seems neater, so I've adopted that.
-//    return dot(h.xy, h.xy) < dot(h.zw, h.zw) 
-//        ? vec4(h.xy, hC.xy) 
-//        : vec4(h.zw, hC.zw + .5);
-}
-
-void mainImage(out vec4 fragColor, in vec2 fragCoord)
-{
-    // Aspect correct screen coordinates.
-	vec2 u = (fragCoord - iResolution.xy*.5)/iResolution.y;
-    
-    // Scaling, translating, then converting it to a hexagonal grid cell coordinate and
-    // a unique coordinate ID. The resultant vector contains everything you need to produce a
-    // pretty pattern, so what you do from here is up to you.
-    HexInfo h = getHex(u*6. + s.yx);
-    
-    // The beauty of working with hexagonal centers is that the relative edge distance will simply 
-    // be the value of the 2D isofield for a hexagon.
-    float eDist = hex(h.xy); // Edge distance.
-
-    // Initiate the background to a white color, putting in some dark borders.
-    vec3 col = mix(vec3(0.), vec3(1), smoothstep(0., .03, eDist - .5 + .04));  
-    
-    float d = length(h.xy);
-    col.r = 1.0 - d;
-    
-    if(h.column == 0.5) {
-        if(h.oddColumn == 1) 
-            col.g = 1.0;
-        else
-            col.b = 1.0;
-        
-    }
-    
-    fragColor = vec4(col, 1);    
-}
-*/

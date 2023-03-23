@@ -380,15 +380,7 @@ class F1SpecialFX {
 
       const ribbonbloomRenderSize = 1024;
 
-      // setup static scene
-      // const staticscene = new THREE.Scene();
-      // staticscene.add( new THREE.Mesh( this.staticPlaneGeometry, f1Garage.backgroundMat ) );
-      // const renderSceneBackground = new RenderPass( staticscene, camera );
-
-    
-
-
-      // render pass of the normal scene but has model materials swapped at render
+        // render pass of the normal scene but has model materials swapped at render
       const renderScene = new RenderPass( scene, camera );
       // bloom for glow layer
       this.f1BloomLayersPass = new UnrealBloomPass(new THREE.Vector2( this.sfxBloomRenderSize, this.sfxBloomRenderSize ), 3.0, 0.75, 0.00015);
@@ -400,11 +392,6 @@ class F1SpecialFX {
       this.fxComposer.addPass( this.f1BloomLayersPass );
       //
       const renderRibbonScene = new RenderPass( scene, camera );
-      // this.f1BloomRibbonPass = new UnrealBloomPass(new THREE.Vector2( ribbonbloomRenderSize, ribbonbloomRenderSize ), 8.5, 1.0, 0.000015);
-      // new also for garage floor
-      // this.f1BloomRibbonPass = new UnrealBloomPass(new THREE.Vector2( ribbonbloomRenderSize, ribbonbloomRenderSize ), 8.5, 0.15, 0.05);
-      // this.f1BloomRibbonPass = new UnrealBloomPass(new THREE.Vector2( ribbonbloomRenderSize, ribbonbloomRenderSize ), 8.5, 1.0, 0.0005);
-      // this.f1BloomRibbonPass = new UnrealBloomPass(new THREE.Vector2( ribbonbloomRenderSize, ribbonbloomRenderSize ), 7.5, 0.9, 0.0005);
       this.f1BloomRibbonPass = new UnrealBloomPass(new THREE.Vector2( ribbonbloomRenderSize, ribbonbloomRenderSize ), 6.5, 0.5, 0.00005);
 
       //

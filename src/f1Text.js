@@ -277,24 +277,6 @@ class F1Text {
         context.restore();
         
 
-
-        // context.save();
-        // const x =  this.locos[loco][0];
-        // const y =  this.locos[loco][1];
-        // const size =  this.locos[loco][2];
-        // const rot = this.locos[loco][3];
-
-        // // context.translate(x*this.sizecanvas, y*this.sizecanvas);
-
-
-        // context.rotate(( rot) * Math.PI / 180);
-
-        // context.drawImage(this.textTexture.image, 0, 0,this.textTexture.image.width, this.textTexture.image.height, 
-        //     x*this.sizecanvas, y*this.sizecanvas, this.sizecanvas*size, this.sizecanvas*size);
-        // // context.drawImage(this.textTexture.image, -this.textTexture.image.width/2, -this.textTexture.image.height/2,this.textTexture.image.width, this.textTexture.image.height, 
-        // //     x*this.sizecanvas, y*this.sizecanvas, this.sizecanvas*size, this.sizecanvas*size);
-    
-        // context.restore();
     }
 
 
@@ -328,31 +310,7 @@ class F1Text {
             this.drawTextAt(1,context);
             this.drawTextAt(2,context);
         }
-        // this.drawTextAt(3,context);
-        // this.drawTextAt(4,context);
-        // // this.drawTextAt(5,context);
-        // this.drawTextAt(6,context);
-        // this.drawTextAt(7,context);
-
-        // if(this.isActive && this.isDebug) {
-
-        // // for debug placement of text
-        //     if(this.rot!=0) {
-        //         context.save();
-        //         // context.translate(sizecanvas*0.5, sizecanvas*0.5);
-        //         // context.rotate((90 * this.rot) * Math.PI / 180);
-        //         context.rotate(( this.rot) * Math.PI / 180);
-        //     }
-
-        //     // context.drawImage(this.textTexture.image, 0, 0,this.textTexture.image.width, this.textTexture.image.height, 0, 0, sizecanvas, sizecanvas);
-        //     context.drawImage(this.textTexture.image, 0, 0,this.textTexture.image.width, this.textTexture.image.height, 
-        //         this.posX*this.sizecanvas, this.posY*this.sizecanvas, this.sizecanvas*this.size, this.sizecanvas*this.size);
-
-        //     if(this.rot!=1) {
-        //         context.restore();
-        //     }
-            
-        // }    
+      
 
         let texture = new THREE.CanvasTexture(canvas);
         this.tagComposite = texture;
@@ -372,8 +330,6 @@ class F1Text {
     //======================
     actualCreateText(text,styletype) {
         // Create a canvas element
-        // const sizecanvas = 1024;
-//premerge        const sizefont = this.sizecanvas * 0.5;
         const sizefont = this.sizecanvas * 0.45;
 
         var sizemodifier = 1.0;
@@ -390,24 +346,8 @@ class F1Text {
         context.textAlign = 'center';
         context.textBaseline = 'middle';
 
-        // to confirm todo
-        /*
-        context.lineJoin = 'round';
-        context.fillStyle = "white"
-        // stroke color
-        context.strokeStyle = 'red';
-        // context.strokeText('ABCDEFGHIJKLMNOPQRSTUVWXYZ!', x, y);
-        // context.fillText('ABCDEFGHIJKLMNOPQRSTUVWXYZ!', x, y); 
-        */
-
-
-
-
-        // Set the font and color for the text
-        // context.font = '48px sans-serif'; //todo
-        // context.font = sizefont + 'px sans-serif'; //todo
-
-        var fontdesc = "px ";
+         // Set the font and color for the text
+         var fontdesc = "px ";
         var needsoutline = false;
         var needsgapoutline = false;
 
@@ -473,62 +413,9 @@ class F1Text {
                 needsoutline = false;
                 break;
         }
-/*
-        if(styletype==0) { // 
-            fontdesc += "F1PaintShopBoldFont";
-        }
-        else if(styletype==1) { // 
-            fontdesc += "F1PaintShopWideFont";
-            sizemodifier = 0.55;
-        }
-        else if(styletype==2) { // 
-            fontdesc += "F1PaintShopBoldFont";
-        }
-        else if(styletype==3) { // 
-            fontdesc += "F1PaintShopWideFont";
-            sizemodifier = 0.55;
-        }
-        else if(styletype==4) { // needs outline
-            needsoutline=true;
-            fontdesc += "F1PaintShopBoldFont";
-            sizemodifier = 1.1;
-            context.lineJoin = 'round';
-
-        }
-        else if(styletype==5) { // needs outline
-            // needsoutline=true;
-            needsgapoutline=true;
-            fontdesc += "F1PaintShopWideFont";
-            sizemodifier = 0.55;
-            context.lineJoin = 'round';
-
-        }
-
-*/
-
-        // if(styletype==0) // normal
-        //     fontdesc += "F1PaintShopFont";
-        // else if(styletype==1) // bold
-        //     fontdesc += "F1PaintShopBoldFont";
-        // else if(styletype==2) // black
-        //     fontdesc += "F1PaintShopBlackFont";
-        // else if(styletype==3) // wide
-        //     fontdesc += "F1PaintShopWideFont";
 
         context.font = (sizefont*sizemodifier) + fontdesc;// 'px F1PaintShopFont';
         
-
-
-        
-        // Draw the text on the canvas
-        // for(var i=0;i<sizecanvas;i+=sizefont) {
-        //     for(var j=0;j<sizecanvas;j+=sizefont) {
-        //         context.fillText(text, i, j);
-        //     }
-        // }
-
-
-
 
         if(needsoutline) {
             context.strokeStyle = 'rgb(255,0,0)';
@@ -573,21 +460,6 @@ class F1Text {
 
         this.currentStyle = styletype;
         return this.actualCreateText(text,styletype);
-
-        var self = this;
-        if(!this.loadedFont) {
-            // force preload wide font
-            const font = new FontFace('F1PaintShopWideFont', 'url("./assets/fonts/Formula1-Display-Wide.otf")');
-            font.load().then((loadedFont) => {
-                document.fonts.add(loadedFont);
-                return self.actualCreateText(text,styletype);
-            });
-        }
-        else {
-            return self.actualCreateText(text,styletype);
-        }
-
-
     }
 
     //======================
