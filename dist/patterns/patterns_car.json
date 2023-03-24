@@ -74,18 +74,18 @@
     "image": "car/02_Patterns/01_Gelato/2k/F1PS_Car_Gelato_2k.jpg",
     "style": 0,
     "Channels": [
-     {
-      "channelName": "Chan 1",
-      "defaultColour": "248,248,248"
-     },
-     {
-      "channelName": "Chan 2",
-      "defaultColour": "233,186,87"
-     },
-     {
-      "channelName": "Chan 3",
-      "defaultColour": "14,85,14"
-     }
+       {
+        "channelName": "Chan 1",
+        "defaultColour": "248,248,248"
+       },
+       {
+        "channelName": "Chan 2",
+        "defaultColour": "248,196,85"
+       },
+       {
+        "channelName": "Chan 3",
+        "defaultColour": "7,46,7"
+       }
     ]
   },  
   {
@@ -102,11 +102,11 @@
      },
      {
       "channelName": "Chan 2",
-      "defaultColour": "255,227,0"
+      "defaultColour": "255,141,7"
      },
      {
       "channelName": "Chan 3",
-      "defaultColour": "0,107,157"
+      "defaultColour": "0,46,67"
      }
     ]
   },  
@@ -137,20 +137,20 @@
     "id": 1004,
     "layer": 0,
     "thumbnail": "car/02_Patterns/_Thumbs/F1PS_Pattern_04_Lightspeed_thumb.jpg",
-    "image": "car/02_Patterns/04_Lightspeed/2k/F1PS_Car_Lightspeed_2k.jpg",
+    "image": "car/02_Patterns/04_Lightspeed/2k/SF1PS_CarV11R2_Lightspeed_2k.jpg",
     "style": 0,
     "Channels": [
      {
       "channelName": "Chan 1",
-      "defaultColour": "26,32,90"
+      "defaultColour": "48,45,67"
      },
      {
       "channelName": "Chan 2",
-      "defaultColour": "50,255,50"
+      "defaultColour": "255,32,32"
      },
      {
       "channelName": "Chan 3",
-      "defaultColour": "255,0,200"
+      "defaultColour": "164,217,255"
      }
     ]
   },  

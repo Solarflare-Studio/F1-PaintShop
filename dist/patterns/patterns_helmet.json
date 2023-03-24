@@ -71,7 +71,7 @@
       "id": 1001,
       "layer": 0,
       "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_01_Gelato_thumb.jpg",
-      "image": "helmet/02_Patterns/01_Gelato/2k/F1PS_Helmet_Gelato_2k.jpg",
+      "image": "helmet/02_Patterns/01_Gelato/2k/SF1PS_HelmetV8_Gelato_2k.jpg",
       "style": 0,
       "Channels": [
        {
@@ -80,20 +80,42 @@
        },
        {
         "channelName": "Chan 2",
-        "defaultColour": "233,186,87"
+        "defaultColour": "248,196,85"
        },
        {
         "channelName": "Chan 3",
-        "defaultColour": "14,85,14"
+        "defaultColour": "7,46,7"
        }
       ]
-    },  
+    }, 
+    {
+    "name": "Cyber",
+    "id": 1002,
+    "layer": 0,
+    "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_02_Cyber_thumb.jpg",
+    "image": "helmet/02_Patterns/02_Cyber/2k/SF1PS_HelmetV8_Cyber_2k.jpg",
+    "style": 0,
+    "Channels": [
+     {
+      "channelName": "Chan 1",
+      "defaultColour": "250,250,250"
+     },
+     {
+      "channelName": "Chan 2",
+      "defaultColour": "255,141,7"
+     },
+     {
+      "channelName": "Chan 3",
+      "defaultColour": "0,46,67"
+     }
+    ]
+  },  
     {
       "name": "Gradient",
-      "id": 1002,
+      "id": 1003,
       "layer": 0,
       "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_03_GradMap_thumb.jpg",
-      "image": "helmet/02_Patterns/03_Gradient/2k/Custom_ColorMask.jpg",
+      "image": "helmet/02_Patterns/03_Gradient/2k/SF1PS_HelmetV8_Gradient_2k.jpg",
       "style": 0,
       "Channels": [
        {
@@ -109,7 +131,29 @@
         "defaultColour": "0,96,215"
        }
       ]
-    },  
+    }, 
+	{
+    "name": "Lightspeed",
+    "id": 1004,
+    "layer": 0,
+    "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_04_Lightspeed_thumb.jpg",
+    "image": "helmet/02_Patterns/04_Lightspeed/2k/SF1PS_HelmetV8_Lightspeed_2k.jpg",
+    "style": 0,
+    "Channels": [
+     {
+      "channelName": "Chan 1",
+      "defaultColour": "48,45,67"
+     },
+     {
+      "channelName": "Chan 2",
+      "defaultColour": "255,32,32"
+     },
+     {
+      "channelName": "Chan 3",
+      "defaultColour": "164,217,255"
+     }
+    ]
+  },  
     {
       "name": "Varsity",
       "id": 2001,
@@ -137,7 +181,7 @@
         "id": 2002,
         "layer": 1,
         "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag02_thumb.png",
-        "image": "helmet/03_Tags/Pat_02/1k/F1PS_HelmetV08_Tag02_1k.png",
+        "image": "helmet/03_Tags/Pat_02/1k/F1PS_HelmetV09_Tag02_1k.png",
         "style": 2,
         "Channels": [
          {
@@ -159,7 +203,7 @@
         "id": 2003,
         "layer": 1,
         "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag03_thumb.png",
-        "image": "helmet/03_Tags/Pat_03/1k/F1PS_HelmetV08_Tag03_1k.png",
+        "image": "helmet/03_Tags/Pat_03/1k/F1PS_HelmetV09_Tag03_1k.png",
         "style": 3,
         "Channels": [
          {
@@ -181,7 +225,7 @@
         "id": 2004,
         "layer": 1,
         "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag04_thumb.png",
-        "image": "helmet/03_Tags/Pat_04/1k/F1PS_HelmetV08_Tag04_1k.png",
+        "image": "helmet/03_Tags/Pat_04/1k/F1PS_HelmetV09_Tag04_1k.png",
         "style": 4,
         "Channels": [
          {
@@ -203,7 +247,7 @@
         "id": 2005,
         "layer": 1,
         "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag05_thumb.png",
-        "image": "helmet/03_Tags/Pat_05/1k/F1PS_HelmetV08_Tag05_1k.png",
+        "image": "helmet/03_Tags/Pat_05/1k/F1PS_HelmetV09_Tag05_1k.png",
         "style": 5,
         "Channels": [
          {
@@ -269,7 +313,7 @@
         "id": 2008,
         "layer": 1,
         "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag08_thumb.png",
-        "image": "helmet/03_Tags/Pat_08/1k/F1PS_HelmetV08_Tag08_1k.png",
+        "image": "helmet/03_Tags/Pat_08/1k/F1PS_HelmetV09_Tag08_1k.png",
         "style": 8,
         "Channels": [
          {
@@ -291,7 +335,7 @@
         "id": 2009,
         "layer": 1,
         "thumbnail": "helmet/03_Tags/_Thumbs/F1PS_Tag09_thumb.png",
-        "image": "helmet/03_Tags/Pat_09/1k/F1PS_HelmetV08_Tag09_1k.png",
+        "image": "helmet/03_Tags/Pat_09/1k/F1PS_HelmetV09_Tag09_1k.png",
         "style": 9,
         "Channels": [
          {

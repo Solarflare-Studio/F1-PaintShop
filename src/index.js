@@ -1447,7 +1447,11 @@ function postRenderProcess() {
 		}
 		const params = '?uuid=' + f1User.userID + '&d='+ datetime + '&lan=' + f1User.languageCode + helmetParam;
 		// marker f1 fanzone ar version latest V2
-		const thearlink = 'https://solarflarestudio.8thwall.app/f1-fanzone-ar-v2/' + params;
+		// const thearlink = 'https://solarflarestudio.8thwall.app/f1-fanzone-ar-v2/' + params;
+		const thearlink = 'https://www.f1paintshopar.com/' + params;
+
+		
+
 		// const thearlink = 'https://solarflarestudio.8thwall.app/f1-fanzone-ar-v2/?u=' + f1User.userID + '&d='+ datetime;// +'&m=c&t='+(new Date());
 		
 		if(DEBUG_MODE)
@@ -2097,9 +2101,9 @@ f1PaintTab.forEach((box) => {
 			tabContentWrp.forEach((elm) => {
 				const currElmId = `${elm.id}-tab`;
 				if (currElmId === tmpcurrTabId) {
-				elm.classList.remove("hidden");
+					elm.classList.remove("hidden");
 				} else {
-				elm.classList.add("hidden");
+					elm.classList.add("hidden");
 				}
 			});
 		}
@@ -2146,6 +2150,7 @@ nextBtn.addEventListener("click", () => {
 
 	// ben do my changetab function
 	if(nextElement) {
+		// if(keepcurrentactivetab != nextElement.id)
 		switch (nextElement.id) {
 		case "pattern-li":
 			changeTab(1);

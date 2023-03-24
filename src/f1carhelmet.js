@@ -173,14 +173,14 @@ class F1CarHelmet {
                 _self.staticMesh = staticMesh;
             }
             else {
-                _self.customMesh = theModelScene.getObjectByName('Helmet_main_1')
+                _self.customMesh = theModelScene.getObjectByName('Helmet_main_2')
                 _self.customMesh.layers.set(2);
                 _self.customMesh.material = _self.theCustomMaterial;
                 _self.customMesh.material.normalScale = new THREE.Vector2(-0.1, 0.1),
                 _self.customMesh.castShadow = true;
                 _self.customMesh.receiveShadow = false;
 
-                let staticMesh = theModelScene.getObjectByName('Helmet_main_2')
+                let staticMesh = theModelScene.getObjectByName('Helmet_main_1')
                 staticMesh.layers.set(2); // make base black for glow...
                 staticMesh.material = _self.theStaticMaterial;
                 staticMesh.castShadow = true;

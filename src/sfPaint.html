@@ -1207,13 +1207,16 @@
         id="tutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
       >
-        <figure class="relative"  style="height: 30%!important;">
+        <figure 
+          class="relative" 
+          style="height:30vh; max-height: 50vh;">
           <!-- src="./assets/inapp/tutorial_img.svg" -->
+          <!-- class="w-full h-full" -->
           <img
             src="./assets/inapp/pinchrotate.png"
             alt="tutorial"
-            class="w-full h-full"
-            style="height: min-content; max-height: 100%;"
+            class="object-cover h-full w-full" 
+            style="object-fit: contain;"
           />
         </figure>
         <div class="tutorial-wrp">
@@ -1470,7 +1473,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)">v0.6.0.0</div>
+    <div id="versionid" onclick="onConsole(0)">v0.6.0.1</div>
     <div id="console" class="hidden"><br><div id="fpsindicator"></div>
       <div class="console">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>
@@ -1575,3 +1578,5 @@
       <!-- end of admin console -->
   </body>
 </html>
+
+

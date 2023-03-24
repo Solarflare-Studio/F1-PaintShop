@@ -47,15 +47,15 @@ class F1Text {
         this.locosstylemodsHelmet.push([0.179, -0.001, 0.135, 90]);
 
         this.locosstylemodsHelmetFront = new Array();
-        this.locosstylemodsHelmetFront.push([0.179, 0.0, 0.187, 90]);
-        this.locosstylemodsHelmetFront.push([0.179, 0.0, 0.171, 90]);
-        this.locosstylemodsHelmetFront.push([0.179, 0.001, 0.157, 90]);
-        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
-        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
-        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
-        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
-        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
-        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.135, 90]);
+        this.locosstylemodsHelmetFront.push([-0.26, 0.035, 0.127, 90]);
+        this.locosstylemodsHelmetFront.push([-0.26, 0.035, 0.116, 90]);
+        this.locosstylemodsHelmetFront.push([-0.246, 0.036, 0.069, 90]);
+        this.locosstylemodsHelmetFront.push([-0.256, 0.035, 0.096, 90]);
+        this.locosstylemodsHelmetFront.push([-0.258, 0.035, 0.105, 90]);
+        this.locosstylemodsHelmetFront.push([-0.26, 0.035, 0.128, 90]);
+        this.locosstylemodsHelmetFront.push([-0.258, 0.035, 0.137, 90]);
+        this.locosstylemodsHelmetFront.push([-0.25, 0.035, 0.093, 90]);
+        this.locosstylemodsHelmetFront.push([-0.26, 0.035, 0.095, 90]);
 
 
         this.locos = new Array();
@@ -296,6 +296,8 @@ class F1Text {
     composite() {
         
 
+        if(this.tagPattern == 0)    // not yet selected a style so dont attempt
+            return;
 
         // this.fixText();
 
