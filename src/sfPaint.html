@@ -262,8 +262,8 @@
   </div>
   <!--ben end of webgl-->
 
-    <header class="w-full pointer-events-none"
-    style="position: absolute;">
+    <header class="w-full pointer-events-none">
+    <!-- style="position: absolute;"> -->
       <div class="mx-auto p-6 flex justify-between items-center">
         <figure>
           <!-- ben added style to show logo over 3d canvas-->
@@ -389,12 +389,12 @@
       </div>
     </header>
     <!-- end of header -->
-    <!-- <main class=" h-[calc(100vh-118px)]" > -->
-    <main class=" h-[calc(100vh)]">
+    <!-- <main class=" h-[calc(100vh)]"> -->
+    <main class=" h-[calc(100vh-118px)]" >
         <div
-        class="justify-center items-center flex-col h-[calc(100vh)] text-center hidden lg:flex"
+        class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex"
       >
-      <!-- class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex" -->
+      <!-- class="justify-center items-center flex-col h-[calc(100vh)] text-center hidden lg:flex" -->
 
 
         <img src="./assets/images/rotate_image.svg" alt="Loading..." />
@@ -413,9 +413,11 @@
 
       <div
         id="loadingContent"
-        class="flex justify-center items-center flex-col h-[calc(100vh)] text-center lg:hidden"
-      >
-      <!-- class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center lg:hidden" -->
+        class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center lg:hidden"
+        style="padding-bottom: 100px;"
+
+        >
+        <!-- class="flex justify-center items-center flex-col h-[calc(100vh)] text-center lg:hidden" -->
 
         <!-- <img src="./assets/images/loading.svg" alt="Loading..." /> -->
         <img src="./assets/inapp/F1_LoadingAnim_WheelV2-256.gif" alt="Loading..." width="99" height="99" />
@@ -436,10 +438,11 @@
         ></progress>
       </div>
       <!-- end of loading content -->
-      <!-- class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden container-fluid lg:hidden" -->
+      <!-- class="flex justify-center items-center flex-col h-[calc(100vh)] text-center hidden container-fluid lg:hidden" -->
       <div
-        class="flex justify-center items-center flex-col h-[calc(100vh)] text-center hidden container-fluid lg:hidden"
+      class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden container-fluid lg:hidden"
         id="welcomeContent"
+        style="padding-bottom: 100px;"
       >
       <!-- style="    position: absolute;
       top: 0;
@@ -468,10 +471,10 @@
         </button>
       </div>
       <!--end of welcome content -->
-      <!-- class="h-[calc(100vh-118px)] flex justify-between items-center flex-col text-center hidden" -->
+      <!-- class="h-[calc(100vh)] flex justify-between items-center flex-col text-center hidden" -->
       <div
         id="patternContent"
-        class="h-[calc(100vh)] flex justify-between items-center flex-col text-center hidden"
+        class="h-[calc(100vh-118px)] flex justify-between items-center flex-col text-center hidden"
       >
         <figure class="w-full h-full flex justify-center items-center">
           <img src="./assets/images/paint_demo.png" alt="pattern" />
@@ -1210,6 +1213,7 @@
             src="./assets/inapp/pinchrotate.png"
             alt="tutorial"
             class="w-full h-full"
+            style="height: min-content; max-height: 100%;"
           />
         </figure>
         <div class="tutorial-wrp">
@@ -1370,9 +1374,9 @@
         </div>
       </div>
       <!--end of Finish Loading-->
-      <!-- class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center px-2 hidden container-fluid" -->
+      <!-- class="flex justify-center items-center flex-col h-[calc(100vh)] text-center px-2 hidden container-fluid" -->
       <div
-        class="flex justify-center items-center flex-col h-[calc(100vh)] text-center px-2 hidden container-fluid"
+      class="flex justify-center items-center flex-col h-[calc(100vh-118px)] text-center px-2 hidden container-fluid"
         id="comeToLifeContent"
       >
         <h1 class="heading" id="LK_tutorial_18">COME TO LIFE</h1>
@@ -1466,7 +1470,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)">v0.5.1.4</div>
+    <div id="versionid" onclick="onConsole(0)">v0.6.0.0</div>
     <div id="console" class="hidden"><br><div id="fpsindicator"></div>
       <div class="console">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>

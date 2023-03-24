@@ -21,8 +21,8 @@ class F1User {
 
         const params = new URLSearchParams(document.location.search)
        
-/*
-
+/*https://testrace.eventshouse.dev/microsite/index?waid=7870142279c10454b2bce1866d14da7c82f8ee3c0f87b85ea34f85ae4c6d989f88cc0025859c2ff2c26efe9c01799649093356abb0b4c15db4351af3d5b34bfca3NsGp7mJppF4%2FjbN%2F7Xm4nl%2FqVU74QpU3u1COCBxjQ%3D#
+https://testrace.eventshouse.dev/microsite/index?waid=7870142279c10454b2bce1866d14da7c82f8ee3c0f87b85ea34f85ae4c6d989f88cc0025859c2ff2c26efe9c01799649093356abb0b4c15db4351af3d5b34bfca3NsGp7mJppF4%2FjbN%2F7Xm4nl%2FqVU74QpU3u1COCBxjQ%3D#
 also:  example of an URL we'd link users to would be https://webactivationaddress.com/?uuid=69f59c273b6e669ac32a6dd5e1b2cb63333d8b004f9696447aee2d422ce63763&lan=en
 
 */

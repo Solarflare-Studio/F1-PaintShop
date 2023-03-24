@@ -276,15 +276,18 @@ class F1Ribbons {
                 float alf = max(max(outcol.r,outcol.g),outcol.b);
                 alf *= 0.45 * faderTime;
 
-                if(uv.y <= -0.9) {
+                if(uv.y <= -0.8) {
                     float fadeit = -uv.y;
-                    fadeit = 1.0 - ((fadeit - 0.9) / 0.1);
+                    fadeit = 1.0 - ((fadeit - 0.8) / 0.2);
                     alf *= fadeit;
                 }
-                else if(uv.y >= 0.9) {
-                    float fadeit = uv.y;
-                    fadeit = 1.0- ((fadeit - 0.9) / 0.1);
+                // else if(uv.y >= 0.9) {
+                else if(uv.y >= 0.2) {
+                        float fadeit = uv.y;
+                    fadeit = 1.0- ((fadeit - 0.2) / 0.2);
                     alf *= fadeit;
+                    // outcol=vec3(1,1,1);
+
                 }
 
                 if(viewerDistance < 200.0) {

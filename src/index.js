@@ -1987,7 +1987,7 @@ function handleBackToTabs() {
 	if(haveminimized) {
 	  minMax(false,2);
 	}
-	tabboxes[0].click();
+	// tabboxes[0].click();
 }
 
 // Camera Tutorial Handler

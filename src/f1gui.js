@@ -265,12 +265,14 @@ class F1Gui {
 
         renderer.setSize( renderWidth, renderHeight );
 
-        camera.top = renderHeight*0.5;
-        camera.bottom = -renderHeight*0.5;
-        camera.left = -renderWidth*0.5;
-        camera.right = renderWidth*0.5;
-        camera.aspect = renderWidth / renderHeight;
-        camera.updateProjectionMatrix () ;
+        if(camera) {
+            camera.top = renderHeight*0.5;
+            camera.bottom = -renderHeight*0.5;
+            camera.left = -renderWidth*0.5;
+            camera.right = renderWidth*0.5;
+            camera.aspect = renderWidth / renderHeight;
+            camera.updateProjectionMatrix () ;
+        }
     }
     //======================
     setSize(w,h,renderer,camera, colorPatternPicker ) {

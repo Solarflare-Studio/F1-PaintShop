@@ -46,6 +46,17 @@ class F1Text {
         this.locosstylemodsHelmet.push([0.179, -0.001, 0.157, 90]);
         this.locosstylemodsHelmet.push([0.179, -0.001, 0.135, 90]);
 
+        this.locosstylemodsHelmetFront = new Array();
+        this.locosstylemodsHelmetFront.push([0.179, 0.0, 0.187, 90]);
+        this.locosstylemodsHelmetFront.push([0.179, 0.0, 0.171, 90]);
+        this.locosstylemodsHelmetFront.push([0.179, 0.001, 0.157, 90]);
+        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.157, 90]);
+        this.locosstylemodsHelmetFront.push([0.179, -0.001, 0.135, 90]);
+
 
         this.locos = new Array();
         // x,y,size, rotation
@@ -306,8 +317,8 @@ class F1Text {
         // }
 
         this.drawTextAt(0,context);
+        this.drawTextAt(1,context);
         if(!this.isHelmet) {
-            this.drawTextAt(1,context);
             this.drawTextAt(2,context);
         }
       
@@ -360,6 +371,7 @@ class F1Text {
         else {
             // this.locos[0] = this.helmetloco;
             this.locos[0] = this.locosstylemodsHelmet[styletype-1];
+            this.locos[1] = this.locosstylemodsHelmetFront[styletype-1];
             
         }
 
