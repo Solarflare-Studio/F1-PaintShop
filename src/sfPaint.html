@@ -484,9 +484,10 @@
         class="h-[calc(100vh-118px)] flex justify-between items-center flex-col text-center"
         style="opacity:0;pointer-events: none;"
       >
-        <figure class="w-full h-full flex justify-center items-center">
+      
+        <!-- <figure class="w-full h-full flex justify-center items-center">
           <img src="./assets/images/paint_demo.png" alt="pattern" />
-        </figure>
+        </figure> -->
         <div class="h-full"></div>
         <div
           id="tabContent"
@@ -494,8 +495,7 @@
           style="pointer-events: none;"
         >
           <div id="TabHead" class="w-full text-right overflow-hidden bg-gradient-to-b from-[#15132000] to-[#151320eb] "
-            style="pointer-events:none;"
-          >
+            style="pointer-events:none; background: linear-gradient(to top, rgba(21, 20, 32, 0.99) 0%,rgba(21, 20, 32, 0.5) 25%, rgba(21, 20, 32, 0.0) 50%, rgba(21, 20, 32, 0) 100%)!important;">
             <button class="p-4" onclick="handleTabToggle()" style="pointer-events: all;">
               <img
                 src="./assets/images/zoom_In.svg"
@@ -511,6 +511,7 @@
             </button>
 
             <ul
+              id="tabsfoot"
               class="flex justify-around -mb-px text-sm font-medium text-center pb-2"
               style="pointer-events: all;"
               data-tabs-toggle="#tabContent"
@@ -1125,7 +1126,7 @@
                 </p>
               </div>
               <!--end of Finish Tab Selection-->
-              <div
+              <!-- <div
                 class="flex justify-between items-center gap-x-2 w-full mt-4"
                 id="f1nextbackbuttons"
               >
@@ -1134,8 +1135,31 @@
                   id="prevBtn"
                   class="prev-btn opacity-50"
                   disabled
-                >
-                  <div id="LK_final_back">
+                > -->
+                <div class="newcentrebuttons">
+                  <!-- style="bottom:0;position: relative;" -->
+                  <div
+                    class="flex justify-between items-center gap-x-2 w-full mt-4"
+                    id="f1nextbackbuttons"
+                  >
+                  <button
+                    type="button"
+                    id="prevBtn"
+                    class="prev-btn opacity-50"
+                    disabled
+                  >
+                    <div id="LK_final_back">
+                    BACK
+                    </div>
+                  </button>
+                  <button type="button" id="nextBtn" class="next-btn">
+                    <div id="LK_final_next">
+                    NEXT
+                    </div>
+                  </button>
+                </div>
+
+                  <!-- <div id="LK_final_back">
                   BACK
                   </div>
                 </button>
@@ -1143,7 +1167,7 @@
                   <div id="LK_final_next">
                   NEXT
                   </div>
-                </button>
+                </button> -->
               </div>
               <!--end of next/Prev Button-->
             </div>

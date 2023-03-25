@@ -57,7 +57,8 @@ var f1fnames = new F1AssetFileNames(); // set files names
 var renderSize = 1024;
 // var renderSize = 2048;
 
-var customMapRenderSize = 2048;	// probably unneccesary
+// var customMapRenderSize = 2048;	// probably unneccesary
+var customMapRenderSize = 1024;
 var customRoughMapRenderSize = 1024;
 var sfxBloomRenderSize = 512;
 //===================================
@@ -578,7 +579,11 @@ function minMax(tabstakencareof,mode) {
 
   if(haveminimizedGui) { // woz max 3d
 	var posy = window.innerHeight;
-	var top = window.innerHeight-f1Gui.bestToolPosY;
+	// var top = window.innerHeight-f1Gui.bestToolPosY;
+	var top = window.innerHeight-f1Gui.tabContentPos;
+	var tabmargin = f1Gui.tabContentPos - f1Gui.tabBodyPos;
+	var targetposy = window.innerHeight - f1Gui.tabBodyPos;// - (f1Gui.tabContentPos - f1Gui.tabBodyPos);
+
 
 	if(!tabstakencareof) {
 		if (!wasincolourpicker) {
@@ -592,16 +597,18 @@ function minMax(tabstakencareof,mode) {
 	}
 
 	new TWEEN.Tween({ value: posy })
-	.to({ value: top },
-		500
+	.to({ value: targetposy },
+		1000
 	)
+	.easing(TWEEN.Easing.Quartic.Out)
 	.onUpdate(function(d) {
 		f1Gui.setRendererSize(window.innerWidth, d.value, renderer,camera);
 		if(mode!=2)
-			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
-		haveminimizedGui=false;
+		// document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
+		document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.tabBodyPos))) + "px";
 	})
 	.onComplete(function () {
+		haveminimizedGui=false;
 		if(!tabstakencareof) {
 			if(mode!=2)
 				document.getElementById('tabContent').style.bottom = 0;
@@ -611,21 +618,30 @@ function minMax(tabstakencareof,mode) {
 	f1Garage.startFloorMode(0);// lets wipe
   }
   else {
-	var posy = window.innerHeight - f1Gui.bestToolPosY;
+	var tabmargin = f1Gui.tabContentPos - f1Gui.tabBodyPos;
+	var tabcontentTarget = window.innerHeight - tabmargin;
+
+
+	var posy = window.innerHeight - f1Gui.tabBodyPos; // 3d height
+	var targetposy = window.innerHeight;// - (f1Gui.tabContentPos - f1Gui.tabBodyPos);
+	// var posy = window.innerHeight - f1Gui.tabContentPos;
 	var top = window.innerHeight;
 
+	
+
 	new TWEEN.Tween({ value: posy })
-	.to({ value: top },
-		500
+	.to({ value: targetposy },
+		1000
 	)
+	.easing(TWEEN.Easing.Quartic.Out)
 	.onUpdate(function(d) {
 		f1Gui.setRendererSize(window.innerWidth, d.value, renderer,camera);
 		if(mode!=2)
-			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
-
-		haveminimizedGui=true;
+			// document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
+			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.tabBodyPos))) + "px";
 	})
 	.onComplete(function () {
+		haveminimizedGui=true;
 		if(!tabstakencareof) {
 			if (paintachannelblock.classList.contains("hidden")) {
 				if(mode!=2)
@@ -687,7 +703,7 @@ function introNextPage() {
 	controls.enabled = false;
 
 	const carinduration = 3500;	// delays 500 first
-	const carwireduration = 5000;  // delays 800 first
+	const carwireduration = 2500;  // delays 800 first
 	
 	camera.position.set(camfrom.x,camfrom.y,camfrom.z);
 	f1CarHelmet.customMesh.castShadow = false;
@@ -705,7 +721,7 @@ function introNextPage() {
 		f1CarHelmet.staticMesh.castShadow = true;
 		if(f1User.isHelmet)
 			f1CarHelmet.visorMesh.castShadow = true;
-	},600);
+	},100);
 
 	let consttarget = 19.0;
 	if(f1User.isHelmet) {
@@ -718,7 +734,7 @@ function introNextPage() {
 		},
 		carwireduration
 	)
-	.delay(500)
+	.delay(350)
 	.easing(TWEEN.Easing.Sinusoidal.Out)
 	.onUpdate(function (object) {
 		f1CarHelmet.clipPlanes[1].constant = -object.constant + 5;
@@ -1812,7 +1828,17 @@ function animate()
 }
 
 //==================================================
-
+// this.textBox1.AddClientEventListener("focusout", "this.fireWidgetEvent('done')");
+// document.getElementById("taginput").addEventListener('blur', function() {
+	document.getElementById("taginput").addEventListener('focusout', function() {
+		//	setTimeout(() => {
+		//		setSize(window.innerWidth,window.innerHeight);	
+				window.scrollTo(0,0);
+		//	}, 1000);
+			
+			
+		});
+		
 window.addEventListener('resize', function(event) {
     setSize(window.innerWidth,window.innerHeight);
 }, true);

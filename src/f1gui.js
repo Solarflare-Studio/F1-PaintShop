@@ -63,7 +63,10 @@ class F1Gui {
         this.processJSON = processJSON;
 
         this.bestToolPosY = 0;
+        this.tabContentPos = 0;
+        this.tabBodyPos = 0;
         this.tabHeight = 0;
+
 
         // adaptive gui layout mods
         // the html element list that require css overides
@@ -321,6 +324,11 @@ class F1Gui {
         const head = document.getElementById('header');
         const recth = tabContent.getBoundingClientRect();
         // alert('recth = ' + recth.top);
+      
+
+
+        // this.bestToolPosY = 360; // from html css
+        // this.setRendererSize(w,h - this.bestToolPosY, renderer,camera);
 
         this.tabContentPos = rect.height;
 
@@ -343,9 +351,11 @@ class F1Gui {
         }
         const buttonblock = document.getElementById('f1nextbackbuttons');
 
-        const percentageThreshold = 0.55;
+
+        const percentageThreshold = 0.85;
         if(heightRatio>=percentageThreshold) { //0.55) { // then reduce
             this.setRendererSize(w,h - this.tabBodyPos, renderer,camera);
+
 
             // intro
             // document.getElementById('welcomebutton').classList.remove('text-2xl')
