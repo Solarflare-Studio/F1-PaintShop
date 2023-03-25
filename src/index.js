@@ -151,6 +151,10 @@ function createColourpicker() {
 		forcedsizeofcolourpicker = document.getElementById('f1nextbackbuttons').offsetWidth;
 		forcedheightofcolourpicker =document.getElementById('f1nextbackbuttons').offsetHeight * 1.;
 	}
+	forcedheightofcolourpicker = document.getElementById('prevBtn').offsetHeight * 1.2;
+
+
+
 
 	if(colorPatternPicker!=0) { // remove old
 		document.getElementById('colourWheelPicker').children[0].remove();

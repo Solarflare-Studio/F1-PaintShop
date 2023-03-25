@@ -324,7 +324,7 @@ class F1Gui {
             return;
         }
 
-        if(heightRatio>=0.5) { // then reduce
+        if(heightRatio>=0.55) { // then reduce
             this.bestToolPosY = 290;
             this.setRendererSize(w,h - this.bestToolPosY, renderer,camera);
 
@@ -357,6 +357,17 @@ class F1Gui {
             });
 
             // paint
+            const paintachannelblock = document.querySelector("#paintachannelblock");
+            paintachannelblock.classList.remove('min-h-\[360px\]');
+            paintachannelblock.classList.add('min-h-\[290px\]'); //!
+            // paintachannelblock.style.paddingTop = "0.5rem";
+
+            document.querySelector("#whichchanneltext").style.marginTop="0px";
+            
+            // paintachannelblock.classList.add('');
+
+            document.getElementById('glosstypeblock').style.marginBottom = '0px';
+
             const elements3 = document.querySelectorAll('.color-picker');
             elements3.forEach(function(element) {
                 element.classList.add('secolourpicker');                
@@ -378,6 +389,7 @@ class F1Gui {
             document.getElementById('finishSelectionContent').classList.remove('nonesefinishblock');
             document.getElementById('finishSelectionContent').classList.add('sefinishblock');
         }
+        
 
 
 
