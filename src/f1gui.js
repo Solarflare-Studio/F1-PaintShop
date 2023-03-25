@@ -63,8 +63,6 @@ class F1Gui {
         this.processJSON = processJSON;
 
         this.bestToolPosY = 0;
-        this.tabContentPos = 0;
-        this.tabBodyPos = 0;
         this.tabHeight = 0;
 
         // adaptive gui layout mods
@@ -91,9 +89,9 @@ class F1Gui {
         // complete / finish elements:
         // finishSelectionContent
         // -------
-        // this.tabBody_minh = "360px";
-        // this.tabBody_maxh = "360px";
-        // this.tabBody_padding = "360px";
+        this.tabBody_minh = "360px";
+        this.tabBody_maxh = "360px";
+        this.tabBody_padding = "360px";
 
 
         this.init();
@@ -308,7 +306,6 @@ class F1Gui {
     //======================
     setSize(w,h,renderer,camera, colorPatternPicker ) {
 
-
         const viewportHeight = window.innerHeight;
         const viewportWidth = window.innerWidth;
 
@@ -320,34 +317,16 @@ class F1Gui {
         const heightRatio = rect.height / viewportHeight;
         console.log("**** >" + top + " ratio = " + heightRatio);
 
-        const head = document.getElementById('header');
-        const recth = tabContent.getBoundingClientRect();
-        // alert('recth = ' + recth.top);
-
-        this.tabContentPos = rect.height;
-
-        const tabBody = document.getElementById('tabBody');
-        const rect2 = tabBody.getBoundingClientRect();
-        const top2 = rect2.top + window.pageYOffset;
-
-
-        this.tabBodyPos = rect2.height;
-
-        const tabHeadingHeight = this.tabContentPos - this.tabBodyPos;
-
-
-        // this.bestToolPosY = 360; // from html css
-        this.bestToolPosY = 382; // from html css
-        // this.setRendererSize(w,h - this.bestToolPosY, renderer,camera);
-        this.setRendererSize(w,h - this.tabBodyPos, renderer,camera);
+        this.bestToolPosY = 360; // from html css
+        this.setRendererSize(w,h - this.bestToolPosY, renderer,camera);
 
         if(rect.height==0) { // only in intro
             return;
         }
 
-        if(heightRatio>=0.55) { // then reduce
+        if(heightRatio>=0.5) { // then reduce
             this.bestToolPosY = 290;
-            this.setRendererSize(w,h - this.tabBodyPos, renderer,camera);
+            this.setRendererSize(w,h - this.bestToolPosY, renderer,camera);
 
             // intro
             // document.getElementById('welcomebutton').classList.remove('text-2xl')
@@ -357,9 +336,6 @@ class F1Gui {
 
             const tabBodyElement = document.getElementById('tabBody');
             tabBodyElement.style.paddingTop='0.5rem';
-
-            tabBodyElement.classList.remove('min-h-[360px]');
-            tabBodyElement.classList.remove('max-h-[360px]');
             tabBodyElement.classList.add('seminmaxheight')
 
 
@@ -368,13 +344,6 @@ class F1Gui {
             allTabs.style.minHeight = "200px";
             allTabs.style.maxHeight = "200px";
             
-            const tabPaint = document.getElementById('paint');
-            tabPaint.classList.remove('min-h-[220px]');
-
-
-
-            
-
 
             const elements = document.querySelectorAll('.next-btn');
             elements.forEach(function(element) {
@@ -394,9 +363,6 @@ class F1Gui {
             });
             document.getElementById('paintseparator').style.display='none';
 
-            document.getElementById('paintachannelblock').classList.add('seminmaxheight');
-            //
-
             const layer1ins=document.getElementById('layer1patterns_ins');
             layer1ins.classList.remove('max-h-[220px]');
             layer1ins.classList.add('selayer1ins');
@@ -409,7 +375,7 @@ class F1Gui {
             layer3ins.classList.remove('max-h-[150px]');
             layer3ins.classList.add('selayer3ins');
 
-            document.getElementById('finishSelectionContent').classList.remove('nonsefinishblock');
+            document.getElementById('finishSelectionContent').classList.remove('nonesefinishblock');
             document.getElementById('finishSelectionContent').classList.add('sefinishblock');
         }
 

@@ -574,14 +574,7 @@ function minMax(tabstakencareof,mode) {
 
   if(haveminimizedGui) { // woz max 3d
 	var posy = window.innerHeight;
-//	var top = window.innerHeight-f1Gui.bestToolPosY;
-	var top = window.innerHeight-f1Gui.tabContentPos;
-	var tabmargin = f1Gui.tabContentPos - f1Gui.tabBodyPos;
-	// var tabcontentTarget = window.innerHeight - tabmargin;
-	
-	var targetposy = window.innerHeight - f1Gui.tabBodyPos;// - (f1Gui.tabContentPos - f1Gui.tabBodyPos);
-console.log("targety = " + targetposy);
-
+	var top = window.innerHeight-f1Gui.bestToolPosY;
 
 	if(!tabstakencareof) {
 		if (!wasincolourpicker) {
@@ -595,15 +588,13 @@ console.log("targety = " + targetposy);
 	}
 
 	new TWEEN.Tween({ value: posy })
-	.to({ value: targetposy },
+	.to({ value: top },
 		500
 	)
 	.onUpdate(function(d) {
 		f1Gui.setRendererSize(window.innerWidth, d.value, renderer,camera);
-		console.log(d.value);
 		if(mode!=2)
-		// document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
-			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.tabBodyPos))) + "px";
+			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
 		haveminimizedGui=false;
 	})
 	.onComplete(function () {
@@ -616,28 +607,17 @@ console.log("targety = " + targetposy);
 	f1Garage.startFloorMode(0);// lets wipe
   }
   else {
-	// var posy = window.innerHeight - f1Gui.bestToolPosY;
-	// var posy = window.innerHeight;
-//	var top = window.innerHeight-f1Gui.bestToolPosY;
-	// var top = window.innerHeight-f1Gui.tabContentPos;
-	var tabmargin = f1Gui.tabContentPos - f1Gui.tabBodyPos;
-	var tabcontentTarget = window.innerHeight - tabmargin;
-
-
-	var posy = window.innerHeight - f1Gui.tabBodyPos; // 3d height
-	var targetposy = window.innerHeight;// - (f1Gui.tabContentPos - f1Gui.tabBodyPos);
-	// var posy = window.innerHeight - f1Gui.tabContentPos;
+	var posy = window.innerHeight - f1Gui.bestToolPosY;
 	var top = window.innerHeight;
 
 	new TWEEN.Tween({ value: posy })
-	.to({ value: targetposy },
+	.to({ value: top },
 		500
 	)
 	.onUpdate(function(d) {
 		f1Gui.setRendererSize(window.innerWidth, d.value, renderer,camera);
 		if(mode!=2)
-			// document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
-			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.tabBodyPos))) + "px";
+			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
 
 		haveminimizedGui=true;
 	})
@@ -1828,17 +1808,6 @@ function animate()
 }
 
 //==================================================
-// this.textBox1.AddClientEventListener("focusout", "this.fireWidgetEvent('done')");
-// document.getElementById("taginput").addEventListener('blur', function() {
-document.getElementById("taginput").addEventListener('focusout', function() {
-//	setTimeout(() => {
-//		setSize(window.innerWidth,window.innerHeight);	
-		window.scrollTo(0,0);
-//	}, 1000);
-	
-	
-});
-
 
 window.addEventListener('resize', function(event) {
     setSize(window.innerWidth,window.innerHeight);
