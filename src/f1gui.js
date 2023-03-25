@@ -65,6 +65,35 @@ class F1Gui {
         this.bestToolPosY = 0;
         this.tabHeight = 0;
 
+        // adaptive gui layout mods
+        // the html element list that require css overides
+        // -------
+        // general elements:
+        // tabBody
+        // allTabs
+        // -------
+        // pattern elements:
+        // layer1patterns_ins
+        // -------
+        // paint elements:
+        // various
+        // -------
+        // tag elements:
+        // tag colours/entry
+        // layer2tags_ins
+        // -------
+        // sponsor elements:
+        // sponsor colours various
+        // layer3sponsors_ins
+        // -------
+        // complete / finish elements:
+        // finishSelectionContent
+        // -------
+        this.tabBody_minh = "360px";
+        this.tabBody_maxh = "360px";
+        this.tabBody_padding = "360px";
+
+
         this.init();
     }
 
@@ -277,9 +306,81 @@ class F1Gui {
     //======================
     setSize(w,h,renderer,camera, colorPatternPicker ) {
 
-        // TODO HTML calc sizes
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+
+
+        const tabContent = document.getElementById('tabContent');
+        const rect = tabContent.getBoundingClientRect();
+        const top = rect.top + window.pageYOffset;
+
+        const heightRatio = rect.height / viewportHeight;
+        console.log("**** >" + top + " ratio = " + heightRatio);
+
         this.bestToolPosY = 360; // from html css
         this.setRendererSize(w,h - this.bestToolPosY, renderer,camera);
+
+        if(rect.height==0) { // only in intro
+            return;
+        }
+
+        if(heightRatio>=0.5) { // then reduce
+            this.bestToolPosY = 290;
+            this.setRendererSize(w,h - this.bestToolPosY, renderer,camera);
+
+            // intro
+            // document.getElementById('welcomebutton').classList.remove('text-2xl')
+            document.getElementById('tutorialstartbutton').classList.remove('!py-3')
+            document.getElementById('tutorialblock').style.marginBottom='75px';
+            
+
+            const tabBodyElement = document.getElementById('tabBody');
+            tabBodyElement.style.paddingTop='0.5rem';
+            tabBodyElement.classList.add('seminmaxheight')
+
+
+            const allTabs = document.getElementById('allTabs');
+            allTabs.classList.remove('min-h-[255px]');
+            allTabs.style.minHeight = "200px";
+            allTabs.style.maxHeight = "200px";
+            
+
+            const elements = document.querySelectorAll('.next-btn');
+            elements.forEach(function(element) {
+                element.classList.remove('!py-3');
+                element.classList.add('sebutton');
+            });
+            const elements2 = document.querySelectorAll('.prev-btn');
+            elements2.forEach(function(element) {
+                element.classList.remove('!py-3');
+                element.classList.add('sebutton');
+            });
+
+            // paint
+            const elements3 = document.querySelectorAll('.color-picker');
+            elements3.forEach(function(element) {
+                element.classList.add('secolourpicker');                
+            });
+            document.getElementById('paintseparator').style.display='none';
+
+            const layer1ins=document.getElementById('layer1patterns_ins');
+            layer1ins.classList.remove('max-h-[220px]');
+            layer1ins.classList.add('selayer1ins');
+
+            const layer2ins=document.getElementById('layer2tags_ins');
+            layer2ins.classList.remove('max-h-[150px]');
+            layer2ins.classList.add('selayer2ins');
+
+            const layer3ins=document.getElementById('layer3sponsors_ins');
+            layer3ins.classList.remove('max-h-[150px]');
+            layer3ins.classList.add('selayer3ins');
+
+            document.getElementById('finishSelectionContent').classList.remove('nonesefinishblock');
+            document.getElementById('finishSelectionContent').classList.add('sefinishblock');
+        }
+
+
+
 
         return;
         // TODO HTML

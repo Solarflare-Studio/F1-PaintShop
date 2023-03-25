@@ -95,3 +95,40 @@ h1 {
 .tab.activeTab span {
     margin-top: 0.25rem;
 }
+
+/* se layout */
+.sebutton {
+	font-size: 1rem!important;
+    padding-top: 0.333rem!important;
+    padding-bottom: 0.333rem!important;
+}
+
+.secolourpicker {
+	height: 2.2rem!important;
+}
+
+.seminmaxheight {
+	min-height: 290px!important;
+	max-height: 290px!important;
+}
+
+.selayer1ins {
+	min-height: 193px!important;
+	max-height: 193px!important;
+}
+.selayer2ins {
+	min-height: 124px!important;
+	max-height: 124px!important;
+}
+.selayer3ins {
+	min-height: 124px!important;
+	max-height: 124px!important;
+}
+
+.sefinishblock {
+	margin-top: 5.63rem!important;
+}
+
+.nonsefinishblock {
+	margin-top: 9.05rem!important;
+}

@@ -94,7 +94,7 @@ var alreadyInitScenes = false;
 var doBuildBasemap = false;
 var colorPatternPicker = 0;
 var specialPipelineToggle = true;
-var haveminimized = false; // gui that is
+var haveminimizedGui = false; // gui that is
 var wasincolourpicker = false;
 
 // ==============================
@@ -242,6 +242,9 @@ createColourpicker();
 //==================================================
 function onloaded()
 {
+	// get and apply size modifications
+	setSize(window.innerWidth,window.innerHeight );
+
 	// f1Aws.applyLanguageKeys();	// shouldnt be necessary to repeat this
 }
 //==================================================
@@ -569,7 +572,7 @@ function expandDropdown(e) {
 //==================================================
 function minMax(tabstakencareof,mode) {
 
-  if(haveminimized) { // woz max 3d
+  if(haveminimizedGui) { // woz max 3d
 	var posy = window.innerHeight;
 	var top = window.innerHeight-f1Gui.bestToolPosY;
 
@@ -592,7 +595,7 @@ function minMax(tabstakencareof,mode) {
 		f1Gui.setRendererSize(window.innerWidth, d.value, renderer,camera);
 		if(mode!=2)
 			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
-		haveminimized=false;
+		haveminimizedGui=false;
 	})
 	.onComplete(function () {
 		if(!tabstakencareof) {
@@ -616,7 +619,7 @@ function minMax(tabstakencareof,mode) {
 		if(mode!=2)
 			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
 
-		haveminimized=true;
+		haveminimizedGui=true;
 	})
 	.onComplete(function () {
 		if(!tabstakencareof) {
@@ -944,8 +947,8 @@ function createSpotLight(intensity) {
 function setSize(w,h) {
 	// set out gui
 
-	if(haveminimized) 
-		f1Gui.setRendererSize(w,window.innerHeight, renderer,camera);
+	if(haveminimizedGui) 
+		f1Gui.setRendererSize(w,h, renderer,camera);
 	else
 		f1Gui.setSize(w,h,renderer,camera,colorPatternPicker);
 
@@ -1925,6 +1928,9 @@ window.addEventListener("click", (event) => {
 });
 // Pattern Layout Handler
 function handleWelcomeNext() {
+  patternContent.style.opacity='1';
+  patternContent.style.pointerEvents='';
+
   patternContent.classList.remove("hidden");
   welcomeContent.classList.add("hidden");
   tutorial.classList.remove("hidden");
@@ -1988,7 +1994,7 @@ function handleBackToTabs() {
 	// bens mod
 	tabBody.classList.remove('transparenttabblock');
 
-	if(haveminimized) {
+	if(haveminimizedGui) {
 	  minMax(false,2);
 	}
 	// tabboxes[0].click();
@@ -2052,7 +2058,7 @@ f1PaintTab.forEach((box) => {
 
 	box.addEventListener("click", (event) => {
 
-	  if(haveminimized) {
+	  if(haveminimizedGui) {
 		minMax(true,1);
 	  }
 
@@ -2181,7 +2187,7 @@ nextBtn.addEventListener("click", () => {
 	//   tabBody.classList.remove("bg-primary");
 
 	  // maximize 3D
-	  if(!haveminimized) {
+	  if(!haveminimizedGui) {
 		minMax(false,2);
 	  }
 
@@ -2241,7 +2247,7 @@ prevBtn.addEventListener("click", () => {
 	  // bens mod
 	  tabBody.classList.remove('transparenttabblock');
 
-	  if(haveminimized) {
+	  if(haveminimizedGui) {
 		minMax(false,2);
 	  }
 
