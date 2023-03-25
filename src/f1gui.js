@@ -306,6 +306,7 @@ class F1Gui {
     //======================
     setSize(w,h,renderer,camera, colorPatternPicker ) {
 
+   
         const viewportHeight = window.innerHeight;
         const viewportWidth = window.innerWidth;
 
@@ -315,18 +316,36 @@ class F1Gui {
         const top = rect.top + window.pageYOffset;
 
         const heightRatio = rect.height / viewportHeight;
-        console.log("**** >" + top + " ratio = " + heightRatio);
+        // console.log("**** >" + top + " ratio = " + heightRatio);
 
-        this.bestToolPosY = 360; // from html css
-        this.setRendererSize(w,h - this.bestToolPosY, renderer,camera);
+        const head = document.getElementById('header');
+        const recth = tabContent.getBoundingClientRect();
+        // alert('recth = ' + recth.top);
 
+        this.tabContentPos = rect.height;
+
+        const tabBody = document.getElementById('tabBody');
+        const rect2 = tabBody.getBoundingClientRect();
+        const top2 = rect2.top + window.pageYOffset;
+
+
+        this.tabBodyPos = rect2.height;
+
+        const tabHeadingHeight = this.tabContentPos - this.tabBodyPos;
+
+
+        this.setRendererSize(w,h - this.tabBodyPos, renderer,camera);
+
+
+        
         if(rect.height==0) { // only in intro
             return;
         }
+        const buttonblock = document.getElementById('f1nextbackbuttons');
 
-        if(heightRatio>=0.55) { // then reduce
-            this.bestToolPosY = 290;
-            this.setRendererSize(w,h - this.bestToolPosY, renderer,camera);
+        const percentageThreshold = 0.55;
+        if(heightRatio>=percentageThreshold) { //0.55) { // then reduce
+            this.setRendererSize(w,h - this.tabBodyPos, renderer,camera);
 
             // intro
             // document.getElementById('welcomebutton').classList.remove('text-2xl')
@@ -336,7 +355,11 @@ class F1Gui {
 
             const tabBodyElement = document.getElementById('tabBody');
             tabBodyElement.style.paddingTop='0.5rem';
-            tabBodyElement.classList.add('seminmaxheight')
+
+            tabBodyElement.classList.remove('min-h-[360px]');
+            tabBodyElement.classList.remove('max-h-[360px]');
+            // tabBodyElement.classList.add('seminmaxheight')
+            tabBodyElement.classList.add('seminmaxpaintheight')
 
 
             const allTabs = document.getElementById('allTabs');
@@ -344,6 +367,23 @@ class F1Gui {
             allTabs.style.minHeight = "200px";
             allTabs.style.maxHeight = "200px";
             
+            const tabPaint = document.getElementById('paint');
+            tabPaint.classList.remove('min-h-[220px]');
+            document.getElementById('LK_paint_base').classList.add('reducetopmargin');
+            
+
+            document.getElementById('tabsfoot').classList.add('reduceTabs');
+            const tabelements = document.querySelectorAll('.tab');
+            tabelements.forEach(function(element) {
+                element.classList.add('reduceTabsHeight');
+            });
+            
+            // if(which==1 || which==3) {
+            // 	buttonblock.style = "margin-top: 1rem!important";
+            // } else if( which==2 || which==4) {
+            // if(which==1 || which==3) {
+            buttonblock.style.marginTop = "0.5rem!important";
+
 
             const elements = document.querySelectorAll('.next-btn');
             elements.forEach(function(element) {
@@ -357,22 +397,15 @@ class F1Gui {
             });
 
             // paint
-            const paintachannelblock = document.querySelector("#paintachannelblock");
-            paintachannelblock.classList.remove('min-h-\[360px\]');
-            paintachannelblock.classList.add('min-h-\[290px\]'); //!
-            // paintachannelblock.style.paddingTop = "0.5rem";
-
-            document.querySelector("#whichchanneltext").style.marginTop="0px";
-            
-            // paintachannelblock.classList.add('');
-
-            document.getElementById('glosstypeblock').style.marginBottom = '0px';
-
+            document.getElementById('whichchanneltext').classList.add('reducetopmargin');
             const elements3 = document.querySelectorAll('.color-picker');
             elements3.forEach(function(element) {
                 element.classList.add('secolourpicker');                
             });
             document.getElementById('paintseparator').style.display='none';
+
+            document.getElementById('paintachannelblock').classList.add('seminmaxpaintheight');
+            //
 
             const layer1ins=document.getElementById('layer1patterns_ins');
             layer1ins.classList.remove('max-h-[220px]');
@@ -386,10 +419,20 @@ class F1Gui {
             layer3ins.classList.remove('max-h-[150px]');
             layer3ins.classList.add('selayer3ins');
 
-            document.getElementById('finishSelectionContent').classList.remove('nonesefinishblock');
+            document.getElementById('finishSelectionContent').classList.remove('nonsefinishblock');
             document.getElementById('finishSelectionContent').classList.add('sefinishblock');
         }
-        
+        else {
+            // if(which==1 || which==3) {
+            // buttonblock.style.marginTop = "1rem!important";
+            // } else if( which==2 || which==4) {
+            // 	buttonblock.style = "margin-top: 0.5rem!important";
+            // const layer1ins=document.getElementById('layer1patterns_ins');
+            // layer1ins.classList.remove('max-h-[220px]');
+            // layer1ins.classList.add('layer1patterns_ins_extras');
+
+
+        }
 
 
 
