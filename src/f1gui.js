@@ -379,7 +379,7 @@ class F1Gui {
             
             const tabPaint = document.getElementById('paint');
             tabPaint.classList.remove('min-h-[220px]');
-            document.getElementById('LK_paint_base').classList.add('reducetopmargin');
+            // document.getElementById('LK_paint_base').classList.add('reducetopmargin');
             
 
             document.getElementById('tabsfoot').classList.add('reduceTabs');
@@ -408,6 +408,8 @@ class F1Gui {
 
             // paint
             document.getElementById('whichchanneltext').classList.add('reducetopmargin');
+
+
             const elements3 = document.querySelectorAll('.color-picker');
             elements3.forEach(function(element) {
                 element.classList.add('secolourpicker');                
@@ -416,7 +418,8 @@ class F1Gui {
 
             // document.getElementById('paintachannelblock').classList.add('seminmaxpaintheight');
             document.getElementById('paintachannelblock').classList.add('seminmaxheight');
-            //
+
+            document.getElementById('glosstypeblock').style.marginBottom="0.1rem";
 
             const layer1ins=document.getElementById('layer1patterns_ins');
             layer1ins.classList.remove('max-h-[220px]');

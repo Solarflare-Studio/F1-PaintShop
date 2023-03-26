@@ -110,8 +110,10 @@ h1 {
 }
 
 .seminmaxheight {
-	min-height: 290px!important;
-	max-height: 290px!important;
+	min-height: 287px!important;
+	max-height: 287px!important;
+	/* min-height: 290px!important;
+	max-height: 290px!important; */
 }
 
 .selayer1ins {
@@ -141,4 +143,8 @@ h1 {
 
 .buttonblockaltblock {
 	margin-top: 0.5rem!important;
+}
+
+.reducetopmargin {
+    margin-top: .0!important;
 }
