@@ -34,6 +34,7 @@ export function getAutoSelectingPattern() {
 export function updateProgress(percent,msg) {
     if(percent==-99) { // reset to 0
         currentProgress=0;
+        percentageTexturesLoaded=0;
     }
     else {
         // const progress = document.getElementById("progress");
@@ -168,6 +169,9 @@ class F1Gui {
     //======================
     showPage(_page,_hide) {
         this.currentPage = _page;
+
+        if(DEBUG_MODE)
+            console.log("**** changed page = " + _page);
 
         if(_page == 1) { // patterns page
         }

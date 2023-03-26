@@ -194,8 +194,10 @@ function createColourpicker() {
 
 		f1Gui.setBackgroundColourByID('coloursample',color.hexString);
 
+		if(f1Gui.currentPage>4) f1Gui.currentPage = 4;
 		var currentLayer = f1Gui.currentPage-1;
 		if(f1Gui.currentPage>1) currentLayer--; // skip paint page to get layer
+
 
 		switch(selectedChan) {
 			case 0:
@@ -871,7 +873,30 @@ function initScenes()
 	rootScene.position.set(0,-30,20);
 
 	controls = new OrbitControls( camera, renderer.domElement );
-	
+	// try to help orbitcontroller
+	let cnttouch = 0;
+	// controls.addEventListener('touchstart', (event) => {
+	// 	event.preventDefault();
+	// 	cnttouch++;
+	// 	document.getElementById('nextBtn').innerText = cnttouch;
+
+	//   }, false);
+
+	// controls.addEventListener('touchend', (event) => {
+	// 	event.preventDefault();
+	// 	cnttouch--;
+	// 	document.getElementById('nextBtn').innerText = cnttouch;
+
+	//   }, false);	
+
+	  
+	controls.addEventListener('touchmove', (event) => {
+		event.preventDefault();
+	  }, false);	
+	//
+
+
+
 	controls.enablePan = true;
 
 	controls.enableDamping=false;
@@ -901,9 +926,15 @@ function initScenes()
 
 	controls.addEventListener('end', () => {
 		interacting=false;
+		// e.preventDefault();
+		// cnttouch--;
+		// document.getElementById('nextBtn').innerText = cnttouch;
 	});
 	controls.addEventListener('start', (e) => {
 		interacting=true;
+		// e.preventDefault();
+		// cnttouch++;
+		// document.getElementById('nextBtn').innerText = cnttouch;
 	});
 
 	controls.addEventListener('change', () => {
@@ -1018,6 +1049,7 @@ function onPatternPicked(which,thefile,thepatternelement)
 	// adds spinner while loading pattern v0509
 	const imgElement = thepatternelement;
 	const overlayElement = document.createElement('img');
+	overlayElement.id = "tmpspinner";
 	overlayElement.src = './assets/inapp/F1_LoadingAnim_WheelV2-256.gif'; // set the source of the overlay image
 	overlayElement.alt = 'overlay'; // set the alternative text for the overlay image
 	overlayElement.style.transform = 'translate(-50%, -50%)';
@@ -1442,7 +1474,7 @@ function postRenderProcess() {
 	
 	if(doBuildBasemap) { 
 		// build for ar
-
+		updateProgress(4,"start export");
 		var tmp = readCustomMapBufferMapSceneTarget();
 		var roughmetal = readMetalRoughBufferMapSceneTarget();
 
@@ -1452,7 +1484,9 @@ function postRenderProcess() {
 		processJSON.liveryData['timestamp'] = datetime;
 		f1Aws.filessavedcount = 0;
 		doSavePaintShop(pixelBuffer, "_" + datetime + '_' + f1User.userCarOrHelmet + "_map.png", customMapRenderSize);
+		updateProgress(4,"custommap");
 		doSavePaintShop(pixelBufferRoughMetal, "_" + datetime + '_' + f1User.userCarOrHelmet +  "_roughmetal.png", customRoughMapRenderSize);
+		updateProgress(4,"metalmap");
 
 		// save json record too
 		var jsonfilename = f1User.userID + "_" + datetime + '_' + f1User.userCarOrHelmet + "_livery.json";
@@ -1462,6 +1496,7 @@ function postRenderProcess() {
 			{ type: "text/plain;charset=utf-8" });
 
 		f1Aws.s3upload(blob,jsonfilename);
+		updateProgress(4,"livery");
 
 		// include user id, datetime, helmet or car and language
 		var helmetParam = "";
@@ -1479,6 +1514,7 @@ function postRenderProcess() {
 		
 		if(DEBUG_MODE)
 			console.log(">> AR url('" + thearlink + "')")
+		updateProgress(4,"progress");
 
 		document.getElementById('launchbuttonlink').href = new URL(thearlink);
 		
@@ -1493,13 +1529,15 @@ function postRenderProcess() {
 		// check files exist on aws before allowing AR
 		if(DEBUG_MODE)
 			console.log(">> checking files");
-		updateProgress(-99,"reset");
 		f1Gui.showPage(6);
-
+		updateProgress(4,"files uploaded");
+		
+		prevcountfiles = 0;
 		checkFilesHaveSaved();
 	}
 }
 //==================================
+let prevcountfiles = 0;
 function checkFilesHaveSaved() {
 
 	if(DEBUG_MODE)
@@ -1513,6 +1551,15 @@ function checkFilesHaveSaved() {
 		setTimeout(function() {
 			f1Gui.showPage(7);
 		},500);
+	}
+	if(prevcountfiles!=f1Aws.filessavedcount) {
+		if(DEBUG_MODE)
+			console.log('tot = ' + f1Aws.filessavedcount);
+		updateProgress(10 * (f1Aws.filessavedcount-prevcountfiles),"files uploaded");
+		prevcountfiles=f1Aws.filessavedcount;
+		if(f1Aws.filessavedcount==3) {
+			updateProgress(50,"files uploaded");
+		}
 	}
 }
 
@@ -1832,11 +1879,13 @@ function animate()
 // document.getElementById("taginput").addEventListener('blur', function() {
 
 var isSupported = 'onfocusout' in document.createElement('input');
-console.log("**** chrome focusout = isSupported = " + isSupported);
+if(DEBUG_MODE)
+	console.log("**** chrome focusout = isSupported = " + isSupported);
 
 var taginput = document.getElementById("taginput");
 taginput.addEventListener("blur", function() {
-  console.log("Tag input lost focus");
+	if(DEBUG_MODE)
+		console.log("Tag input lost focus");
 //   window.scrollTo(0,0);
 //   window.scrollTo({ top: 0, behavior: 'instant' });
 //   window.scroll(0, 1);
@@ -1864,7 +1913,8 @@ taginput.addEventListener("blur", function() {
 
   //	}, 1000);
 	  
-  console.log("**** EXITING blur");
+  if(DEBUG_MODE)
+  	console.log("**** EXITING blur");
 
 });
 
@@ -1885,7 +1935,8 @@ taginput.addEventListener('focusout', function() {
 
 	//	}, 1000);
 		
-	console.log("**** EXITING FOCUS");
+	if(DEBUG_MODE)
+		console.log("**** EXITING FOCUS");
 });
 
 // only want to do this with ios where you can use your accessibility zoom / pinch which overides css
@@ -2045,13 +2096,27 @@ function move() {
       if (loadingProgress >= 100) {
         clearInterval(id);
         loadingProgress = 0;
+		
       } else {
         if (nextBtn.classList.contains("submit")) {
-          finalProgress.value = loadingProgress++;
-		  if(loadingProgress === 100) {
-			handleComeToLife();
-			document.getElementById('canvas-positioner').style.display='none';
-		  }
+			if(loadingProgress<percentageTexturesLoaded)
+				loadingProgress++;
+			// loadingProgress = percentageTexturesLoaded;
+			finalProgress.value = loadingProgress;
+			if(loadingProgress >= 100) {
+			  handleComeToLife();
+			  document.getElementById('canvas-positioner').style.display='none';
+			} 
+			else if(loadingProgress >= 50) {
+				// updateProgress(1,"delay");
+			}
+			
+  
+        //   finalProgress.value = loadingProgress++;
+		//   if(loadingProgress === 100) {
+		// 	handleComeToLife();
+		// 	document.getElementById('canvas-positioner').style.display='none';
+		//   }
         //   loadingProgress === 100 && handleComeToLife();
         } else {
 
@@ -2091,7 +2156,7 @@ window.addEventListener("click", (event) => {
 // Pattern Layout Handler
 function handleWelcomeNext() {
   patternContent.style.opacity='1';
-  patternContent.style.pointerEvents='';
+//   patternContent.style.pointerEvents='';
 
   patternContent.classList.remove("hidden");
   welcomeContent.classList.add("hidden");
@@ -2143,6 +2208,10 @@ function handleComeToLife() {
 // Back to Tab Handler
 function handleBackToTabs() {
 
+	if(f1Gui.currentPage>=7) {
+		f1Gui.changedPage(4);
+	}
+	
 	comeToLifeContent.classList.add("hidden");
 	patternContent.classList.remove("hidden");
 
@@ -2364,12 +2433,14 @@ nextBtn.addEventListener("click", () => {
 	  	return;
 	}
 	if (nextBtn.classList.contains("submit")) {
-	  	finishSelectionLoading.classList.remove("hidden");
 
 	  // ben
-	  doBuildBasemap=true; // start save process
-
-	  move();
+		updateProgress(-99,"reset");
+		loadingProgress = 0;
+		finalProgress.value = 0;
+		doBuildBasemap=true; // start save process
+		move();
+		finishSelectionLoading.classList.remove("hidden");
 	}
 	if (!nextElement) return;
 
@@ -2421,7 +2492,9 @@ prevBtn.addEventListener("click", () => {
 		zoomOut.classList.toggle("hidden");	
 		minMax(false,2);
 	  }
-
+	  if(f1Gui.currentPage>4) {
+		f1Gui.changedPage(4);
+	  }
 
 	  return;
 	}
