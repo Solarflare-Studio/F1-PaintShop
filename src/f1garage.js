@@ -7,6 +7,11 @@ class F1Garage {
 
 
     constructor() {
+
+        this.tweenin = 0;
+        this.tweenout = 0;
+
+
         this.init();
     }
     init() {
@@ -117,7 +122,6 @@ class F1Garage {
     }
     //======================
 
-
     startFloorMode(v,extras) {
         this.floorMode = v;
         this.garageSFXMaterial.uniforms.mode.value = v;
@@ -125,8 +129,13 @@ class F1Garage {
         var self = this;
         if(this.floorMode == 0) { // wipe to zero
 
+            if(this.tweenin!=0)
+                this.tweenin.stop();
+            // if(this.tweenout!=0)
+            //     this.tweenout.stop();
+            
             self.garageSFXMaterial.uniforms.dimmer.value = 0.8;
-            new TWEEN.Tween({ value: 255 })
+            this.tweenin = new TWEEN.Tween({ value: 255 })
             .to({ value: 0 },
                 1000
             )
@@ -149,7 +158,13 @@ class F1Garage {
         if(this.floorMode == 1) { // floor circle spread
             self.garageSFXMaterial.uniforms.dimmer.value = 0.5;
 
-            new TWEEN.Tween(self.garageSFXMaterial.uniforms.fTime)
+            if(this.tweenin!=0)
+                this.tweenin.stop();
+            // if(this.tweenout!=0)
+            //     this.tweenout.stop();
+
+
+            this.tweenin = new TWEEN.Tween(self.garageSFXMaterial.uniforms.fTime)
             .to({
                     value: 1.0,
                 },
@@ -167,7 +182,12 @@ class F1Garage {
             var self = this;
             self.garageSFXMaterial.uniforms.dimmer.value = 0.8;
 
-            new TWEEN.Tween({ value: 0 })
+            if(this.tweenin!=0)
+                this.tweenin.stop();
+            // if(this.tweenout!=0)
+            //     this.tweenout.stop();
+
+            this.tweenin = new TWEEN.Tween({ value: 0 })
             .to({
                     value: 255,
                 },

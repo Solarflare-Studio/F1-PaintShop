@@ -606,9 +606,9 @@ function minMax(tabstakencareof,mode) {
 		if(mode!=2)
 		// document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
 		document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.tabBodyPos))) + "px";
+		haveminimizedGui=false;
 	})
 	.onComplete(function () {
-		haveminimizedGui=false;
 		if(!tabstakencareof) {
 			if(mode!=2)
 				document.getElementById('tabContent').style.bottom = 0;
@@ -639,9 +639,9 @@ function minMax(tabstakencareof,mode) {
 		if(mode!=2)
 			// document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
 			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.tabBodyPos))) + "px";
+			haveminimizedGui=true;
 	})
 	.onComplete(function () {
-		haveminimizedGui=true;
 		if(!tabstakencareof) {
 			if (paintachannelblock.classList.contains("hidden")) {
 				if(mode!=2)
@@ -657,7 +657,7 @@ function minMax(tabstakencareof,mode) {
 		}
 	})
 	.start()
-	f1Garage.startFloorMode(2);// lets have the hex
+	f1Garage.startFloorMode(2);// lets have the hex starting grid
   }
 
 
@@ -1830,15 +1830,39 @@ function animate()
 //==================================================
 // this.textBox1.AddClientEventListener("focusout", "this.fireWidgetEvent('done')");
 // document.getElementById("taginput").addEventListener('blur', function() {
-	document.getElementById("taginput").addEventListener('focusout', function() {
-		//	setTimeout(() => {
-		//		setSize(window.innerWidth,window.innerHeight);	
-				window.scrollTo(0,0);
-		//	}, 1000);
-			
-			
-		});
+document.getElementById("taginput").addEventListener('focusout', function() {
+	//	setTimeout(() => {
+	//		setSize(window.innerWidth,window.innerHeight);	
+	window.scrollTo(0,0);
+	//	}, 1000);
 		
+		
+});
+
+// only want to do this with ios where you can use your accessibility zoom / pinch which overides css
+let keepInnerHeight = -2;
+setInterval(function() {
+	const prev=keepInnerHeight;
+	if(keepInnerHeight<0) keepInnerHeight++;
+	else {
+		keepInnerHeight = window.innerHeight;
+	}
+	
+	if(keepInnerHeight!=prev) {
+		window.scrollTo(0,0);
+		setSize(window.innerWidth,window.innerHeight);
+		
+		// document.getElementById('nextBtn').innerText = keepInnerHeight;
+	}
+},750);
+
+// window.addEventListener('orientationchange', function() {
+// 	document.getElementById('nextBtn').innerText = window.innerHeight;
+// 	// Do something here when the viewport size changes
+
+// });
+
+
 window.addEventListener('resize', function(event) {
     setSize(window.innerWidth,window.innerHeight);
 }, true);
@@ -2326,7 +2350,7 @@ prevBtn.addEventListener("click", () => {
 			elm.classList.remove("hidden");
 			tabTutorial(currElmId);
 			} else {
-			console.log(elm);
+			// console.log(elm);
 			elm.classList.add("hidden");
 			}
 		});

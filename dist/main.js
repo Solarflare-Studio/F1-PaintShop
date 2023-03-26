@@ -86594,7 +86594,7 @@ class F1Gui {
     setSize(w,h,renderer,camera, colorPatternPicker ) {
 
    
-        const viewportHeight = window.innerHeight;
+        const viewportHeight = h;
         const viewportWidth = window.innerWidth;
 
 
@@ -86636,7 +86636,7 @@ class F1Gui {
         const buttonblock = document.getElementById('f1nextbackbuttons');
 
 
-        const percentageThreshold = 0.85;
+        const percentageThreshold = 0.55;
         if(heightRatio>=percentageThreshold) { //0.55) { // then reduce
             this.setRendererSize(w,h - this.tabBodyPos, renderer,camera);
 
@@ -86653,7 +86653,7 @@ class F1Gui {
             tabBodyElement.classList.remove('min-h-[360px]');
             tabBodyElement.classList.remove('max-h-[360px]');
             // tabBodyElement.classList.add('seminmaxheight')
-            tabBodyElement.classList.add('seminmaxpaintheight')
+            // tabBodyElement.classList.add('seminmaxpaintheight')
 
 
             const allTabs = document.getElementById('allTabs');
@@ -86698,7 +86698,8 @@ class F1Gui {
             });
             document.getElementById('paintseparator').style.display='none';
 
-            document.getElementById('paintachannelblock').classList.add('seminmaxpaintheight');
+            // document.getElementById('paintachannelblock').classList.add('seminmaxpaintheight');
+            document.getElementById('paintachannelblock').classList.add('seminmaxheight');
             //
 
             const layer1ins=document.getElementById('layer1patterns_ins');
@@ -87953,6 +87954,11 @@ class F1Garage {
 
 
     constructor() {
+
+        this.tweenin = 0;
+        this.tweenout = 0;
+
+
         this.init();
     }
     init() {
@@ -88063,7 +88069,6 @@ class F1Garage {
     }
     //======================
 
-
     startFloorMode(v,extras) {
         this.floorMode = v;
         this.garageSFXMaterial.uniforms.mode.value = v;
@@ -88071,8 +88076,13 @@ class F1Garage {
         var self = this;
         if(this.floorMode == 0) { // wipe to zero
 
+            if(this.tweenin!=0)
+                this.tweenin.stop();
+            // if(this.tweenout!=0)
+            //     this.tweenout.stop();
+            
             self.garageSFXMaterial.uniforms.dimmer.value = 0.8;
-            new TWEEN.Tween({ value: 255 })
+            this.tweenin = new TWEEN.Tween({ value: 255 })
             .to({ value: 0 },
                 1000
             )
@@ -88095,7 +88105,13 @@ class F1Garage {
         if(this.floorMode == 1) { // floor circle spread
             self.garageSFXMaterial.uniforms.dimmer.value = 0.5;
 
-            new TWEEN.Tween(self.garageSFXMaterial.uniforms.fTime)
+            if(this.tweenin!=0)
+                this.tweenin.stop();
+            // if(this.tweenout!=0)
+            //     this.tweenout.stop();
+
+
+            this.tweenin = new TWEEN.Tween(self.garageSFXMaterial.uniforms.fTime)
             .to({
                     value: 1.0,
                 },
@@ -88113,7 +88129,12 @@ class F1Garage {
             var self = this;
             self.garageSFXMaterial.uniforms.dimmer.value = 0.8;
 
-            new TWEEN.Tween({ value: 0 })
+            if(this.tweenin!=0)
+                this.tweenin.stop();
+            // if(this.tweenout!=0)
+            //     this.tweenout.stop();
+
+            this.tweenin = new TWEEN.Tween({ value: 0 })
             .to({
                     value: 255,
                 },
@@ -98044,7 +98065,7 @@ function minMax(tabstakencareof,mode) {
 
 	new TWEEN.Tween({ value: posy })
 	.to({ value: targetposy },
-		1000
+		500
 	)
 	.easing(TWEEN.Easing.Quartic.Out)
 	.onUpdate(function(d) {
@@ -98052,9 +98073,9 @@ function minMax(tabstakencareof,mode) {
 		if(mode!=2)
 		// document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
 		document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.tabBodyPos))) + "px";
+		haveminimizedGui=false;
 	})
 	.onComplete(function () {
-		haveminimizedGui=false;
 		if(!tabstakencareof) {
 			if(mode!=2)
 				document.getElementById('tabContent').style.bottom = 0;
@@ -98077,7 +98098,7 @@ function minMax(tabstakencareof,mode) {
 
 	new TWEEN.Tween({ value: posy })
 	.to({ value: targetposy },
-		1000
+		500
 	)
 	.easing(TWEEN.Easing.Quartic.Out)
 	.onUpdate(function(d) {
@@ -98085,9 +98106,9 @@ function minMax(tabstakencareof,mode) {
 		if(mode!=2)
 			// document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.bestToolPosY))) + "px";
 			document.getElementById('tabContent').style.bottom = (-(d.value - (window.innerHeight - f1Gui.tabBodyPos))) + "px";
+			haveminimizedGui=true;
 	})
 	.onComplete(function () {
-		haveminimizedGui=true;
 		if(!tabstakencareof) {
 			if (paintachannelblock.classList.contains("hidden")) {
 				if(mode!=2)
@@ -98103,7 +98124,7 @@ function minMax(tabstakencareof,mode) {
 		}
 	})
 	.start()
-	f1Garage.startFloorMode(2);// lets have the hex
+	f1Garage.startFloorMode(2);// lets have the hex starting grid
   }
 
 
@@ -99276,15 +99297,39 @@ function animate()
 //==================================================
 // this.textBox1.AddClientEventListener("focusout", "this.fireWidgetEvent('done')");
 // document.getElementById("taginput").addEventListener('blur', function() {
-	document.getElementById("taginput").addEventListener('focusout', function() {
-		//	setTimeout(() => {
-		//		setSize(window.innerWidth,window.innerHeight);	
-				window.scrollTo(0,0);
-		//	}, 1000);
-			
-			
-		});
+document.getElementById("taginput").addEventListener('focusout', function() {
+	//	setTimeout(() => {
+	//		setSize(window.innerWidth,window.innerHeight);	
+	window.scrollTo(0,0);
+	//	}, 1000);
 		
+		
+});
+
+// only want to do this with ios where you can use your accessibility zoom / pinch which overides css
+let keepInnerHeight = -2;
+setInterval(function() {
+	const prev=keepInnerHeight;
+	if(keepInnerHeight<0) keepInnerHeight++;
+	else {
+		keepInnerHeight = window.innerHeight;
+	}
+	
+	if(keepInnerHeight!=prev) {
+		window.scrollTo(0,0);
+		setSize(window.innerWidth,window.innerHeight);
+		
+		// document.getElementById('nextBtn').innerText = keepInnerHeight;
+	}
+},750);
+
+// window.addEventListener('orientationchange', function() {
+// 	document.getElementById('nextBtn').innerText = window.innerHeight;
+// 	// Do something here when the viewport size changes
+
+// });
+
+
 window.addEventListener('resize', function(event) {
     setSize(window.innerWidth,window.innerHeight);
 }, true);
@@ -99439,10 +99484,10 @@ function handleCloseTutorial(id) {
 }
 // Zoom In/Out Handler
 function handleTabToggle() {
-  zoomIn.classList.toggle("hidden");
-  zoomOut.classList.toggle("hidden");
+  	zoomIn.classList.toggle("hidden");
+  	zoomOut.classList.toggle("hidden");
 
-  minMax(false,1);
+  	minMax(false,1);
 }
 
 // Come to Life Handler
@@ -99450,6 +99495,8 @@ function handleComeToLife() {
 	comeToLifeContent.classList.remove("hidden");
 	patternContent.classList.add("hidden");
 	finishSelectionLoading.classList.add("hidden");
+
+	//tabheadfade
 }
   
 // Back to Tab Handler
@@ -99471,7 +99518,9 @@ function handleBackToTabs() {
 	tabBody.classList.remove('transparenttabblock');
 
 	if(haveminimizedGui) {
-	  minMax(false,2);
+		zoomIn.classList.toggle("hidden");
+		zoomOut.classList.toggle("hidden");	
+	  	minMax(false,2);
 	}
 	// tabboxes[0].click();
 }
@@ -99535,6 +99584,9 @@ f1PaintTab.forEach((box) => {
 	box.addEventListener("click", (event) => {
 
 	  if(haveminimizedGui) {
+		zoomIn.classList.toggle("hidden");
+		zoomOut.classList.toggle("hidden");	
+
 		minMax(true,1);
 	  }
 
@@ -99652,26 +99704,26 @@ nextBtn.addEventListener("click", () => {
 	}
 
 	if (!nextElement && !nextBtn.classList.contains("submit")) {
-	  TabHead.classList.add("hidden");
-	  allTabs.classList.toggle("hidden");
-	  finishSelectionContent.classList.remove("hidden");
-	  nextBtn.classList.add("submit");
-
-
+		TabHead.classList.add("hidden");
+		allTabs.classList.toggle("hidden");	
+		nextBtn.classList.add("submit");
+		finishSelectionContent.classList.remove("hidden");
 	  // ben change to allow tab background though transparent
-	  tabBody.classList.add('transparenttabblock');
+		tabBody.classList.add('transparenttabblock');
 	//   tabBody.classList.remove("bg-primary");
 
 	  // maximize 3D
-	  if(!haveminimizedGui) {
-		minMax(false,2);
-	  }
+		if(!haveminimizedGui) {
+			zoomIn.classList.toggle("hidden");
+			zoomOut.classList.toggle("hidden");	
+			minMax(false,2);
+	  	}
 
 
-	  return;
+	  	return;
 	}
 	if (nextBtn.classList.contains("submit")) {
-	  finishSelectionLoading.classList.remove("hidden");
+	  	finishSelectionLoading.classList.remove("hidden");
 
 	  // ben
 	  doBuildBasemap=true; // start save process
@@ -99724,6 +99776,8 @@ prevBtn.addEventListener("click", () => {
 	  tabBody.classList.remove('transparenttabblock');
 
 	  if(haveminimizedGui) {
+		zoomIn.classList.toggle("hidden");
+		zoomOut.classList.toggle("hidden");	
 		minMax(false,2);
 	  }
 
@@ -99763,7 +99817,7 @@ prevBtn.addEventListener("click", () => {
 			elm.classList.remove("hidden");
 			tabTutorial(currElmId);
 			} else {
-			console.log(elm);
+			// console.log(elm);
 			elm.classList.add("hidden");
 			}
 		});

@@ -369,7 +369,7 @@ class F1Gui {
             tabBodyElement.classList.remove('min-h-[360px]');
             tabBodyElement.classList.remove('max-h-[360px]');
             // tabBodyElement.classList.add('seminmaxheight')
-            tabBodyElement.classList.add('seminmaxpaintheight')
+            // tabBodyElement.classList.add('seminmaxpaintheight')
 
 
             const allTabs = document.getElementById('allTabs');
@@ -414,7 +414,8 @@ class F1Gui {
             });
             document.getElementById('paintseparator').style.display='none';
 
-            document.getElementById('paintachannelblock').classList.add('seminmaxpaintheight');
+            // document.getElementById('paintachannelblock').classList.add('seminmaxpaintheight');
+            document.getElementById('paintachannelblock').classList.add('seminmaxheight');
             //
 
             const layer1ins=document.getElementById('layer1patterns_ins');
