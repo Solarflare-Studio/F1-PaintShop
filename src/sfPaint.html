@@ -397,24 +397,31 @@
     <!-- <main class=" h-[calc(100vh)]"> -->
     <main class=" h-[calc(100vh-118px)]" >
 
-      
-        <div
-        class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex"
-      >
-      <!-- class="justify-center items-center flex-col h-[calc(100vh)] text-center hidden lg:flex" -->
-
-
-        <img src="./assets/images/rotate_image.svg" alt="Loading..." />
-        <h1
-          class="text-netural text-2xl font-medium mt-2 font-F1PaintShopBoldFont"
-          id="LK_turndevice_01"
+      <div
+        class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center overflow-hidden"
+        id="pleaserotatecontainer"
         >
-          TURN YOUR DEVICE
-        </h1>
-        <p class="text-netural text-sm font-normal py-3 font-Titillium" id="LK_turndevice_02">
-          This experience requires your device to be held<br />
-          portrait, please turn to proceed.
-        </p>
+      
+          <div
+          id="pleaserotateblock"
+          class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex"
+
+        >
+        <!-- class="justify-center items-center flex-col h-[calc(100vh)] text-center hidden lg:flex" -->
+
+
+          <img src="./assets/images/rotate_image.svg" alt="Loading..." />
+          <h1
+            class="text-netural text-2xl font-medium mt-2 font-F1PaintShopBoldFont"
+            id="LK_turndevice_01"
+          >
+            TURN YOUR DEVICE
+          </h1>
+          <p class="text-netural text-sm font-normal py-3 font-Titillium" id="LK_turndevice_02">
+            This experience requires your device to be held<br />
+            portrait, please turn to proceed.
+          </p>
+        </div>
       </div>
       <!-- end of desktop content -->
 
@@ -1513,7 +1520,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)">v0.6.2.0</div>
+    <div id="versionid" onclick="onConsole(0)">v0.6.2.1</div>
     <div id="console" class="hidden"><br><div id="fpsindicator"></div>
       <div class="console">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>

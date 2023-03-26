@@ -1834,6 +1834,7 @@ document.getElementById("taginput").addEventListener('focusout', function() {
 	//	setTimeout(() => {
 	//		setSize(window.innerWidth,window.innerHeight);	
 	window.scrollTo(0,0);
+	f1Text.inText = false;
 	//	}, 1000);
 		
 		
@@ -1841,15 +1842,24 @@ document.getElementById("taginput").addEventListener('focusout', function() {
 
 // only want to do this with ios where you can use your accessibility zoom / pinch which overides css
 let keepInnerHeight = -2;
+// let wasintext = false;
 setInterval(function() {
 	const prev=keepInnerHeight;
+	
 	if(keepInnerHeight<0) keepInnerHeight++;
 	else {
 		keepInnerHeight = window.innerHeight;
 	}
 	
 	if(keepInnerHeight!=prev) {
-		window.scrollTo(0,0);
+		if(f1Text.inText){//} && !wasintext) {
+			// const textRect = document.getElementById('taginput').getBoundingClientRect();
+			// window.scrollTo(0,textRect.top);
+			// wasintext=true;
+		}
+		else {
+			window.scrollTo(0,0);
+		}
 		setSize(window.innerWidth,window.innerHeight);
 		
 		// document.getElementById('nextBtn').innerText = keepInnerHeight;
@@ -1861,7 +1871,22 @@ setInterval(function() {
 // 	// Do something here when the viewport size changes
 
 // });
+function preventRotation() {
+	if (window.orientation !== 0) {
+		// document.getElementById('nextBtn').innerText = 'or == '+window.orientation;
+		document.getElementById('pleaserotateblock').classList.remove('hidden');
+	  	window.orientation = 0;
+	}
+	else {
+		// document.getElementById('nextBtn').innerText = 'or=0';
+		document.getElementById('pleaserotateblock').classList.add('hidden');
+	}
 
+}
+  
+window.addEventListener("orientationchange", preventRotation, true);
+
+//
 
 window.addEventListener('resize', function(event) {
     setSize(window.innerWidth,window.innerHeight);

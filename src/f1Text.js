@@ -16,7 +16,7 @@ class F1Text {
         this.sizecanvas = 1024;
 
         this.isActive = false;
-
+        this.inText = false;
         this.textTexture = 0;
         this.tagPattern = 0;
         this.tagComposite = 0;
@@ -217,6 +217,9 @@ class F1Text {
         inputField.addEventListener("click", function() {
             inputField.placeholder = inputField.value;
             inputField.value = "";
+
+            
+            _self.inText = true;
             
         });
 

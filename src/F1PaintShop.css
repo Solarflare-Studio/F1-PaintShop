@@ -1,3 +1,36 @@
+/* @media screen and (max-width: 767px) {
+	body {
+	  orientation: portrait;
+	  -webkit-user-orientation: portrait;
+	  -moz-user-orientation: portrait;
+	  -ms-user-orientation: portrait;
+	  user-orientation: portrait;
+	}
+	#pleaserotateblock {
+		display:block;
+	}
+  } */
+  
+@media (orientation: landscape) {
+	/* Styles for landscape orientation */
+	#pleaserotateblock {
+		display:flex!important;
+		z-index: 999;
+		position: relative;
+
+
+	}
+	#pleaserotatecontainer {
+		z-index: 999;
+		z-index: 999;
+		position: relative;
+		top: -82px;
+		height: calc(100vh - 82px);
+
+	}
+}  
+
+
 .f1hidden {
     display:none!important;
 }
