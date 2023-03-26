@@ -399,11 +399,14 @@ class F1Gui {
             elements.forEach(function(element) {
                 element.classList.remove('!py-3');
                 element.classList.add('sebutton');
+                // element.style.touchAction= 'manipulation';
+
             });
             const elements2 = document.querySelectorAll('.prev-btn');
             elements2.forEach(function(element) {
                 element.classList.remove('!py-3');
                 element.classList.add('sebutton');
+                // elements2.style.touchAction= 'manipulation';
             });
 
             // paint

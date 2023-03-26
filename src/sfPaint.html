@@ -7,9 +7,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--ben    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  -->
+    <!-- content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" -->
     <meta
       name="viewport"
-      content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no"
+      content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+
     />
     <!--ben-->
     <link rel="stylesheet" href="./F1PaintShop.css">
@@ -401,10 +403,11 @@
         class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center overflow-hidden"
         id="pleaserotatecontainer"
         >
-      
+        <!-- class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex" -->
+
           <div
           id="pleaserotateblock"
-          class="justify-center items-center flex-col h-[calc(100vh-118px)] text-center hidden lg:flex"
+          class="justify-center items-center flex-col h-[calc(100vh)] text-center hidden lg:flex"
 
         >
         <!-- class="justify-center items-center flex-col h-[calc(100vh)] text-center hidden lg:flex" -->
@@ -1520,7 +1523,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)">v0.6.2.2</div>
+    <div id="versionid" onclick="onConsole(0)">v0.6.2.3</div>
     <div id="console" class="hidden"><br><div id="fpsindicator"></div>
       <div class="console">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>

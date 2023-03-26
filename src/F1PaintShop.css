@@ -17,16 +17,18 @@
 		display:flex!important;
 		z-index: 999;
 		position: relative;
-
-
+	}
+	#welcomeContent {
+		display:none;
 	}
 	#pleaserotatecontainer {
 		z-index: 999;
-		z-index: 999;
-		position: relative;
-		top: -82px;
-		height: calc(100vh - 82px);
-
+		position: absolute;
+		top: 0;
+		/* height: calc(100vh - 82px); */
+		height: calc(100%);
+		left: 0;
+		width: 100%;
 	}
 }  
 

@@ -1830,16 +1830,62 @@ function animate()
 //==================================================
 // this.textBox1.AddClientEventListener("focusout", "this.fireWidgetEvent('done')");
 // document.getElementById("taginput").addEventListener('blur', function() {
-document.getElementById("taginput").addEventListener('focusout', function() {
+
+var isSupported = 'onfocusout' in document.createElement('input');
+console.log("**** chrome focusout = isSupported = " + isSupported);
+
+var taginput = document.getElementById("taginput");
+taginput.addEventListener("blur", function() {
+  console.log("Tag input lost focus");
+//   window.scrollTo(0,0);
+//   window.scrollTo({ top: 0, behavior: 'instant' });
+//   window.scroll(0, 1);
+
+//  setTimeout(function() {window.scrollTo(0, 0);},201)  
+//   document.body.scrollTop = 0;
+//   document.documentElement.scrollTop = 0;
+  
+//   taginput.scrollIntoView();
+  f1Text.inText = false;
+  document.getElementById('pleaserotatecontainer').style.display='';
+  window.scroll(0, -120);
+//   setSize(window.innerWidth,window.innerHeight);
+
+//   setTimeout(() => {
+//     window.scroll(0, -101);
+
+// 	document.getElementById('nextBtn').innerText = window.innerHeight;
+// 	document.getElementById('prevBtn').innerText = document.body.style.overflow;// = 'hidden';
+// 	setSize(window.innerWidth,window.innerHeight);	
+//   }, 500);
+  
+
+  
+
+  //	}, 1000);
+	  
+  console.log("**** EXITING blur");
+
+});
+
+var viewport = window.visualViewport;
+
+
+taginput.addEventListener('focusout', function() {
 	//	setTimeout(() => {
 	//		setSize(window.innerWidth,window.innerHeight);	
+
 	window.scrollTo(0,0);
+	// window.scroll(0, -120);
+
+	// taginput.scrollIntoView();
 	f1Text.inText = false;
 	document.getElementById('pleaserotatecontainer').style.display='';
+	// setSize(window.innerWidth,window.innerHeight);
 
 	//	}, 1000);
 		
-		
+	console.log("**** EXITING FOCUS");
 });
 
 // only want to do this with ios where you can use your accessibility zoom / pinch which overides css
@@ -1853,6 +1899,10 @@ setInterval(function() {
 		keepInnerHeight = window.innerHeight;
 	}
 	
+	// if(viewport.scale!=1.0) {
+	//  	// viewport.scale  =1.0;
+	// }
+
 	if(keepInnerHeight!=prev) {
 		if(f1Text.inText){//} && !wasintext) {
 			// const textRect = document.getElementById('taginput').getBoundingClientRect();
@@ -1861,8 +1911,21 @@ setInterval(function() {
 		}
 		else {
 			window.scrollTo(0,0);
+			window.scroll(0, -120);
+
+			// document.getElementById('nextBtn').innerText = viewport.scale;
+
+			if(viewport.scale==1.0) {
+				setTimeout(function() {
+					setSize(window.innerWidth,window.innerHeight);
+
+				},500);
+			}
+
+			// document.getElementById("taginput").scrollIntoView();
+
 		}
-		setSize(window.innerWidth,window.innerHeight);
+		// setSize(window.innerWidth,window.innerHeight);
 		
 		// document.getElementById('nextBtn').innerText = keepInnerHeight;
 	}
@@ -1874,14 +1937,32 @@ setInterval(function() {
 
 // });
 function preventRotation() {
+
+//		document.getElementById('nextBtn').innerText = "**** >> " + window.orientation;
+
+
 	if (window.orientation !== 0) {
 		// document.getElementById('nextBtn').innerText = 'or == '+window.orientation;
 		document.getElementById('pleaserotateblock').classList.remove('hidden');
 	  	window.orientation = 0;
+
+		  window.scrollTo(0,0);
+		  window.scroll(0, -120);
+
+		  setTimeout(function() {
+			  setSize(window.innerWidth,window.innerHeight);
+		  },1);
+
 	}
 	else {
 		// document.getElementById('nextBtn').innerText = 'or=0';
 		document.getElementById('pleaserotateblock').classList.add('hidden');
+		window.scrollTo(0,0);
+		window.scroll(0, -120);
+
+		setTimeout(function() {
+			setSize(window.innerWidth,window.innerHeight);
+		},1);		
 	}
 
 }
