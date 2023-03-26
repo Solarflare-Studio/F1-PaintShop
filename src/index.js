@@ -54,8 +54,8 @@ window.onConsole = onConsole;
 const f1User = new F1User(); // doing this first to get parsed params
 var f1fnames = new F1AssetFileNames(); // set files names
 //===================================
-var renderSize = 1024;
-// var renderSize = 2048;
+//var renderSize = 1024;
+var renderSize = 2048;
 
 var customMapRenderSize = 2048;	// probably unneccesary
 // var customMapRenderSize = 1024;

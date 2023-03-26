@@ -43,7 +43,7 @@ class F1Materials {
                     updateProgress(5,'envmap');
                     self.alltexturesloaded = true;
 
-                    
+
                 });
 
 
@@ -57,7 +57,7 @@ class F1Materials {
 
             f1Garage.plinthSidesMat.envMapIntensity = f1Settings.envStrengthPlinthSides;
             f1Garage.plinthSidesMat.needsUpdate=true;
-            
+
         }
         else if(which==0){
             f1Settings.envStrenghtCustom = strength;
@@ -70,7 +70,7 @@ class F1Materials {
                 f1CarHelmet.theVisorMaterial.envMapIntensity = f1Settings.envStrengthVisor;
                 f1CarHelmet.theVisorMaterial.needsUpdate=true;
             }
-        }        
+        }
         else {
             f1Settings.envStrengthStatic = strength;
             f1CarHelmet.theStaticMaterial.envMapIntensity = f1Settings.envStrengthStatic;
@@ -88,14 +88,14 @@ class F1Materials {
             // f1CarHelmet.envMap = result;
             f1CarHelmet.theCustomMaterial.envMap = result;
             f1Garage.garageMaterial.envMap = result;
-    
+
             // lees envmapintensity settings 280223
             f1Garage.garageMaterial.envMapIntensity = f1Settings.envStrengthGarage;//this.envmapStrength;// * 0.125;
 
 
             f1Garage.plinthSidesMat.envMap = result;
             f1Garage.plinthSidesMat.envMapIntensity = f1Settings.envStrengthPlinthSides;
-            
+
 
             f1CarHelmet.theCustomMaterial.envMapIntensity = f1Settings.envStrenghtCustom;//this.envmapStrength;
 
@@ -110,7 +110,7 @@ class F1Materials {
                     f1CarHelmet.theVisorMaterial.needsUpdate=true;
                 }
             }
-            
+
             f1Garage.plinthSidesMat.needsUpdate=true;
 
             f1CarHelmet.theCustomMaterial.needsUpdate=true;
@@ -129,7 +129,7 @@ class F1Materials {
     }
 
     //======================
-    
+
 
 
     // ===============================================
@@ -172,7 +172,7 @@ class F1Materials {
             if(DEBUG_MODE)
                 console.log(">> .......checking file texture load timeout : " + self.totalTexturesAttempted +", "+ self.totalTexturesLoaded);
             if(self.totalTexturesAttempted != self.totalTexturesLoaded) {
-    
+
                 if(DEBUG_MODE)
                     console.log("*************** FILE FAILED *******************");
                 self.totalTexturesAttempted--;
@@ -183,7 +183,7 @@ class F1Materials {
         const maptexture = new THREE.TextureLoader().load(filename, (tex) => {
             clearTimeout(this.filetimeout);
             if(_filecomplete[filelistindex]) { //already done!
-                
+
             }
             else {
                 _filecomplete[filelistindex] = true;
@@ -191,7 +191,7 @@ class F1Materials {
                 this.totalTexturesLoaded++;
 
                 tex.encoding = THREE.LinearEncoding
-                // tex.encoding = THREE.sRGBEncoding;
+                // tex.encoding = THREE.sRGBEncoding; // for base texture map
 
                 tex.flipY = false;
                 tex.premultiplyAlpha = true;
@@ -223,11 +223,11 @@ class F1Materials {
                         _material1.normalMap = tex;
                         _material1.needsUpdate = true;
                         break;
-                    case 5:         // normal for base
+                    case 5:         // normal for custom
                         _material2.normalMap = tex;
                         _material2.needsUpdate = true;
                         break;
-                    case 6:         // ao for base
+                    case 6:         // ao for custom
                         _material2.aoMap = tex;
                         _material2.needsUpdate = true;
                         break;
@@ -237,7 +237,7 @@ class F1Materials {
                         f1Garage.garageMaterial.needsUpdate=true;
                         f1Garage.plinthSidesMat.map = tex;
                         f1Garage.plinthSidesMat.needsUpdate=true;
-                        
+
                         break;
                     case 8:
                         // f1Garage.garageMaterial.alphaMap = tex;
@@ -259,12 +259,12 @@ class F1Materials {
                     case 11:                // ribbon
                         tex.premultiplyAlpha = true;
                         f1Ribbons.uniforms.texture1.value = tex; // method with shader to distort and texture frag
-                        this.keepRibbon = tex;                                                
+                        this.keepRibbon = tex;
                         break;
                     case 12:                // glow floor
                         tex.premultiplyAlpha = false;
-//try without here                        f1Ribbons.floorGlowMat.map = tex; // 
-                         f1Ribbons.floorGlowMat.map = tex; // 
+//try without here                        f1Ribbons.floorGlowMat.map = tex; //
+                         f1Ribbons.floorGlowMat.map = tex; //
                         f1Ribbons.floorGlowMat.needsUpdate=true;
                         break;
                     case 13:                // scene bg
@@ -293,7 +293,7 @@ class F1Materials {
                     // case 24:         // normal
                     //     f1CarHelmet.theVisorMaterial.normalMap = tex;
                     //     f1CarHelmet.theVisorMaterial.needsUpdate = true;
-                    //     break;                    
+                    //     break;
 
                 }
             }

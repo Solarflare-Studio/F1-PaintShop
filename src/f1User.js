@@ -44,6 +44,7 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
         
         DEBUG_MODE=this.userConsole;
 
+
         // if no uuid, then need to go back to www registration then
         if(!this.userConsole && this.userID == 'noID') {
             // TODO
@@ -136,6 +137,7 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
             document.getElementById('versionid').style.color='black';
             document.getElementById('versionid').style.opacity=1.;
 
+            document.getElementById('fpsindicator').style.display="";
         }
         else {
 

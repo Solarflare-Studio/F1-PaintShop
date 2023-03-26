@@ -555,6 +555,7 @@
                       src="./assets/images/pattern_icon.svg"
                       alt="pattern Icon"
                       class="w-5 h-5 min-w-[25px]"
+                      style="height: 1.4rem;"
                     />
                   </figure>
                   <span class="ml-1 border-b-2 border-netural hidden"
@@ -577,6 +578,7 @@
                       src="./assets/images/spray_paint_icon.svg"
                       alt="Paint Icon"
                       class="w-5 h-5 min-w-[25px]"
+                      style="height: 1.4rem;"
                     />
                   </figure>
                   <span class="ml-1 border-b-2 border-netural hidden"
@@ -599,6 +601,7 @@
                       src="./assets/images/tag_icon.svg"
                       alt="tag_icon Icon"
                       class="w-5 h-5 min-w-[25px]"
+                      style="height: 1.4rem;"
                     />
                   </figure>
                   <span class="ml-1 border-b-2 border-netural hidden"
@@ -620,6 +623,7 @@
                       src="./assets/images/sponsor_icon.svg"
                       alt="Sponsor Icon"
                       class="w-5 h-5 min-w-[25px]"
+                      style="height: 1.4rem;"
                     />
                   </figure>
                   <span class="ml-1 border-b-2 border-netural hidden"
@@ -1544,9 +1548,10 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)">v0.6.2.4</div>
-    <div id="console" class="hidden"><br><div id="fpsindicator"></div>
-      <div class="console">
+    <div id="versionid" onclick="onConsole(0)">v0.6.2.4<br><div id="fpsindicator" style="display:none;"></div></div>
+    <div id="console" class="hidden"
+      style="top: 3rem">
+      <div class="console" style="pointer-events:all">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>
         <div class="console_button consoleshrunk consoleexpander" id="toneexpander">
           <div id="c_tonemappingSliderTxt">toneMapping</div>
@@ -1617,7 +1622,9 @@
             <input type="range" min="0" max="25" value="6" class="consoleslider" id="c_sfxSlider"/>
             <div class="console_button">
               <label for="ribbon_input"> xtras</label><br>
-              <input  class="introbutton" onclick="onConsole(2)" type="checkbox" id="ribbon_input" name="check" checked/>
+              <input  class="introbutton" onclick="onConsole(1)" type="checkbox" id="ribbon_input" name="check" checked/>
+              <input  class="introbutton" onclick="onConsole(2)" type="checkbox" id="ribbonGlow_input" name="check" checked/>
+              <input  class="introbutton" onclick="onConsole(3)" type="checkbox" id="ribbon_input" name="check" checked/>
               <input  class="introbutton" onclick="onConsole(4)" type="checkbox" id="ribbonGlow_input" name="check" checked/>
               <!-- <input  class="introbutton" onclick="onConsole(3)" type="button" id="ribbon_generate" name="rib" checked> -->
               <div class="console_button">

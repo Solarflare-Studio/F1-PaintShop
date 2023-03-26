@@ -52,6 +52,7 @@
     left: 0;
 	/* text-align: center; */
 	max-width: 20%;
+	min-width: 100px;
 	z-index: 5;
 }
 .console {
@@ -130,7 +131,7 @@ h1 {
 } */
 
 .tab.activeTab span {
-    margin-top: 0.25rem;
+    /* margin-top: 0.25rem; */
 }
 
 /* se layout */

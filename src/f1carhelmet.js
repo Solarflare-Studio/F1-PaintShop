@@ -72,8 +72,8 @@ class F1CarHelmet {
             // shadowSide: THREE.FrontSide,// THREE.DoubleSide,
             shadowSide: THREE.DoubleSide,
             emissive: new THREE.Color(0,0,0),
-            // normalScale: new THREE.Vector2(-0.5, 0.5),
-            normalScale: new THREE.Vector2(1, -1),
+            normalScale: new THREE.Vector2(-0.5, 0.5),
+            // normalScale: new THREE.Vector2(1, -1),
             // envMap: this.envMap
             side: THREE.DoubleSide,
 
@@ -94,8 +94,10 @@ class F1CarHelmet {
                 // metalness: 1.0,
                 // roughness: 1.0,
                 // color: new THREE.Color(0xffffff),
-                metalness: 1,// 0.4,// 1,
-                roughness: 1,//0.27, //1,
+                // metalness: 0.1,// 1,// 0.4,// 1,
+                // roughness: 1.0,//1,//0.27, //1,
+                metalness: 1.0,// 1,// 0.4,// 1,
+                roughness: 1.0,//1,//0.27, //1,
                 color: new THREE.Color(0xffffff),
                 emissiveIntensity: 1,
                 aoMapIntensity: 1.0,
@@ -103,8 +105,8 @@ class F1CarHelmet {
                 shadowSide: THREE.DoubleSide,
                 
                 emissive: new THREE.Color(0,0,0),
-                // normalScale: new THREE.Vector2(-0.5, 0.5),
-                normalScale: new THREE.Vector2(1, -1),
+                normalScale: new THREE.Vector2(-0.5, 0.5),
+                // normalScale: new THREE.Vector2(1, -1),
                 side: THREE.DoubleSide,
                 // envMap: this.envMap
 
@@ -131,8 +133,8 @@ class F1CarHelmet {
                 // shadowSide: THREE.FrontSide,// THREE.DoubleSide,
                 shadowSide: THREE.DoubleSide,
                 emissive: new THREE.Color(0,0,0),
-                // normalScale: new THREE.Vector2(-0.5, 0.5),
-                normalScale: new THREE.Vector2(1, -1),
+                normalScale: new THREE.Vector2(-0.5, 0.5),
+                // normalScale: new THREE.Vector2(1, -1),
                 side: THREE.DoubleSide,
 
                 // clipping for intro
@@ -164,13 +166,12 @@ class F1CarHelmet {
                 _self.customMesh.castShadow = true;
                 _self.customMesh.receiveShadow = true;//false;
 
-                let staticMesh = theModelScene.getObjectByName('F1PS_F1_Car_Static')
-                staticMesh.layers.set(2); // make base black for glow...
-                staticMesh.material = _self.theStaticMaterial;
-                staticMesh.castShadow = true;
+                _self.staticMesh = theModelScene.getObjectByName('F1PS_F1_Car_Static')
+                _self.staticMesh.layers.set(2); // make base black for glow...
+                _self.staticMesh.material = _self.theStaticMaterial;
+                _self.staticMesh.castShadow = true;
                 // staticMesh.receiveShadow = false;
-                staticMesh.receiveShadow = true; // maybe! todo
-                _self.staticMesh = staticMesh;
+                _self.staticMesh.receiveShadow = true; // maybe! todo
             }
             else {
                 _self.customMesh = theModelScene.getObjectByName('Helmet_main_2')
@@ -180,12 +181,11 @@ class F1CarHelmet {
                 _self.customMesh.castShadow = true;
                 _self.customMesh.receiveShadow = false;
 
-                let staticMesh = theModelScene.getObjectByName('Helmet_main_1')
-                staticMesh.layers.set(2); // make base black for glow...
-                staticMesh.material = _self.theStaticMaterial;
-                staticMesh.castShadow = true;
-                staticMesh.receiveShadow = false;// true; // maybe! todo
-                _self.staticMesh = staticMesh;
+                _self.staticMesh = theModelScene.getObjectByName('Helmet_main_1')
+                _self.staticMesh.layers.set(2); // make base black for glow...
+                _self.staticMesh.material = _self.theStaticMaterial;
+                _self.staticMesh.castShadow = true;
+                _self.staticMesh.receiveShadow = false;// true; // maybe! todo
 
                 _self.visorMesh = theModelScene.getObjectByName('Helmet_main_visor')
                 _self.visorMesh.layers.set(2); // make base black for glow...
