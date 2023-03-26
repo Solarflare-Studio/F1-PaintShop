@@ -428,6 +428,8 @@ class F1Gui {
 
             document.getElementById('glosstypeblock').style.marginBottom="0.1rem";
 
+            document.getElementById('pattern').style.paddingTop="0.5rem";
+
             const layer1ins=document.getElementById('layer1patterns_ins');
             layer1ins.classList.remove('max-h-[220px]');
             layer1ins.classList.add('selayer1ins');

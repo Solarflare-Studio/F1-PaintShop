@@ -57,8 +57,8 @@ var f1fnames = new F1AssetFileNames(); // set files names
 var renderSize = 1024;
 // var renderSize = 2048;
 
-// var customMapRenderSize = 2048;	// probably unneccesary
-var customMapRenderSize = 1024;
+var customMapRenderSize = 2048;	// probably unneccesary
+// var customMapRenderSize = 1024;
 var customRoughMapRenderSize = 1024;
 var sfxBloomRenderSize = 512;
 //===================================

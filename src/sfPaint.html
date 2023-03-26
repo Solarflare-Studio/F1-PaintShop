@@ -641,7 +641,7 @@
                   role="tabpanel"
                   aria-labelledby="pattern-tab"
                   class="tab-content-wrp"
-                  style="pointer-events:all"
+                  style="pointer-events:all;padding-top: 1rem;"
                 >
                   <!--ben add id-->
                   <div
@@ -827,7 +827,7 @@
                   id="paint"
                   role="tabpanel"
                   aria-labelledby="paint-tab"
-                  class="min-h-[220px] tab-content-wrp"
+                  class="min-h-[220px] tab-content-wrp hidden"
                   style="pointer-events:all"
                 >
                   <div>
@@ -879,7 +879,7 @@
                   id="tag"
                   role="tabpanel"
                   aria-labelledby="tag-tab"
-                  class="tab-content-wrp"
+                  class="tab-content-wrp hidden"
                   style="pointer-events:all"
                 >
                   <div class="flex gap-x-3 items-end">
@@ -1021,7 +1021,7 @@
                   id="sponsor"
                   role="tabpanel"
                   aria-labelledby="sponsor-tab"
-                  class="tab-content-wrp"
+                  class="tab-content-wrp hidden"
                   style="pointer-events:all"
                 >
                   <div>
@@ -1270,6 +1270,7 @@
       <div
         id="tutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
+        style="pointer-events: all;"
       >
         <figure 
           class="relative" 
@@ -1306,6 +1307,7 @@
       <div
         id="patternTutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40"
+        style="pointer-events: all;"
       >
         <div class="tutorial-wrp">
           <h1 class="tutorial-heading"><div id="LK_tutorial_04">PATTERN</div></h1>
@@ -1330,6 +1332,7 @@
       <div
         id="paintTutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
+        style="pointer-events: all;"
       >
         <div class="tutorial-wrp">
           <h1
@@ -1360,6 +1363,7 @@
       <div
         id="tagTutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
+        style="pointer-events: all;"
       >
         <div class="tutorial-wrp">
           <h1
@@ -1390,6 +1394,7 @@
       <div
         id="sponsorTutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
+        style="pointer-events: all;"
       >
         <div class="bg-netural relative p-4 px-6 w-64 rounded-md opacity-95">
           <h1 class="tutorial-heading"><div id="LK_tutorial_13">SPONSOR</div></h1>
@@ -1539,7 +1544,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)">v0.6.2.3</div>
+    <div id="versionid" onclick="onConsole(0)">v0.6.2.4</div>
     <div id="console" class="hidden"><br><div id="fpsindicator"></div>
       <div class="console">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>
