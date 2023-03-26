@@ -352,7 +352,7 @@ class F1Gui {
         const buttonblock = document.getElementById('f1nextbackbuttons');
 
 
-        const percentageThreshold = 0.85;
+        const percentageThreshold = 0.55;
         if(heightRatio>=percentageThreshold) { //0.55) { // then reduce
             this.setRendererSize(w,h - this.tabBodyPos, renderer,camera);
 

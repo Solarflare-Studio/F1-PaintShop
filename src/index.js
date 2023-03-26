@@ -2004,6 +2004,8 @@ function handleComeToLife() {
 	comeToLifeContent.classList.remove("hidden");
 	patternContent.classList.add("hidden");
 	finishSelectionLoading.classList.add("hidden");
+
+	//tabheadfade
 }
   
 // Back to Tab Handler
@@ -2211,28 +2213,26 @@ nextBtn.addEventListener("click", () => {
 	}
 
 	if (!nextElement && !nextBtn.classList.contains("submit")) {
-	  TabHead.classList.add("hidden");
-	  allTabs.classList.toggle("hidden");
-	  finishSelectionContent.classList.remove("hidden");
-	  nextBtn.classList.add("submit");
-
-
+		TabHead.classList.add("hidden");
+		allTabs.classList.toggle("hidden");	
+		nextBtn.classList.add("submit");
+		finishSelectionContent.classList.remove("hidden");
 	  // ben change to allow tab background though transparent
-	  tabBody.classList.add('transparenttabblock');
+		tabBody.classList.add('transparenttabblock');
 	//   tabBody.classList.remove("bg-primary");
 
 	  // maximize 3D
-	  if(!haveminimizedGui) {
-		zoomIn.classList.toggle("hidden");
-		zoomOut.classList.toggle("hidden");	
-		minMax(false,2);
-	  }
+		if(!haveminimizedGui) {
+			zoomIn.classList.toggle("hidden");
+			zoomOut.classList.toggle("hidden");	
+			minMax(false,2);
+	  	}
 
 
-	  return;
+	  	return;
 	}
 	if (nextBtn.classList.contains("submit")) {
-	  finishSelectionLoading.classList.remove("hidden");
+	  	finishSelectionLoading.classList.remove("hidden");
 
 	  // ben
 	  doBuildBasemap=true; // start save process
