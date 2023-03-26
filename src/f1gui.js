@@ -310,7 +310,7 @@ class F1Gui {
     setSize(w,h,renderer,camera, colorPatternPicker ) {
 
    
-        const viewportHeight = window.innerHeight;
+        const viewportHeight = h;
         const viewportWidth = window.innerWidth;
 
 

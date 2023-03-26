@@ -598,7 +598,7 @@ function minMax(tabstakencareof,mode) {
 
 	new TWEEN.Tween({ value: posy })
 	.to({ value: targetposy },
-		1000
+		500
 	)
 	.easing(TWEEN.Easing.Quartic.Out)
 	.onUpdate(function(d) {
@@ -631,7 +631,7 @@ function minMax(tabstakencareof,mode) {
 
 	new TWEEN.Tween({ value: posy })
 	.to({ value: targetposy },
-		1000
+		500
 	)
 	.easing(TWEEN.Easing.Quartic.Out)
 	.onUpdate(function(d) {
@@ -1993,10 +1993,10 @@ function handleCloseTutorial(id) {
 }
 // Zoom In/Out Handler
 function handleTabToggle() {
-  zoomIn.classList.toggle("hidden");
-  zoomOut.classList.toggle("hidden");
+  	zoomIn.classList.toggle("hidden");
+  	zoomOut.classList.toggle("hidden");
 
-  minMax(false,1);
+  	minMax(false,1);
 }
 
 // Come to Life Handler
@@ -2025,7 +2025,9 @@ function handleBackToTabs() {
 	tabBody.classList.remove('transparenttabblock');
 
 	if(haveminimizedGui) {
-	  minMax(false,2);
+		zoomIn.classList.toggle("hidden");
+		zoomOut.classList.toggle("hidden");	
+	  	minMax(false,2);
 	}
 	// tabboxes[0].click();
 }
@@ -2089,6 +2091,9 @@ f1PaintTab.forEach((box) => {
 	box.addEventListener("click", (event) => {
 
 	  if(haveminimizedGui) {
+		zoomIn.classList.toggle("hidden");
+		zoomOut.classList.toggle("hidden");	
+
 		minMax(true,1);
 	  }
 
@@ -2218,6 +2223,8 @@ nextBtn.addEventListener("click", () => {
 
 	  // maximize 3D
 	  if(!haveminimizedGui) {
+		zoomIn.classList.toggle("hidden");
+		zoomOut.classList.toggle("hidden");	
 		minMax(false,2);
 	  }
 
@@ -2278,6 +2285,8 @@ prevBtn.addEventListener("click", () => {
 	  tabBody.classList.remove('transparenttabblock');
 
 	  if(haveminimizedGui) {
+		zoomIn.classList.toggle("hidden");
+		zoomOut.classList.toggle("hidden");	
 		minMax(false,2);
 	  }
 
