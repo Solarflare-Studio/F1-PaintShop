@@ -218,7 +218,7 @@ class F1Text {
             inputField.placeholder = inputField.value;
             inputField.value = "";
 
-            
+            document.getElementById('pleaserotatecontainer').style.display='none';
             _self.inText = true;
             
         });

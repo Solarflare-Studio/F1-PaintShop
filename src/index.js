@@ -1835,6 +1835,8 @@ document.getElementById("taginput").addEventListener('focusout', function() {
 	//		setSize(window.innerWidth,window.innerHeight);	
 	window.scrollTo(0,0);
 	f1Text.inText = false;
+	document.getElementById('pleaserotatecontainer').style.display='';
+
 	//	}, 1000);
 		
 		
