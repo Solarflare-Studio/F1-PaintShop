@@ -762,7 +762,9 @@ function introNextPage() {
 		f1Garage.startFloorMode(1); // radial
 		introStage = 2; // moved on from intro
 		f1Ribbons.triggerRibbon();
-
+		setTimeout(function() {
+			f1Garage.startFloorMode(3); // switch on hex floor under lights in shader
+		}, 2500);
 	})
 	.start()
 }
@@ -1213,6 +1215,7 @@ function onRandomPaint() {
 
 	if(!getAutoSelectingPattern()) 
 		f1Garage.startFloorMode(1); // radial 
+		// f1Garage.startFloorMode(3); // test new 
 
 	patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
 	f1SpecialFX.mapUniforms.leadin.value = 2.0;

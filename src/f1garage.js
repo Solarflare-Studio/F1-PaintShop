@@ -155,7 +155,7 @@ class F1Garage {
             })        
             .start()               
         }
-        if(this.floorMode == 1) { // floor circle spread
+        else if(this.floorMode == 1) { // floor circle spread
             self.garageSFXMaterial.uniforms.dimmer.value = 0.5;
 
             if(this.tweenin!=0)
@@ -226,6 +226,17 @@ class F1Garage {
             })        
             .start()            
         }
+        else if(this.floorMode == 3) { // centre lights
+            self.garageSFXMaterial.uniforms.wholegroundamount.value = 0.0;
+            new TWEEN.Tween(self.garageSFXMaterial.uniforms.wholegroundamount)
+            .to({
+                    value: 1.0,
+                },
+                2000
+            )
+            .easing(TWEEN.Easing.Quintic.InOut)
+            .start()
+        }
     }
     //======================
     newGarageMat() {
@@ -263,6 +274,7 @@ class F1Garage {
             scale_y: { value: 1.0},
             mode: {value: 0 },
             dimmer: {value: 0.5},
+            wholegroundamount: {value: 0.0},
           };
   
         this.garageSFXMaterial = new THREE.ShaderMaterial({
@@ -297,6 +309,7 @@ class F1Garage {
             uniform sampler2D texture2; // input texture to drive hexagons if non computational
 
             uniform float dimmer;
+            uniform float wholegroundamount;
 
             varying vec2 vUv;
             uniform float fTime;
@@ -364,6 +377,12 @@ class F1Garage {
                 hi.oddRow = 0;
                 return hi;
             }
+
+            //==================================================================
+            float curve(float x, float amount) {
+                return pow(x, 1.0 / amount);
+            }
+
             //==================================================================
             void main()
             {
@@ -398,6 +417,7 @@ class F1Garage {
                 float rf = float(ri);
 
                 vec3 outcol = vec3(0.0);
+                vec3 mode3col = vec3(0.0);
 
                 // ==============
                 if(int(mode)==2 || int(mode)==0) { // use pixelmap
@@ -409,7 +429,6 @@ class F1Garage {
                 else if(int(mode)==1) { // draws circle from centre outwards
                     float tc = vt * maxc;
                     float tr = vt * maxr;
-
 
                     // vec2 norm = vec2(cf, rf) - vec2(19.0,33.0 );
                     vec2 norm = vec2(cf, rf) - vec2(19.0,35.0 ); // real centre
@@ -440,13 +459,55 @@ class F1Garage {
                         }
                     }
                 }
+                // else if(int(mode)==3) {
+                //     vec2 norm = vec2(cf, rf) - vec2(19.0,35.0 ); // real centre
+                //     norm.x *= 2.0;
 
+                //     // circle splash
+                //     float radius = 45.0 * 0.25;
+                //     float dist = length(norm);
+                //     if(dist <= radius) {    
+                //         float curveAmount = 4.0;
+                //         float curveDist = curve(eDist*.5, curveAmount);
+                //         mode3col = (1.0 - curveDist);
+                //     }
+                // }
+                // ==============
                 // most modes just do hex outline by using mask from hex image
                 vec4 colour = texture2D(texture1, uv);
                 float g = colour.g;
 
+                // if(mode==3) {
+                //     float curveAmount = 4.0;
+                //     float curveDist = curve(eDist*.5, curveAmount);
+                //     outcol *= (1.0 - curveDist); 
+                // }
+                // else {
+                //     outcol *= g;
+                // }
+
                 outcol *= g;
                 outcol *= dimmer;// 0.5;
+
+
+                // vec2 norm = vec2(cf, rf) - vec2(19.0,35.0 ); // real centre
+                // norm.x *= 2.0;
+                // float radius = 45.0 * 0.35;
+                // float dist = length(norm);
+                // if(dist <= 40.0 && wholegroundamount!=0.0) {
+                if(wholegroundamount!=0.0) {
+                    float curveAmount = 4.0;
+                    float curveDist = curve(eDist*1., curveAmount);
+                    if(g<=0.1) {
+                        vec3 tintground = vec3(0.1,0,0) * wholegroundamount;
+                        outcol = mix(outcol,  tintground, (1.0 - curveDist));
+                    }
+                }
+
+
+
+
+
 
                 gl_FragColor = vec4(outcol, .6);
             }
