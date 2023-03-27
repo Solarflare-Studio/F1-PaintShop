@@ -224,16 +224,38 @@ class F1Text {
         });
 
 
+        // inputField.addEventListener('keydown', function(event) {
+        //     if(DEBUG_MODE)
+        //         console.log('keydown');
+        //     var letters = /^[A-Za-z0-9 ]+$/;
+        //     if (!event.key.match(letters) && event.key !== 'Backspace') {
+        //         event.preventDefault();
+        //     }
+        // });
+        inputField.setAttribute('data-last-valid-value', 'F1');
         inputField.addEventListener('input', function() {
-            var letters = /^[A-Za-z0-9]+$/;
-            if(this.value.match(letters)) {
+            var lastValidValue = this.getAttribute('data-last-valid-value');
+            if(DEBUG_MODE)
+                console.log('lastValidValue = ' + lastValidValue);
+
+            if(DEBUG_MODE)
+                console.log('input in = ' + this.value);
+            var letters = /^[A-Za-z0-9 ]+$/;
+            let entireString = inputField.value;
+            entireString = entireString.toString();
+            if(DEBUG_MODE)
+                console.log('length = ' + entireString.length);
+
+            if((this.value.match(letters) || entireString.value=="" || entireString.length==0) && entireString.length <=2) {
                 this.value = this.value.toUpperCase();
                 _self.fixText();
                 _self.composite();
             }
             else {
+                if(DEBUG_MODE)
+                    console.log('input invalid');
                 // prevent typing invalid characters
-                var lastValidValue = this.getAttribute('data-last-valid-value');
+
                 if (lastValidValue) {
                     this.value = lastValidValue;
                 } else {
@@ -243,6 +265,33 @@ class F1Text {
             this.setAttribute('data-last-valid-value', this.value);
 
         });
+
+        // inputField.addEventListener('input', function() {
+        //     if(DEBUG_MODE)
+        //         console.log('input in = ' + this.value);
+        //     var letters = /^[A-Za-z0-9 ]+$/;
+        //     let entireString = inputField.value;
+        //     entireString = entireString.toString();
+        //     console.log('length = ' + entireString.length);
+        //     if(this.value.match(letters) && inputField.value!="" || entireString.length >=2) {
+        //         this.value = this.value.toUpperCase();
+        //         _self.fixText();
+        //         _self.composite();
+        //     }
+        //     else {
+        //         if(DEBUG_MODE)
+        //             console.log('input invalid');
+        //         // prevent typing invalid characters
+        //         var lastValidValue = this.getAttribute('data-last-valid-value');
+        //         if (lastValidValue) {
+        //             this.value = lastValidValue;
+        //         } else {
+        //             this.value = 'F1';
+        //         }            
+        //     }
+        //     this.setAttribute('data-last-valid-value', this.value);
+
+        // });
 
 
         var _self = this;

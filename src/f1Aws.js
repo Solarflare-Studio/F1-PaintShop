@@ -49,22 +49,16 @@ class F1Aws {
     }
 
     //======================
-    applyLanguageKeys() {
-        for(var i=0;i<this.keepLanguageKeys.length;i++) {
-            const textElement = document.getElementById(dialogues[i].name);
-            if(textElement)
-                textElement.innerHTML = dialogues[i].text;
-        }
-    }
-    //======================
     haveLoadedLanguageFile(data,f1aws) {
         f1aws.languageText = JSON.parse(data);
         const dialogues = f1aws.languageText['dialogues'];
         this.keepLanguageKeys = dialogues;
         for(var i=0;i<dialogues.length;i++) {
             const textElement = document.getElementById(dialogues[i].name);
-            if(textElement)
+            if(textElement) {
                 textElement.innerHTML = dialogues[i].text;
+                // textElement.style.visibility = "visible";
+            }
         }
     }
     //======================
@@ -221,11 +215,12 @@ class F1Aws {
                     console.log(">> Successfully uploaded images to aws server.");
                 this.filessavedcount++;
             } catch (err) {
-                return 	console.log(">> There was an error uploading images to aws server: " + err.message);
-                    // alert("There was an error uploading your photo: ", err.message);
+                    alert("There was an error uploading the file: ", (filename + " = " + err.message));
+                    return 	console.log(">> There was an error uploading images to aws server: " + err.message);
                 }
             } catch (err) {
                 // if (!files.length) {
+                alert("error with aws");
                 return console.log(">> aws no files to upload");
                 //alert("Choose a file to upload first.");
                 // }
@@ -296,9 +291,9 @@ class F1Aws {
                         break;
                 }
             } catch (err) {
+                alert("AWS error "+ err);
                 if(DEBUG_MODE)
                     console.error(err);
-                // alert("AWS error "+ err);
             }
         };
         main();

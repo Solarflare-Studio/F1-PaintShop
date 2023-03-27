@@ -71,7 +71,7 @@
       "id": 1001,
       "layer": 0,
       "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_01_Gelato_thumb.jpg",
-      "image": "helmet/02_Patterns/01_Gelato/2k/SF1PS_HelmetV8_Gelato_2k.jpg",
+      "image": "helmet/02_Patterns/01_Gelato/1k/SF1PS_HelmetV9_Gelato_1k.jpg",
       "style": 0,
       "Channels": [
        {
@@ -93,7 +93,7 @@
     "id": 1002,
     "layer": 0,
     "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_02_Cyber_thumb.jpg",
-    "image": "helmet/02_Patterns/02_Cyber/2k/SF1PS_HelmetV8_Cyber_2k.jpg",
+    "image": "helmet/02_Patterns/02_Cyber/1k/SF1PS_HelmetV9_Cyber_1k.jpg",
     "style": 0,
     "Channels": [
      {
@@ -115,7 +115,7 @@
       "id": 1003,
       "layer": 0,
       "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_03_GradMap_thumb.jpg",
-      "image": "helmet/02_Patterns/03_Gradient/2k/SF1PS_HelmetV8_Gradient_2k.jpg",
+      "image": "helmet/02_Patterns/03_Gradient/1k/SF1PS_HelmetV9_Gradient_1k.jpg",
       "style": 0,
       "Channels": [
        {
@@ -137,7 +137,29 @@
     "id": 1004,
     "layer": 0,
     "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_04_Lightspeed_thumb.jpg",
-    "image": "helmet/02_Patterns/04_Lightspeed/2k/SF1PS_HelmetV8_Lightspeed_2k.jpg",
+    "image": "helmet/02_Patterns/04_Lightspeed/1k/SF1PS_HelmetV9_Lightspeed_1k.jpg",
+    "style": 0,
+    "Channels": [
+     {
+      "channelName": "Chan 1",
+      "defaultColour": "48,45,67"
+     },
+     {
+      "channelName": "Chan 2",
+      "defaultColour": "255,32,32"
+     },
+     {
+      "channelName": "Chan 3",
+      "defaultColour": "164,217,255"
+     }
+    ]
+  },
+	{
+    "name": "Y2K",
+    "id": 1005,
+    "layer": 0,
+    "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_04_Lightspeed_thumb.jpg",
+    "image": "helmet/02_Patterns/08_Y2k/1k/SF1PS_HelmetV9_Y2K_1k.jpg",
     "style": 0,
     "Channels": [
      {
@@ -357,7 +379,7 @@
       "id": 3001,
       "layer": 2,
       "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat01_Sponsor_thumb.jpg",
-      "image": "helmet/04_Sponsors/Pat_01/2k/F1PS_HelmetV05_Pat01_Sponsor_2k.png",
+      "image": "helmet/04_Sponsors/Pat_01/1k/F1PS_HelmetV05_Pat01_Sponsor_1k.png",
       "Channels": [
         {
           "channelName": "Chan 1",
@@ -378,7 +400,7 @@
      "id": 3002,
      "layer": 2,
      "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat02_Sponsor_thumb.jpg",
-     "image": "helmet/04_Sponsors/Pat_02/2k/F1PS_HelmetV05_Pat02_Sponsor_2k.png",
+     "image": "helmet/04_Sponsors/Pat_02/1k/F1PS_HelmetV05_Pat02_Sponsor_1k.png",
      "Channels": [
       {
         "channelName": "Chan 1",
@@ -399,7 +421,7 @@
         "id": 3003,
         "layer": 2,
         "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat03_Sponsor_thumb.jpg",
-        "image": "helmet/04_Sponsors/Pat_03/2k/F1PS_HelmetV05_Pat03_Sponsor_2k.png",
+        "image": "helmet/04_Sponsors/Pat_03/1k/F1PS_HelmetV05_Pat03_Sponsor_1k.png",
         "style": 0,
         "Channels": [
           {
@@ -421,7 +443,7 @@
        "id": 3004,
        "layer": 2,
        "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat04_Sponsor_thumb.jpg",
-       "image": "helmet/04_Sponsors/Pat_04/2k/F1PS_HelmetV05_Pat04_Sponsor_2k.png",
+       "image": "helmet/04_Sponsors/Pat_04/1k/F1PS_HelmetV05_Pat04_Sponsor_1k.png",
        "Channels": [
         {
           "channelName": "Chan 1",
@@ -442,7 +464,7 @@
         "id": 3005,
         "layer": 2,
         "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat05_Sponsor_thumb.jpg",
-        "image": "helmet/04_Sponsors/Pat_05/2k/F1PS_HelmetV05_Pat05_Sponsor_2k.png",
+        "image": "helmet/04_Sponsors/Pat_05/1k/F1PS_HelmetV05_Pat05_Sponsor_1k.png",
         "style": 0,
         "Channels": [
           {
@@ -464,7 +486,7 @@
        "id": 3006,
        "layer": 2,
        "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat06_Sponsor_thumb.jpg",
-       "image": "helmet/04_Sponsors/Pat_06/2k/F1PS_HelmetV05_Pat06_Sponsor_2k.png",
+       "image": "helmet/04_Sponsors/Pat_06/1k/F1PS_HelmetV05_Pat06_Sponsor_1k.png",
        "Channels": [
         {
           "channelName": "Chan 1",
@@ -485,7 +507,7 @@
         "id": 3007,
         "layer": 2,
         "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat07_Sponsor_thumb.jpg",
-        "image": "helmet/04_Sponsors/Pat_07/2k/F1PS_HelmetV05_Pat07_Sponsor_2k.png",
+        "image": "helmet/04_Sponsors/Pat_07/1k/F1PS_HelmetV05_Pat07_Sponsor_1k.png",
         "style": 0,
         "Channels": [
           {
@@ -507,7 +529,7 @@
        "id": 3008,
        "layer": 2,
        "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat08_Sponsor_thumb.jpg",
-       "image": "helmet/04_Sponsors/Pat_08/2k/F1PS_HelmetV05_Pat08_Sponsor_2k.png",
+       "image": "helmet/04_Sponsors/Pat_08/1k/F1PS_HelmetV05_Pat08_Sponsor_1k.png",
        "Channels": [
         {
           "channelName": "Chan 1",
@@ -528,7 +550,7 @@
         "id": 3009,
         "layer": 2,
         "thumbnail": "helmet/04_Sponsors/_Thumbs/F1PS_Pat09_Sponsor_thumb.jpg",
-        "image": "helmet/04_Sponsors/Pat_09/2k/F1PS_HelmetV05_Pat09_Sponsor_2k.png",
+        "image": "helmet/04_Sponsors/Pat_09/1k/F1PS_HelmetV05_Pat09_Sponsor_1k.png",
         "style": 0,
         "Channels": [
          {

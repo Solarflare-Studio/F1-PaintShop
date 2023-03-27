@@ -117,6 +117,19 @@
     background-color: white!important;
 }
 
+progress::-moz-progress-bar {
+	background-color: white!important;
+}
+
+/* ::-webkit-progress-value */
+
+progress
+{ 
+	background-color: transparent;
+}
+
+
+
 #selectedLanguage {
 	font-family: 'Titillium Web', sans-serif!important;
 }
