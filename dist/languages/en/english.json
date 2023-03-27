@@ -1,315 +1,320 @@
 {
-"dialogues": [  
-  {
-    "name": "LK_welcome_heading",
-    "text": "WELCOME"
-  },
-  {
-    "name": "LK_welcome_01",
-    "text": "Time to customise your very<br />own F1 Car. Get ready to deck<br />out your very own livery and<br />make unique to your style."
-  },
-  {
-    "name": "LK_welcome_02",
-    "text": "NEXT"
-  },
-  {
-    "name": "LK_tutorial_01",
-    "text": "TUTORIAL"
-  },
-  {
-    "name": "LK_tutorial_02",
-    "text": "To take a look at your masterpiece, tap and drag the screen to move the camera around, and pinch to zoom in and out."
-  },
-  {
-    "name": "LK_tutorial_03",
-    "text": "OK!"
-  },
-  {
-    "name": "LK_tutorial_04",
-    "text": "PATTERN"
-  },
-  {
-    "name": "LK_tutorial_05",
-    "text": "Let’s get started then. Choose your pattern."
-  },
-  {
-    "name": "LK_tutorial_06",
-    "text": "OK!"
-  },
-  {
-    "name": "LK_tutorial_07",
-    "text": "PAINT"
-  },
-  {
-    "name": "LK_tutorial_08",
-    "text": "Looking good already, now get colourful."
-  },
-  {
-    "name": "LK_tutorial_09",
-    "text": "OK!"
-  },
-  {
-    "name": "LK_tutorial_10",
-    "text": "TAG"
-  },
-  {
-    "name": "LK_tutorial_11",
-    "text": "Get personal, add your own tag."
-  },
-  {
-    "name": "LK_tutorial_12",
-    "text": "OK!"
-  },
-  {
-    "name": "LK_tutorial_13",
-    "text": "SPONSOR"
-  },
-  {
-    "name": "LK_tutorial_14",
-    "text": "Finishing touches... add some sponsors."
-  },
-  {
-    "name": "LK_tutorial_15",
-    "text": "OK!"
-  },
-  {
-    "name": "LK_tutorial_16",
-    "text": "F1 PAINTSHOP"
-  },
-  {
-    "name": "LK_tutorial_17",
-    "text": "Your F1 design is being sprayed on..."
-  },
-  {
-    "name": "LK_tutorial_18",
-    "text": "COME TO LIFE"
-  },
-  {
-    "name": "LK_tutorial_19",
-    "text": "Time to see your custom design<br />in WebAR. Get ready to see your<br />work of art up close and<br />personal in the real world."
-  },      
-  {
-    "name": "LK_tutorial_20",
-    "text": "NEXT"
-  },
-  {
-    "name": "LK_tutorial_21",
-    "text": "BACK"
-  },
-
-  {
-    "name": "LK_menu_title",
-    "text": "MENU"
-  },
-  {
-    "name": "LK_menu_close",
-    "text": "Close menu"
-  },
-  {
-    "name": "LK_menu_language",
-    "text": "LANGUAGE"
-  },
-  {
-    "name": "LK_menu_terms",
-    "text": "T&CS"
-  },
-  {
-    "name": "LK_menu_security",
-    "text": "SECURITY"
-  },
-  {
-    "name": "LK_menu_otherlinks",
-    "text": "OTHER LINKS"
-  },
-  {
-    "name": "LK_turndevice_01",
-    "text": "TURN YOUR DEVICE"
-  },
-  {
-    "name": "LK_turndevice_02",
-    "text": "This experience requires your device to be held portrait,<br />please turn to proceed."
-  },
-  {
-    "name": "LK_start_title",
-    "text": "F1 PaintShop"
-  },
-  {
-    "name": "LK_info_prepping",
-    "text": "We’re just prepping the garage for you now..."
-  },
-  {
-    "name": "LK_tab_01",
-    "text": "PATTERN"
-  },
-  {
-    "name": "LK_tab_02",
-    "text": "PAINT"
-  },
-  {
-    "name": "LK_tab_03",
-    "text": "TAG"
-  },    
-  {
-    "name": "LK_tab_04",
-    "text": "SPONSOR"
-  },    
-  {
-    "name": "LK_final_heading",
-    "text": "FINISH"
-  },    
-  {
-    "name": "LK_final_01",
-    "text": " If you’re happy, hit next, if you want to change, hit back to amend your design."
-  },    
-  {
-    "name": "LK_final_back",
-    "text": "BACK"
-  },    
-  {
-    "name": "LK_final_next",
-    "text": "NEXT"
-  },
-  {
-    "name": "LK_mat_gloss",
-    "text": "GLOSS"
-  },      
-  {
-    "name": "LK_mat_matte",
-    "text": "MATTE"
-  },      
-  {
-    "name": "LK_mat_metallic",
-    "text": "METALLIC"
-  },
-  {
-    "name": "LK_paint_base",
-    "text": "BASE"
-  },
-  {
-    "name": "LK_paint_primary",
-    "text": "PRIMARY"
-  },
-  {
-    "name": "LK_paint_secondary",
-    "text": "SECONDARY"
-  },
-  {
-    "name": "LK_paint_random",
-    "text": "RANDOMISE"
-  },
-  {
-    "name": "LK_tag_yours",
-    "text": "YOUR TAG"
-  },
-  {
-    "name": "LK_tag_paint",
-    "text": "TAG"
-  },
-  {
-    "name": "LK_tagstyle_paint",
-    "text": "BASE"
-  },
-  {
-    "name": "LK_sponsor_paint",
-    "text": "SPONSOR"
-  },
-  {
-    "name": "LK_colourConfirmButton",
-    "text": "CONFIRM"
-  },
-  {
-    "name": "LK_AR_welcome_1",
-    "text": "ALLOW CAMERA"
-  },
-  {
-    "name": "LK_AR_welcome_2",
-    "text": "To access the augmented reality experience, you must allow camera and motion sensor access for it to work."
-  },
-  {
-    "name": "LK_AR_welcome_3",
-    "text": "OK!"
-  },
-  {
-    "name": "LK_AR_welcome_4",
-    "text": "AUGMENTED REALITY"
-  },
-  {
-    "name": "LK_AR_welcome_5",
-    "text": "Checking permissions"
-  },
-
-  {
-    "name": "LK_AR_cameraRequest_1",
-    "text": "To access the augmented reality experience, you must allow camera access for it to work."
-  },
-  {
-    "name": "LK_AR_cameraSuccess_1",
-    "text": "Successful"
-  },
-  {
-    "name": "LK_AR_cameraError_1",
-    "text": "There's a error with your camera, try refreshing the page."
-  },
-  {
-    "name": "LK_AR_findMarker_1",
-    "text": "TUTORIAL"
-  },
-  {
-    "name": "LK_AR_findMarker_2",
-    "text": "Scan image target to see your F1 car design in front of you."
-  },
-  {
-    "name": "LK_AR_findMarker_3",
-    "text": "Scan image target to see your F1 helmet design in front of you."
-  },
-  {
-    "name": "LK_AR_findMarker_4",
-    "text": "FIND MARKER"
-  },
-  {
-    "name": "LK_AR_findMarker_5",
-    "text": "FIND MARKER"
-  },
-  {
-    "name": "LK_AR_explore_01",
-    "text": "EXPLORE"
-  },
-  {
-    "name": "LK_AR_explore_02",
-    "text": "Admire your design from every angle. Walk around the car and see it come to life."
-  },
-  {
-    "name": "LK_AR_share_01",
-    "text": "SHARE"
-  },
-  {
-    "name": "LK_AR_share_02",
-    "text": "Tap the camera button to snap a pic. Hold to create a video. Share on socials."
-  },  
-  {
-    "name": "LK_AR_button_next",
-    "text": "NEXT"
-  },
-  {
-    "name": "LK_AR_button_back",
-    "text": "BACK"
-  },
-  {
-    "name": "LK_AR_button_ok",
-    "text": "OK"
-  },
-  {
-    "name": "LK_AR_button_finish",
-    "text": "FINISH"
-  },
-  {
-    "name": "LK_AR_button_download",
-    "text": "DOWNLOAD"
-  },
-  {
-    "name": "LK_AR_button_share",
-    "text": "SHARE"
+  "dialogues": [  
+    {
+      "name": "LK_welcome_heading",
+      "text": "WELCOME"
+    },
+    {
+      "name": "LK_welcome_01",
+      "text": "Unleash your creativity, and customise your very own F1 car"
+    },
+    {
+      "name": "LK_welcome_02",
+      "text": "Unleash your creativity, and customise your very own F1 helmet"
+    },
+    {
+      "name": "LK_welcome_03",
+      "text": "NEXT"
+    },
+    {
+      "name": "LK_tutorial_01",
+      "text": "TUTORIAL"
+    },
+    {
+      "name": "LK_tutorial_02",
+      "text": "Buckle up! Tap and drag to move the camera. Pinch to zoom in and out. See your car in all its glory"
+    },
+    {
+      "name": "LK_tutorial_03",
+      "text": "OK!"
+    },
+    {
+      "name": "LK_tutorial_04",
+      "text": "PATTERN"
+    },
+    {
+      "name": "LK_tutorial_05",
+      "text": "First, pick a pattern that suits your style"
+    },
+    {
+      "name": "LK_tutorial_06",
+      "text": "OK!"
+    },
+    {
+      "name": "LK_tutorial_07",
+      "text": "PAINT"
+    },
+    {
+      "name": "LK_tutorial_08",
+      "text": "Make your car stand out with your favorite colors"
+    },
+    {
+      "name": "LK_tutorial_09",
+      "text": "OK!"
+    },
+    {
+      "name": "LK_tutorial_10",
+      "text": "TAG"
+    },
+    {
+      "name": "LK_tutorial_11",
+      "text": "Add your own custom tag to your car"
+    },
+    {
+      "name": "LK_tutorial_12",
+      "text": "OK!"
+    },
+    {
+      "name": "LK_tutorial_13",
+      "text": "SPONSOR"
+    },
+    {
+      "name": "LK_tutorial_14",
+      "text": "Get race-ready with some sponsor decals"
+    },
+    {
+      "name": "LK_tutorial_15",
+      "text": "OK!"
+    },
+    {
+      "name": "LK_tutorial_16",
+      "text": "F1 PAINTSHOP"
+    },
+    {
+      "name": "LK_tutorial_17",
+      "text": "Your F1 design is being sprayed on..."
+    },
+    {
+      "name": "LK_tutorial_18",
+      "text": "COME TO LIFE"
+    },
+    {
+      "name": "LK_tutorial_19",
+      "text": "Want to see your ride come to life? Check it out in WebAR"
+    },      
+    {
+      "name": "LK_tutorial_20",
+      "text": "NEXT"
+    },
+    {
+      "name": "LK_tutorial_21",
+      "text": "BACK"
+    },
+  
+    {
+      "name": "LK_menu_title",
+      "text": "MENU"
+    },
+    {
+      "name": "LK_menu_close",
+      "text": "Close menu"
+    },
+    {
+      "name": "LK_menu_language",
+      "text": "LANGUAGE"
+    },
+    {
+      "name": "LK_menu_terms",
+      "text": "T&CS"
+    },
+    {
+      "name": "LK_menu_security",
+      "text": "SECURITY"
+    },
+    {
+      "name": "LK_menu_otherlinks",
+      "text": "OTHER LINKS"
+    },
+    {
+      "name": "LK_turndevice_01",
+      "text": "TURN YOUR DEVICE"
+    },
+    {
+      "name": "LK_turndevice_02",
+      "text": "This experience requires your device to be held portrait,<br />please turn to proceed."
+    },
+    {
+      "name": "LK_start_title",
+      "text": "F1 PaintShop"
+    },
+    {
+      "name": "LK_info_prepping",
+      "text": "We’re just prepping the garage for you now..."
+    },
+    {
+      "name": "LK_tab_01",
+      "text": "PATTERN"
+    },
+    {
+      "name": "LK_tab_02",
+      "text": "PAINT"
+    },
+    {
+      "name": "LK_tab_03",
+      "text": "TAG"
+    },    
+    {
+      "name": "LK_tab_04",
+      "text": "SPONSOR"
+    },    
+    {
+      "name": "LK_final_heading",
+      "text": "FINISH"
+    },    
+    {
+      "name": "LK_final_01",
+      "text": " If you’re happy, hit next, if you want to change, hit back to amend your design."
+    },    
+    {
+      "name": "LK_final_back",
+      "text": "BACK"
+    },    
+    {
+      "name": "LK_final_next",
+      "text": "NEXT"
+    },
+    {
+      "name": "LK_mat_gloss",
+      "text": "GLOSS"
+    },      
+    {
+      "name": "LK_mat_matte",
+      "text": "MATTE"
+    },      
+    {
+      "name": "LK_mat_metallic",
+      "text": "METALLIC"
+    },
+    {
+      "name": "LK_paint_base",
+      "text": "BASE"
+    },
+    {
+      "name": "LK_paint_primary",
+      "text": "PRIMARY"
+    },
+    {
+      "name": "LK_paint_secondary",
+      "text": "SECONDARY"
+    },
+    {
+      "name": "LK_paint_random",
+      "text": "RANDOMISE"
+    },
+    {
+      "name": "LK_tag_yours",
+      "text": "YOUR TAG"
+    },
+    {
+      "name": "LK_tag_paint",
+      "text": "TAG"
+    },
+    {
+      "name": "LK_tagstyle_paint",
+      "text": "BASE"
+    },
+    {
+      "name": "LK_sponsor_paint",
+      "text": "SPONSOR"
+    },
+    {
+      "name": "LK_colourConfirmButton",
+      "text": "CONFIRM"
+    },
+    {
+      "name": "LK_AR_welcome_1",
+      "text": "ALLOW CAMERA"
+    },
+    {
+      "name": "LK_AR_welcome_2",
+      "text": "To enjoy the full AR experience, we need your permission to access your camera"
+    },
+    {
+      "name": "LK_AR_welcome_3",
+      "text": "OK!"
+    },
+    {
+      "name": "LK_AR_welcome_4",
+      "text": "AUGMENTED REALITY"
+    },
+    {
+      "name": "LK_AR_welcome_5",
+      "text": "Checking permissions"
+    },
+  
+    {
+      "name": "LK_AR_cameraRequest_1",
+      "text": "To enjoy the full AR experience, we need your permission to access your camera"
+    },
+    {
+      "name": "LK_AR_cameraSuccess_1",
+      "text": "Successful"
+    },
+    {
+      "name": "LK_AR_cameraError_1",
+      "text": "There's a error with your camera, try refreshing the page."
+    },
+    {
+      "name": "LK_AR_findMarker_1",
+      "text": "TUTORIAL"
+    },
+    {
+      "name": "LK_AR_findMarker_2",
+      "text": "Ready, set, scan! Point your camera at the image target to see your F1 car design come to life"
+    },
+    {
+      "name": "LK_AR_findMarker_3",
+      "text": "Ready, set, scan! Point your camera at the image target to see your F1 helmet design come to life"
+    },
+    {
+      "name": "LK_AR_findMarker_4",
+      "text": "FIND MARKER"
+    },
+    {
+      "name": "LK_AR_findMarker_5",
+      "text": "FIND MARKER"
+    },
+    {
+      "name": "LK_AR_explore_01",
+      "text": "EXPLORE"
+    },
+    {
+      "name": "LK_AR_explore_02",
+      "text": "Admire your design from every angle. Walk around the car and see it come to life."
+    },
+    {
+      "name": "LK_AR_share_01",
+      "text": "SHARE"
+    },
+    {
+      "name": "LK_AR_share_02",
+      "text": "Tap the camera button to snap a pic. Hold to create a video. Share on socials."
+    },  
+    {
+      "name": "LK_AR_button_next",
+      "text": "NEXT"
+    },
+    {
+      "name": "LK_AR_button_back",
+      "text": "BACK"
+    },
+    {
+      "name": "LK_AR_button_ok",
+      "text": "OK"
+    },
+    {
+      "name": "LK_AR_button_finish",
+      "text": "FINISH"
+    },
+    {
+      "name": "LK_AR_button_download",
+      "text": "DOWNLOAD"
+    },
+    {
+      "name": "LK_AR_button_share",
+      "text": "SHARE"
+    }
+  ]
   }
-]
-}
-
+  
+  

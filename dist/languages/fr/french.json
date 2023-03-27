@@ -2,14 +2,18 @@
   "dialogues": [  
     {
       "name": "LK_welcome_heading",
-      "text": "BIENVENUE"
+      "text": "WELCOME"
     },
     {
       "name": "LK_welcome_01",
-      "text": "Time to customise your very<br />own F1 Car. Get ready to deck<br />out your very own livery and<br />make unique to your style."
+      "text": "Unleash your creativity, and customise your very own F1 car"
     },
     {
       "name": "LK_welcome_02",
+      "text": "Unleash your creativity, and customise your very own F1 helmet"
+    },
+    {
+      "name": "LK_welcome_03",
       "text": "NEXT"
     },
     {
@@ -18,7 +22,7 @@
     },
     {
       "name": "LK_tutorial_02",
-      "text": "To take a look at your masterpiece, tap and drag the screen to move the camera around, and pinch to zoom in and out."
+      "text": "Buckle up! Tap and drag to move the camera. Pinch to zoom in and out. See your car in all its glory"
     },
     {
       "name": "LK_tutorial_03",
@@ -30,7 +34,7 @@
     },
     {
       "name": "LK_tutorial_05",
-      "text": "Let’s get started then. Choose your pattern."
+      "text": "First, pick a pattern that suits your style"
     },
     {
       "name": "LK_tutorial_06",
@@ -42,7 +46,7 @@
     },
     {
       "name": "LK_tutorial_08",
-      "text": "Looking good already, now get colourful."
+      "text": "Make your car stand out with your favorite colors"
     },
     {
       "name": "LK_tutorial_09",
@@ -54,7 +58,7 @@
     },
     {
       "name": "LK_tutorial_11",
-      "text": "Get personal, add your own tag."
+      "text": "Add your own custom tag to your car"
     },
     {
       "name": "LK_tutorial_12",
@@ -66,7 +70,7 @@
     },
     {
       "name": "LK_tutorial_14",
-      "text": "Finishing touches... add some sponsors."
+      "text": "Get race-ready with some sponsor decals"
     },
     {
       "name": "LK_tutorial_15",
@@ -86,7 +90,7 @@
     },
     {
       "name": "LK_tutorial_19",
-      "text": "Time to see your custom design<br />in WebAR. Get ready to see your<br />work of art up close and<br />personal in the real world."
+      "text": "Want to see your ride come to life? Check it out in WebAR"
     },      
     {
       "name": "LK_tutorial_20",
@@ -223,7 +227,7 @@
     },
     {
       "name": "LK_AR_welcome_2",
-      "text": "To access the augmented reality experience, you must allow camera and motion sensor access for it to work."
+      "text": "To enjoy the full AR experience, we need your permission to access your camera"
     },
     {
       "name": "LK_AR_welcome_3",
@@ -240,7 +244,7 @@
   
     {
       "name": "LK_AR_cameraRequest_1",
-      "text": "To access the augmented reality experience, you must allow camera access for it to work."
+      "text": "To enjoy the full AR experience, we need your permission to access your camera"
     },
     {
       "name": "LK_AR_cameraSuccess_1",
@@ -256,11 +260,11 @@
     },
     {
       "name": "LK_AR_findMarker_2",
-      "text": "Scan image target to see your F1 car design in front of you."
+      "text": "Ready, set, scan! Point your camera at the image target to see your F1 car design come to life"
     },
     {
       "name": "LK_AR_findMarker_3",
-      "text": "Scan image target to see your F1 helmet design in front of you."
+      "text": "Ready, set, scan! Point your camera at the image target to see your F1 helmet design come to life"
     },
     {
       "name": "LK_AR_findMarker_4",
@@ -269,7 +273,7 @@
     {
       "name": "LK_AR_findMarker_5",
       "text": "FIND MARKER"
-    },    
+    },
     {
       "name": "LK_AR_explore_01",
       "text": "EXPLORE"

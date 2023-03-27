@@ -39,7 +39,7 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
 
         this.userConsole = (params.get('c') ? params.get('c') : 0); // console
         
-        this.languageCode = (params.get('lan') ? params.get('lan').toUpperCase() : "EN"); // language
+        this.languageCode = (params.get('lan') ? params.get('lan').toLowerCase() : "en"); // language
         // this.languageCode = "ENG";
         
         DEBUG_MODE=this.userConsole;
