@@ -6,11 +6,11 @@
     },
     {
       "name": "LK_welcome_01",
-      "text": "Unleash your creativity, and customise your very own F1 car"
+      "text": "Unleash your creativity,<br>and customise your very own F1 car"
     },
     {
       "name": "LK_welcome_02",
-      "text": "Unleash your creativity, and customise your very own F1 helmet"
+      "text": "Unleash your creativity,<br>and customise your very own F1 helmet"
     },
     {
       "name": "LK_welcome_03",
@@ -22,7 +22,7 @@
     },
     {
       "name": "LK_tutorial_02",
-      "text": "Buckle up! Tap and drag to move the camera. Pinch to zoom in and out. See your car in all its glory"
+      "text": "Buckle up! Touch and drag to move the camera. Pinch to zoom in and out. See your car in all its glory"
     },
     {
       "name": "LK_tutorial_03",
@@ -86,11 +86,11 @@
     },
     {
       "name": "LK_tutorial_18",
-      "text": "COME TO LIFE"
+      "text": "You Ready to Roll?"
     },
     {
       "name": "LK_tutorial_19",
-      "text": "Want to see your ride come to life? Check it out in WebAR"
+      "text": "From Screen to Steel, Design in motion. Want to see your ride come to life? Check it out in WebAR"
     },      
     {
       "name": "LK_tutorial_20",
@@ -135,11 +135,11 @@
     },
     {
       "name": "LK_start_title",
-      "text": "F1 PaintShop"
+      "text": "Revving our engines.."
     },
     {
       "name": "LK_info_prepping",
-      "text": "We’re just prepping the garage for you now..."
+      "text": "We're fuelling up the F1 Paint Shop for you.<br> Please wait a moment..."
     },
     {
       "name": "LK_tab_01",
@@ -159,11 +159,11 @@
     },    
     {
       "name": "LK_final_heading",
-      "text": "FINISH"
+      "text": "Looking good!"
     },    
     {
       "name": "LK_final_01",
-      "text": " If you’re happy, hit next, if you want to change, hit back to amend your design."
+      "text": "Ready to roll? Hit ‘NEXT’ or go back to make changes."
     },    
     {
       "name": "LK_final_back",
@@ -280,7 +280,7 @@
     },
     {
       "name": "LK_AR_explore_02",
-      "text": "Admire your design from every angle. Walk around the car and see it come to life."
+      "text": "Do a lap around the car to check out your design from all angles."
     },
     {
       "name": "LK_AR_share_01",
@@ -288,7 +288,7 @@
     },
     {
       "name": "LK_AR_share_02",
-      "text": "Tap the camera button to snap a pic. Hold to create a video. Share on socials."
+      "text": "Tap or hold the camera button. Snap a pic or video. Share on socials."
     },  
     {
       "name": "LK_AR_button_next",

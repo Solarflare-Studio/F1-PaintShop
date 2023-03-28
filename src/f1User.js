@@ -18,7 +18,7 @@ class F1User {
 
         var _self = this;
         console.log("\nStarting F1PaintShop\nSolarFlareStudios\n2023\n");
-
+        console.log('version: ' + document.getElementById('versionid').innerHTML);
         const params = new URLSearchParams(document.location.search)
        
 /*https://testrace.eventshouse.dev/microsite/index?waid=7870142279c10454b2bce1866d14da7c82f8ee3c0f87b85ea34f85ae4c6d989f88cc0025859c2ff2c26efe9c01799649093356abb0b4c15db4351af3d5b34bfca3NsGp7mJppF4%2FjbN%2F7Xm4nl%2FqVU74QpU3u1COCBxjQ%3D#
@@ -26,6 +26,7 @@ https://testrace.eventshouse.dev/microsite/index?waid=7870142279c10454b2bce1866d
 also:  example of an URL we'd link users to would be https://webactivationaddress.com/?uuid=69f59c273b6e669ac32a6dd5e1b2cb63333d8b004f9696447aee2d422ce63763&lan=en
 
 */
+
 
 
         // this.userID = (params.get('uuid') ? params.get('uuid') : "noID"); // user id
@@ -47,8 +48,8 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
 
         // if no uuid, then need to go back to www registration then
         if(!this.userConsole && this.userID == 'noID') {
-            // TODO
-            // window.location.href = 'https://www.mapflaps.com';
+            // redirect
+            window.location.href = 'https://fanzone.live/';
 
         }
         
@@ -67,13 +68,14 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
 
         
 
-        if(DEBUG_MODE)
+        if(DEBUG_MODE) {
             console.log(">> ** name:" + this.userName + ", id:" + this.userID + ", email:"+ this.userEmail + ", model:"+ this.userCarOrHelmet + ", lang:" + this.languageCode);
+            document.getElementById('versionid').style.display='block';
+        }
         
-        // var cookie_uniqueID_value = document.cookie.replace(/(?:(?:^|.*;\s*)userID\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        // var cookie_name_value = document.cookie.replace(/(?:(?:^|.*;\s*)userName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        // var cookie_email_value = document.cookie.replace(/(?:(?:^|.*;\s*)userEmail\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        
+
+        this.cookie_livery_value=""; // temp placeholder whilst cookies not needed
+        /* remove cookies for now not needed
         // read in if existing cookies
         var cookie_uniqueID_value = document.cookie.replace(/(?:(?:^|.*;\s*)userID\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         var cookie_name_value = document.cookie.replace(/(?:(?:^|.*;\s*)userName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -115,6 +117,8 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
 
 
         this.clearCookies();
+        */
+
 
         if(this.userID=="")
             this.userID="noID";

@@ -4,10 +4,11 @@ import {DEBUG_MODE} from './adminuser'
 class F1Aws {
 
 
-    constructor() {
+    constructor(isHelmet) {
         this.languageSettingsJson = 0;
         this.preloadlanguagecode = "";
         this.keepLanguageKeys = "";
+        this.isHelmet = isHelmet;
         this.init();
     }
     init() {
@@ -56,6 +57,25 @@ class F1Aws {
         for(var i=0;i<dialogues.length;i++) {
             const textElement = document.getElementById(dialogues[i].name);
             if(textElement) {
+                if(f1aws.isHelmet)
+                    if(dialogues[i].name == 'LK_tutorial_02') { // need to swap out ' car ' for ' helmet '
+                        var newString = dialogues[i].text.replace(/ car /g, " helmet ");
+                        dialogues[i].text = newString;
+                    }
+                    else if(dialogues[i].name == 'LK_tutorial_08') { // need to swap out ' car ' for ' helmet '
+                        var newString = dialogues[i].text.replace(/ car /g, " helmet ");
+                        dialogues[i].text = newString;
+                    }
+                    else if(dialogues[i].name == 'LK_tutorial_11') { // need to swap out ' car ' for ' helmet '
+                        var newString = dialogues[i].text.replace(/ car/g, " helmet");
+                        dialogues[i].text = newString;
+                    }
+                    else if(dialogues[i].name == 'LK_tutorial_19') { // need to swap out 'ride' for ' helmet '
+                        var newString = dialogues[i].text.replace(/ride/g, "helmet");
+                        dialogues[i].text = newString;
+                    }
+
+                    
                 textElement.innerHTML = dialogues[i].text;
                 // textElement.style.visibility = "visible";
             }

@@ -96,13 +96,14 @@ class F1CarHelmet {
                 // color: new THREE.Color(0xffffff),
                 // metalness: 0.1,// 1,// 0.4,// 1,
                 // roughness: 1.0,//1,//0.27, //1,
-                metalness: 1.0,// 1,// 0.4,// 1,
-                roughness: 1.0,//1,//0.27, //1,
+                metalness: 1.,// 1,// 0.4,// 1,
+                roughness: 1.,//1,//0.27, //1,
                 color: new THREE.Color(0xffffff),
                 emissiveIntensity: 1,
                 aoMapIntensity: 1.0,
                 // shadowSide: THREE.FrontSide,// THREE.DoubleSide,
                 shadowSide: THREE.DoubleSide,
+                // shadowSide: THREE.DoubleSide,
                 
                 emissive: new THREE.Color(0,0,0),
                 normalScale: new THREE.Vector2(-0.5, 0.5),
@@ -165,12 +166,13 @@ class F1CarHelmet {
                 _self.customMesh.material = _self.theCustomMaterial;
                 _self.customMesh.castShadow = true;
                 _self.customMesh.receiveShadow = true;//false;
+                // _self.customMesh.receiveShadow = false;
 
                 _self.staticMesh = theModelScene.getObjectByName('F1PS_F1_Car_Static')
                 _self.staticMesh.layers.set(2); // make base black for glow...
                 _self.staticMesh.material = _self.theStaticMaterial;
                 _self.staticMesh.castShadow = true;
-                // staticMesh.receiveShadow = false;
+                // _self.staticMesh.receiveShadow = false;
                 _self.staticMesh.receiveShadow = true; // maybe! todo
             }
             else {
@@ -180,6 +182,7 @@ class F1CarHelmet {
                 _self.customMesh.material.normalScale = new THREE.Vector2(-0.1, 0.1),
                 _self.customMesh.castShadow = true;
                 _self.customMesh.receiveShadow = false;
+                // _self.customMesh.receiveShadow = true;
 
                 _self.staticMesh = theModelScene.getObjectByName('Helmet_main_1')
                 _self.staticMesh.layers.set(2); // make base black for glow...

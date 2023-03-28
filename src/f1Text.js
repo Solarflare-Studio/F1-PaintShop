@@ -191,7 +191,17 @@ class F1Text {
 
     }
     // =======================
+    validateText(f1Text) {
+        const inputField = document.getElementById('taginput');
+        let entireString = inputField.value;
+        if(entireString=="") 
+            inputField.value="F1";
 
+        inputField.value = inputField.value.toUpperCase();
+        inputField.setAttribute('data-last-valid-value', this.value);
+        f1Text.fixText();
+        f1Text.composite();
+    }
 
     init(processJSON) {
         if(DEBUG_MODE)
@@ -224,6 +234,7 @@ class F1Text {
         });
 
 
+
         // inputField.addEventListener('keydown', function(event) {
         //     if(DEBUG_MODE)
         //         console.log('keydown');
@@ -246,7 +257,9 @@ class F1Text {
             if(DEBUG_MODE)
                 console.log('length = ' + entireString.length);
 
-            if((this.value.match(letters) || entireString.value=="" || entireString.length==0) && entireString.length <=2) {
+            if((this.value.match(letters) || entireString=="" || entireString.length==0) && entireString.length <=2) {
+                // if(entireString=="") 
+                //     this.value="F1";
                 this.value = this.value.toUpperCase();
                 _self.fixText();
                 _self.composite();

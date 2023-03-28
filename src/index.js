@@ -100,7 +100,7 @@ var wasincolourpicker = false;
 
 // ==============================
 
-var f1Aws = new F1Aws();
+var f1Aws = new F1Aws(f1User.isHelmet);
 f1Aws.preloadlanguagecode = f1User.languageCode;
 f1Aws.loadfromAWS('languages','languages.json',0,null,f1Aws);
 
@@ -473,6 +473,9 @@ function setupConsoleListeners() {
 	});
 	document.getElementById('c_lightZSlider').addEventListener('input', function() {
 		const val = this.value;
+		// dirLight.shadow.camera.far = this.value * 2.;// - 0.000222;
+		// console.log(dirLight.shadow.camera.far);
+		// return;
 		document.getElementById('c_lightZSliderTxt').innerHTML = "z= " + val;
 		switch(document.getElementById('c_whichlight').value) {
 			case "point1":
@@ -718,6 +721,11 @@ function introNextPage() {
 	const carinduration = 3500;	// delays 500 first
 	const carwireduration = 2000;  // delays 800 first
 	
+
+	f1CarHelmet.theModelRoot.visible = true;
+	// controls.enableDamping=true;
+
+
 	camera.position.set(camfrom.x,camfrom.y,camfrom.z);
 	f1CarHelmet.customMesh.castShadow = false;
 	f1CarHelmet.staticMesh.castShadow = false;
@@ -768,6 +776,8 @@ function introNextPage() {
 	.easing(TWEEN.Easing.Sinusoidal.InOut)
 	.onComplete(function () {
 		controls.enabled = true;
+		// controls.enableDamping=false;
+
 		f1SpecialFX.resetCarFromIntro(f1CarHelmet,f1User.isHelmet);
 		renderer.localClippingEnabled = false;	// was for sfx intro
 		f1Garage.startFloorMode(1); // radial
@@ -842,30 +852,71 @@ function initScenes()
 	f1CarHelmet.init(f1Materials,f1Layers, f1User.isHelmet, f1fnames, f1MetalRough,f1SpecialFX, f1Garage,f1Ribbons);
 
 	// lights
-	mainLight = createPointLight(f1Settings.mainLight1Intensity);
-	mainLight2 = createPointLight(f1Settings.mainLight2Intensity);
-	mainLight3 = createSpotLight(f1Settings.spotLight1Intensity);
-	mainLight4 = createSpotLight(f1Settings.spotLight2Intensity);
+	if(f1User.isHelmet) {
+		mainLight = createPointLight(f1Settings.mainLight1IntensityH);
+		mainLight2 = createPointLight(f1Settings.mainLight2IntensityH);
+		mainLight3 = createSpotLight(f1Settings.spotLight1IntensityH);
+		mainLight4 = createSpotLight(f1Settings.spotLight2IntensityH);
+		
+		// mainLight.position.set( 77, -59, 93 );	// points
+		// mainLight2.position.set( -80, -37, -43 );
 	
-	mainLight.position.set( 77, -59, 93 );	// points
-	mainLight2.position.set( -80, -37, -43 );
+		// mainLight3.position.set( -26, 37, -43 ); // spots
+		// mainLight4.position.set( 79, 40, 52 );
+		mainLight.position.set( 50, 72, 0 );	// points
+		mainLight2.position.set( -50, 72, 0 );
+	
+		mainLight3.position.set( 0, 100, -100 ); // spots
+		mainLight4.position.set( 0, 45, 100 );
+	
+		ambLight = new THREE.AmbientLight( 0xffffff, f1Settings.ambientLightIntensityH ); 
+	
+		dirLight = createDirectionalLight(f1Settings.dirLight1IntensityH);
+		// dirLight2 = createDirectionalLight(f1Settings.dirLight2Intensity);
+	
+		const dirlightheight = 200;//152;
+		const dirlightx = 1;//78;
+		const dirlightz = 126;//-10; // -40
+	
+		dirLight.position.set( 0,200,120);
+		// dirLight.target = f1CarHelmet.theModelRoot;
+		// dirLight2.position.set( -dirlightx, dirlightheight, dirlightz);
+		// dirLight2.target = f1CarHelmet.theModelRoot;
+	
+	}
+	else {
+		mainLight = createPointLight(f1Settings.mainLight1Intensity);
+		mainLight2 = createPointLight(f1Settings.mainLight2Intensity);
+		mainLight3 = createSpotLight(f1Settings.spotLight1Intensity);
+		mainLight4 = createSpotLight(f1Settings.spotLight2Intensity);
+		
+		// mainLight.position.set( 77, -59, 93 );	// points
+		// mainLight2.position.set( -80, -37, -43 );
+	
+		// mainLight3.position.set( -26, 37, -43 ); // spots
+		// mainLight4.position.set( 79, 40, 52 );
+		mainLight.position.set( 50, 72, 0 );	// points
+		mainLight2.position.set( -50, 72, 0 );
+	
+		mainLight3.position.set( 0, 100, -100 ); // spots
+		mainLight4.position.set( 0, 45, 100 );
+	
+		ambLight = new THREE.AmbientLight( 0xffffff, f1Settings.ambientLightIntensity ); 
+	
+		dirLight = createDirectionalLight(f1Settings.dirLight1Intensity);
+		// dirLight2 = createDirectionalLight(f1Settings.dirLight2Intensity);
+	
+		const dirlightheight = 200;//152;
+		const dirlightx = 1;//78;
+		const dirlightz = 126;//-10; // -40
+	
+		dirLight.position.set( 0,200,120);
+		// dirLight.target = f1CarHelmet.theModelRoot;
+		// dirLight2.position.set( -dirlightx, dirlightheight, dirlightz);
+		// dirLight2.target = f1CarHelmet.theModelRoot;
+	
+	}
 
-	mainLight3.position.set( -26, 37, -43 ); // spots
-	mainLight4.position.set( 79, 40, 52 );
-
-	ambLight = new THREE.AmbientLight( 0xffffff, f1Settings.ambientLightIntensity ); 
-
-	dirLight = createDirectionalLight(f1Settings.dirLight1Intensity);
-	dirLight2 = createDirectionalLight(f1Settings.dirLight2Intensity);
-
-	const dirlightheight = 200;//152;
-	const dirlightx = 1;//78;
-	const dirlightz = 126;//-10; // -40
-
-	dirLight.position.set( dirlightx, dirlightheight, dirlightz);
-	// dirLight.target = f1CarHelmet.theModelRoot;
-	dirLight2.position.set( -dirlightx, dirlightheight, dirlightz);
-	// dirLight2.target = f1CarHelmet.theModelRoot;
 
 
 	scene.add(mainLight);
@@ -955,6 +1006,7 @@ function initScenes()
 
 	controls.update();
 	//
+	f1CarHelmet.theModelRoot.visible = false;
 
     setSize(window.innerWidth,window.innerHeight );
 }
@@ -964,12 +1016,16 @@ function createDirectionalLight(intensity) {
 	light.castShadow = true;
 	light.shadow.mapSize.width = 1024;
 	light.shadow.mapSize.height = 1024;
-	light.shadow.camera.near = 0.5;
+	light.shadow.camera.near = 0.1;
 	light.shadow.camera.far = 500;
 	light.shadow.camera.left = -100;
 	light.shadow.camera.right = 100;
 	light.shadow.camera.top = 100;
 	light.shadow.camera.bottom = -100;
+
+	light.shadow.bias = - 0.0014;// - 0.000222;
+	
+	
 	light.target.position.set( new THREE.Vector3(0,0,0));//f1CarHelmet.theModelRoot.position;
 
 	return light;
@@ -1406,7 +1462,7 @@ function setMaterial(glosstype,theChan) {
 	}
 	else if(glosstype==1) { // matt
 		metal = 0.0;
-		rough = 1.0;
+		rough = 0.65;//1.0;
 	}
 	else if(glosstype==2) { // metallic
 		metal = 1.0;
@@ -1827,11 +1883,11 @@ function animate()
 		if(f1User.aUserParam==null) {
 			processJSON.resetLiveryLayerPatterns();
 		}
-		if(f1User.cookie_livery_value!="") {
-			parseCookieLivery();
-		}
-		else
-			f1User.cookie_livery_value = document.cookie.replace(/(?:(?:^|.*;\s*)F1Livery\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		// if(f1User.cookie_livery_value!="") {
+		// 	parseCookieLivery();
+		// }
+		// else
+		// 	f1User.cookie_livery_value = document.cookie.replace(/(?:(?:^|.*;\s*)F1Livery\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
 		f1Text.init(processJSON);
 
@@ -1904,6 +1960,9 @@ var taginput = document.getElementById("taginput");
 taginput.addEventListener("blur", function() {
 	if(DEBUG_MODE)
 		console.log("Tag input lost focus");
+
+	f1Text.validateText(f1Text);
+
 //   window.scrollTo(0,0);
 //   window.scrollTo({ top: 0, behavior: 'instant' });
 //   window.scroll(0, 1);
@@ -1942,6 +2001,7 @@ var viewport = window.visualViewport;
 taginput.addEventListener('focusout', function() {
 	//	setTimeout(() => {
 	//		setSize(window.innerWidth,window.innerHeight);	
+	f1Text.validateText(f1Text);
 
 	window.scrollTo(0,0);
 	// window.scroll(0, -120);
@@ -2122,6 +2182,9 @@ function move() {
 			// loadingProgress = percentageTexturesLoaded;
 			finalProgress.value = loadingProgress;
 			if(loadingProgress >= 100) {
+				document.getElementById('prevBtn').style.pointerEvents='all';
+				document.getElementById('nextBtn').style.pointerEvents='all';
+
 			  handleComeToLife();
 			  document.getElementById('canvas-positioner').style.display='none';
 			} 
@@ -2181,7 +2244,8 @@ function handleWelcomeNext() {
   tutorial.classList.remove("hidden");
 
   controls.enabled = false;
-  camera.position.set(camto.x,camto.y,camto.z);
+//   camera.position.set(camto.x,camto.y,camto.z);
+  camera.position.set(camfrom.x,camfrom.y,camfrom.z);
 
   document.getElementById('welcomeContent').style.display = 'none';
 
@@ -2453,6 +2517,10 @@ nextBtn.addEventListener("click", () => {
 	if (nextBtn.classList.contains("submit")) {
 
 	  // ben
+		document.getElementById('prevBtn').style.pointerEvents='none';
+		document.getElementById('nextBtn').style.pointerEvents='none';
+
+
 		updateProgress(-99,"reset");
 		loadingProgress = 0;
 		finalProgress.value = 0;
