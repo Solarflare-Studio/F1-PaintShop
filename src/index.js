@@ -2236,6 +2236,12 @@ window.addEventListener("click", (event) => {
 });
 // Pattern Layout Handler
 function handleWelcomeNext() {
+
+	// ok allow user input
+	document.getElementById('backgroundimage').style.pointerEvents="none";
+	document.getElementById('backgroundimage').style.zIndex="-99";
+
+
   patternContent.style.opacity='1';
 //   patternContent.style.pointerEvents='';
 

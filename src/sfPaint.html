@@ -251,11 +251,34 @@
 
   </head>
   <!-- class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center overflow-hidden" -->
-  <body
+  <!-- <body
     class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center overflow-hidden"
-    style="user-select: none;background-color: black;pointer-events: none;"
+    style="user-select: none;background-color: black;pointer-events: none;background-size:100% 100%!important"
+    onload="onloaded()"
+  > -->
+  <body
+    class="overflow-hidden bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center"
+    style="user-select: none;background-color: black;pointer-events: none;    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;"
     onload="onloaded()"
   >
+  <div id="backgroundimage"
+    class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] lg:bg-[length:100%_120%] bg-center overflow-hidden"
+    style="    background-position: center;
+    user-select: none;
+    pointer-events: all;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    top: 0;
+    display: block;
+    position: absolute;
+    z-index: 1;"
+  ></div>
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDHHZWC"
@@ -449,7 +472,7 @@
         </h1>
         <p class="text-netural text-sm font-normal py-3 font-Titillium"  id="LK_info_prepping"
         >
-        We're fuelling up the F1 Paint Shop for you. Please wait a moment...
+        We're fuelling up the F1 Paint Shop for you.<br> Please wait a moment...
         </p>
         <progress
           id="welcomeProgress"
@@ -1553,7 +1576,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)" style="display:none">v0.6.4.2</div>
+    <div id="versionid" onclick="onConsole(0)" style="display:none">v0.6.4.3</div>
     <div id="console" class="hidden"
       style="top: 3rem"><div id="fpsindicator" style="display:none;"></div>
       <div class="console" style="pointer-events:all">

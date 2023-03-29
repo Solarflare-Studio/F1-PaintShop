@@ -32,6 +32,16 @@
 	}
 }  
 
+#welcomeContent {
+	z-index: 2;
+	position: relative;
+}
+#loadingContent {
+	z-index: 2;
+	position: relative;
+
+}
+
 
 .f1hidden {
     display:none!important;

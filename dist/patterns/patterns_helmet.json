@@ -114,22 +114,22 @@
       "name": "Gradient",
       "id": 1003,
       "layer": 0,
-      "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_03_GradMap_thumb.jpg",
+      "thumbnail": "car/02_Patterns/_Thumbs/F1PS_Pattern_03_GradMap_thumb.jpg",
       "image": "helmet/02_Patterns/03_Gradient/1k/SF1PS_HelmetV9_Gradient_1k.jpg",
       "style": 0,
       "Channels": [
-       {
-        "channelName": "Chan 1",
-        "defaultColour": "248,248,248"
-       },
-       {
-        "channelName": "Chan 2",
-        "defaultColour": "0,249,174"
-       },
-       {
-        "channelName": "Chan 3",
-        "defaultColour": "0,96,215"
-       }
+     {
+      "channelName": "Chan 1",
+      "defaultColour": "5,3,3"
+     },
+     {
+      "channelName": "Chan 2",
+      "defaultColour": "0,255,163"
+     },
+     {
+      "channelName": "Chan 3",
+      "defaultColour": "2,206,219"
+     }
       ]
     }, 
 	{
@@ -142,7 +142,7 @@
     "Channels": [
      {
       "channelName": "Chan 1",
-      "defaultColour": "48,45,67"
+      "defaultColour": "19,17,26"
      },
      {
       "channelName": "Chan 2",
@@ -154,28 +154,94 @@
      }
     ]
   },
-	{
-    "name": "Y2K",
+  {
+    "name": "Anime",
     "id": 1005,
     "layer": 0,
-    "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_04_Lightspeed_thumb.jpg",
+    "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_05_Anime_thumb.jpg",
+    "image": "helmet/02_Patterns/05_Anime/1k/F1PS_Helmet_V09_Anime_1k.jpg",
+    "style": 0,
+    "Channels": [
+     {
+      "channelName": "Chan 1",
+      "defaultColour": "35,124,144"
+     },
+     {
+      "channelName": "Chan 2",
+      "defaultColour": "255,54,114"
+     },
+     {
+      "channelName": "Chan 3",
+      "defaultColour": "255,0,15"
+     }
+    ]
+  }, 
+{
+    "name": "Patchwork",
+    "id": 1006,
+    "layer": 0,
+    "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_07_Patchwork_thumb.jpg",
+    "image": "helmet/02_Patterns/07_Patchwork/1k/SF1PS_HelmetV9_Patchwork_1k.jpg",
+    "style": 0,
+    "Channels": [
+     {
+      "channelName": "Chan 1",
+      "defaultColour": "42,8,138"
+     },
+     {
+      "channelName": "Chan 2",
+      "defaultColour": "255,0,76"
+     },
+     {
+      "channelName": "Chan 3",
+      "defaultColour": "11,0,34"
+     }
+    ]
+  },      
+	{
+    "name": "Y2K",
+    "id": 1007,
+    "layer": 0,
+    "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_08_Y2K_thumb.jpg",
     "image": "helmet/02_Patterns/08_Y2k/1k/SF1PS_HelmetV9_Y2K_1k.jpg",
     "style": 0,
     "Channels": [
      {
       "channelName": "Chan 1",
-      "defaultColour": "48,45,67"
+      "defaultColour": "45,104,255"
      },
      {
       "channelName": "Chan 2",
-      "defaultColour": "255,32,32"
+      "defaultColour": "233,98,255"
      },
      {
       "channelName": "Chan 3",
-      "defaultColour": "164,217,255"
+      "defaultColour": "255,255,255"
      }
     ]
-  },  
+  }, 
+{
+    "name": "Abstract",
+    "id": 1008,
+    "layer": 0,
+    "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_09_Abstract_thumb.jpg",
+    "image": "helmet/02_Patterns/09_Abstract/1k/SF1PS_HelmetV9_Abstract_1k.jpg",
+    "style": 0,
+    "Channels": [
+     {
+      "channelName": "Chan 1",
+      "defaultColour": "255,128,10"
+     },
+     {
+      "channelName": "Chan 2",
+      "defaultColour": "205,49,0"
+     },
+     {
+      "channelName": "Chan 3",
+      "defaultColour": "242,0,0"
+     }
+    ]
+  },    
     {
       "name": "Varsity",
       "id": 2001,
