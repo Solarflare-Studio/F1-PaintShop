@@ -49,7 +49,7 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
         // if no uuid, then need to go back to www registration then
         if(!this.userConsole && this.userID == 'noID') {
             // redirect
-            window.location.href = 'https://fanzone.live/';
+//            window.location.href = 'https://fanzone.live/';
 
         }
         

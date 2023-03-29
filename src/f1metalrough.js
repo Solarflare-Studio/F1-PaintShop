@@ -128,13 +128,13 @@ class F1MetalRough {
 
                 vec4 color1 = texture2D(texture1Base, vUv);
 
-                float metalness1 = color1.r * baseChannel1Metal *  color1.a * 0.8;
+                float metalness1 = color1.r * baseChannel1Metal *  color1.a * 0.875;
                 float roughness1 = color1.r * baseChannel1Rough *  color1.a;
 
-                float metalness2 = color1.g * baseChannel2Metal *  color1.a * 0.8;
+                float metalness2 = color1.g * baseChannel2Metal *  color1.a * 0.875;
                 float roughness2 = color1.g * baseChannel2Rough *  color1.a;
 
-                float metalness3 = color1.b * baseChannel3Metal *  color1.a * 0.8;
+                float metalness3 = color1.b * baseChannel3Metal *  color1.a * 0.875;
                 float roughness3 = color1.b * baseChannel3Rough *  color1.a;
 
                 vec4 outcol = vec4(0,roughness1,metalness1 ,1);
