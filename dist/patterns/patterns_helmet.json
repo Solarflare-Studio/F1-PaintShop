@@ -176,9 +176,31 @@
      }
     ]
   }, 
+  {
+    "name": "Outline",
+    "id": 1006,
+    "layer": 0,
+    "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_06_Outline_thumb.jpg",
+    "image": "helmet/02_Patterns/06_Outline/1k/SF1PS_HelmetV9_Outline_1k.jpg",
+    "style": 0,
+    "Channels": [
+     {
+      "channelName": "Chan 1",
+      "defaultColour": "255,255,255"
+     },
+     {
+      "channelName": "Chan 2",
+      "defaultColour": "0,0,0"
+     },
+     {
+      "channelName": "Chan 3",
+      "defaultColour": "255,5,0"
+     }
+    ]
+  },   
 {
     "name": "Patchwork",
-    "id": 1006,
+    "id": 1007,
     "layer": 0,
     "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_07_Patchwork_thumb.jpg",
     "image": "helmet/02_Patterns/07_Patchwork/1k/SF1PS_HelmetV9_Patchwork_1k.jpg",
@@ -200,7 +222,7 @@
   },      
 	{
     "name": "Y2K",
-    "id": 1007,
+    "id": 1008,
     "layer": 0,
     "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_08_Y2K_thumb.jpg",
     "image": "helmet/02_Patterns/08_Y2k/1k/SF1PS_HelmetV9_Y2K_1k.jpg",
@@ -222,7 +244,7 @@
   }, 
 {
     "name": "Abstract",
-    "id": 1008,
+    "id": 1009,
     "layer": 0,
     "thumbnail": "helmet/02_Patterns/_Thumbs/F1PS_Pattern_09_Abstract_thumb.jpg",
     "image": "helmet/02_Patterns/09_Abstract/1k/SF1PS_HelmetV9_Abstract_1k.jpg",
