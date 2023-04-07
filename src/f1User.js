@@ -131,8 +131,8 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
 
         if(this.userCarOrHelmet=='h') {
             this.isHelmet = true;
-            document.getElementById('LK_welcome_01').classList.add('hidden');
-            document.getElementById('LK_welcome_02').classList.remove('hidden');
+            // document.getElementById('LK_welcome_01').classList.add('hidden');
+            // document.getElementById('LK_welcome_02').classList.remove('hidden');
         }
 
         if(DEBUG_MODE) {

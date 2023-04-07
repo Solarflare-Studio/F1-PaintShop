@@ -1,56 +1,64 @@
 {
-  "dialogues": [  
+  "dialogues": [
     {
       "name": "LK_welcome_heading",
-      "text": "WELCOME"
+      "text": "BIENVENUE"
     },
     {
       "name": "LK_welcome_01",
-      "text": "Unleash your creativity,<br>and customise your very own F1 car"
+      "text": "Libérez votre créativité, <br> et personnalisez votre propre voiture de F1"
     },
     {
-      "name": "LK_welcome_02",
-      "text": "Unleash your creativity,<br>and customise your very own F1 helmet"
+      "name": "LK_welcome_01_H",
+      "text": "Libérez votre créativité, <br> et personnalisez votre propre casque de F1"
     },
     {
       "name": "LK_welcome_03",
-      "text": "NEXT"
+      "text": "SUIVANT"
     },
     {
-      "name": "LK_tutorial_01",
-      "text": "TUTORIAL"
+    "name": "LK_tutorial_01",
+    "text": "TUTORIEL"
     },
     {
-      "name": "LK_tutorial_02",
-      "text": "Buckle up! Touch and drag to move the camera. Pinch to zoom in and out. See your car in all its glory"
+    "name": "LK_tutorial_02",
+    "text": "Attachez votre ceinture! Touchez et faites glisser pour déplacer la caméra. Pincez pour zoomer et dézoomer. Admirez votre voiture dans toute sa splendeur"
     },
     {
-      "name": "LK_tutorial_03",
-      "text": "OK!"
+    "name": "LK_tutorial_02_H",
+    "text": "Attachez votre ceinture! Touchez et faites glisser pour déplacer la caméra. Pincez pour zoomer et dézoomer. Admirez votre casque dans toute sa splendeur"
     },
     {
-      "name": "LK_tutorial_04",
-      "text": "PATTERN"
+    "name": "LK_tutorial_03",
+    "text": "OK!"
     },
     {
-      "name": "LK_tutorial_05",
-      "text": "First, pick a pattern that suits your style"
+    "name": "LK_tutorial_04",
+    "text": "MODÈLE"
     },
     {
-      "name": "LK_tutorial_06",
-      "text": "OK!"
+    "name": "LK_tutorial_05",
+    "text": "Tout d'abord, choisissez un modèle qui convient à votre style"
     },
     {
-      "name": "LK_tutorial_07",
-      "text": "PAINT"
+    "name": "LK_tutorial_06",
+    "text": "OK!"
+    },
+    {
+    "name": "LK_tutorial_07",
+    "text": "PEINTURE"
     },
     {
       "name": "LK_tutorial_08",
-      "text": "Make your car stand out with your favorite colors"
+      "text": "Faites ressortir votre voiture avec vos couleurs préférées"
+    },
+    {
+      "name": "LK_tutorial_08_H",
+      "text": "Faites ressortir votre casque avec vos couleurs préférées"
     },
     {
       "name": "LK_tutorial_09",
-      "text": "OK!"
+      "text": "OK !"
     },
     {
       "name": "LK_tutorial_10",
@@ -58,129 +66,138 @@
     },
     {
       "name": "LK_tutorial_11",
-      "text": "Add your own custom tag to your car"
+      "text": "Ajoutez votre propre tag personnalisé à votre voiture"
+    },
+    {
+      "name": "LK_tutorial_11_H",
+      "text": "Ajoutez votre propre tag personnalisé à votre casque"
     },
     {
       "name": "LK_tutorial_12",
-      "text": "OK!"
+      "text": "OK !"
     },
     {
       "name": "LK_tutorial_13",
-      "text": "SPONSOR"
+      "text": "PARTENAIRE"
     },
     {
       "name": "LK_tutorial_14",
-      "text": "Get race-ready with some sponsor decals"
+      "text": "Préparez-vous pour la course avec quelques logos de partenaires"
     },
     {
       "name": "LK_tutorial_15",
-      "text": "OK!"
+      "text": "OK !"
     },
     {
       "name": "LK_tutorial_16",
-      "text": "F1 PAINTSHOP"
+      "text": "ATELIER F1 PEINTURE"
     },
     {
       "name": "LK_tutorial_17",
-      "text": "Your F1 design is being sprayed on..."
-    },
-    {
+      "text": "Votre design F1 est en train d'être pulvérisé sur..."
+      },
+      {
       "name": "LK_tutorial_18",
-      "text": "You Ready to Roll?"
-    },
-    {
+      "text": "Êtes-vous prêt à rouler ?"
+      },
+      {
       "name": "LK_tutorial_19",
-      "text": "From Screen to Steel, Design in motion. Want to see your ride come to life? Check it out in WebAR"
-    },      
-    {
+      "text": "Du rendu à la réalité. Voulez-vous voir votre véhicule prendre vie ? Découvrez-le en réalité augmentée"
+      },
+      {
+      "name": "LK_tutorial_19_H",
+      "text": "Du rendu à la réalité. Voulez-vous voir votre casque prendre vie ? Découvrez-le en réalité augmentée"
+      },
+      {
       "name": "LK_tutorial_20",
-      "text": "NEXT"
-    },
-    {
+      "text": "SUIVANT"
+      },
+      {
       "name": "LK_tutorial_21",
-      "text": "BACK"
-    },
-  
-    {
+      "text": "RETOUR"
+      },
+      {
       "name": "LK_menu_title",
       "text": "MENU"
-    },
-    {
+      },
+      {
       "name": "LK_menu_close",
-      "text": "Close menu"
-    },
-    {
+      "text": "Fermer le menu"
+      },
+      {
       "name": "LK_menu_language",
-      "text": "LANGUAGE"
-    },
-    {
+      "text": "LANGUE"
+      },
+      {
       "name": "LK_menu_terms",
-      "text": "T&CS"
-    },
-    {
+      "text": "CONDITIONS GÉNÉRALES"
+      },
+      {
       "name": "LK_menu_security",
-      "text": "SECURITY"
-    },
-    {
+      "text": "SÉCURITÉ"
+      },
+      {
       "name": "LK_menu_otherlinks",
-      "text": "OTHER LINKS"
-    },
-    {
+      "text": "AUTRES LIENS"
+      },
+      {
       "name": "LK_turndevice_01",
-      "text": "TURN YOUR DEVICE"
-    },
-    {
+      "text": "TOURNEZ VOTRE APPAREIL"
+      },
+      {
       "name": "LK_turndevice_02",
-      "text": "This experience requires your device to be held portrait,<br />please turn to proceed."
-    },
-    {
+      "text": "Cette expérience nécessite que votre appareil soit tenu en mode portrait,<br />veuillez le tourner pour continuer."
+      },
+      {
       "name": "LK_start_title",
-      "text": "Revving our engines.."
-    },
-    {
+      "text": "On met les moteurs en route..."
+      },
+      {
       "name": "LK_info_prepping",
-      "text": "We're fuelling up the F1 Paint Shop for you.<br> Please wait a moment..."
-    },
-    {
+      "text": "Nous préparons la peinture pour votre F1. <br> Veuillez patienter un instant..."
+      },
+      {
       "name": "LK_tab_01",
-      "text": "PATTERN"
-    },
-    {
+      "text": "MOTIF"
+      },
+      {
       "name": "LK_tab_02",
-      "text": "PAINT"
-    },
-    {
+      "text": "PEINTURE"
+      },
+      {
       "name": "LK_tab_03",
       "text": "TAG"
-    },    
-    {
+      },
+      {
       "name": "LK_tab_04",
       "text": "SPONSOR"
-    },    
-    {
+      },
+      {
       "name": "LK_final_heading",
-      "text": "Looking good!"
-    },    
-    {
+      "text": "C'est beau !"
+      },
+      {
       "name": "LK_final_01",
-      "text": "Ready to roll? Hit ‘NEXT’ or go back to make changes."
-    },    
-    {
+      "text": "Prêt à rouler ? Cliquez sur 'SUIVANT' ou retournez en arrière pour effectuer des changements."
+      },
+      {
       "name": "LK_final_back",
-      "text": "BACK"
-    },    
-    {
+      "text": "RETOUR"
+      },
+      {
       "name": "LK_final_next",
-      "text": "NEXT"
-    },
-    {
+      "text": "SUIVANT"
+      },
+      {
       "name": "LK_mat_gloss",
-      "text": "GLOSS"
-    },      
-    {
+      "text": "BRILLANT"
+      },
+      {
       "name": "LK_mat_matte",
-      "text": "MATTE"
-    },      
+      "text": "MAT"
+    },
+
+
     {
       "name": "LK_mat_metallic",
       "text": "METALLIC"
@@ -221,98 +238,97 @@
       "name": "LK_colourConfirmButton",
       "text": "CONFIRM"
     },
-    {
-      "name": "LK_AR_welcome_1",
-      "text": "ALLOW CAMERA"
+   {
+    "name": "LK_AR_welcome_1",
+    "text": "AUTORISER LA CAMERA"
     },
     {
-      "name": "LK_AR_welcome_2",
-      "text": "To enjoy the full AR experience, we need your permission to access your camera"
+    "name": "LK_AR_welcome_2",
+    "text": "Pour profiter de l'expérience AR complète, nous avons besoin de votre permission pour accéder à votre caméra."
     },
     {
-      "name": "LK_AR_welcome_3",
-      "text": "OK!"
+    "name": "LK_AR_welcome_3",
+    "text": "OK !"
     },
     {
-      "name": "LK_AR_welcome_4",
-      "text": "AUGMENTED REALITY"
+    "name": "LK_AR_welcome_4",
+    "text": "RÉALITÉ AUGMENTÉE"
     },
     {
-      "name": "LK_AR_welcome_5",
-      "text": "Checking permissions"
-    },
-  
-    {
-      "name": "LK_AR_cameraRequest_1",
-      "text": "To enjoy the full AR experience, we need your permission to access your camera"
+    "name": "LK_AR_welcome_5",
+    "text": "Vérification des autorisations"
     },
     {
-      "name": "LK_AR_cameraSuccess_1",
-      "text": "Successful"
+    "name": "LK_AR_cameraRequest_1",
+    "text": "Pour profiter de l'expérience AR complète, nous avons besoin de votre permission pour accéder à votre caméra."
     },
     {
-      "name": "LK_AR_cameraError_1",
-      "text": "There's a error with your camera, try refreshing the page."
+    "name": "LK_AR_cameraSuccess_1",
+    "text": "Succès"
     },
     {
-      "name": "LK_AR_findMarker_1",
-      "text": "TUTORIAL"
+    "name": "LK_AR_cameraError_1",
+    "text": "Il y a une erreur avec votre caméra, essayez de rafraîchir la page."
     },
     {
-      "name": "LK_AR_findMarker_2",
-      "text": "Ready, set, scan! Point your camera at the image target to see your F1 car design come to life"
+    "name": "LK_AR_findMarker_1",
+    "text": "TUTORIEL"
     },
     {
-      "name": "LK_AR_findMarker_3",
-      "text": "Ready, set, scan! Point your camera at the image target to see your F1 helmet design come to life"
+    "name": "LK_AR_findMarker_2",
+    "text": "Prêt, scannez ! Pointez votre caméra sur l'image cible pour voir votre design de voiture de F1 prendre vie."
     },
     {
-      "name": "LK_AR_findMarker_4",
-      "text": "FIND MARKER"
+    "name": "LK_AR_findMarker_3",
+    "text": "Prêt, scannez ! Pointez votre caméra sur l'image cible pour voir votre design de casque de F1 prendre vie."
     },
     {
-      "name": "LK_AR_findMarker_5",
-      "text": "FIND MARKER"
+    "name": "LK_AR_findMarker_4",
+    "text": "TROUVER LE MARQUEUR"
     },
     {
-      "name": "LK_AR_explore_01",
-      "text": "EXPLORE"
+    "name": "LK_AR_findMarker_5",
+    "text": "TROUVER LE MARQUEUR"
     },
     {
-      "name": "LK_AR_explore_02",
-      "text": "Do a lap around the car to check out your design from all angles."
+    "name": "LK_AR_explore_01",
+    "text": "EXPLORER"
     },
     {
-      "name": "LK_AR_share_01",
-      "text": "SHARE"
+    "name": "LK_AR_explore_02",
+    "text": "Faites un tour autour de la voiture pour vérifier votre design sous tous les angles."
     },
     {
-      "name": "LK_AR_share_02",
-      "text": "Tap or hold the camera button. Snap a pic or video. Share on socials."
-    },  
-    {
-      "name": "LK_AR_button_next",
-      "text": "NEXT"
+    "name": "LK_AR_share_01",
+    "text": "PARTAGER"
     },
     {
-      "name": "LK_AR_button_back",
-      "text": "BACK"
+    "name": "LK_AR_share_02",
+    "text": "Appuyez ou maintenez le bouton de la caméra. Prenez une photo ou une vidéo. Partagez sur les réseaux sociaux."
     },
     {
-      "name": "LK_AR_button_ok",
-      "text": "OK"
+    "name": "LK_AR_button_next",
+    "text": "SUIVANT"
     },
     {
-      "name": "LK_AR_button_finish",
-      "text": "FINISH"
+    "name": "LK_AR_button_back",
+    "text": "RETOUR"
     },
     {
-      "name": "LK_AR_button_download",
-      "text": "DOWNLOAD"
+    "name": "LK_AR_button_ok",
+    "text": "OK"
     },
     {
-      "name": "LK_AR_button_share",
-      "text": "SHARE"
+    "name": "LK_AR_button_finish",
+    "text": "TERMINER"
+    },
+    {
+    "name": "LK_AR_button_download",
+    "text": "TÉLÉCHARGER"
+    },
+    {
+    "name": "LK_AR_button_share",
+    "text": "PARTAGER"
     }
   ]
   }

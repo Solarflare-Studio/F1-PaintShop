@@ -9,7 +9,7 @@
       "text": "Unleash your creativity,<br>and customise your very own F1 car"
     },
     {
-      "name": "LK_welcome_02",
+      "name": "LK_welcome_01_H",
       "text": "Unleash your creativity,<br>and customise your very own F1 helmet"
     },
     {
@@ -24,6 +24,10 @@
       "name": "LK_tutorial_02",
       "text": "Buckle up! Touch and drag to move the camera. Pinch to zoom in and out. See your car in all its glory"
     },
+    {
+      "name": "LK_tutorial_02_H",
+      "text": "Buckle up! Touch and drag to move the camera. Pinch to zoom in and out. See your helmet in all its glory"
+    },    
     {
       "name": "LK_tutorial_03",
       "text": "OK!"
@@ -49,6 +53,9 @@
       "text": "Make your car stand out with your favorite colours"
     },
     {
+      "name": "LK_tutorial_08_H",
+      "text": "Make your helmet stand out with your favorite colours"
+    },    {
       "name": "LK_tutorial_09",
       "text": "OK!"
     },
@@ -60,6 +67,10 @@
       "name": "LK_tutorial_11",
       "text": "Add your own custom tag to your car"
     },
+    {
+      "name": "LK_tutorial_11_H",
+      "text": "Add your own custom tag to your helmet"
+    },    
     {
       "name": "LK_tutorial_12",
       "text": "OK!"
@@ -91,6 +102,10 @@
     {
       "name": "LK_tutorial_19",
       "text": "From Screen to Steel, Design in motion. Want to see your ride come to life? Check it out in augmented reality"
+    },      
+    {
+      "name": "LK_tutorial_19_H",
+      "text": "From Screen to Steel, Design in motion. Want to see your helmet come to life? Check it out in augmented reality"
     },      
     {
       "name": "LK_tutorial_20",

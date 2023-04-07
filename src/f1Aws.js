@@ -55,29 +55,46 @@ class F1Aws {
         const dialogues = f1aws.languageText['dialogues'];
         this.keepLanguageKeys = dialogues;
         for(var i=0;i<dialogues.length;i++) {
-            const textElement = document.getElementById(dialogues[i].name);
-            if(textElement) {
-                if(f1aws.isHelmet)
-                    if(dialogues[i].name == 'LK_tutorial_02') { // need to swap out ' car ' for ' helmet '
-                        var newString = dialogues[i].text.replace(/ car /g, " helmet ");
-                        dialogues[i].text = newString;
+            if(f1aws.isHelmet) {
+                if (dialogues[i].name.endsWith('_H') || dialogues[i].name.endsWith('_h')) {
+                    var newDialogueName = dialogues[i].name.slice(0, -2); // Remove the last two characters (_h)
+                    const textElement = document.getElementById(newDialogueName);
+                    if(textElement) {
+                        textElement.innerHTML = dialogues[i].text;
                     }
-                    else if(dialogues[i].name == 'LK_tutorial_08') { // need to swap out ' car ' for ' helmet '
-                        var newString = dialogues[i].text.replace(/ car /g, " helmet ");
-                        dialogues[i].text = newString;
+                }
+                else {
+                    const textElement = document.getElementById(dialogues[i].name);
+                    if(textElement) {
+                        textElement.innerHTML = dialogues[i].text;
                     }
-                    else if(dialogues[i].name == 'LK_tutorial_11') { // need to swap out ' car ' for ' helmet '
-                        var newString = dialogues[i].text.replace(/ car/g, " helmet");
-                        dialogues[i].text = newString;
-                    }
-                    else if(dialogues[i].name == 'LK_tutorial_19') { // need to swap out 'ride' for ' helmet '
-                        var newString = dialogues[i].text.replace(/ride/g, "helmet");
-                        dialogues[i].text = newString;
-                    }
+                }
+            }
+            else {
+                const textElement = document.getElementById(dialogues[i].name);
+                if(textElement) {
+                    // if(f1aws.isHelmet)
+                        // if(dialogues[i].name == 'LK_tutorial_02') { // need to swap out ' car ' for ' helmet '
+                        //     var newString = dialogues[i].text.replace(/ car /g, " helmet ");
+                        //     dialogues[i].text = newString;
+                        // }
+                        // if(dialogues[i].name == 'LK_tutorial_08') { // need to swap out ' car ' for ' helmet '
+                        //     var newString = dialogues[i].text.replace(/ car /g, " helmet ");
+                        //     dialogues[i].text = newString;
+                        // }
+                        //  if(dialogues[i].name == 'LK_tutorial_11') { // need to swap out ' car ' for ' helmet '
+                        //     var newString = dialogues[i].text.replace(/ car/g, " helmet");
+                        //     dialogues[i].text = newString;
+                        // }
+                        // else if(dialogues[i].name == 'LK_tutorial_19') { // need to swap out 'ride' for ' helmet '
+                        //     var newString = dialogues[i].text.replace(/ride/g, "helmet");
+                        //     dialogues[i].text = newString;
+                        // }
 
-                    
-                textElement.innerHTML = dialogues[i].text;
-                // textElement.style.visibility = "visible";
+                        
+                    textElement.innerHTML = dialogues[i].text;
+                    // textElement.style.visibility = "visible";
+                }
             }
         }
     }

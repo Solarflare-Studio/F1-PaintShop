@@ -202,13 +202,13 @@ class F1Garage {
                     if(self.hexPixelBuffer[i]<object.value) self.hexPixelBuffer[i] = object.value;
                     if(self.hexPixelBuffer[i+1]<object.value) self.hexPixelBuffer[i+1] = object.value;
                     if(self.hexPixelBuffer[i+2]<object.value) self.hexPixelBuffer[i+2] = object.value;
-                    x = 43;
+                    x = 42;
                     i = x*3 + ((y+1.)*64*3);
                     if(self.hexPixelBuffer[i]<object.value) self.hexPixelBuffer[i] = object.value;
                     if(self.hexPixelBuffer[i+1]<object.value) self.hexPixelBuffer[i+1] = object.value;
                     if(self.hexPixelBuffer[i+2]<object.value) self.hexPixelBuffer[i+2] = object.value;
                 }
-                for(var x=21;x<44;x++) {
+                for(var x=21;x<43;x++) {
                     var i = x*3 + (starty*64*3);
                     if(self.hexPixelBuffer[i]<object.value) self.hexPixelBuffer[i] = object.value;
                     if(self.hexPixelBuffer[i+1]<object.value) self.hexPixelBuffer[i+1] = object.value;
