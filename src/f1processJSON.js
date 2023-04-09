@@ -28,10 +28,21 @@ class ProcessJSON {
 //        isHelmet,userID,userName,userEmail,cookie_livery_value) {
         if(DEBUG_MODE)
             console.log(">> load patterns json");
-        if(f1User.isHelmet)
-            this.readPatternsJSON('patterns','patterns_helmet.json','PATTERNS',f1User.userID,f1User.userName,f1User.userEmail,f1User.isHelmet,f1User.cookie_livery_value,f1Aws);
-        else
-            this.readPatternsJSON('patterns','patterns_car.json','PATTERNS',f1User.userID,f1User.userName,f1User.userEmail,f1User.isHelmet,f1User.cookie_livery_value,f1Aws);
+
+        if(f1User.userGFX==1) {
+            if(f1User.isHelmet)
+                this.readPatternsJSON('patterns','patterns_helmet.json','PATTERNS',f1User.userID,f1User.userName,f1User.userEmail,f1User.isHelmet,f1User.cookie_livery_value,f1Aws);
+            else
+                this.readPatternsJSON('patterns','patterns_car.json','PATTERNS',f1User.userID,f1User.userName,f1User.userEmail,f1User.isHelmet,f1User.cookie_livery_value,f1Aws);
+        }
+        else if(f1User.userGFX==2) {
+            if(f1User.isHelmet)
+                this.readPatternsJSON('patterns','patterns_helmet_2k.json','PATTERNS',f1User.userID,f1User.userName,f1User.userEmail,f1User.isHelmet,f1User.cookie_livery_value,f1Aws);
+            else
+                this.readPatternsJSON('patterns','patterns_car_2k.json','PATTERNS',f1User.userID,f1User.userName,f1User.userEmail,f1User.isHelmet,f1User.cookie_livery_value,f1Aws);
+        }
+
+        
     }
     //======================
     haveloadedStartupJSON() {
@@ -91,7 +102,7 @@ class ProcessJSON {
             var modeltype = 'car';
             if(self.isHelmet) modeltype = 'helmet';
             if(self.cookie_livery_value=="") { // we havent any livery cookie yet - so create 
-                self.liveryData = { name: self.userName, model: modeltype, timestamp: "000000_0000", email: self.userEmail, uniqueid: self.userID, tagtext: 'F1', tagfontstyle:1, Layers: layersList};
+                self.liveryData = { name: self.userName, model: modeltype, timestamp: "000000_0000", email: self.userEmail, uniqueid: self.userID, tagtext: 'F1', tagfontstyle:-1, Layers: layersList};
                 // if cookie doesn't exist, create livery cookie
                 var d = new Date();
                 d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000)); // Expires in 1 year

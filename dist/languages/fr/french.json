@@ -224,7 +224,7 @@
     },
     {
       "name": "LK_tag_paint",
-      "text": "TAG"
+      "text": "TEXT"
     },
     {
       "name": "LK_tagstyle_paint",
@@ -237,6 +237,18 @@
     {
       "name": "LK_colourConfirmButton",
       "text": "CONFIRM"
+    },
+    {
+      "name": "LK_photo_iphoneusers",
+      "text": "Tap the image to download.<br>iPhone users can tap and hold the photo to save to camera roll."
+    },
+    {
+      "name": "LK_photo_back",
+      "text": "BACK"
+    },
+    {
+      "name": "LK_photo_share",
+      "text": "SHARE"
     },
    {
     "name": "LK_AR_welcome_1",

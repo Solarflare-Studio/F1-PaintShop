@@ -15,6 +15,7 @@ class F1Materials {
         this.alltexturesloaded = false;
         this.filetimeout = 0;
         this.keepRibbon = 0;
+        this.keepF1Logo = 0;
     }
 
     //======================
@@ -270,6 +271,10 @@ class F1Materials {
                     case 13:                // scene bg
                         tex.premultiplyAlpha = false;
                         f1Garage.backgroundImage = tex;
+                        break;
+                    case 14:                // f1 logo
+                        tex.premultiplyAlpha = false;
+                        this.keepF1Logo = tex;
                         break;
 
                     // visor

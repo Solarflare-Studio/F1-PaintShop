@@ -14,6 +14,8 @@ const dropdownArrow = document.querySelector("#dropdownArrow");
 
 
 
+
+
 export function uihandlelanguageChange(e,f1Aws) {
   var languageArr = e.split(',');
   const langfile = languageArr[2] +"/" + languageArr[1]; // filename for language
@@ -68,6 +70,7 @@ class F1Gui {
         this.tabBodyPos = 0;
         this.tabHeight = 0;
 
+        this.seLayout = false;
 
         // adaptive gui layout mods
         // the html element list that require css overides
@@ -355,9 +358,10 @@ class F1Gui {
         }
         const buttonblock = document.getElementById('f1nextbackbuttons');
 
-
+        this.seLayout = false;
         const percentageThreshold = 0.55;
         if(heightRatio>=percentageThreshold) { //0.55) { // then reduce
+            this.seLayout = true;
             this.setRendererSize(w,h - this.tabBodyPos, renderer,camera);
 
 
@@ -366,9 +370,10 @@ class F1Gui {
             document.getElementById('tutorialstartbutton').classList.remove('!py-3')
             document.getElementById('tutorialblock').style.marginBottom='75px';
             
-
             const tabBodyElement = document.getElementById('tabBody');
-            tabBodyElement.style.paddingTop='0.5rem';
+            tabBodyElement.style.paddingTop='0.1rem';
+
+            // padding-top: 0.1rem;
 
             tabBodyElement.classList.remove('min-h-[360px]');
             tabBodyElement.classList.remove('max-h-[360px]');
@@ -396,7 +401,8 @@ class F1Gui {
             // 	buttonblock.style = "margin-top: 1rem!important";
             // } else if( which==2 || which==4) {
             // if(which==1 || which==3) {
-            buttonblock.style.marginTop = "0.5rem!important";
+            // buttonblock.style.marginTop = "0.5rem!important";
+            buttonblock.style.marginTop = "1.0rem!important";
 
 
             const elements = document.querySelectorAll('.next-btn');
@@ -426,9 +432,14 @@ class F1Gui {
             // document.getElementById('paintachannelblock').classList.add('seminmaxpaintheight');
             document.getElementById('paintachannelblock').classList.add('seminmaxheight');
 
-            document.getElementById('glosstypeblock').style.marginBottom="0.1rem";
+            // document.getElementById('glosstypeblock').style.marginBottom="0.6rem";
+            // document.getElementById('glosstypeblock').style.marginTop="1.0rem";
+            document.getElementById('glosstypeblock').style.marginBottom="0.0rem";
+            document.getElementById('glosstypeblock').style.marginTop="0.7rem";
 
-            document.getElementById('pattern').style.paddingTop="0.5rem";
+
+            // document.getElementById('pattern').style.paddingTop="0.5rem";
+            document.getElementById('pattern').style.paddingTop="1.5rem";
 
             const layer1ins=document.getElementById('layer1patterns_ins');
             layer1ins.classList.remove('max-h-[220px]');

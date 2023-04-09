@@ -273,7 +273,9 @@
     style="user-select: none;background-color: black;pointer-events: none;    height: 100%;
     margin: 0;
     padding: 0;
-    width: 100%;"
+    width: 100%;
+    overflow: hidden; 
+    "
     onload="onloaded()"
   >
 
@@ -313,7 +315,7 @@
       <div class="mx-auto p-6 flex justify-between items-center">
         <figure>
           <!-- ben added style to show logo over 3d canvas-->
-          <img src="./assets/inapp/F1_Logo.svg" alt="Logo" style="z-index: 30; position: relative;"/> 
+          <img id="logoimage" src="./assets/inapp/F1_Logo.svg" alt="Logo" style="z-index: 30; position: relative;"/> 
         </figure>
         <button
           class="text-white rounded-lg bg-netural p-3 invisible lg:hidden z-30 cursor-pointer pointer-events-auto"
@@ -322,14 +324,14 @@
           data-drawer-target="drawer-example"
           data-drawer-show="drawer-example"
           aria-controls="drawer-example"
-          style="padding-left: 0.7rem!important;padding-right: 0.7rem!important;padding-top: 0.82rem!important;padding-bottom: 0.82rem!important;display:none!important"
+          style="padding-left: 0.7rem!important;padding-right: 0.7rem!important;padding-top: 0.82rem!important;padding-bottom: 0.82rem!important"
         >
           <img src="./assets/images/hamburger_icon.svg" />
         </button>
       </div>
       <div
         id="drawer-example"
-        class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] bg-center fixed top-0 left-0 z-30 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-transparent w-full before:bg-brand before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-80 before:z-0 before:left-0 container-fluid pointer-events-auto"
+        class="bg-generaPenal bg-no-repeat bg-[length:100%_100%] bg-center fixed top-0 left-0 z-30 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-transparent w-full before:bg-brand before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-80 before:z-0 before:left-0 container-fluid pointer-events-auto hidden"
         tabindex="-1"
         aria-labelledby="drawer-label"
       >
@@ -423,6 +425,57 @@
               </ul>
             </div>
           </div>
+          <hr class="border-netural border-t-2 mb-3 mt-6" />
+
+
+          <h2
+          class="text-netural text-2xl font-medium font-F1PaintShopBoldFont mb-2"
+        >
+          <div id="LK_menu_gfx">GRAPHICS SUPERPOWER</div>
+        </h2>
+        <div class="relative" id="gfxSelect">
+          <button
+            id="gfxSelectBtn"
+            data-dropdown-toggle="dropdown2"
+            class="w-full text-primary text-xl font-Titillium bg-netural relative text-left rounded-md pl-4 pr-16 h-12"
+            type="button"
+            onclick="handleGfxSelect()"
+          >
+            <pre id="selectedGfx"></pre>
+            <span
+              class="absolute right-0 top-0 bg-primary h-12 w-16 rounded-md flex justify-center items-center"
+            >
+              <img
+                src="./assets/images/dropdown_arrow.svg"
+                alt="arrow"
+                id="dropdownArrow2"
+              />
+            </span>
+          </button>
+          <!-- Dropdown menu -->
+          <div
+            id="dropdown2"
+            class="z-10 hidden w-full bg-secondary px-4 !translate-y-12 rounded-md text-left"
+          >
+            <ul aria-labelledby="gfxSelectBtn" id="gfxChoices">
+              <!--ben-->
+              <li
+                class="language-option"
+                onclick="handleGfxChange('Amazing HD')"
+              >
+                Amazing HD
+              </li>
+              <hr class="border-netural border-t-2" />
+              <li
+                class="language-option"
+                onclick="handleGfxChange('Afterburners ON 2k')"
+              >
+                Afterburners ON 2k
+              </li>
+            </ul>
+          </div>
+        </div>
+
           <hr class="border-netural border-t-2 mb-3 mt-6" />
           <ul class="relative text-right list-none py-3">
             <li class="menu-item" id="LK_menu_terms">T&CS</li>
@@ -1199,39 +1252,35 @@
                   amend your design.
                 </p>
               </div>
-              <!--end of Finish Tab Selection-->
-              <!-- <div
-                class="flex justify-between items-center gap-x-2 w-full mt-4"
-                id="f1nextbackbuttons"
-              >
-                <button
-                  type="button"
-                  id="prevBtn"
-                  class="prev-btn opacity-50"
-                  disabled
-                > -->
-                <div id="newcentrebuttons" class="newcentrebuttons">
+              
+              <div id="newcentrebuttons" class="newcentrebuttons">
                   <!-- style="bottom:0;position: relative;" -->
+                  <div 
+                   class="photoButton"
+                   id="photoButton"
+                   onclick="onPhotoButton();"
+                   style="display:none;pointer-events: all;cursor:pointer;"
+                   ><img src="./assets/inapp/record_button.png" style="width:4rem;"/></div>
                   <div
                     class="flex justify-between items-center gap-x-2 w-full mt-4"
                     id="f1nextbackbuttons"
                   >
-                  <button
-                    type="button"
-                    id="prevBtn"
-                    class="prev-btn opacity-50"
-                    disabled
-                  >
-                    <div id="LK_final_back">
-                    BACK
-                    </div>
-                  </button>
-                  <button type="button" id="nextBtn" class="next-btn">
-                    <div id="LK_final_next">
-                    NEXT
-                    </div>
-                  </button>
-                </div>
+                    <button
+                      type="button"
+                      id="prevBtn"
+                      class="prev-btn opacity-50"
+                      disabled
+                    >
+                      <div id="LK_final_back">
+                      BACK
+                      </div>
+                    </button>
+                    <button type="button" id="nextBtn" class="next-btn">
+                      <div id="LK_final_next">
+                      NEXT
+                      </div>
+                    </button>
+                  </div>
 
                   <!-- <div id="LK_final_back">
                   BACK
@@ -1268,8 +1317,10 @@
                 </div>
               </div>
               <div id="glosstypeblock" class="mt-4"
-                style="margin-bottom: 3.1rem;"
+                style="margin-bottom: 1.7rem;    margin-top: 2rem;"
                 >
+                <!-- style="margin-bottom: 2.25rem;    margin-top: 2rem;" -->
+
                 <div class="flex3 flex gap-x-3">
                   <div
                     id="mattebutton"
@@ -1420,7 +1471,7 @@
           <button
             type="button"
             class="next-btn !py-3"
-            onclick="handleCloseTutorial()"
+            onclick="handleCloseTutorial(2)"
           >
             <div id="LK_tutorial_12">
             OK!
@@ -1447,7 +1498,7 @@
           <button
             type="button"
             class="bg-brand text-netural text-2xl py-4 rounded-md font-F1PaintShopFont w-full"
-            onclick="handleCloseTutorial()"
+            onclick="handleCloseTutorial(3)"
           >
             <div id="LK_tutorial_15">
             OK!
@@ -1531,7 +1582,7 @@
             class="!w-auto py-2.5 px-14 prev-btn"
             onclick="handleBackToTabs()"
             id="LK_tutorial_21"
-            style="width:12em!important;"
+            style="width:12em!important;background-color:rgb(21 20 32)!important"
           >
             BACK
           </button>
@@ -1586,15 +1637,50 @@
         </div>
       </div>
       -->
+
+      <div id="photoPageOverlay" style="display:none;">
+        <div id="spinnerphoto">
+          <img src="./assets/inapp/F1_LoadingAnim_WheelV2-256.gif" alt="Loading..." width="99" height="99" />
+        </div>
+        <div id="photoPreviewPanel">
+          <div id="LK_photo_iphoneusers"><span>Tap the image to download.</span><br>iPhone users can tap and hold the photo to save to camera roll.</div>
+          <div id="photoPreview"></div>
+          <div id="photoButtons">
+            <div
+              class="flex justify-between items-center gap-x-2 w-full mt-4"
+              id="f1nextbackbuttons"
+            >
+              <button
+                type="button"
+                onclick="photoButton(0);"
+                class="prev-btn"
+              >
+                <div id="LK_photo_back">
+                BACK
+                </div>
+              </button>
+              <a id="shareButtonLink">
+              <button type="button" 
+              class="next-btn">
+                <div id="LK_photo_share">
+                SHARE
+                </div>
+              </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- ben end of this is in the AR experience -->
 
       <!--end of Camera access-->
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)" style="display:none">v0.6.5.2</div>
+    <div id="versionid" onclick="onConsole(0)" style="display:none">v0.6.5.6</div>
     <div id="console" class="hidden"
-      style="top: 3rem"><div id="fpsindicator" style="display:none;"></div>
+      style="top: 3rem"><div id="fpsindicator" style="display:none;color:white"></div>
       <div class="console" style="pointer-events:all">
         <div class="console_button expandbutton" onclick="expandDropdown('toneexpander');">Tone</div>
         <div class="console_button consoleshrunk consoleexpander" id="toneexpander">

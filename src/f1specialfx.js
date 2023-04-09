@@ -412,6 +412,7 @@ class F1SpecialFX {
           name: 'finalpassshadermat',
 
           uniforms: {
+            f1logoTexture: { value: null },
             baseTexture: { value: null },
             bloomTexture: { value: this.fxComposer.renderTarget2.texture },
             bloomRibbonTexture: { value: this.fxRibbonComposer.renderTarget2.texture },
@@ -435,6 +436,7 @@ class F1SpecialFX {
           uniform sampler2D baseTexture;
           uniform sampler2D bloomTexture;
           uniform sampler2D bloomRibbonTexture;
+          uniform sampler2D f1logoTexture;
           
           uniform float amountBloom;
           uniform float bloomAmount;
@@ -445,6 +447,30 @@ class F1SpecialFX {
             vec4 colbase = texture2D( baseTexture, vUv );
             vec4 colBloom = texture2D( bloomTexture, vUv );
             vec4 colRibbon = texture2D( bloomRibbonTexture, vUv );
+            vec4 colF1Logo = vec4(0,0,0,0);
+            if(vUv.x>=0.6 && vUv.x<0.95) {
+              if(vUv.y<=0.15) {
+                // vec2 logoUV = vec2( vUv.x-0.6, vUv.y+0.1 );
+                // colF1Logo = texture2D( f1logoTexture, logoUV );
+
+                vec2 logoUV = vec2( (vUv.x-0.6)/0.35,1.0-(((vUv.y)/0.35)+0.2) );
+                colF1Logo = texture2D( f1logoTexture, logoUV );
+              }
+            }
+
+            // vec2 logoUV = vec2(vUv.x,-vUv.y);
+            // vec4 colF1Logo = vec4(0,0,0,0);
+            // if(vUv.x > 0.65 && vUv.y < 0.25) {
+            //   float aspectratio = 786.0 / 291.0;
+            //   // logoUV.y *= aspectratio;
+            //   logoUV.xy = vec2((logoUV.x -0.65)/0.35,((logoUV.y-0.0)/0.25));
+            //   // logoUV.xy *= 2.0;
+            //   colF1Logo = texture2D( f1logoTexture, logoUV );
+            // }
+            // else
+            //   colF1Logo = vec4(0,0,0,0);
+
+            
 
             
             float a = max(max(colBloom.x,colBloom.y),colBloom.z) * bloomAmount;
@@ -452,6 +478,8 @@ class F1SpecialFX {
             outcol = max(outcol,colRibbon);
 
             float newalf = max( max(colBloom.a , colbase.a), colRibbon.a);
+
+            outcol.xyz = mix(outcol.xyz,colF1Logo.xyz,colF1Logo.a);
 
             gl_FragColor = vec4(outcol.xyz,newalf );
             // gl_FragColor = vec4(outcol.xyz,colBloom.a * colbase.a * colRibbon.a );
@@ -481,6 +509,7 @@ class F1SpecialFX {
     }
     //======================
     resize(_w,_h) { // when resizing canvas
+      this.finalComposer.setSize(_w,_h);
 
     }
     //======================

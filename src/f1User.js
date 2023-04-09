@@ -39,6 +39,7 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
         this.userCarOrHelmet = (params.get('m') ? params.get('m').toLowerCase() : "c"); // car or helmet
 
         this.userConsole = (params.get('c') ? params.get('c') : 0); // console
+        this.userGFX = (params.get('g') ? params.get('g') : 1); // user gfx mode 1,2 or 4k!
         
         this.languageCode = (params.get('lan') ? params.get('lan').toLowerCase() : "en"); // language
         // this.languageCode = "ENG";
@@ -56,6 +57,13 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
         if(this.forcecar && this.userCarOrHelmet!='h') this.userCarOrHelmet='c';
         const aUserParam = params.get('u');
         
+        if(this.userGFX==2) {
+            document.getElementById('selectedGfx').innerHTML="Afterburners ON 2k";
+        }
+        else
+            document.getElementById('selectedGfx').innerHTML="Amazing HD";
+
+
         // clearCookies();
         
         

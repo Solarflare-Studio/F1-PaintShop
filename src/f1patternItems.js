@@ -234,7 +234,7 @@ class PatternItems {
                 else if(self.currentLayer==1 && !self.isNone) { // tag
                     self.mapUniforms.useTag.value = 1;
                     self.f1SpecialFX.mapUniforms.useTag.value = 1;
-                    self.liveryData['Layers'].tagfontstyle = self.patternsData['Patterns'][self.which].style;
+                    self.liveryData['tagfontstyle'] = self.patternsData['Patterns'][self.which].style;
 
                     self.f1MetalRoughmapUniforms.useTag.value = 1;
                     self.f1Text.tagPattern = tex;
@@ -245,7 +245,7 @@ class PatternItems {
                     // document.getElementById('tagstylepaintbutton').classList.remove('disabledButton');
 
 
-                    self.f1Text.fontstyle = self.liveryData['Layers'].tagfontstyle;
+                    self.f1Text.fontstyle = self.liveryData['tagfontstyle'];
                     self.f1Text.fixText();
                     self.f1Text.composite();
                 }
@@ -422,6 +422,9 @@ class PatternItems {
                 isNone=true;
                 document.getElementById('layer2tags_ins').classList.remove('disabledButton');
                 document.getElementById('TabHead').classList.remove('disabledButton');
+
+                // set livery tagstyle to -1 to indicate no tag please
+                liveryData['tagfontstyle'] = -1;
 
                 // document.getElementById('taginput').classList.add('disabledButton');
                 // document.getElementById('tagpaintbutton').classList.add('disabledButton');

@@ -328,9 +328,9 @@ class F1Aws {
                         break;
                 }
             } catch (err) {
-                alert("AWS error "+ err);
+                console.error(err);
                 if(DEBUG_MODE)
-                    console.error(err);
+                    alert("AWS error "+ err);
             }
         };
         main();

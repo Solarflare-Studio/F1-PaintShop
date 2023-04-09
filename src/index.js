@@ -55,10 +55,13 @@ const f1User = new F1User(); // doing this first to get parsed params
 var f1fnames = new F1AssetFileNames(); // set files names
 //===================================
 var renderSize = 1024;
-// var renderSize = 2048;
-
-// var customMapRenderSize = 2048;	// probably unneccesary
 var customMapRenderSize = 1024;
+if(f1User.userGFX==2) {
+	renderSize = 2048;
+	customMapRenderSize = 2048;
+}
+// var renderSize = 2048;
+// var customMapRenderSize = 2048;	// probably unneccesary
 var customRoughMapRenderSize = 1024;
 var sfxBloomRenderSize = 512;
 //===================================
@@ -87,6 +90,7 @@ var selectedBasePatternIndex = -1;
 var selectedIndex = -1;
 var prevupdate = 0;
 var loadedtime = 0;
+var takeSnapshot = 0;
 
 var centredControlsTarget = 0;
 var interacting = false;
@@ -122,13 +126,13 @@ var f1Ribbons = new F1Ribbons(f1Materials);
 
 updateProgress(5,'pipelines');
 var f1Garage = new F1Garage();
-var f1CarHelmet = new F1CarHelmet();
+var f1CarHelmet = new F1CarHelmet(f1User);
 var rootScene = new THREE.Object3D();
 // ==============================
 
 const pixelBuffer = new Uint8Array( 4*customMapRenderSize*customMapRenderSize );
 const pixelBufferRoughMetal = new Uint8Array( 4*customRoughMapRenderSize*customRoughMapRenderSize );
-const canvas = document.getElementById('canvas-container');
+// const canvas = document.getElementById('canvas-container');
 //==================================================
 /*!
  * iro.js v5.5.2 colour wheel
@@ -150,14 +154,16 @@ function createColourpicker() {
 		const confirmButtonElement = document.getElementById('LK_colourConfirmButton');
 		if(confirmButtonElement) {
 			forcedsizeofcolourpicker = confirmButtonElement.offsetWidth;
-			forcedheightofcolourpicker = confirmButtonElement.offsetHeight * 1.;	
+			forcedheightofcolourpicker = confirmButtonElement.offsetHeight * 1.;
+			console.log("here " + forcedheightofcolourpicker);
 		}
 	}
 	else {
 		const newcentrebuttons = document.getElementById('newcentrebuttons');
 		if(newcentrebuttons) {
 			forcedsizeofcolourpicker = newcentrebuttons.offsetWidth;
-			forcedheightofcolourpicker = newcentrebuttons.offsetHeight *1.;
+			forcedheightofcolourpicker = 68;//newcentrebuttons.offsetHeight *1.;
+			console.log("or here " + forcedheightofcolourpicker);
 		}
 	}
 
@@ -262,6 +268,8 @@ createColourpicker();
 //==================================================
 function onloaded()
 {
+	document.getElementById('drawer-example').classList.remove('hidden');
+	
 	// get and apply size modifications
 	setSize(window.innerWidth,window.innerHeight );
 }
@@ -816,6 +824,7 @@ function initit()
 
 }
 //==================================================
+var gl=0;
 function initScenes()
 {
 	if(!alreadyInitScenes) {
@@ -839,9 +848,9 @@ function initScenes()
 
 	scene.add(camera);
 
-	threecanvasElement = canvas.appendChild(renderer.domElement);
+	threecanvasElement = document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-	var gl = renderer.getContext("webgl", {premultipliedAlpha: true});//false});
+	gl = renderer.getContext("webgl", {premultipliedAlpha: true});//false});
 	gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
 	gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
@@ -937,6 +946,9 @@ function initScenes()
 	rootScene.position.set(0,-30,20);
 
 	controls = new OrbitControls( camera, renderer.domElement );
+
+
+
 	// try to help orbitcontroller
 	let cnttouch = 0;
 	// controls.addEventListener('touchstart', (event) => {
@@ -954,8 +966,19 @@ function initScenes()
 	//   }, false);	
 
 	  
+	renderer.domElement.addEventListener('mousedown', () => {
+		if(controls.autoRotate) {
+			tabBody.classList.add('completetransparent');
+			document.getElementById('finishSelectionContent').style.opacity = 0;
+		}
+
+		controls.autoRotate = false;
+	  });
 	// controls.addEventListener('touchmove', (event) => {
-	// 	event.preventDefault();
+	// 	if(controls.autoRotate)
+	// 		controls.autoRotate=false;
+
+	// 	// event.preventDefault();
 	//   }, false);	
 	// //
 
@@ -1146,10 +1169,19 @@ function changeTab(which, dontdofloorfx) {
 
 	// address the html buttons moving up and down...
 	const buttonblock = document.getElementById('f1nextbackbuttons');
-	if(which==1 || which==3) {
-		buttonblock.style = "margin-top: 1rem!important";
-	} else if( which==2 || which==4) {
-		buttonblock.style = "margin-top: 0.5rem!important";
+
+	if(f1Gui.seLayout) {
+		if(which==1 || which==3) {
+			buttonblock.style = "margin-top: 1rem!important";
+		} else if( which==2 || which==4) {
+			buttonblock.style = "margin-top: 0.5rem!important";
+		}
+	} else {
+		if(which==1 || which==3) {
+			buttonblock.style = "margin-top: 1rem!important";
+		} else if( which==2 || which==4) {
+			buttonblock.style = "margin-top: 0.5rem!important";
+		}
 	}
 
 	if(f1Gui.pickingColour) {
@@ -1169,6 +1201,34 @@ function changeTab(which, dontdofloorfx) {
 	}
 	else if (which==3) { // tag
 		f1SpecialFX.finalPass.uniforms.bloomAmount.value = 0.9;
+		cameraSwish(0);
+
+		// phase2 auto camera move to tag position
+		if(processJSON.liveryData['tagfontstyle'] == -1) { // if was none
+			// auto activate first tag
+			const patternblock=document.getElementById('layer2tags_ins');
+			if(patternblock!=0) {
+				for(var i=0;i<patternblock.children.length;i++) {
+					const id= patternblock.children[i].children[1].children[0].children[0].getAttribute('patternId');
+					if(id!=-1) {
+						// if(alreadyShownTagTutorial)
+						// 	setTimeout(() => {
+						// 		patternblock.children[i].children[1].children[0].children[0].click();
+								
+						// 	}, 1000);
+						break;
+					}
+	//                const id= patternblock.children[i].children[0].getAttribute('patternId');
+					// if(processJSON.liveryData['Layers'][layerindex].patternId == id){
+					// 	// patternblock.children[i].children[1].children[0].children[0].click();
+					// 	break;
+					// }
+				}
+			}
+		}
+		
+		// console.log('livery.isActive=' + livery);
+		// if()
 
 	}
 	else if (which==4) { // sponsor
@@ -1177,13 +1237,78 @@ function changeTab(which, dontdofloorfx) {
 
 	f1Gui.changedPage(which);
 }
+//==================================================
+let camSwishing = false;
+function cameraSwish(type) {
+	
+	let target1 = new THREE.Vector3(0,45,60);
+	if(type==0 || type==2) { //
+		if(f1User.isHelmet)
+			target1 = new THREE.Vector3(50.736996553990075, 36.57101261256037, -92.27582784738713);
+		else {
+			// target1 = new THREE.Vector3(67.41117717496526, 27.952203694515823, -31.411451059230423);
+			target1 = new THREE.Vector3(0.299, 32.0, 70.0);
+		}
+	}
+	controls.enabled = false;
 
+	let target0 = camera.position.clone();
+	const dist = target0.distanceTo(new THREE.Vector3(0,0,0));
+	let duration = 1000;
+
+	let easetype = TWEEN.Easing.Sinusoidal.Out;
+	if(type==0) {
+		if (dist <= 150.0) {
+			const target2 = new THREE.Vector3(target0.x * 1.5,target0.y * 1.5, target0.z * 1.5);
+			duration = 450;//((dist - 150) / 200) * 500;
+			target1.lerp(target2, 0.8);
+			const howfar = target1.distanceTo(target2);
+			console.log('howfar=' + howfar );
+			duration = 100 + (howfar * 10 * 2);
+			type=1;
+			// console.log('dist=' + dist + ", duration=" + duration);
+			easetype = TWEEN.Easing.Sinusoidal.Out;
+		}
+		else 
+			easetype = TWEEN.Easing.Sinusoidal.InOut;
+
+	}
+	
+	camSwishing = true;
+	new TWEEN.Tween(camera.position)
+	.to({
+			x: target1.x,
+			y: target1.y,
+			z: target1.z,
+		},
+		duration
+	)
+	.easing(easetype)
+	.onUpdate(function(d) {
+		controls.update();
+	})
+	.onComplete(function () {
+		controls.enabled = true;
+		renderer.localClippingEnabled = false;	// was for sfx intro
+		if(type==1) {
+			cameraSwish(2);
+		}
+		else
+			camSwishing = false;
+	})
+	.start()
+
+
+
+}
 //==================================================
 function onChangePaint(index) {
 
-	if(forcedsizeofcolourpicker==0) {
-		createColourpicker();
-	}
+	createColourpicker();
+
+	// if(forcedsizeofcolourpicker==0) {
+	// 	createColourpicker();
+	// }
 
 	tabBody.classList.add("hidden");
 	paintachannelblock.classList.remove("hidden");
@@ -1749,6 +1874,11 @@ function specialrenderpipeline() {
 	f1CarHelmet.theCustomMaterial.map = f1Layers.customMapBufferMapSceneTarget.texture;
 	f1CarHelmet.theCustomMaterial.needsUpdate = true;
 
+	if(takeSnapshot==1) {
+		f1SpecialFX.finalPass.uniforms.f1logoTexture.value = f1Materials.keepF1Logo;
+	}
+
+
 	// prevent attempt before loaded
 	if(f1CarHelmet.customMesh) {
 
@@ -1823,6 +1953,9 @@ function specialrenderpipeline() {
 	camera.layers.disable(3);// ribbon
 
 	f1SpecialFX.finalComposer.render();
+	if(takeSnapshot==1)
+		takeSnapshot=2;
+
 }
 //==================================================
 function dolayerpattern(layer,patternblock) {
@@ -1934,7 +2067,11 @@ function animate()
 		if(f1Ribbons.enabled)
 			f1Ribbons.update(elapsed,currenttime);
 
-		controls.update();
+		if(!camSwishing)
+			controls.update();
+		// else {
+		// 	camera.target = controls.target;
+		// }
 		TWEEN.update();
 
 
@@ -1943,6 +2080,179 @@ function animate()
 		}
 		renderpipeline();
 	} );
+
+	if(takeSnapshot==2) {
+
+		// let context = canvas.getContext('2d');
+        // // context.drawImage(image, 0, 0,image.width, image.height, 0, 0, 512, 512);
+		// let image = document.getElementById('logoimage');
+		// image.onload = function() {
+		//   context.drawImage(image, 0, 0, image.width, image.height, 0, 0, 512, 512);
+		// };
+
+
+		takeSnapshot=3;
+		// const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+		document.getElementById('photoPageOverlay').style.display='flex';
+		document.getElementById('photoPreviewPanel').style.display='none';
+		document.getElementById('loadingContent').classList.remove('hidden');
+		document.getElementById('spinnerphoto').style.display='flex';
+
+		setTimeout(() => {
+			
+			const canvas = renderer.domElement;
+
+
+			document.getElementById('loadingContent').classList.add('hidden');
+
+
+			canvas.toBlob((blob) => {
+				// Create a new file object from the blob
+				const file = new File([blob], 'F1PaintShop.png', { type: 'image/png' });
+				document.getElementById('photoPreviewPanel').style.display='';
+				document.getElementById('spinnerphoto').style.display='none';
+
+
+//
+
+
+
+// const link = document.createElement('a');
+const link =document.getElementById('shareButtonLink');
+
+link.style.pointerEvents = 'all';
+link.href = URL.createObjectURL(file);
+// Remove the download attribute from the link element
+// link.download = 'F1PaintShop.png';
+
+const previewImage = document.createElement('img');
+previewImage.classList.add('previewImage');
+previewImage.src = URL.createObjectURL(file);
+
+// link.appendChild(previewImage);
+
+// Add a click event listener to the link element
+link.addEventListener('click', (event) => {
+  event.preventDefault();
+  // Call the navigator.share() method to open the share sheet
+  navigator.share({
+    title: 'F1 fanzone Paintshop!',
+    // text: 'I just shared this image using my app!',
+    files: [file],
+  })
+  .then(() => {
+    console.log('Image shared successfully!');
+  })
+  .catch((error) => {
+    console.error('Error sharing image:', error);
+  });
+});
+
+const imagelink = document.createElement('a');
+imagelink.style.pointerEvents = 'all';
+imagelink.href = URL.createObjectURL(file);
+imagelink.appendChild(previewImage);
+imagelink.download='F1PaintShop.png';
+document.getElementById('photoPreview').appendChild(imagelink);
+
+
+// document.getElementById('shareButtonLink').download = 'F1PaintShop.png';
+// document.getElementById('shareButtonLink').href = URL.createObjectURL(file);
+// document.getElementById('shareButtonLink').addEventListener('click', (event) => {
+// 	event.preventDefault();
+// 	// Call the navigator.share() method to open the share sheet
+// 	navigator.share({
+// 	  title: 'Check out this image!',
+// 	  text: 'I just shared this image using my app!',
+// 	  files: [file],
+// 	})
+// 	.then(() => {
+// 	  console.log('Image shared successfully!');
+// 	})
+// 	.catch((error) => {
+// 	  console.error('Error sharing image:', error);
+// 	});
+//   });
+
+//
+
+/*
+
+
+
+			const link = document.createElement('a');
+			link.style.pointerEvents='all';
+			link.href = URL.createObjectURL(file);
+			link.download = 'F1PaintShop.png';
+			const previewImage = document.createElement('img');
+			previewImage.classList.add('previewImage');
+			previewImage.src = URL.createObjectURL(file);
+			link.appendChild(previewImage);
+
+
+
+			document.getElementById('photoPreview').appendChild(link);
+			// document.getElementById('photoPreview').appendChild(previewImage);
+
+			// const link = document.createElement('a');
+			// link.href = URL.createObjectURL(file);
+			document.getElementById('shareButtonLink').download = 'F1PaintShop.png';
+			document.getElementById('shareButtonLink').href = URL.createObjectURL(file);
+*/
+			// window.open(URL.createObjectURL(file), '_blank');
+			// window.open(previewImage, '_blank');
+			// window.navigator.saveBlob(URL.createObjectURL(file), 's2creengrab.png');
+
+			/*
+			// window.open(URL.createObjectURL(file), '_blank');
+			const img = new Image();
+			img.src = file;
+			
+			// Add an event listener to the image element to save the image when it loads
+			img.addEventListener('load', () => {
+			  // Convert the canvas to a blob object
+			  canvas.toBlob((blob) => {
+				// Save the file to the camera roll
+				window.navigator.saveBlob(blob, 's2creengrab.png');
+			  }, 'image/png');
+			});
+			document.body.appendChild(img);
+			*/
+			/*
+			// if not ios
+			navigator.share({
+				title: 'Check out this screengrab!',
+				text: 'I just grabbed this screengrab using Three.js!',
+				files: [file],
+			  }).then(() => {
+				console.log('Screengrab shared successfully!');
+			  }).catch((error) => {
+				console.error('Error sharing screengrab:', error);
+			  });
+			*/
+			// Use the browser's download API to save the file to the user's device
+			// const link = document.createElement('a');
+			// link.href = URL.createObjectURL(file);
+			// link.download = 'screengrab.png';
+			// link.click();
+
+			setTimeout(function() {
+				f1SpecialFX.resize(window.innerWidth, window.innerHeight);
+				f1Gui.setRendererSize(window.innerWidth, window.innerHeight, renderer,camera);
+				f1SpecialFX.finalPass.uniforms.f1logoTexture.value = null;
+
+			},500);
+			
+
+
+
+		  }, 'image/png');
+
+		}, 500);
+
+		// Open a new window with the data URL as the source
+		// window.open(dataURL, '_blank');
+	}
 
 	if(doBuildBasemap)
 		postRenderProcess();
@@ -2102,6 +2412,8 @@ window.addEventListener("orientationchange", preventRotation, true);
 
 window.addEventListener('resize', function(event) {
     setSize(window.innerWidth,window.innerHeight);
+	f1SpecialFX.resize(window.innerWidth, window.innerHeight);
+
 }, true);
 
 initit();
@@ -2138,7 +2450,9 @@ const menu = document.querySelector("#menu");
 const welcomeProgress = document.querySelector("#welcomeProgress");
 const finalProgress = document.querySelector("#finalProgress");
 const dropdownArrow = document.querySelector("#dropdownArrow");
+const dropdownArrow2 = document.querySelector("#dropdownArrow2");
 const dropdownElm = document.querySelector("#languageSelect");
+const dropdownElm2 = document.querySelector("#gfxSelect");
 const zoomIn = document.querySelector("#zoomIn");
 const zoomOut = document.querySelector("#zoomOut");
 const tabContent = document.querySelector("#tabContent");
@@ -2221,6 +2535,38 @@ function welcome() {
   welcomeContent.classList.remove("hidden");
   loadingContent.classList.add("hidden");
 }
+// GFX Select Handler
+window.handleGfxSelect = handleGfxSelect;
+window.handleGfxChange = handleGfxChange;
+
+function handleGfxSelect() {
+	dropdownArrow2.classList.toggle("rotate-180");
+}
+function handleGfxChange(e) {
+	// uihandlelanguageChange(e,f1Aws);
+	const prev = selectedGfx.innerHTML;
+  	selectedGfx.innerHTML = e;
+	if(e!=prev) {
+		console.log("changed gfx setting to " + e);
+		const params = new URLSearchParams(document.location.search);
+		if(e === 'Afterburners ON 2k') 
+			params.set("g", "2");
+		else
+			params.set("g", "1");
+
+		const newParams = params.toString() ? "?" + params.toString() : "";
+		console.log(newParams.toString());
+		const wholeurl = document.location.href;
+		const url = document.location.origin + document.location.pathname + newParams;
+		console.log(wholeurl + "\n"+url);
+		window.location.replace(url);
+
+	}
+}
+
+  
+
+
 // Language Select Handler
 function handleLanguageSelect() {
   dropdownArrow.classList.toggle("rotate-180");
@@ -2233,6 +2579,10 @@ window.addEventListener("click", (event) => {
   if (event.target.closest("#languageSelect") !== dropdownElm) {
     dropdownArrow.classList.remove("rotate-180");
   }
+  if (event.target.closest("#gfxSelect") !== dropdownElm2) {
+	dropdownArrow2.classList.remove("rotate-180");
+  }
+
 });
 // Pattern Layout Handler
 function handleWelcomeNext() {
@@ -2272,6 +2622,18 @@ function handleCloseTutorial(id) {
   paintTutorialContent.classList.add("hidden");
   tagTutorialContent.classList.add("hidden");
   sponsorTutorialContent.classList.add("hidden");
+  if(id==2) {
+	setTimeout(() => {
+		const patternblock=document.getElementById('layer2tags_ins');
+		for(var i=0;i<patternblock.children.length;i++) {
+			const id= patternblock.children[i].children[1].children[0].children[0].getAttribute('patternId');
+			if(id!=-1) {
+				patternblock.children[i].children[1].children[0].children[0].click();
+				break;
+			}
+		}		
+	}, 500);
+  }
   if (id == 0) {
     introNextPage(); 
   }
@@ -2296,6 +2658,12 @@ function handleComeToLife() {
 // Back to Tab Handler
 function handleBackToTabs() {
 
+	// phase2
+	controls.autoRotate=false;
+	controls.enabled=true;
+	document.getElementById('photoButton').style.display="none";
+	
+
 	if(f1Gui.currentPage>=7) {
 		f1Gui.changedPage(4);
 	}
@@ -2314,6 +2682,10 @@ function handleBackToTabs() {
 
 	// bens mod
 	tabBody.classList.remove('transparenttabblock');
+	tabBody.classList.remove('completetransparent');
+	document.getElementById('finishSelectionContent').style.opacity = 1;
+
+
 
 	if(haveminimizedGui) {
 		zoomIn.classList.toggle("hidden");
@@ -2502,6 +2874,11 @@ nextBtn.addEventListener("click", () => {
 	}
 
 	if (!nextElement && !nextBtn.classList.contains("submit")) {
+
+		// document.getElementById('photoButton').classList.remove('hidden');
+		document.getElementById('photoButton').style.display="block";
+
+
 		TabHead.classList.add("hidden");
 		allTabs.classList.toggle("hidden");	
 		nextBtn.classList.add("submit");
@@ -2517,14 +2894,28 @@ nextBtn.addEventListener("click", () => {
 			minMax(false,2);
 	  	}
 
+		// phase2
+		controls.autoRotate=true;
+
 
 	  	return;
 	}
 	if (nextBtn.classList.contains("submit")) {
+		// after clicking next on 'looking good' page
 
 	  // ben
 		document.getElementById('prevBtn').style.pointerEvents='none';
 		document.getElementById('nextBtn').style.pointerEvents='none';
+
+		// phase2
+		controls.autoRotate=false;
+		controls.enabled=false;
+		// document.getElementById('photoButton').classList.add('hidden');
+		document.getElementById('photoButton').style.display="none";
+		tabBody.classList.remove('completetransparent');
+		document.getElementById('finishSelectionContent').style.opacity = 1;
+
+
 
 
 		updateProgress(-99,"reset");
@@ -2569,6 +2960,16 @@ nextBtn.addEventListener("click", () => {
 });
 // Previous Button Handler
 prevBtn.addEventListener("click", () => {
+	// phase2
+	controls.autoRotate=false;
+	controls.enabled=true;
+	tabBody.classList.remove('completetransparent');
+	document.getElementById('finishSelectionContent').style.opacity = 1;
+
+
+	document.getElementById('photoButton').style.display="none";
+
+
 	if (!finishSelectionContent.classList.contains("hidden")) {
 	  TabHead.classList.remove("hidden");
 	  allTabs.classList.remove("hidden");
@@ -2578,11 +2979,18 @@ prevBtn.addEventListener("click", () => {
 
 	  // bens mod
 	  tabBody.classList.remove('transparenttabblock');
+	  tabBody.classList.remove('completetransparent');
+	  document.getElementById('finishSelectionContent').style.opacity = 1;
+
+
 
 	  if(haveminimizedGui) {
 		zoomIn.classList.toggle("hidden");
 		zoomOut.classList.toggle("hidden");	
 		minMax(false,2);
+
+
+
 	  }
 	  if(f1Gui.currentPage>4) {
 		f1Gui.changedPage(4);
@@ -2648,3 +3056,36 @@ prevBtn.addEventListener("click", () => {
 	  }
 	});
 });
+
+
+// photo
+window.onPhotoButton = onPhotoButton;
+window.photoButton = photoButton;
+
+function photoButton(mode) {
+	if(mode==0) { // cancel / back
+		document.getElementById('photoPageOverlay').style.display='none';
+		document.getElementById('photoPreview').innerHTML="";
+	}
+	else if(mode==1) { // share
+
+	}
+}
+
+function onPhotoButton() {
+	takeSnapshot = 1;
+	if(f1User.userGFX==2) {
+		f1SpecialFX.resize(2048,2048);
+		f1Gui.setRendererSize(2048,2048, renderer, camera);
+	}
+	else {
+		f1SpecialFX.resize(1024,1024);
+		f1Gui.setRendererSize(1024,1024, renderer, camera);
+	}
+	// const canvas = renderer.domElement;
+	// renderer.render(scene, camera);
+	// const dataURL = canvas.toDataURL();
+	// // Open a new window with the data URL as the source
+	// window.open(dataURL, '_blank');
+}
+

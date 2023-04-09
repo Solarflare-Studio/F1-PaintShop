@@ -178,7 +178,7 @@
     },    
     {
       "name": "LK_final_01",
-      "text": "Ready to roll? Hit ‘NEXT’ or go back to make changes."
+      "text": "Ready to roll? Hit ‘NEXT’ or go back to make changes.<br>Tap the red button to take a photo."
     },    
     {
       "name": "LK_final_back",
@@ -222,7 +222,7 @@
     },
     {
       "name": "LK_tag_paint",
-      "text": "TAG"
+      "text": "TEXT"
     },
     {
       "name": "LK_tagstyle_paint",
@@ -236,6 +236,18 @@
       "name": "LK_colourConfirmButton",
       "text": "CONFIRM"
     },
+    {
+      "name": "LK_photo_iphoneusers",
+      "text": "Tap the image to download.<br>iPhone users can tap and hold the photo to save to camera roll."
+    },
+    {
+      "name": "LK_photo_back",
+      "text": "BACK"
+    },
+    {
+      "name": "LK_photo_share",
+      "text": "SHARE"
+    },        
     {
       "name": "LK_AR_welcome_1",
       "text": "ALLOW CAMERA"
@@ -256,7 +268,6 @@
       "name": "LK_AR_welcome_5",
       "text": "Checking permissions"
     },
-  
     {
       "name": "LK_AR_cameraRequest_1",
       "text": "To enjoy the full AR experience, we need your permission to access your camera."
@@ -296,6 +307,10 @@
     {
       "name": "LK_AR_explore_02",
       "text": "Do a lap around the car to check out your design from all angles."
+    },
+    {
+      "name": "LK_AR_explore_02_H",
+      "text": "Do a lap around the helmet to check out your design from all angles."
     },
     {
       "name": "LK_AR_share_01",

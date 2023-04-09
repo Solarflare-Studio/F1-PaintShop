@@ -6,7 +6,8 @@ import { updateProgress } from './f1gui.js';
 
 class F1CarHelmet {
 
-    constructor() {
+    constructor(f1User) {
+        this.f1User = f1User
     }
 
     init(f1materials,f1Layers,isHelmet, f1fnames, f1MetalRough,f1SpecialFX, f1Garage, f1Ribbons) {
@@ -145,11 +146,19 @@ class F1CarHelmet {
         }
         //
         var model3D;
-        if(this.isHelmet)
-            model3D = f1fnames.helmet_files[0];
-        else
-            model3D = f1fnames.car_files[0];
-
+    
+        if(this.f1User.userGFX==1) {
+            if(this.isHelmet)
+                model3D = f1fnames.helmet_files[0];
+            else
+                model3D = f1fnames.car_files[0];
+        }
+        else if(this.f1User.userGFX==2) {
+            if(this.isHelmet)
+                model3D = f1fnames.helmet_files_2k[0];
+            else
+                model3D = f1fnames.car_files_2k[0];
+        }
 
 
         if(DEBUG_MODE)
@@ -226,28 +235,51 @@ class F1CarHelmet {
             filetypelist.push( 12 );             
             filecomplete.push(false);
 
+            filelist.push('./assets/textures/F1Logo.png'); // F1Logo  texture
+            filetypelist.push( 14 );             
+            filecomplete.push(false);
 
             if(_self.isHelmet) { // really is helmet
 
                 // todo
                 // now do HELMET static mat              
-                filelist.push(f1fnames.helmet_files[6] ); // base
-                filetypelist.push( 0 ); filecomplete.push(false);
-                filelist.push(f1fnames.helmet_files[9] ); // metal
-                filetypelist.push( 1 ); filecomplete.push(false);
-                filelist.push(f1fnames.helmet_files[10] ); // rough
-                filetypelist.push( 2 ); filecomplete.push(false);
-                filelist.push(f1fnames.helmet_files[8] ); // ao
-                filetypelist.push( 3 ); filecomplete.push(false);
-                filelist.push(f1fnames.helmet_files[7] ); // normal
-                filetypelist.push( 4 ); filecomplete.push(false);
-
-                // custom mat
-                filelist.push(f1fnames.helmet_files[2] ); // normal
-                filetypelist.push( 5 ); filecomplete.push(false);
-                filelist.push(f1fnames.helmet_files[3] ); // ao
-                filetypelist.push( 6 ); filecomplete.push(false);
-
+                if(_self.f1User.userGFX==1) {
+                    filelist.push(f1fnames.helmet_files[6] ); // base
+                    filetypelist.push( 0 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files[9] ); // metal
+                    filetypelist.push( 1 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files[10] ); // rough
+                    filetypelist.push( 2 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files[8] ); // ao
+                    filetypelist.push( 3 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files[7] ); // normal
+                    filetypelist.push( 4 ); filecomplete.push(false);
+    
+                    // custom mat
+                    filelist.push(f1fnames.helmet_files[2] ); // normal
+                    filetypelist.push( 5 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files[3] ); // ao
+                    filetypelist.push( 6 ); filecomplete.push(false);
+                }
+                else if(_self.f1User.userGFX==2) {
+                    filelist.push(f1fnames.helmet_files_2k[6] ); // base
+                    filetypelist.push( 0 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files_2k[9] ); // metal
+                    filetypelist.push( 1 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files_2k[10] ); // rough
+                    filetypelist.push( 2 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files_2k[8] ); // ao
+                    filetypelist.push( 3 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files_2k[7] ); // normal
+                    filetypelist.push( 4 ); filecomplete.push(false);
+    
+                    // custom mat
+                    filelist.push(f1fnames.helmet_files_2k[2] ); // normal
+                    filetypelist.push( 5 ); filecomplete.push(false);
+                    filelist.push(f1fnames.helmet_files_2k[3] ); // ao
+                    filetypelist.push( 6 ); filecomplete.push(false);
+    
+                }
                 // visor
                 // filelist.push(f1fnames.helmet_files[11] ); // base
                 // filetypelist.push( 20 ); filecomplete.push(false);
@@ -265,23 +297,43 @@ class F1CarHelmet {
             }
             else {  // is the car
 
-                // now do car static mat              
-                filelist.push(f1fnames.car_files[6] ); // base
-                filetypelist.push( 0 ); filecomplete.push(false);
-                filelist.push(f1fnames.car_files[9] ); // metal
-                filetypelist.push( 1 ); filecomplete.push(false);
-                filelist.push(f1fnames.car_files[10] ); // rough
-                filetypelist.push( 2 ); filecomplete.push(false);
-                filelist.push(f1fnames.car_files[8] ); // ao
-                filetypelist.push( 3 ); filecomplete.push(false);
-                filelist.push(f1fnames.car_files[7] ); // normal
-                filetypelist.push( 4 ); filecomplete.push(false);
-
-                // custom mat
-                filelist.push(f1fnames.car_files[2] ); // normal
-                filetypelist.push( 5 ); filecomplete.push(false);
-                filelist.push(f1fnames.car_files[3] ); // ao
-                filetypelist.push( 6 ); filecomplete.push(false);
+                // now do car static mat          
+                if(_self.f1User.userGFX==1) {
+                    filelist.push(f1fnames.car_files[6] ); // base
+                    filetypelist.push( 0 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files[9] ); // metal
+                    filetypelist.push( 1 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files[10] ); // rough
+                    filetypelist.push( 2 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files[8] ); // ao
+                    filetypelist.push( 3 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files[7] ); // normal
+                    filetypelist.push( 4 ); filecomplete.push(false);
+    
+                    // custom mat
+                    filelist.push(f1fnames.car_files[2] ); // normal
+                    filetypelist.push( 5 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files[3] ); // ao
+                    filetypelist.push( 6 ); filecomplete.push(false);
+                }
+                else if(_self.f1User.userGFX==2) {
+                    filelist.push(f1fnames.car_files_2k[6] ); // base
+                    filetypelist.push( 0 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files_2k[9] ); // metal
+                    filetypelist.push( 1 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files_2k[10] ); // rough
+                    filetypelist.push( 2 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files_2k[8] ); // ao
+                    filetypelist.push( 3 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files_2k[7] ); // normal
+                    filetypelist.push( 4 ); filecomplete.push(false);
+    
+                    // custom mat
+                    filelist.push(f1fnames.car_files_2k[2] ); // normal
+                    filetypelist.push( 5 ); filecomplete.push(false);
+                    filelist.push(f1fnames.car_files_2k[3] ); // ao
+                    filetypelist.push( 6 ); filecomplete.push(false);
+                }
 
             }
 

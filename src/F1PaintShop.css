@@ -138,7 +138,9 @@ progress
 	background-color: transparent;
 }
 
-
+#selectedGfx {
+	font-family: 'Titillium Web', sans-serif!important;
+}
 
 #selectedLanguage {
 	font-family: 'Titillium Web', sans-serif!important;
@@ -169,15 +171,16 @@ h1 {
 }
 
 .seminmaxheight {
-	min-height: 287px!important;
-	max-height: 287px!important;
+	min-height: 280px!important;
+	max-height: 280px!important;
 	/* min-height: 290px!important;
 	max-height: 290px!important; */
+	padding-top: 0.55rem!important;
 }
 
 .selayer1ins {
-	min-height: 193px!important;
-	max-height: 193px!important;
+	min-height: 178px!important;
+	max-height: 178px!important;
 }
 .selayer2ins {
 	min-height: 124px!important;
@@ -193,7 +196,8 @@ h1 {
 }
 
 .nonsefinishblock {
-	margin-top: 9.05rem!important;
+	margin-top: 4.05rem!important;
+	/* margin-top: 9.05rem!important; */
 }
 
 .buttonblock {
@@ -206,4 +210,79 @@ h1 {
 
 .reducetopmargin {
     margin-top: .0!important;
+}
+
+.reduceTabsHeight {
+	height: 2.2rem!important;
+}
+
+.newcentrebuttons {
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+.photoButton {
+	/* transition: opacity 1s; */
+	opacity: 1;
+	margin: 0.5rem;
+}
+
+#photoPageOverlay {
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+
+	display: block;
+    background-color: black;
+    z-index: 30;
+	pointer-events: all;
+
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#photoPreviewPanel {
+	margin: 2rem;
+}
+
+#shareButtonLink {
+	width: 50%;
+}
+
+#photoPreview {
+	border: 2px solid white;
+    border-radius: 0.5rem;
+}
+.previewImage {
+	border-radius:  0.5rem;
+	user-select: all;
+	
+}
+.completetransparent {
+	/* background:linear-gradient(to top, rgba(21, 20, 32, 0.99) 0%,rgba(21, 20, 32, 0.99) 30%, rgba(21, 20, 32, 0.0) 80.66%, rgba(21, 20, 32, 0) 100%)!important; */
+	background:linear-gradient(to top, rgba(21, 20, 32, 0.99) 0%,rgba(21, 20, 32, 0.99) 10%, rgba(21, 20, 32, 0.0) 50.66%, rgba(21, 20, 32, 0) 100%)!important
+}
+
+#spinnerphoto {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-content: center; */
+    align-items: center;
+}
+
+#LK_photo_iphoneusers {
+	color: #ffffffa1;
+    font-family: 'F1PaintShopFont';
 }

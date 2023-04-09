@@ -315,7 +315,7 @@ class F1Text {
         let inputValue = inputField.value;
         if(DEBUG_MODE)
             console.log(inputValue);
-        const styletype = this.processJSON.liveryData['Layers'].tagfontstyle; // tag layer
+        const styletype = this.processJSON.liveryData['tagfontstyle']; // tag layer
         this.textTexture = this.createText(inputValue,styletype);
         this.processJSON.liveryData.tagtext = inputValue;
 
@@ -483,7 +483,10 @@ class F1Text {
             case 8:
                 fontdesc += "F1PaintShopBoldFont";
                 sizemodifier = 0.75;
-                needsoutline = true;
+                // needsoutline = true;
+
+                context.lineJoin = 'round';
+                needsgapoutline=true;
 
                 break;
             case 9:
