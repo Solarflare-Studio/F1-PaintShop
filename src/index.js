@@ -56,14 +56,17 @@ var f1fnames = new F1AssetFileNames(); // set files names
 //===================================
 var renderSize = 1024;
 var customMapRenderSize = 1024;
+var customRoughMapRenderSize = 1024;
+var sfxBloomRenderSize = 512;
+
 if(f1User.userGFX==2) {
 	renderSize = 2048;
 	customMapRenderSize = 2048;
+	customRoughMapRenderSize = 2048;
+
 }
 // var renderSize = 2048;
 // var customMapRenderSize = 2048;	// probably unneccesary
-var customRoughMapRenderSize = 1024;
-var sfxBloomRenderSize = 512;
 //===================================
 const camfrom = new THREE.Vector3(165.0,52.3,-3.7);
 const camto = new THREE.Vector3(44.0,36.0,90.0);
@@ -104,7 +107,7 @@ var wasincolourpicker = false;
 
 // ==============================
 
-var f1Aws = new F1Aws(f1User.isHelmet);
+var f1Aws = new F1Aws(f1User);
 f1Aws.preloadlanguagecode = f1User.languageCode;
 f1Aws.loadfromAWS('languages','languages.json',0,null,f1Aws);
 
@@ -166,7 +169,11 @@ function createColourpicker() {
 			console.log("or here " + forcedheightofcolourpicker);
 		}
 	}
-
+	// force size of paint container
+	forcedheightofcolourpicker = 68;//newcentrebuttons.offsetHeight *1.;
+	if(f1Gui.seLayout) {
+		forcedheightofcolourpicker = 62;//newcentrebuttons.offsetHeight *1.;
+	}
 	// not in either!
 	if(forcedsizeofcolourpicker==0) {
 		return;
@@ -717,6 +724,9 @@ function seekPatternThumb(patternblock,layer) {
 	return element;
 }
 //==================================================
+const carinduration = 3500;	// delays 500 first
+const carwireduration = 2000;  // delays 800 first
+
 function introNextPage() {
 	// first page Okeyed
 	introStage = 1;
@@ -726,8 +736,6 @@ function introNextPage() {
 	renderer.localClippingEnabled = true;	// for sfx intro
 	controls.enabled = false;
 
-	const carinduration = 3500;	// delays 500 first
-	const carwireduration = 2000;  // delays 800 first
 	
 
 	f1CarHelmet.theModelRoot.visible = true;
@@ -772,6 +780,10 @@ function introNextPage() {
 	.start()
 
 	// swoosh camera in and then allow user to start
+	setTimeout(function() {
+		cameraSwish(3);
+	}, 800);
+/*
 	new TWEEN.Tween(camera.position)
 	.to({
 			x: camto.x,
@@ -796,6 +808,7 @@ function introNextPage() {
 		}, 2500);
 	})
 	.start()
+	*/
 }
 //==================================================
 function initit()
@@ -1096,6 +1109,8 @@ function setSize(w,h) {
 		f1Gui.setSize(w,h,renderer,camera,colorPatternPicker);
 
 	createColourpicker();
+	f1SpecialFX.resize(w,h,renderer);
+
 }
 
 
@@ -1134,7 +1149,7 @@ function onPatternPicked(which,thefile,thepatternelement)
 		document.getElementById('layer3sponsors_ins').classList.add('disabledButton');
 
 	// also disable tabs at this point
-	document.getElementById('TabHead').classList.add('disabledButton');
+	document.getElementById('TabHead').classList.add('disabledTab');
 
 
 
@@ -1241,6 +1256,9 @@ function changeTab(which, dontdofloorfx) {
 let camSwishing = false;
 function cameraSwish(type) {
 	
+	let easetype = TWEEN.Easing.Sinusoidal.Out;
+	let duration = 1000;
+
 	let target1 = new THREE.Vector3(0,45,60);
 	if(type==0 || type==2) { //
 		if(f1User.isHelmet)
@@ -1250,13 +1268,16 @@ function cameraSwish(type) {
 			target1 = new THREE.Vector3(0.299, 32.0, 70.0);
 		}
 	}
+	else if(type==3) {
+		target1 = camto;
+		easetype= TWEEN.Easing.Sinusoidal.InOut;
+		duration=carinduration
+	}
 	controls.enabled = false;
 
 	let target0 = camera.position.clone();
 	const dist = target0.distanceTo(new THREE.Vector3(0,0,0));
-	let duration = 1000;
 
-	let easetype = TWEEN.Easing.Sinusoidal.Out;
 	if(type==0) {
 		if (dist <= 150.0) {
 			const target2 = new THREE.Vector3(target0.x * 1.5,target0.y * 1.5, target0.z * 1.5);
@@ -1295,6 +1316,17 @@ function cameraSwish(type) {
 		}
 		else
 			camSwishing = false;
+
+		if(type==3) {
+			f1SpecialFX.resetCarFromIntro(f1CarHelmet,f1User.isHelmet);
+			renderer.localClippingEnabled = false;	// was for sfx intro
+			f1Garage.startFloorMode(1); // radial
+			introStage = 2; // moved on from intro
+			f1Ribbons.triggerRibbon();
+			setTimeout(function() {
+				f1Garage.startFloorMode(3); // switch on hex floor under lights in shader
+			}, 2500);	
+		}
 	})
 	.start()
 
@@ -2052,7 +2084,22 @@ function animate()
 
 		if(!DEBUG_MODE) {
 			// re-centres camera
-			controls.target = controls.target.lerpVectors ( controls.target, centredControlsTarget, 0.01 );
+
+			// console.log(controls.target.z);
+			const zz = controls.target.z;
+			let aimfor = centredControlsTarget;
+			
+			if(f1User.isHelmet) {
+				if(zz <= 20.0 && zz >= -20) {
+					aimfor.z = zz;
+				}
+			}
+			else if(zz <= 20.0 && zz >= -30) {
+				aimfor.z = zz;
+			}
+
+			// controls.target = controls.target.lerpVectors ( controls.target, centredControlsTarget, 0.01 );
+			controls.target = controls.target.lerpVectors ( controls.target, aimfor, 0.01 );
 			// zooms out to minimum if breached
 
 			if(!interacting) {
@@ -2237,7 +2284,7 @@ document.getElementById('photoPreview').appendChild(imagelink);
 			// link.click();
 
 			setTimeout(function() {
-				f1SpecialFX.resize(window.innerWidth, window.innerHeight);
+				f1SpecialFX.resize(window.innerWidth, window.innerHeight,renderer);
 				f1Gui.setRendererSize(window.innerWidth, window.innerHeight, renderer,camera);
 				f1SpecialFX.finalPass.uniforms.f1logoTexture.value = null;
 
@@ -2412,7 +2459,6 @@ window.addEventListener("orientationchange", preventRotation, true);
 
 window.addEventListener('resize', function(event) {
     setSize(window.innerWidth,window.innerHeight);
-	f1SpecialFX.resize(window.innerWidth, window.innerHeight);
 
 }, true);
 
@@ -2500,7 +2546,7 @@ function move() {
 				document.getElementById('nextBtn').style.pointerEvents='all';
 
 			  handleComeToLife();
-			  document.getElementById('canvas-positioner').style.display='none';
+			//   document.getElementById('canvas-positioner').style.display='none';
 			} 
 			else if(loadingProgress >= 50) {
 				// updateProgress(1,"delay");
@@ -2923,6 +2969,11 @@ nextBtn.addEventListener("click", () => {
 		finalProgress.value = 0;
 		doBuildBasemap=true; // start save process
 		move();
+		patternContent.classList.add("hidden");
+		document.getElementById('canvas-positioner').style.display='none';
+
+
+
 		finishSelectionLoading.classList.remove("hidden");
 	}
 	if (!nextElement) return;
@@ -3075,11 +3126,11 @@ function photoButton(mode) {
 function onPhotoButton() {
 	takeSnapshot = 1;
 	if(f1User.userGFX==2) {
-		f1SpecialFX.resize(2048,2048);
+		f1SpecialFX.resize(2048,2048,renderer);
 		f1Gui.setRendererSize(2048,2048, renderer, camera);
 	}
 	else {
-		f1SpecialFX.resize(1024,1024);
+		f1SpecialFX.resize(1024,1024,renderer);
 		f1Gui.setRendererSize(1024,1024, renderer, camera);
 	}
 	// const canvas = renderer.domElement;

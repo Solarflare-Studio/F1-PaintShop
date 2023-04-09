@@ -51,6 +51,14 @@
     pointer-events: none;
     opacity: 0.5;
 }
+
+.disabledTab {
+    pointer-events: none;
+    /* opacity: 0.5; */
+	color:rgba(255,255,255,0.5);
+}
+
+
 .tabheadfade {
 	opacity:0;
 }
@@ -196,7 +204,7 @@ h1 {
 }
 
 .nonsefinishblock {
-	margin-top: 4.05rem!important;
+	margin-top: 2.3rem!important;
 	/* margin-top: 9.05rem!important; */
 }
 

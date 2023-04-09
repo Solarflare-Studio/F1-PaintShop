@@ -224,7 +224,7 @@ class PatternItems {
                 else if(self.currentLayer==2)
                     document.getElementById('layer3sponsors_ins').classList.remove('disabledButton');
         
-                document.getElementById('TabHead').classList.remove('disabledButton');
+                document.getElementById('TabHead').classList.remove('disabledTab');
 
 
                 if(self.currentLayer==0) { // base
@@ -414,14 +414,14 @@ class PatternItems {
             if(currentLayer==0) {
                 document.getElementById('layer1patterns_ins').classList.remove('disabledButton');
             	// also disable tabs at this point
-                document.getElementById('TabHead').classList.remove('disabledButton');
+                document.getElementById('TabHead').classList.remove('disabledTab');
 
                 // never!
             }
             else if(currentLayer==1) {
                 isNone=true;
                 document.getElementById('layer2tags_ins').classList.remove('disabledButton');
-                document.getElementById('TabHead').classList.remove('disabledButton');
+                document.getElementById('TabHead').classList.remove('disabledTab');
 
                 // set livery tagstyle to -1 to indicate no tag please
                 liveryData['tagfontstyle'] = -1;
@@ -445,7 +445,7 @@ class PatternItems {
                 isNone=true;
 
                 document.getElementById('layer3sponsors_ins').classList.remove('disabledButton');
-                document.getElementById('TabHead').classList.remove('disabledButton');
+                document.getElementById('TabHead').classList.remove('disabledTab');
 
                 mapUniforms.useDecal.value = 0;
                 f1MetalRoughmapUniforms.useDecal.value = 0;

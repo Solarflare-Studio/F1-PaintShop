@@ -4,11 +4,12 @@ import {DEBUG_MODE} from './adminuser'
 class F1Aws {
 
 
-    constructor(isHelmet) {
+    constructor(f1User) {
         this.languageSettingsJson = 0;
         this.preloadlanguagecode = "";
         this.keepLanguageKeys = "";
-        this.isHelmet = isHelmet;
+        this.isHelmet = f1User.isHelmet;
+        this.userGFX  = f1User.userGFX;
         this.init();
     }
     init() {
@@ -96,6 +97,12 @@ class F1Aws {
                     // textElement.style.visibility = "visible";
                 }
             }
+            if(dialogues[i].name=='LK_menu_gfx_02' && f1aws.userGFX==2) {
+                document.getElementById('selectedGfx').innerHTML=dialogues[i].text;
+            } else if(dialogues[i].name=='LK_menu_gfx_01' && f1aws.userGFX!=2) {
+                document.getElementById('selectedGfx').innerHTML=dialogues[i].text;
+            }
+
         }
     }
     //======================

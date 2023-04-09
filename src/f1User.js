@@ -57,11 +57,15 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
         if(this.forcecar && this.userCarOrHelmet!='h') this.userCarOrHelmet='c';
         const aUserParam = params.get('u');
         
-        if(this.userGFX==2) {
-            document.getElementById('selectedGfx').innerHTML="Afterburners ON 2k";
-        }
-        else
-            document.getElementById('selectedGfx').innerHTML="Amazing HD";
+        // if(this.userGFX==2) {
+        //     const txt = document.getElementById('LK_menu_gfx_02').innerHTML;
+        //     document.getElementById('selectedGfx').innerHTML=txt;
+        // }
+        // else {
+        //     const txt = document.getElementById('LK_menu_gfx_01').innerHTML;
+        //     document.getElementById('selectedGfx').innerHTML=txt;
+        //     // document.getElementById('selectedGfx').innerHTML="Amazing HD";
+        // }
 
 
         // clearCookies();

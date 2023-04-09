@@ -24,6 +24,7 @@ class F1SpecialFX {
 
       this.effectStarttime = 0;
       this.duration = 0;
+      this.pixelRatio = 0;
 
       this.init(isHelmet, renderSize,f1fnames,liveryData,glowRenderSize);
 
@@ -373,6 +374,13 @@ class F1SpecialFX {
             _self.glowBufferMapScene.add(glowBufferMapMesh);
         _self.glowBufferMapMaterial.needsUpdate = true;
     
+        // document.getElementById('c_bendFSlider').addEventListener('input', function() {
+        //   document.getElementById('c_bendFSliderTxt').innerHTML = "res = " + window.innerWidth * this.value * 0.1;
+        //   console.log(window.innerWidth * this.value * 0.1);
+        //   _self.changeRes(window.innerWidth * this.value * 0.1, window.innerHeight * this.value * 0.1);
+        // });
+        //======================
+    
     }
 
     //======================
@@ -402,10 +410,20 @@ class F1SpecialFX {
 
       // anti-aliasing test
       this.fxaaPass = new ShaderPass( FXAAShader );
-      const pixelRatio = renderer.getPixelRatio();
+      this.pixelRatio = renderer.getPixelRatio();
 
-      this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( renderSize * pixelRatio );
-      this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( renderSize * pixelRatio );
+
+      console.log('>>> *** >>> ' + (1 / ( renderSize * this.pixelRatio )));
+      const canvas = renderer.domElement;
+      // look up the size the canvas is being displayed
+      const width = 1024;//canvas.clientWidth;
+      const height = 1024;//canvas.clientHeight;
+      console.log(">> *** fxaaPass init res = " + width + ", " + height + ", pr="+this.pixelRatio);
+      this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( width * this.pixelRatio );
+      this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( height * this.pixelRatio );
+
+      // this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( renderSize * pixelRatio );
+      // this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( renderSize * pixelRatio );
     
       this.finalPass = new ShaderPass(
         new THREE.ShaderMaterial( {
@@ -508,12 +526,32 @@ class F1SpecialFX {
     
     }
     //======================
-    resize(_w,_h) { // when resizing canvas
-      this.finalComposer.setSize(_w,_h);
+    resize(_w,_h,renderer) { // when resizing canvas
+      console.log('>>> finalComposer >>>> ' + _w + ", "+_h);
+      if(this.finalComposer) {
+        this.pixelRatio = renderer.getPixelRatio();
+
+        const canvas = renderer.domElement;
+        // look up the size the canvas is being displayed
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+  
+        this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( width * this.pixelRatio );
+        this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( height * this.pixelRatio );
+  
+        this.finalComposer.setSize(width,height);
+      }
+    }
+    //======================
+    changeRes(width,height) {
+      
+
+      this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( width * this.pixelRatio );
+      this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( height * this.pixelRatio );
+      this.finalComposer.setSize(width,height);
 
     }
     //======================
-
 
 }
 
