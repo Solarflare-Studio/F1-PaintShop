@@ -527,28 +527,28 @@ class F1SpecialFX {
     }
     //======================
     resize(_w,_h,renderer) { // when resizing canvas
-      console.log('>>> finalComposer >>>> ' + _w + ", "+_h);
-      if(this.finalComposer) {
-        this.pixelRatio = renderer.getPixelRatio();
+      // console.log('>>> finalComposer >>>> ' + _w + ", "+_h);
+      // if(this.finalComposer) {
+      //   this.pixelRatio = renderer.getPixelRatio();
 
-        const canvas = renderer.domElement;
-        // look up the size the canvas is being displayed
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
+      //   const canvas = renderer.domElement;
+      //   // look up the size the canvas is being displayed
+      //   const width = canvas.clientWidth;
+      //   const height = canvas.clientHeight;
   
-        this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( width * this.pixelRatio );
-        this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( height * this.pixelRatio );
+      //   this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( width * this.pixelRatio );
+      //   this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( height * this.pixelRatio );
   
-        this.finalComposer.setSize(width,height);
-      }
+      //   this.finalComposer.setSize(width,height);
+      // }
     }
     //======================
     changeRes(width,height) {
       
 
-      this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( width * this.pixelRatio );
-      this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( height * this.pixelRatio );
-      this.finalComposer.setSize(width,height);
+      // this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( width * this.pixelRatio );
+      // this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( height * this.pixelRatio );
+      // this.finalComposer.setSize(width,height);
 
     }
     //======================

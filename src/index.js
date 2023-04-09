@@ -782,7 +782,7 @@ function introNextPage() {
 	// swoosh camera in and then allow user to start
 	setTimeout(function() {
 		cameraSwish(3);
-	}, 800);
+	}, 500);
 /*
 	new TWEEN.Tween(camera.position)
 	.to({
@@ -1304,8 +1304,11 @@ function cameraSwish(type) {
 	if(type==1) {
 		let startpos = new THREE.Vector3(camera.position.x,camera.position.y,camera.position.z);
 		let endpos = target1;
-		let curpos = startpos;
-		
+		let midpos = startpos;
+		midpos.lerpVectors(startpos,endpos,0.2);
+		midpos = new THREE.Vector3(midpos.x*1.5,midpos.y*1.5,midpos.z*1.5);
+		// controls.enabled = true;
+
 		new TWEEN.Tween({value: 0.0})
 		.to({ value: 1.0 },
 			2000
@@ -1315,13 +1318,13 @@ function cameraSwish(type) {
 			var campos = startpos;
 			campos.lerpVectors(startpos, endpos, d.value);
 			var offset = new THREE.Vector3(campos.x,campos.y,campos.z);
-			offset.normalize();
-			offset.x *= 55.0;
-			offset.y *= 55.0;
-			offset.z *= 55.0;
-			offset.x += campos.x;
-			offset.y += campos.y;
-			offset.z += campos.z;
+			// offset.normalize();
+			// offset.x *= 55.0;
+			// offset.y *= 55.0;
+			// offset.z *= 55.0;
+			// offset.x += campos.x;
+			// offset.y += campos.y;
+			// offset.z += campos.z;
 			
 			// var y1 = 0.5 * (1 + Math.sin(2 * Math.PI * d.value));
 			// y1=0.0;
@@ -1330,10 +1333,19 @@ function cameraSwish(type) {
 			var y1 = d.value;
 			if(y1<0.5) y1*=2.0;
 			else y1=1.0-((y1-0.5)*2.0);
-			const tp = offset;
+
+			// const evt = new Event('wheel', {bubbles: true, cancelable: true});
+			// evt.deltaY = y1*5.0;
+			// threecanvasElement.dispatchEvent(evt);
+
+			// console.log(y1);
+			const tp = midpos;
 			offset.lerpVectors(campos, tp, y1);
+			offset=midpos;
 			camera.position.set(offset.x,offset.y,offset.z);
 			controls.update();
+
+
 			// const val = camera.position;
 		})
 		.onComplete(function () {
