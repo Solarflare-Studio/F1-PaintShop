@@ -725,7 +725,7 @@ function seekPatternThumb(patternblock,layer) {
 }
 //==================================================
 const carinduration = 3500;	// delays 500 first
-const carwireduration = 2000;  // delays 800 first
+const carwireduration = 3500;  // delays 800 first
 
 function introNextPage() {
 	// first page Okeyed
@@ -1260,6 +1260,8 @@ function cameraSwish(type) {
 	let duration = 1000;
 
 	let target1 = new THREE.Vector3(0,45,60);
+	let distfromtarget=0;
+
 	if(type==0 || type==2) { //
 		if(f1User.isHelmet)
 			target1 = new THREE.Vector3(50.736996553990075, 36.57101261256037, -92.27582784738713);
@@ -1267,6 +1269,7 @@ function cameraSwish(type) {
 			// target1 = new THREE.Vector3(67.41117717496526, 27.952203694515823, -31.411451059230423);
 			target1 = new THREE.Vector3(0.299, 32.0, 70.0);
 		}
+
 	}
 	else if(type==3) {
 		target1 = camto;
@@ -1274,62 +1277,110 @@ function cameraSwish(type) {
 		duration=carinduration
 	}
 	controls.enabled = false;
+	distfromtarget = target1.distanceTo(camera.position);
 
 	let target0 = camera.position.clone();
 	const dist = target0.distanceTo(new THREE.Vector3(0,0,0));
 
 	if(type==0) {
-		if (dist <= 150.0) {
-			const target2 = new THREE.Vector3(target0.x * 1.5,target0.y * 1.5, target0.z * 1.5);
-			duration = 450;//((dist - 150) / 200) * 500;
-			target1.lerp(target2, 0.8);
-			const howfar = target1.distanceTo(target2);
-			console.log('howfar=' + howfar );
-			duration = 100 + (howfar * 10 * 2);
+		if (dist <= 150.0 && distfromtarget>30) {
+			// const target2 = new THREE.Vector3(target0.x * 1.5,target0.y * 1.5, target0.z * 1.5);
+			// duration = 450;//((dist - 150) / 200) * 500;
+			// target1.lerp(target2, 0.8);
+			// const howfar = target1.distanceTo(target2);
+			// console.log('howfar=' + howfar );
+			// duration = 100 + (howfar * 10 * 2);
 			type=1;
 			// console.log('dist=' + dist + ", duration=" + duration);
-			easetype = TWEEN.Easing.Sinusoidal.Out;
+			// easetype = TWEEN.Easing.Sinusoidal.Out;
 		}
 		else 
 			easetype = TWEEN.Easing.Sinusoidal.InOut;
 
+		duration = distfromtarget * 20.0;
 	}
 	
 	camSwishing = true;
-	new TWEEN.Tween(camera.position)
-	.to({
-			x: target1.x,
-			y: target1.y,
-			z: target1.z,
-		},
-		duration
-	)
-	.easing(easetype)
-	.onUpdate(function(d) {
-		controls.update();
-	})
-	.onComplete(function () {
-		controls.enabled = true;
-		renderer.localClippingEnabled = false;	// was for sfx intro
-		if(type==1) {
-			cameraSwish(2);
-		}
-		else
-			camSwishing = false;
-
-		if(type==3) {
-			f1SpecialFX.resetCarFromIntro(f1CarHelmet,f1User.isHelmet);
+	if(type==1) {
+		let startpos = new THREE.Vector3(camera.position.x,camera.position.y,camera.position.z);
+		let endpos = target1;
+		let curpos = startpos;
+		
+		new TWEEN.Tween({value: 0.0})
+		.to({ value: 1.0 },
+			2000
+		)
+		.easing(TWEEN.Easing.Sinusoidal.InOut)
+		.onUpdate(function(d) {
+			var campos = startpos;
+			campos.lerpVectors(startpos, endpos, d.value);
+			var offset = new THREE.Vector3(campos.x,campos.y,campos.z);
+			offset.normalize();
+			offset.x *= 55.0;
+			offset.y *= 55.0;
+			offset.z *= 55.0;
+			offset.x += campos.x;
+			offset.y += campos.y;
+			offset.z += campos.z;
+			
+			// var y1 = 0.5 * (1 + Math.sin(2 * Math.PI * d.value));
+			// y1=0.0;
+			// offset = new THREE.Vector3().lerpVectors(campos, campos+offset, (y1));
+			// offset = new THREE.Vector3(campos.x,campos.y,campos.z);
+			var y1 = d.value;
+			if(y1<0.5) y1*=2.0;
+			else y1=1.0-((y1-0.5)*2.0);
+			const tp = offset;
+			offset.lerpVectors(campos, tp, y1);
+			camera.position.set(offset.x,offset.y,offset.z);
+			controls.update();
+			// const val = camera.position;
+		})
+		.onComplete(function () {
+			controls.enabled = true;
 			renderer.localClippingEnabled = false;	// was for sfx intro
-			f1Garage.startFloorMode(1); // radial
-			introStage = 2; // moved on from intro
-			f1Ribbons.triggerRibbon();
-			setTimeout(function() {
-				f1Garage.startFloorMode(3); // switch on hex floor under lights in shader
-			}, 2500);	
-		}
-	})
-	.start()
+			camSwishing = false;
+		})
+		.start()
 
+
+
+	} else {
+		new TWEEN.Tween(camera.position)
+		.to({
+				x: target1.x,
+				y: target1.y,
+				z: target1.z,
+			},
+			duration
+		)
+		.easing(easetype)
+		.onUpdate(function(d) {
+			controls.update();
+			// const val = camera.position;
+		})
+		.onComplete(function () {
+			controls.enabled = true;
+			renderer.localClippingEnabled = false;	// was for sfx intro
+			if(type==1) {
+				cameraSwish(2);
+			}
+			else
+				camSwishing = false;
+
+			if(type==3) {
+				f1SpecialFX.resetCarFromIntro(f1CarHelmet,f1User.isHelmet);
+				renderer.localClippingEnabled = false;	// was for sfx intro
+				f1Garage.startFloorMode(1); // radial
+				introStage = 2; // moved on from intro
+				f1Ribbons.triggerRibbon();
+				setTimeout(function() {
+					f1Garage.startFloorMode(3); // switch on hex floor under lights in shader
+				}, 2500);	
+			}
+		})
+		.start()
+	}
 
 
 }
