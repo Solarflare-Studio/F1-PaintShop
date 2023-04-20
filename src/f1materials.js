@@ -217,6 +217,7 @@ class F1Materials {
                         _material1.needsUpdate = true;
                         break;
                     case 3:         // ao
+                        _material1.aoMapIntensity = 0.9;
                         _material1.aoMap = tex;
                         _material1.needsUpdate = true;
                         break;

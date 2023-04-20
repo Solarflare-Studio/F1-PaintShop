@@ -316,7 +316,10 @@ class F1Text {
         if(DEBUG_MODE)
             console.log(inputValue);
         const styletype = this.processJSON.liveryData['tagfontstyle']; // tag layer
-        this.textTexture = this.createText(inputValue,styletype);
+        if(styletype==0)
+            this.textTexture = this.createText(inputValue,styletype+1);
+        else
+            this.textTexture = this.createText(inputValue,styletype);
         this.processJSON.liveryData.tagtext = inputValue;
 
 

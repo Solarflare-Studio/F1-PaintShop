@@ -43,7 +43,16 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
         
         this.languageCode = (params.get('lan') ? params.get('lan').toLowerCase() : "en"); // language
         // this.languageCode = "ENG";
-        
+        this.capturemode = 0;
+        if(this.userConsole==2) {
+            this.userConsole = 0;
+            this.capturemode = 1;
+        }
+        else if(this.userConsole==3) {
+            this.userConsole = 0;
+            this.capturemode = 2;
+        }
+
         DEBUG_MODE=this.userConsole;
 
 

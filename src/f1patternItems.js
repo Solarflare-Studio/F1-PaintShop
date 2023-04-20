@@ -276,6 +276,15 @@ class PatternItems {
                             colourconversion = new THREE.Color("rgb("+tintcolour+")");
                             newcol = self.rgbToHex(colourconversion.r*255.0,colourconversion.g*255.0,colourconversion.b*255.0);
                             self.liveryData['Layers'][self.currentLayer].Channels[t].tint = newcol;
+                            if(!self.useCustomTagColours && (t==1 || t==2)) {
+                                self.liveryData['Layers'][2].Channels[t-1].tint = newcol;
+                                if(t==1)
+                                    self.mapUniforms.tagStyleTint.value = new THREE.Vector3(colourconversion.r,colourconversion.g,colourconversion.b);
+                                else if(t==2)
+                                    self.mapUniforms.tagTint.value = new THREE.Vector3(colourconversion.r,colourconversion.g,colourconversion.b);
+                      
+
+                            }
                         }
                         else {
                             tintcolour = self.liveryData['Layers'][self.currentLayer].Channels[t].tint;
@@ -283,6 +292,15 @@ class PatternItems {
         
                             newcol = self.rgbToHex(colourconversion.r*255.0,colourconversion.g*255.0,colourconversion.b*255.0);
                             // liveryData[0][0]['Layers'][currentLayer].Channels[t];
+                            if(!self.useCustomTagColours && (t==1 || t==2)) {
+                                self.liveryData['Layers'][2].Channels[t-1].tint = newcol;
+                                if(t==1)
+                                    self.mapUniforms.tagStyleTint.value = new THREE.Vector3(colourconversion.r,colourconversion.g,colourconversion.b);
+                                else if(t==2)
+                                    self.mapUniforms.tagTint.value = new THREE.Vector3(colourconversion.r,colourconversion.g,colourconversion.b);
+                      
+
+                            }                            
         
                         }
         
@@ -317,8 +335,16 @@ class PatternItems {
                         var colourconversion;
                         var newcol;
                         if(!self.useCustomTagColours) {
-                            tintcolour = self.patternsData['Patterns'][self.which]['Channels'][t].defaultColour;
-                            colourconversion = new THREE.Color("rgb("+tintcolour+")");
+                            // tintcolour = self.patternsData['Patterns'][self.which]['Channels'][t].defaultColour;
+                            // phase 2 get colour tint from base pattern prim/secondary
+                            // const prim = self.liveryData['Layers'][0].Channels[1].tint;
+                            // const secondary = self.liveryData['Layers'][0].Channels[2].tint;
+                            const gettint = self.liveryData['Layers'][0].Channels[t+1].tint;
+
+                            tintcolour = gettint;
+                            colourconversion = new THREE.Color(tintcolour);
+
+                            // colourconversion = new THREE.Color("rgb("+tintcolour+")");
                             var newcol = self.rgbToHex(colourconversion.r*255.0,colourconversion.g*255.0,colourconversion.b*255.0);
                             self.liveryData['Layers'][self.currentLayer].Channels[t].tint = newcol;
                         }

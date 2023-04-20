@@ -412,13 +412,14 @@ class F1SpecialFX {
       this.fxaaPass = new ShaderPass( FXAAShader );
       this.pixelRatio = renderer.getPixelRatio();
 
-
-      console.log('>>> *** >>> ' + (1 / ( renderSize * this.pixelRatio )));
+      if(DEBUG_MODE)
+        console.log('>>> *** >>> ' + (1 / ( renderSize * this.pixelRatio )));
       const canvas = renderer.domElement;
       // look up the size the canvas is being displayed
       const width = 1024;//canvas.clientWidth;
       const height = 1024;//canvas.clientHeight;
-      console.log(">> *** fxaaPass init res = " + width + ", " + height + ", pr="+this.pixelRatio);
+      if(DEBUG_MODE)
+        console.log(">> *** fxaaPass init res = " + width + ", " + height + ", pr="+this.pixelRatio);
       this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( width * this.pixelRatio );
       this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( height * this.pixelRatio );
 

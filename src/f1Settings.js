@@ -28,7 +28,7 @@ class F1Settings {
         this.tonemappingamount = 2.3;//1.5;
 
         this.envStrenghtCustom = 2.3;//2.5;
-        this.envStrengthStatic = 15.0;//4.0;
+        this.envStrengthStatic = 5.0;//4.0;
         this.envStrengthGarage = 3.5;// 5.2;//3.0;
         this.envStrengthPlinthSides = 1.5;
 

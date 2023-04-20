@@ -58,6 +58,7 @@ var renderSize = 1024;
 var customMapRenderSize = 1024;
 var customRoughMapRenderSize = 1024;
 var sfxBloomRenderSize = 512;
+var autoChangeTimer = 0;
 
 if(f1User.userGFX==2) {
 	renderSize = 2048;
@@ -158,7 +159,8 @@ function createColourpicker() {
 		if(confirmButtonElement) {
 			forcedsizeofcolourpicker = confirmButtonElement.offsetWidth;
 			forcedheightofcolourpicker = confirmButtonElement.offsetHeight * 1.;
-			console.log("here " + forcedheightofcolourpicker);
+			if(DEBUG_MODE)
+				console.log("here " + forcedheightofcolourpicker);
 		}
 	}
 	else {
@@ -166,7 +168,8 @@ function createColourpicker() {
 		if(newcentrebuttons) {
 			forcedsizeofcolourpicker = newcentrebuttons.offsetWidth;
 			forcedheightofcolourpicker = 68;//newcentrebuttons.offsetHeight *1.;
-			console.log("or here " + forcedheightofcolourpicker);
+			if(DEBUG_MODE)
+				console.log("or here " + forcedheightofcolourpicker);
 		}
 	}
 	// force size of paint container
@@ -230,16 +233,27 @@ function createColourpicker() {
 				f1Gui.setBackgroundColourByID('basepaintbutton',color.hexString);
 				processJSON.liveryData['Layers'][currentLayer].Channels[0].tint = color.hexString;
 				f1Layers.mapUniforms.texture1TintChannel1.value = tmpv4;
+				patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
 				break;
 			case 1:
 				f1Gui.setBackgroundColourByID('primarypaintbutton',color.hexString);
 				processJSON.liveryData['Layers'][currentLayer].Channels[1].tint = color.hexString;
 				f1Layers.mapUniforms.texture1TintChannel2.value = tmpv4;
+				patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
+				if(!patternItems.useCustomTagColours) {
+					processJSON.liveryData['Layers'][2].Channels[0].tint = color.hexString;
+					f1Layers.mapUniforms.tagStyleTint.value = tmpv4;
+				}
 				break;
 			case 2:
 				f1Gui.setBackgroundColourByID('secondarypaintbutton',color.hexString);
 				processJSON.liveryData['Layers'][currentLayer].Channels[2].tint = color.hexString;
 				f1Layers.mapUniforms.texture1TintChannel3.value = tmpv4;
+				patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
+				if(!patternItems.useCustomTagColours) {
+					processJSON.liveryData['Layers'][2].Channels[1].tint = color.hexString;
+					f1Layers.mapUniforms.tagTint.value = tmpv4;
+				}
 
 				// also tint helmet visor
 				if(f1User.isHelmet) {
@@ -252,16 +266,19 @@ function createColourpicker() {
 				break;
 			case 3: // tag style
 				f1Gui.setBackgroundColourByID('tagstylepaintbutton',color.hexString);
+				patternItems.useCustomTagColours = true;
 				processJSON.liveryData['Layers'][currentLayer].Channels[0].tint = color.hexString;
 				f1Layers.mapUniforms.tagStyleTint.value = tmpv4;
 				break;
 			case 4: // tag
 				f1Gui.setBackgroundColourByID('tagpaintbutton',color.hexString);
+				patternItems.useCustomTagColours = true;
 				processJSON.liveryData['Layers'][currentLayer].Channels[1].tint = color.hexString;
 				f1Layers.mapUniforms.tagTint.value = tmpv4;
 				break;
 			case 6: // decal
 				f1Gui.setBackgroundColourByID('sponsorpaintbutton',color.hexString);
+				patternItems.useCustomSponsorColours = true;
 				processJSON.liveryData['Layers'][currentLayer].Channels[1].tint = color.hexString;
 				f1Layers.mapUniforms.decal2Tint.value = tmpv4;
 				break;
@@ -781,7 +798,7 @@ function introNextPage() {
 
 	// swoosh camera in and then allow user to start
 	setTimeout(function() {
-		cameraSwish(3);
+		swishCam(3);
 	}, 500);
 /*
 	new TWEEN.Tween(camera.position)
@@ -980,12 +997,12 @@ function initScenes()
 
 	  
 	renderer.domElement.addEventListener('mousedown', () => {
-		if(controls.autoRotate) {
+		if(controls.autoRotate && f1User.capturemode==0) {
 			tabBody.classList.add('completetransparent');
 			document.getElementById('finishSelectionContent').style.opacity = 0;
 		}
-
-		controls.autoRotate = false;
+		if(f1User.capturemode==0)
+			controls.autoRotate = false;
 	  });
 	// controls.addEventListener('touchmove', (event) => {
 	// 	if(controls.autoRotate)
@@ -1000,6 +1017,13 @@ function initScenes()
 	controls.enablePan = true;
 
 	controls.enableDamping=false;
+
+	if(f1User.capturemode!=0) {
+		controls.autoRotate = true;
+		document.getElementById('pleaserotatecontainer').style.display='none';
+		document.getElementById('welcomeContent').style.display='flex';
+		
+	}
 
 	// limit mouse zoom
 	if(!DEBUG_MODE) {
@@ -1203,12 +1227,12 @@ function changeTab(which, dontdofloorfx) {
 		f1Gui.pickingColour = false;
 
 		// same as confirm
-		if(selectedChan<=2)
-			patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
-		else if(selectedChan<=4)
-			patternItems.useCustomTagColours = true;
-		else if(selectedChan<=6)
-			patternItems.useCustomSponsorColours = true;
+		// if(selectedChan<=2)
+		// 	patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
+		// else if(selectedChan<=4)
+		// 	patternItems.useCustomTagColours = true;
+		// else if(selectedChan<=6)
+		// 	patternItems.useCustomSponsorColours = true;
 	}
 
 	if(which==1 || which==2) {
@@ -1216,7 +1240,8 @@ function changeTab(which, dontdofloorfx) {
 	}
 	else if (which==3) { // tag
 		f1SpecialFX.finalPass.uniforms.bloomAmount.value = 0.9;
-		cameraSwish(0);
+		if(f1User.capturemode==0)
+			swishCam(0);
 
 		// phase2 auto camera move to tag position
 		if(processJSON.liveryData['tagfontstyle'] == -1) { // if was none
@@ -1248,13 +1273,110 @@ function changeTab(which, dontdofloorfx) {
 	}
 	else if (which==4) { // sponsor
 		f1SpecialFX.finalPass.uniforms.bloomAmount.value = 0.9;
+		if(f1User.capturemode==0)
+			swishCam(4);		
 	}
 
 	f1Gui.changedPage(which);
 }
 //==================================================
 let camSwishing = false;
-function cameraSwish(type) {
+function swishCam(type) {
+	// let easetype = TWEEN.Easing.Sinusoidal.Out;
+	let easetype = TWEEN.Easing.Sinusoidal.InOut;
+	let duration = 1000;
+
+	let target1 = new THREE.Vector3(0,45,60);
+	let distfromtarget=0;
+	if(type==0) { // tags
+		if(f1User.isHelmet)
+			target1 = new THREE.Vector3(50.74, 36.57, -92.28);
+		else {
+			// target1 = new THREE.Vector3(67.41117717496526, 27.952203694515823, -31.411451059230423);
+			target1 = new THREE.Vector3(0.299, 32.0, 70.0);
+		}
+	} else if(type==3) { // initial move in from start
+		target1 = camto;
+		easetype= TWEEN.Easing.Sinusoidal.InOut;
+		duration=carinduration
+	} else if(type==4) { // sponsor
+		if(f1User.isHelmet)
+			target1 = new THREE.Vector3(79.11, 27.088, 31.36);
+		else {
+			// target1 = new THREE.Vector3(67.41117717496526, 27.952203694515823, -31.411451059230423);
+			target1 = new THREE.Vector3(74.29, 15.016, -48.086);
+		}
+	}
+	controls.enabled = false;
+	distfromtarget = target1.distanceTo(camera.position);
+	if(DEBUG_MODE)
+		console.log('distfromtarget= ' + distfromtarget);
+	let startpos = new THREE.Vector3(camera.position.x,camera.position.y,camera.position.z);
+	// const dist = startpos.distanceTo(new THREE.Vector3(0,0,0));
+	camSwishing = true;
+	duration = distfromtarget * 20.0;
+
+	// let midpos =  new THREE.Vector3().copy( startpos );
+	// midpos.lerpVectors(midpos, target1, 0.5);
+	// midpos.x *= 1.5;
+	// midpos.y *= 1.5;
+	// midpos.z *= 1.5;
+		
+	//
+	
+	new TWEEN.Tween({value: 0.0})
+	.to({ value: 1.0 },
+		duration
+	)
+	.easing(easetype)
+	.onUpdate(function(d) {
+		var campos = new THREE.Vector3().copy( startpos );
+		campos.lerpVectors(campos, target1, d.value);
+		let midpos =  new THREE.Vector3().copy( campos );
+		if(type!=3 && distfromtarget>45.) {
+			midpos.x *= 1.5;
+			midpos.y *= 1.5;
+			midpos.z *= 1.5;
+		}
+
+		// let deviate = d.value - 0.5;
+		// if(deviate<0) deviate=-deviate;
+		// deviate=1.0-(deviate*2);
+
+		const deviate = 0.5 * Math.sin(Math.PI * d.value);
+		campos.lerpVectors(campos, midpos,deviate);
+		// console.log("deviate= " + deviate)
+
+		camera.position.set(campos.x,campos.y,campos.z);
+		controls.update();
+	})
+	.onComplete(function () {
+		controls.enabled = true;
+		renderer.localClippingEnabled = false;	//
+		// if(type==1) {
+		// 	swishCam(2);
+		// }
+		// else
+			camSwishing = false;
+
+		if(type==3) {
+			f1SpecialFX.resetCarFromIntro(f1CarHelmet,f1User.isHelmet);
+			renderer.localClippingEnabled = false;	// was for sfx intro
+			f1Garage.startFloorMode(1); // radial
+			introStage = 2; // moved on from intro
+			f1Ribbons.triggerRibbon();
+			setTimeout(function() {
+				f1Garage.startFloorMode(3); // switch on hex floor under lights in shader
+			}, 2500);	
+		}
+	})
+	.start()
+
+}
+
+
+//==================================================
+function oldswishCam(type) {
 	
 	let easetype = TWEEN.Easing.Sinusoidal.Out;
 	let duration = 1000;
@@ -1262,35 +1384,44 @@ function cameraSwish(type) {
 	let target1 = new THREE.Vector3(0,45,60);
 	let distfromtarget=0;
 
-	if(type==0 || type==2) { //
+	if(type==0 || type==2) { // tags
 		if(f1User.isHelmet)
 			target1 = new THREE.Vector3(50.736996553990075, 36.57101261256037, -92.27582784738713);
 		else {
 			// target1 = new THREE.Vector3(67.41117717496526, 27.952203694515823, -31.411451059230423);
 			target1 = new THREE.Vector3(0.299, 32.0, 70.0);
 		}
-
 	}
-	else if(type==3) {
+	else if(type==3) { // initial move in from start
 		target1 = camto;
 		easetype= TWEEN.Easing.Sinusoidal.InOut;
 		duration=carinduration
+	}
+	else if(type==4) { // sponsor auto cam
+		if(f1User.isHelmet)
+			target1 = new THREE.Vector3(79.11, 27.088, 31.36);
+		else {
+			// target1 = new THREE.Vector3(67.41117717496526, 27.952203694515823, -31.411451059230423);
+			target1 = new THREE.Vector3(74.29, 15.016, -48.086);
+		}
+		
 	}
 	controls.enabled = false;
 	distfromtarget = target1.distanceTo(camera.position);
 
 	let target0 = camera.position.clone();
 	const dist = target0.distanceTo(new THREE.Vector3(0,0,0));
+	camSwishing = true;
 
 	if(type==0) {
-		if (dist <= 150.0 && distfromtarget>30) {
+		if (dist <= 90.0 && distfromtarget>30) {
 			// const target2 = new THREE.Vector3(target0.x * 1.5,target0.y * 1.5, target0.z * 1.5);
 			// duration = 450;//((dist - 150) / 200) * 500;
 			// target1.lerp(target2, 0.8);
 			// const howfar = target1.distanceTo(target2);
 			// console.log('howfar=' + howfar );
 			// duration = 100 + (howfar * 10 * 2);
-			type=1;
+			// type=1;
 			// console.log('dist=' + dist + ", duration=" + duration);
 			// easetype = TWEEN.Easing.Sinusoidal.Out;
 		}
@@ -1299,8 +1430,9 @@ function cameraSwish(type) {
 
 		duration = distfromtarget * 20.0;
 	}
-	
-	camSwishing = true;
+	if(type==4) 
+		duration = distfromtarget * 20.0;
+
 	if(type==1) {
 		let startpos = new THREE.Vector3(camera.position.x,camera.position.y,camera.position.z);
 		let endpos = target1;
@@ -1358,6 +1490,7 @@ function cameraSwish(type) {
 
 
 	} else {
+
 		new TWEEN.Tween(camera.position)
 		.to({
 				x: target1.x,
@@ -1373,9 +1506,9 @@ function cameraSwish(type) {
 		})
 		.onComplete(function () {
 			controls.enabled = true;
-			renderer.localClippingEnabled = false;	// was for sfx intro
+			renderer.localClippingEnabled = false;	//
 			if(type==1) {
-				cameraSwish(2);
+				swishCam(2);
 			}
 			else
 				camSwishing = false;
@@ -1548,6 +1681,16 @@ function onRandomPaint() {
 		var tmp1 = patternItems.rgbToHex(defaultCol.r*255.0,defaultCol.g*255.0,defaultCol.b*255.0);
 		processJSON.liveryData['Layers'][currentLayer].Channels[t].tint = tmp1;
 
+		//
+		if(!patternItems.useCustomTagColours && t==1) {
+			processJSON.liveryData['Layers'][2].Channels[0].tint = tmp1;
+			f1Layers.mapUniforms.tagStyleTint.value = new THREE.Vector3(defaultCol.r,defaultCol.g,defaultCol.b);;
+		}
+		if(!patternItems.useCustomTagColours && t==2) {
+			processJSON.liveryData['Layers'][2].Channels[1].tint = tmp1;
+			f1Layers.mapUniforms.tagTint.value = new THREE.Vector3(defaultCol.r,defaultCol.g,defaultCol.b);
+		}
+		//
 
 		if(t==0) // base paint
 			document.getElementById('basepaintbutton').style.backgroundColor = tmp1;//"rgb(255,0,0)";
@@ -1582,6 +1725,20 @@ function onRandomPaint() {
 			}			
 		}
 		processJSON.liveryData['Layers'][currentLayer].Channels[t].metalroughtype = glosstype;
+
+		//
+		if(!patternItems.useCustomTagColours && t==1) {
+			processJSON.liveryData['Layers'][2].Channels[0].metalroughtype = glosstype;
+			f1MetalRough.mapUniforms.tagChannel1Metal.value = metal;
+			f1MetalRough.mapUniforms.tagChannel1Rough.value = rough;
+		}
+		if(!patternItems.useCustomTagColours && t==2) {
+			processJSON.liveryData['Layers'][2].Channels[1].tint = tmp1;
+			f1MetalRough.mapUniforms.tagChannel2Metal.value = metal;
+			f1MetalRough.mapUniforms.tagChannel2Rough.value = rough;
+		}
+		//
+
 	}
 }
 //==================================================
@@ -1591,15 +1748,15 @@ function onConfirm() {
 	f1Gui.pickingColour = false;
 
 	if(selectedChan<=2) { // was in paint colours
-		patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
+		// patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
 		tabboxes[1].click();
 	}
 	else if(selectedChan<=4) { // was in tag colours
-		patternItems.useCustomTagColours = true;
+		// patternItems.useCustomTagColours = true;
 		tabboxes[2].click();
 	}
 	else if(selectedChan<=6) { // was in sponsor colours 
-		patternItems.useCustomSponsorColours = true;
+		// patternItems.useCustomSponsorColours = true;
 		tabboxes[3].click();
 	}
 }
@@ -1662,10 +1819,32 @@ function onMaterialbutton(glosstype) {
 	if(f1Gui.currentPage>1) currentLayer--;
 	var chan = selectedChan;
 
-	if(currentLayer==1) // tag
+	if(currentLayer==1) {// tag
+		patternItems.useCustomTagColours = true;
 		chan-=3;
-	else if(currentLayer==2) // sponsor
+	}
+	else if(currentLayer==2) {// sponsor
 		chan-=5;
+		patternItems.useCustomSponsorColours = true;
+	}
+	else {
+		patternItems.useCustomBaseColours = true;
+	}
+
+	//
+	if(!patternItems.useCustomTagColours && chan==1) {
+		processJSON.liveryData['Layers'][2].Channels[0].metalroughtype = glosstype;
+		setMaterial(glosstype,3);
+		// f1MetalRough.mapUniforms.tagChannel1Metal.value = metal;
+		// f1MetalRough.mapUniforms.tagChannel1Rough.value = rough;
+	}
+	if(!patternItems.useCustomTagColours && chan==2) {
+		processJSON.liveryData['Layers'][2].Channels[1].metalroughtype = glosstype;
+		setMaterial(glosstype,4);
+		// f1MetalRough.mapUniforms.tagChannel2Metal.value = metal;
+		// f1MetalRough.mapUniforms.tagChannel2Rough.value = rough;
+	}
+	//
 
 	processJSON.liveryData['Layers'][currentLayer].Channels[chan].metalroughtype = glosstype;
 	setMaterial(glosstype,selectedChan);
@@ -2071,6 +2250,25 @@ function dolayerpattern(layer,patternblock) {
 	choosePattern(index, layer, processJSON.liveryData['Layers'][layer].filename, element);
 }
 //==================================================
+let currentAutoPattern = 0;
+function doAutoChange() {
+	console.log("auto change");
+	if(f1Gui.currentPage==1) { // patterns
+		const patternblock=document.getElementById('layer1patterns_ins');
+		if(patternblock) {
+			currentAutoPattern++;
+			if(currentAutoPattern==patternblock.children.length) {
+				currentAutoPattern = 0;
+			}
+			patternblock.children[currentAutoPattern].children[1].children[0].children[0].click();
+		}
+	} else if(f1Gui.currentPage==2) { // colours
+		onRandomPaint();
+	}
+
+}
+
+//==================================================
 function parseCookieLivery() {
 	// set tag
 	const tagtext = processJSON.liveryData.tagtext;
@@ -2184,6 +2382,16 @@ function animate()
 		// }
 		TWEEN.update();
 
+		if(f1User.capturemode==2) {
+			if(autoChangeTimer==0) {
+				autoChangeTimer = setTimeout(function() {
+					clearTimeout(autoChangeTimer);
+					autoChangeTimer = 0;
+					doAutoChange();
+					
+				}, 6000);
+			}
+		}
 
 		if(f1SpecialFX.finalPass.uniforms.amountBloom.value>0.0) {
 			f1SpecialFX.timePassing();
@@ -2731,9 +2939,24 @@ function handleCloseTutorial(id) {
   paintTutorialContent.classList.add("hidden");
   tagTutorialContent.classList.add("hidden");
   sponsorTutorialContent.classList.add("hidden");
-  if(id==2) {
+  if(id==2) { // tag
+	let delay = 500;
+	if(f1User.isHelmet)
+		delay = 1000;
 	setTimeout(() => {
 		const patternblock=document.getElementById('layer2tags_ins');
+		for(var i=0;i<patternblock.children.length;i++) {
+			const id= patternblock.children[i].children[1].children[0].children[0].getAttribute('patternId');
+			if(id!=-1) {
+				patternblock.children[i].children[1].children[0].children[0].click();
+				break;
+			}
+		}		
+	}, delay);
+  }
+  else if(id==3) { // sponsor
+	setTimeout(() => {
+		const patternblock=document.getElementById('layer3sponsors_ins');
 		for(var i=0;i<patternblock.children.length;i++) {
 			const id= patternblock.children[i].children[1].children[0].children[0].getAttribute('patternId');
 			if(id!=-1) {
@@ -2768,7 +2991,8 @@ function handleComeToLife() {
 function handleBackToTabs() {
 
 	// phase2
-	controls.autoRotate=false;
+	if(f1User.capturemode==0)
+		controls.autoRotate=false;
 	controls.enabled=true;
 	document.getElementById('photoButton').style.display="none";
 	
@@ -2862,7 +3086,7 @@ f1PaintTab.forEach((box) => {
 
 	box.addEventListener("click", (event) => {
 
-	  if(haveminimizedGui) {
+	  if(haveminimizedGui && f1User.capturemode==0) {
 		zoomIn.classList.toggle("hidden");
 		zoomOut.classList.toggle("hidden");	
 
@@ -3017,7 +3241,8 @@ nextBtn.addEventListener("click", () => {
 		document.getElementById('nextBtn').style.pointerEvents='none';
 
 		// phase2
-		controls.autoRotate=false;
+		if(f1User.capturemode==0)
+			controls.autoRotate=false;
 		controls.enabled=false;
 		// document.getElementById('photoButton').classList.add('hidden');
 		document.getElementById('photoButton').style.display="none";
@@ -3075,7 +3300,8 @@ nextBtn.addEventListener("click", () => {
 // Previous Button Handler
 prevBtn.addEventListener("click", () => {
 	// phase2
-	controls.autoRotate=false;
+	if(f1User.capturemode==0)
+		controls.autoRotate=false;
 	controls.enabled=true;
 	tabBody.classList.remove('completetransparent');
 	document.getElementById('finishSelectionContent').style.opacity = 1;
