@@ -478,14 +478,12 @@
           </div>
         </div>
 
-          <hr class="border-netural border-t-2 mb-3 mt-6" />
+          <!-- <hr class="border-netural border-t-2 mb-3 mt-6" />
           <ul class="relative text-right list-none py-3">
             <li class="menu-item" id="LK_menu_terms">T&CS</li>
             <li class="menu-item"><div id="LK_menu_security">SECURITY</div></li>
-            <!--ben-->
             <li class="menu-item"><div id="LK_menu_otherlinks">OTHER LINKS</div></li>
-            <!--ben-->
-          </ul>
+          </ul> -->
         </div>
       </div>
     </header>
@@ -617,16 +615,19 @@
           <div id="TabHead" class="w-full text-right overflow-hidden bg-gradient-to-b from-[#15132000] to-[#151320eb] "
             style="pointer-events:none; background: linear-gradient(to top, rgba(21, 20, 32, 0.99) 0%,rgba(21, 20, 32, 0.5) 25%, rgba(21, 20, 32, 0.0) 50%, rgba(21, 20, 32, 0) 100%)!important;">
             <button class="p-4" onclick="handleTabToggle()" style="pointer-events: all;">
+              <!-- src="./assets/images/zoom_In.svg" -->
               <img
-                src="./assets/images/zoom_In.svg"
+                src="./assets/images/chevrons2.svg"
                 alt="Zoom In"
                 id="zoomIn"
+                style="width:1.5rem"
               />
               <img
-                src="./assets/images/Zoom_Out.svg"
+                src="./assets/images/chevrons2.svg"
                 alt="Zoom Out"
                 id="zoomOut"
                 class="hidden"
+                style="width:1.5rem;transform: rotateZ(180deg);"
               />
             </button>
 
@@ -1360,6 +1361,41 @@
       </div>
       <!--end of pattern content -->`
       <div
+        id="warning"
+        class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
+        style="pointer-events: all;"
+      >
+        <div class="tutorial-wrp"
+          id="warningblock">
+          <h1 class="tutorial-heading"><div id="LK_warning_01">WARNING</div></h1>
+          <p class="tutorial-paragraph" id="LK_warning_02">
+            Switching graphics modes will restart the app and you'll lose any changes.
+          </p>
+          <div class="flex flex-col justify-between items-center gap-y-3 w-full">
+            <button
+              id="warningbutton_back"
+              type="button"
+              class="next-btn !py-3"
+              onclick="handleWarning(0)"
+            > 
+              <div id="LK_warning_03">
+              BACK
+              </div>
+            </button>
+            <button
+              id="warningbutton_ok"
+              type="button"
+              class="next-btn !py-3"
+              onclick="handleWarning(1)"
+            > 
+              <div id="LK_warning_04">
+              OK!
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
         id="tutorial"
         class="hidden fixed top-0 h-screen w-full before:bg-black before:content-[''] before:absolute before:top-0 before:h-full before:w-full before:opacity-50 flex justify-around items-center flex-col text-center z-40 container-fluid"
         style="pointer-events: all;"
@@ -1680,7 +1716,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)" style="display:none">v2.0.0.1</div>
+    <div id="versionid" onclick="onConsole(0)" style="display:none">v2.0.0.5</div>
     <div id="console" class="hidden"
       style="top: 3rem"><div id="fpsindicator" style="display:none;color:white"></div>
       <div class="console" style="pointer-events:all">

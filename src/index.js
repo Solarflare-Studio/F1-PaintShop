@@ -49,6 +49,7 @@ window.onMaterialbutton = onMaterialbutton;
 
 window.switchModel = switchModel;
 window.onConsole = onConsole;
+window.handleWarning = handleWarning;
 
 //===================================
 const f1User = new F1User(); // doing this first to get parsed params
@@ -59,9 +60,10 @@ var customMapRenderSize = 1024;
 var customRoughMapRenderSize = 1024;
 var sfxBloomRenderSize = 512;
 var autoChangeTimer = 0;
+var photoGrabFileNameSuffix = 0;
 
 if(f1User.userGFX==2) {
-	renderSize = 2048;
+	// renderSize = 2048;
 	customMapRenderSize = 2048;
 	customRoughMapRenderSize = 2048;
 
@@ -298,7 +300,34 @@ function onloaded()
 	setSize(window.innerWidth,window.innerHeight );
 }
 //==================================================
+function handleWarning(val) {
+	document.getElementById('warning').style.display='none';
 
+	if(val == 0) { // cancelled gfx change
+		document.getElementById('selectedGfx').innerHTML=gfxprev;
+	} else if(val == 1) {
+		// do restart with new gfx option url
+		const e = gfxchangee;
+
+		console.log("changed gfx setting to " + e);
+
+		const params = new URLSearchParams(document.location.search);
+		if(e === 'Afterburners ON 2k') 
+			params.set("g", "2");
+		else
+			params.set("g", "1");
+
+		const newParams = params.toString() ? "?" + params.toString() : "";
+		console.log(newParams.toString());
+		const wholeurl = document.location.href;
+		const url = document.location.origin + document.location.pathname + newParams;
+		console.log(wholeurl + "\n"+url);
+		window.location.replace(url);
+	}
+
+}
+
+//==================================================
 /* all this will be stripped out once lighting is configured */
 function setupConsoleListeners() {
 
@@ -2426,7 +2455,12 @@ function animate()
 
 			canvas.toBlob((blob) => {
 				// Create a new file object from the blob
-				const file = new File([blob], 'F1PaintShop.png', { type: 'image/png' });
+				let filesuffix=".png";
+				if(photoGrabFileNameSuffix!=0) {
+					filesuffix = " ("+photoGrabFileNameSuffix+ ").png";
+				}
+				photoGrabFileNameSuffix++;
+				const file = new File([blob], 'F1PaintShop'+filesuffix, { type: 'image/png' });
 				document.getElementById('photoPreviewPanel').style.display='';
 				document.getElementById('spinnerphoto').style.display='none';
 
@@ -2470,7 +2504,7 @@ const imagelink = document.createElement('a');
 imagelink.style.pointerEvents = 'all';
 imagelink.href = URL.createObjectURL(file);
 imagelink.appendChild(previewImage);
-imagelink.download='F1PaintShop.png';
+imagelink.download='F1PaintShop' + filesuffix;
 document.getElementById('photoPreview').appendChild(imagelink);
 
 
@@ -2859,12 +2893,20 @@ window.handleGfxChange = handleGfxChange;
 function handleGfxSelect() {
 	dropdownArrow2.classList.toggle("rotate-180");
 }
+let gfxchangee = 0;
+let gfxprev = 0;
 function handleGfxChange(e) {
 	// uihandlelanguageChange(e,f1Aws);
 	const prev = selectedGfx.innerHTML;
+	gfxprev = prev;
   	selectedGfx.innerHTML = e;
 	if(e!=prev) {
-		console.log("changed gfx setting to " + e);
+
+		document.getElementById('warning').style.display='flex';
+		gfxchangee = e;
+
+/*
+		// do restart with new gfx option url
 		const params = new URLSearchParams(document.location.search);
 		if(e === 'Afterburners ON 2k') 
 			params.set("g", "2");
@@ -2877,7 +2919,7 @@ function handleGfxChange(e) {
 		const url = document.location.origin + document.location.pathname + newParams;
 		console.log(wholeurl + "\n"+url);
 		window.location.replace(url);
-
+*/
 	}
 }
 
@@ -2893,13 +2935,14 @@ function handleLanguageChange(e) {
 //   selectedLanguage.innerHTML = e;
 }
 window.addEventListener("click", (event) => {
-  if (event.target.closest("#languageSelect") !== dropdownElm) {
-    dropdownArrow.classList.remove("rotate-180");
-  }
-  if (event.target.closest("#gfxSelect") !== dropdownElm2) {
-	dropdownArrow2.classList.remove("rotate-180");
-  }
-
+  if(document.getElementById('warning').style.display!='flex') {
+	if (event.target.closest("#languageSelect") !== dropdownElm) {
+		dropdownArrow.classList.remove("rotate-180");
+	}
+	if (event.target.closest("#gfxSelect") !== dropdownElm2) {
+		dropdownArrow2.classList.remove("rotate-180");
+	}
+	}
 });
 // Pattern Layout Handler
 function handleWelcomeNext() {

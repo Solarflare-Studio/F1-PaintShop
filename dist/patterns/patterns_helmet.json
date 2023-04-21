@@ -14,11 +14,11 @@
        },
        {
         "channelName": "Chan 2",
-        "defaultColour": "50,255,50"
-       },
+        "defaultColour": "255,255,255"
+      },
        {
         "channelName": "Chan 3",
-        "defaultColour": "255,30,0"
+        "defaultColour": "0,0,0"
        }
       ]
     },
