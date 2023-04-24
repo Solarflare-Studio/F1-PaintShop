@@ -243,7 +243,7 @@ function createColourpicker() {
 				f1Layers.mapUniforms.texture1TintChannel2.value = tmpv4;
 				patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
 				if(!patternItems.useCustomTagColours) {
-					processJSON.liveryData['Layers'][2].Channels[0].tint = color.hexString;
+					processJSON.liveryData['Layers'][1].Channels[0].tint = color.hexString;
 					f1Layers.mapUniforms.tagStyleTint.value = tmpv4;
 				}
 				break;
@@ -253,7 +253,7 @@ function createColourpicker() {
 				f1Layers.mapUniforms.texture1TintChannel3.value = tmpv4;
 				patternItems.useCustomBaseColours = true; // now no longer reading defaults when changing patterns, will use custom
 				if(!patternItems.useCustomTagColours) {
-					processJSON.liveryData['Layers'][2].Channels[1].tint = color.hexString;
+					processJSON.liveryData['Layers'][1].Channels[1].tint = color.hexString;
 					f1Layers.mapUniforms.tagTint.value = tmpv4;
 				}
 
@@ -1712,11 +1712,11 @@ function onRandomPaint() {
 
 		//
 		if(!patternItems.useCustomTagColours && t==1) {
-			processJSON.liveryData['Layers'][2].Channels[0].tint = tmp1;
+			processJSON.liveryData['Layers'][1].Channels[0].tint = tmp1;
 			f1Layers.mapUniforms.tagStyleTint.value = new THREE.Vector3(defaultCol.r,defaultCol.g,defaultCol.b);;
 		}
 		if(!patternItems.useCustomTagColours && t==2) {
-			processJSON.liveryData['Layers'][2].Channels[1].tint = tmp1;
+			processJSON.liveryData['Layers'][1].Channels[1].tint = tmp1;
 			f1Layers.mapUniforms.tagTint.value = new THREE.Vector3(defaultCol.r,defaultCol.g,defaultCol.b);
 		}
 		//
@@ -1757,12 +1757,12 @@ function onRandomPaint() {
 
 		//
 		if(!patternItems.useCustomTagColours && t==1) {
-			processJSON.liveryData['Layers'][2].Channels[0].metalroughtype = glosstype;
+			processJSON.liveryData['Layers'][1].Channels[0].metalroughtype = glosstype;
 			f1MetalRough.mapUniforms.tagChannel1Metal.value = metal;
 			f1MetalRough.mapUniforms.tagChannel1Rough.value = rough;
 		}
 		if(!patternItems.useCustomTagColours && t==2) {
-			processJSON.liveryData['Layers'][2].Channels[1].tint = tmp1;
+			processJSON.liveryData['Layers'][1].Channels[1].tint = tmp1;
 			f1MetalRough.mapUniforms.tagChannel2Metal.value = metal;
 			f1MetalRough.mapUniforms.tagChannel2Rough.value = rough;
 		}
@@ -1862,13 +1862,13 @@ function onMaterialbutton(glosstype) {
 
 	//
 	if(!patternItems.useCustomTagColours && chan==1) {
-		processJSON.liveryData['Layers'][2].Channels[0].metalroughtype = glosstype;
+		processJSON.liveryData['Layers'][1].Channels[0].metalroughtype = glosstype;
 		setMaterial(glosstype,3);
 		// f1MetalRough.mapUniforms.tagChannel1Metal.value = metal;
 		// f1MetalRough.mapUniforms.tagChannel1Rough.value = rough;
 	}
 	if(!patternItems.useCustomTagColours && chan==2) {
-		processJSON.liveryData['Layers'][2].Channels[1].metalroughtype = glosstype;
+		processJSON.liveryData['Layers'][1].Channels[1].metalroughtype = glosstype;
 		setMaterial(glosstype,4);
 		// f1MetalRough.mapUniforms.tagChannel2Metal.value = metal;
 		// f1MetalRough.mapUniforms.tagChannel2Rough.value = rough;

@@ -277,7 +277,7 @@ class PatternItems {
                             newcol = self.rgbToHex(colourconversion.r*255.0,colourconversion.g*255.0,colourconversion.b*255.0);
                             self.liveryData['Layers'][self.currentLayer].Channels[t].tint = newcol;
                             if(!self.useCustomTagColours && (t==1 || t==2)) {
-                                self.liveryData['Layers'][2].Channels[t-1].tint = newcol;
+                                self.liveryData['Layers'][1].Channels[t-1].tint = newcol;
                                 if(t==1)
                                     self.mapUniforms.tagStyleTint.value = new THREE.Vector3(colourconversion.r,colourconversion.g,colourconversion.b);
                                 else if(t==2)
@@ -293,7 +293,7 @@ class PatternItems {
                             newcol = self.rgbToHex(colourconversion.r*255.0,colourconversion.g*255.0,colourconversion.b*255.0);
                             // liveryData[0][0]['Layers'][currentLayer].Channels[t];
                             if(!self.useCustomTagColours && (t==1 || t==2)) {
-                                self.liveryData['Layers'][2].Channels[t-1].tint = newcol;
+                                self.liveryData['Layers'][1].Channels[t-1].tint = newcol;
                                 if(t==1)
                                     self.mapUniforms.tagStyleTint.value = new THREE.Vector3(colourconversion.r,colourconversion.g,colourconversion.b);
                                 else if(t==2)
