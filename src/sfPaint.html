@@ -613,7 +613,7 @@
           style="pointer-events: none;"
         >
           <div id="TabHead" class="w-full text-right overflow-hidden bg-gradient-to-b from-[#15132000] to-[#151320eb] "
-            style="pointer-events:none; background: linear-gradient(to top, rgba(21, 20, 32, 0.99) 0%,rgba(21, 20, 32, 0.5) 25%, rgba(21, 20, 32, 0.0) 50%, rgba(21, 20, 32, 0) 100%)!important;">
+            style="transition:color 0.5s; pointer-events:none; background: linear-gradient(to top, rgba(21, 20, 32, 0.99) 0%,rgba(21, 20, 32, 0.5) 25%, rgba(21, 20, 32, 0.0) 50%, rgba(21, 20, 32, 0) 100%)!important;">
             <button class="p-4" onclick="handleTabToggle()" style="pointer-events: all;">
               <!-- src="./assets/images/zoom_In.svg" -->
               <img
@@ -646,6 +646,7 @@
                   role="tab"
                   aria-controls="pattern"
                   aria-selected="false"
+                  style="transition:opacity 0.5s;"
                 >
                   <figure>
                     <img
@@ -669,6 +670,7 @@
                   role="tab"
                   aria-controls="paint"
                   aria-selected="false"
+                  style="transition:opacity 0.5s;"
                 >
                   <figure>
                     <img
@@ -692,6 +694,7 @@
                   role="tab"
                   aria-controls="tag"
                   aria-selected="false"
+                  style="transition:opacity 0.5s;"
                 >
                   <figure>
                     <img
@@ -714,6 +717,7 @@
                   role="tab"
                   aria-controls="sponsor"
                   aria-selected="false"
+                  style="transition:opacity 0.5s;"
                 >
                   <figure>
                     <img
@@ -748,6 +752,7 @@
                   <div
                     id="layer1patterns_ins"
                     class="max-h-[220px] overflow-y-auto grid grid-cols-2 gap-x-3 gap-y-2 pr-3 w-full"
+                    style="transition:opacity 0.5s;"
                   >
                     <!-- ben removed below placeholders, as are dynamically added -->
                     <div class="pattent_check_wrp">
@@ -1020,6 +1025,7 @@
                   <div
                     id="layer2tags_ins"
                     class="max-h-[150px] overflow-y-auto grid grid-cols-2 gap-x-3 gap-y-2 pr-3 w-full mt-3"
+                    style="transition:opacity 0.5s;"
                   >
                     <!-- ben removed below tag placeholders 
                     <div class="patternt_check_wrp">
@@ -1138,6 +1144,7 @@
                   <div
                     id="layer3sponsors_ins"
                     class="max-h-[150px] overflow-y-auto grid grid-cols-2 gap-x-3 gap-y-2 pr-3 w-full mt-3"
+                    style="transition:opacity 0.5s;"
                   >
                     <!--ben removed below sponsor placeholders 
                     <div class="patternt_check_wrp">
@@ -1272,13 +1279,14 @@
                       type="button"
                       id="prevBtn"
                       class="prev-btn opacity-50"
+                      style="transition: opacity 0.5s!important;"
                       disabled
                     >
                       <div id="LK_final_back">
                       BACK
                       </div>
                     </button>
-                    <button type="button" id="nextBtn" class="next-btn">
+                    <button type="button" id="nextBtn" class="next-btn" style="transition: opacity 0.5s!important;">
                       <div id="LK_final_next">
                       NEXT
                       </div>
@@ -1354,7 +1362,7 @@
                   </div>
                 </div>
               </div>
-              <button type="button" class="next-btn mt-4" onclick="onConfirm()" id="LK_colourConfirmButton">CONFIRM</button>
+              <button type="button"  style="transition: opacity 0.5s!important;" class="next-btn mt-4" onclick="onConfirm()" id="LK_colourConfirmButton">CONFIRM</button>
             </div>
           </div>
         </div>
@@ -1507,6 +1515,7 @@
           </p>
           <!-- ben added id to handleCloseTutorial below -->
           <button
+            id="tagtutorialok"
             type="button"
             class="next-btn !py-3"
             onclick="handleCloseTutorial(2)"
@@ -1534,6 +1543,7 @@
           </p>
           <!-- class="bg-brand text-netural text-2xl px-16 py-4 rounded-md font-F1PaintShopFont w-full" -->
           <button
+            id="sponsortutorialok"
             type="button"
             class="bg-brand text-netural text-2xl py-4 rounded-md font-F1PaintShopFont w-full"
             onclick="handleCloseTutorial(3)"
@@ -1716,7 +1726,7 @@
     </main>
     <!-- end of main -->
     <!-- admin console -->
-    <div id="versionid" onclick="onConsole(0)" style="display:none">v2.0.0.6</div>
+    <div id="versionid" onclick="onConsole(0)" style="display:none">v2.0.0.9</div>
     <div id="console" class="hidden"
       style="top: 3rem"><div id="fpsindicator" style="display:none;color:white"></div>
       <div class="console" style="pointer-events:all">

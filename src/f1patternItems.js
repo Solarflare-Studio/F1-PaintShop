@@ -2,7 +2,7 @@
 
 import * as THREE from '../node_modules/three/build/three.module.js';
 import {DEBUG_MODE} from './adminuser'
-import { setAutoSelectingPattern,getAutoSelectingPattern } from './f1gui.js';
+import { setAutoSelectingPattern,getAutoSelectingPattern, enableInteraction } from './f1gui.js';
 
 class PatternItems {
 
@@ -176,10 +176,12 @@ class PatternItems {
             clearTimeout(self.patternLoaderTimeout);
 
             // remove loading spinner since v0509
-            const overlayElement = self.thepatternelement.parentElement.children[1];
-            self.thepatternelement.parentElement.removeChild(overlayElement);
+            // const overlayElement = self.thepatternelement.parentElement.children[1];
+            // self.thepatternelement.parentElement.removeChild(overlayElement);
+            const overlayElement = self.thepatternelement.parentElement;
+            if(overlayElement.children[1])
+                overlayElement.removeChild(overlayElement.children[1]);
             //
-
 
             if(!getAutoSelectingPattern()) 
                 self.f1Garage.startFloorMode(1); // radial 
@@ -217,14 +219,16 @@ class PatternItems {
                     setAutoSelectingPattern(false);
 
 
-                if(self.currentLayer==0)
-                    document.getElementById('layer1patterns_ins').classList.remove('disabledButton');
-                else if(self.currentLayer==1)
-                    document.getElementById('layer2tags_ins').classList.remove('disabledButton');
-                else if(self.currentLayer==2)
-                    document.getElementById('layer3sponsors_ins').classList.remove('disabledButton');
+                enableInteraction(true);
+
+                // if(self.currentLayer==0)
+                //     document.getElementById('layer1patterns_ins').classList.remove('disabledButton');
+                // else if(self.currentLayer==1)
+                //     document.getElementById('layer2tags_ins').classList.remove('disabledButton');
+                // else if(self.currentLayer==2)
+                //     document.getElementById('layer3sponsors_ins').classList.remove('disabledButton');
         
-                document.getElementById('TabHead').classList.remove('disabledTab');
+                // document.getElementById('TabHead').classList.remove('disabledTab');
 
 
                 if(self.currentLayer==0) { // base
@@ -437,17 +441,21 @@ class PatternItems {
 
         var isNone = false;
         if(patternsData['Patterns'][which].id == -1 && currentLayer!=0) { // a null one
+
+            enableInteraction(true);
+
+
             if(currentLayer==0) {
-                document.getElementById('layer1patterns_ins').classList.remove('disabledButton');
-            	// also disable tabs at this point
-                document.getElementById('TabHead').classList.remove('disabledTab');
+                // document.getElementById('layer1patterns_ins').classList.remove('disabledButton');
+            	// // also disable tabs at this point
+                // document.getElementById('TabHead').classList.remove('disabledTab');
 
                 // never!
             }
             else if(currentLayer==1) {
                 isNone=true;
-                document.getElementById('layer2tags_ins').classList.remove('disabledButton');
-                document.getElementById('TabHead').classList.remove('disabledTab');
+                // document.getElementById('layer2tags_ins').classList.remove('disabledButton');
+                // document.getElementById('TabHead').classList.remove('disabledTab');
 
                 // set livery tagstyle to -1 to indicate no tag please
                 liveryData['tagfontstyle'] = -1;
@@ -470,8 +478,8 @@ class PatternItems {
             else if(currentLayer==2) {
                 isNone=true;
 
-                document.getElementById('layer3sponsors_ins').classList.remove('disabledButton');
-                document.getElementById('TabHead').classList.remove('disabledTab');
+                // document.getElementById('layer3sponsors_ins').classList.remove('disabledButton');
+                // document.getElementById('TabHead').classList.remove('disabledTab');
 
                 mapUniforms.useDecal.value = 0;
                 f1MetalRoughmapUniforms.useDecal.value = 0;
@@ -499,11 +507,16 @@ class PatternItems {
             if(DEBUG_MODE)
                 console.log(">>>> ********* TIMED OUT - RETRY > "+thefile);
 
-            self.patternTexture=0; // todo try this to remove chance of texure now loading twice...
-            self.changePattern(which,thefile,mapUniforms,
-                thepatternelement,patternsData,liveryData,currentLayer,
-                f1MetalRoughmapUniforms,f1Text,f1SpecialFX,f1Aws,visormaterial,isHelmet,f1Garage);
+            // try this to ensure the spinner goes
+            const overlayElement = self.thepatternelement.parentElement;
+            if(overlayElement.children[1]) { // if the waiting spinner wheel is there
+                overlayElement.removeChild(overlayElement.children[1]);
 
+                self.patternTexture=0; // todo try this to remove chance of texure now loading twice...
+                self.changePattern(which,thefile,mapUniforms,
+                    thepatternelement,patternsData,liveryData,currentLayer,
+                    f1MetalRoughmapUniforms,f1Text,f1SpecialFX,f1Aws,visormaterial,isHelmet,f1Garage);
+            }
         }, 4000); 
 
 

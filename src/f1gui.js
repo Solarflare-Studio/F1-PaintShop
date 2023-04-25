@@ -12,7 +12,43 @@ selectedLanguage.innerHTML = "English";
 
 const dropdownArrow = document.querySelector("#dropdownArrow");
 
+export let camSwishing = false;
+let isEnabledInteraction = true
+export function enableInteraction(val) {
+    const f1Tabs = document.querySelectorAll("button");
+    for (let i = 0; i < f1Tabs.length; i++) {
+        if(val && !camSwishing) {
+            f1Tabs[i].classList.remove('disabledButton');
+        } else if(!val) {
+            if(!f1Tabs[i].classList.contains('disabledButton')) {
+                if(f1Tabs[i].id!="tagtutorialok" && f1Tabs[i].id!="sponsortutorialok")
+                f1Tabs[i].classList.add('disabledButton');
+            }
+        }
+    }
+    // document.getElementById('tagtutorialok').classList.remove('disabledButton');
+    // document.getElementById('sponsortutorialok').classList.remove('disabledButton');
 
+
+    if(val && !camSwishing) {
+        document.getElementById('layer1patterns_ins').classList.remove('disabledButton');
+        document.getElementById('layer2tags_ins').classList.remove('disabledButton');
+        document.getElementById('layer3sponsors_ins').classList.remove('disabledButton');
+
+        document.getElementById('TabHead').classList.remove('disabledTab');
+    } else if(!val && isEnabledInteraction) {
+        if(!document.getElementById('layer1patterns_ins').classList.contains('disabledButton')) 
+            document.getElementById('layer1patterns_ins').classList.add('disabledButton');
+        if(!document.getElementById('layer2tags_ins').classList.contains('disabledButton')) 
+            document.getElementById('layer2tags_ins').classList.add('disabledButton');
+        if(!document.getElementById('layer3sponsors_ins').classList.contains('disabledButton')) 
+            document.getElementById('layer3sponsors_ins').classList.add('disabledButton');
+
+        if(!document.getElementById('TabHead').classList.contains('disabledTab')) 
+            document.getElementById('TabHead').classList.add('disabledTab');
+    }
+    isEnabledInteraction = val;
+}
 
 
 

@@ -53,7 +53,7 @@ class F1AssetFileNames {
                                 './assets/helmet/00_CustomMainMaps/V9/1k/F1PS_Helmet_Custom_V9_AO.jpg',            // customisable ao
                                 'notused',         // customisable metal // not loaded
                                 'notused',     // customisable rough // not loaded
-                                './assets/helmet/01_StaticMainMaps/V9/2k/F1PS_Helmet_Static_V9_BaseColor.jpg',      // static base map always stays the same
+                                './assets/helmet/01_StaticMainMaps/V9/1k/F1PS_Helmet_Static_V9_BaseColor.jpg',      // static base map always stays the same
                                 './assets/helmet/01_StaticMainMaps/V9/1k/F1PS_Helmet_Static_V9_Normal.jpg',         // static base normal
                                 './assets/helmet/01_StaticMainMaps/V9/1k/F1PS_Helmet_Static_V9_AO.jpg',             // static base ao
                                 './assets/helmet/01_StaticMainMaps/V9/1k/F1PS_Helmet_Static_V9_Metal.jpg',          // static base metal

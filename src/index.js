@@ -24,7 +24,7 @@ import {F1User} from './f1User'
 import {DEBUG_MODE, createLightHelper} from './adminuser'
 
 import { updateProgress } from './f1gui';
-import { getAutoSelectingPattern,setAutoSelectingPattern } from './f1gui.js';
+import { getAutoSelectingPattern,setAutoSelectingPattern, enableInteraction, camSwishing } from './f1gui.js';
 
 import {uihandlelanguageChange, percentageTexturesLoaded} from './f1gui'
 
@@ -1194,15 +1194,17 @@ function onPatternPicked(which,thefile,thepatternelement)
 	var currentLayer = f1Gui.currentPage-1;
 	if(f1Gui.currentPage>1) currentLayer--;
 
-	if(currentLayer==0)
-		document.getElementById('layer1patterns_ins').classList.add('disabledButton');
-	else if(currentLayer==1)
-		document.getElementById('layer2tags_ins').classList.add('disabledButton');
-	else if(currentLayer==2)
-		document.getElementById('layer3sponsors_ins').classList.add('disabledButton');
+	enableInteraction(false);
 
-	// also disable tabs at this point
-	document.getElementById('TabHead').classList.add('disabledTab');
+	// if(currentLayer==0)
+	// 	document.getElementById('layer1patterns_ins').classList.add('disabledButton');
+	// else if(currentLayer==1)
+	// 	document.getElementById('layer2tags_ins').classList.add('disabledButton');
+	// else if(currentLayer==2)
+	// 	document.getElementById('layer3sponsors_ins').classList.add('disabledButton');
+
+	// // also disable tabs at this point
+	// document.getElementById('TabHead').classList.add('disabledTab');
 
 
 
@@ -1309,7 +1311,7 @@ function changeTab(which, dontdofloorfx) {
 	f1Gui.changedPage(which);
 }
 //==================================================
-let camSwishing = false;
+camSwishing = false;
 function swishCam(type) {
 	// let easetype = TWEEN.Easing.Sinusoidal.Out;
 	let easetype = TWEEN.Easing.Sinusoidal.InOut;
@@ -1352,7 +1354,9 @@ function swishCam(type) {
 	// midpos.z *= 1.5;
 		
 	//
-	
+	enableInteraction(false);
+	// document.getElementById('TabHead').classList.add('disabledTab');
+
 	new TWEEN.Tween({value: 0.0})
 	.to({ value: 1.0 },
 		duration
@@ -1387,6 +1391,9 @@ function swishCam(type) {
 		// }
 		// else
 			camSwishing = false;
+
+		// document.getElementById('TabHead').classList.remove('disabledTab');
+		enableInteraction(true);
 
 		if(type==3) {
 			f1SpecialFX.resetCarFromIntro(f1CarHelmet,f1User.isHelmet);
@@ -2983,6 +2990,8 @@ function handleCloseTutorial(id) {
   tagTutorialContent.classList.add("hidden");
   sponsorTutorialContent.classList.add("hidden");
   if(id==2) { // tag
+	enableInteraction(false);
+
 	let delay = 500;
 	if(f1User.isHelmet)
 		delay = 1000;
@@ -2998,6 +3007,7 @@ function handleCloseTutorial(id) {
 	}, delay);
   }
   else if(id==3) { // sponsor
+	enableInteraction(false);
 	setTimeout(() => {
 		const patternblock=document.getElementById('layer3sponsors_ins');
 		for(var i=0;i<patternblock.children.length;i++) {
@@ -3107,12 +3117,14 @@ function tabTutorial(currElmId) {
 	  case "tag-tab":
 		if (alreadyShownTagTutorial) {
 		  alreadyShownTagTutorial = false;
+		//   enableInteraction(true);
 		  tagTutorialContent.classList.remove("hidden");
 		}
 		break;
 	  case "sponsor-tab":
 		if (alreadyShownSponsorTutorial) {
 		  alreadyShownSponsorTutorial = false;
+		//   enableInteraction(true);
 		  sponsorTutorialContent.classList.remove("hidden");
 		}
 		break;

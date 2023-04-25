@@ -49,13 +49,14 @@
 
 .disabledButton {
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .disabledTab {
     pointer-events: none;
     /* opacity: 0.5; */
-	color:rgba(255,255,255,0.5);
+	color:rgba(255,255,255,0.7);
+	/* opacity:0.5; */
 }
 
 
