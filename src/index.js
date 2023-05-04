@@ -28,6 +28,9 @@ import { getAutoSelectingPattern,setAutoSelectingPattern, enableInteraction, cam
 
 import {uihandlelanguageChange, percentageTexturesLoaded} from './f1gui'
 
+import getLanguagesApi from './languages-api.js'
+import './store.js'
+
 
 //==================================================
 window.onloaded = onloaded;
@@ -2930,6 +2933,52 @@ function handleGfxChange(e) {
 	}
 }
 
+
+//
+// set current lang
+// !(function settingLanguage() {
+(function settingLanguage() {
+	const {userData} = window.store;
+	const texts = document.querySelectorAll('[data-change-language]');
+
+	function getTextTranslate(key = '') {
+		const currentVal = userData?.languageData[key];
+
+		return currentVal && currentVal !== 'null' ? currentVal : '';
+	}
+
+	async function loadAndTranslateAll() {
+		// const currentLang = userData.lan || 'en'
+		// const currentLang = self.userInfo.languageCode || 'en'
+		const currentLang = f1User.languageCode || 'en';
+		
+		userData.languageData = await getLanguagesApi(currentLang);
+
+		if (texts && texts.length && userData.languageData) {
+		texts.forEach((block) => {
+			const cureentKeyLang = block.getAttribute('data-change-language');
+
+			if (cureentKeyLang) {
+			const currentText = getTextTranslate(cureentKeyLang);
+
+			console.log(cureentKeyLang, currentText, 'cureentIdLang currentText');
+
+			if (currentText && currentText !== 'null' && typeof currentText === 'string') {
+				block.innerHTML = currentText;
+			}
+			}
+		})
+		}
+	}
+
+	loadAndTranslateAll();
+
+	// for use in global
+	// window.getTextTranslate = getTextTranslate
+	// window.loadAndTranslateAll = loadAndTranslateAll
+	}())
+
+//
   
 
 
@@ -2938,7 +2987,7 @@ function handleLanguageSelect() {
   dropdownArrow.classList.toggle("rotate-180");
 }
 function handleLanguageChange(e) {
-  uihandlelanguageChange(e,f1Aws);
+  uihandlelanguageChange(e,f1Aws,f1User);
 //   selectedLanguage.innerHTML = e;
 }
 window.addEventListener("click", (event) => {

@@ -52,11 +52,13 @@ export function enableInteraction(val) {
 
 
 
-export function uihandlelanguageChange(e,f1Aws) {
+export function uihandlelanguageChange(e,f1Aws,f1User) {
   var languageArr = e.split(',');
   const langfile = languageArr[2] +"/" + languageArr[1]; // filename for language
   selectedLanguage.innerHTML = languageArr[0];
 //   console.log('>>>>>>      lingo = ' + languageArr[0]);
+
+  f1User.languageCode = languageArr[2];
 
   f1Aws.loadfromAWS('languages',langfile,1,null,f1Aws);  
 }

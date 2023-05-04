@@ -4,24 +4,16 @@
     "name": "ENGLISH",
     "code": "en",
     "description": "English",
-    "iconimage": "english.jpg",
+    "iconimage": "",
     "file": "english.json",
     "fontfile": ""
   },
   {
-    "name": "FRENCH",
-    "code": "fr",
-    "description": "Français",
-    "iconimage": "french.jpg",
-    "file": "french.json",
-    "fontfile": ""
-  },
-    {
-    "name": "DEBUG",
-    "code": "debug",
-    "description": "Debug",
-    "iconimage": "debug.jpg",
-    "file": "debug.json",
+    "name": "SPANISH",
+    "code": "cs",
+    "description": "Español caribeño",
+    "iconimage": "",
+    "file": "caribbeanspanish.json",
     "fontfile": ""
   }
 ]
