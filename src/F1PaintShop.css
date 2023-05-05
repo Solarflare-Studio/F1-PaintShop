@@ -294,4 +294,6 @@ h1 {
 #LK_photo_iphoneusers {
 	color: #ffffffa1;
     font-family: 'F1PaintShopFont';
+	text-align: center;
+    margin-bottom: 1rem;
 }
