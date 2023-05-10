@@ -28,7 +28,7 @@ import { getAutoSelectingPattern,setAutoSelectingPattern, enableInteraction, cam
 
 import {uihandlelanguageChange, percentageTexturesLoaded} from './f1gui'
 
-import getLanguagesApi from './languages-api.js'
+// import getLanguagesApi from './languages-api.js'
 import './store.js'
 
 
@@ -115,6 +115,7 @@ var wasincolourpicker = false;
 
 var f1Aws = new F1Aws(f1User);
 f1Aws.preloadlanguagecode = f1User.languageCode;
+
 f1Aws.loadfromAWS('languages','languages.json',0,null,f1Aws);
 
 var patternItems = new PatternItems(!f1User.cookie_livery_value == "");
@@ -2937,8 +2938,10 @@ function handleGfxChange(e) {
 //
 // set current lang
 // !(function settingLanguage() {
+	/*
 (function settingLanguage() {
 	const {userData} = window.store;
+
 	const texts = document.querySelectorAll('[data-change-language]');
 
 	function getTextTranslate(key = '') {
@@ -2959,13 +2962,26 @@ function handleGfxChange(e) {
 			const cureentKeyLang = block.getAttribute('data-change-language');
 
 			if (cureentKeyLang) {
-			const currentText = getTextTranslate(cureentKeyLang);
+				let currentText = "";
+				if(f1User.isHelmet) {
+					const testHelmet = getTextTranslate(cureentKeyLang + "_helmet");
+					if(testHelmet=="") {
+						currentText = getTextTranslate(cureentKeyLang);
+					} else {
+						currentText = testHelmet;
+					}	
+				} else {
+					currentText = getTextTranslate(cureentKeyLang);
+				}
 
-			console.log(cureentKeyLang, currentText, 'cureentIdLang currentText');
+				
+				// const currentText = getTextTranslate(cureentKeyLang);
 
-			if (currentText && currentText !== 'null' && typeof currentText === 'string') {
-				block.innerHTML = currentText;
-			}
+				console.log(cureentKeyLang, currentText, 'cureentIdLang currentText');
+
+				if (currentText && currentText !== 'null' && typeof currentText === 'string') {
+					block.innerHTML = currentText;
+				}
 			}
 		})
 		}
@@ -2977,7 +2993,7 @@ function handleGfxChange(e) {
 	// window.getTextTranslate = getTextTranslate
 	// window.loadAndTranslateAll = loadAndTranslateAll
 	}())
-
+*/
 //
   
 
@@ -3517,6 +3533,9 @@ function photoButton(mode) {
 }
 
 function onPhotoButton() {
+
+	gtag('event', 'ps_photoButton');
+
 	takeSnapshot = 1;
 	if(f1User.userGFX==2) {
 		f1SpecialFX.resize(2048,2048,renderer);

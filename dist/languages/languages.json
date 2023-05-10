@@ -9,11 +9,11 @@
     "fontfile": ""
   },
   {
-    "name": "SPANISH",
-    "code": "cs",
-    "description": "Español caribeño",
+    "name": "ITALIAN",
+    "code": "it",
+    "description": "Italiana",
     "iconimage": "",
-    "file": "caribbeanspanish.json",
+    "file": "english.json",
     "fontfile": ""
   }
 ]

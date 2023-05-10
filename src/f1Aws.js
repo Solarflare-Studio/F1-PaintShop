@@ -1,4 +1,5 @@
 import {DEBUG_MODE} from './adminuser'
+import getLanguagesApi from './languages-api.js'
 
 
 class F1Aws {
@@ -10,6 +11,7 @@ class F1Aws {
         this.keepLanguageKeys = "";
         this.isHelmet = f1User.isHelmet;
         this.userGFX  = f1User.userGFX;
+        this.f1User_languageCode = f1User.languageCode;
         this.init();
     }
     init() {
@@ -46,11 +48,78 @@ class F1Aws {
 
     }
     //======================
+    loadStrapi() {
+        const {userData} = window.store;
+        const _self = this;
+
+        const texts = document.querySelectorAll('[data-change-language]');
+    
+        function getTextTranslate(key = '') {
+            const currentVal = userData?.languageData[key];
+    
+            return currentVal && currentVal !== 'null' ? currentVal : '';
+        }
+    
+        async function loadAndTranslateAll() {
+            // const currentLang = userData.lan || 'en'
+            // const currentLang = self.userInfo.languageCode || 'en'
+            const currentLang = _self.f1User_languageCode || 'en';
+            
+            userData.languageData = await getLanguagesApi(currentLang);
+    
+            if (texts && texts.length && userData.languageData) {
+                texts.forEach((block) => {
+                    const cureentKeyLang = block.getAttribute('data-change-language');
+        
+                    if (cureentKeyLang) {
+                        let currentText = "";
+                        if(_self.isHelmet) {
+                            const testHelmet = getTextTranslate(cureentKeyLang + "_helmet");
+                            if(testHelmet=="") {
+                                currentText = getTextTranslate(cureentKeyLang);
+                            } else {
+                                currentText = testHelmet;
+                            }	
+                        } else {
+                            currentText = getTextTranslate(cureentKeyLang);
+                        }
+        
+                        
+                        // const currentText = getTextTranslate(cureentKeyLang);
+                        // if(DEBUG_MODE)
+                        //     console.log(cureentKeyLang, currentText, 'cureentIdLang currentText');
+        
+                        if (currentText && currentText !== 'null' && typeof currentText === 'string') {
+                            block.innerHTML = currentText;
+                        }
+                    }
+                })
+            }
+
+            //
+            if(_self.userGFX==2) {
+                document.getElementById('selectedGfx').innerHTML=document.getElementById('LK_menu_gfx_02').innerHTML;
+            } else {
+                document.getElementById('selectedGfx').innerHTML=document.getElementById('LK_menu_gfx_01').innerHTML;
+            }
+
+            // if(dialogues[i].name=='LK_menu_gfx_02' && f1aws.userGFX==2) {
+            //     document.getElementById('selectedGfx').innerHTML=dialogues[i].text;
+            // } else if(dialogues[i].name=='LK_menu_gfx_01' && f1aws.userGFX!=2) {
+            //     document.getElementById('selectedGfx').innerHTML=dialogues[i].text;
+            // }
+
+        }
+    
+        loadAndTranslateAll(); 
+    }
+    //======================
     haveLoadedPatternsJSON(data) {
 
     }
 
     //======================
+    // not used now, as strapi used
     haveLoadedLanguageFile(data,f1aws) {
         f1aws.languageText = JSON.parse(data);
         const dialogues = f1aws.languageText['dialogues'];
@@ -143,10 +212,13 @@ class F1Aws {
         languageChoiceDropdown.innerHTML = choicesHtml;
 
         // auto switch language if we had one passed via url
-        if(preloadfile!="") {
-            _self.loadfromAWS('languages',preloadfile,1,null,_self);  
+        // if(preloadfile!="") {
+            // _self.loadfromAWS('languages',preloadfile,1,null,_self);
+
+            _self.loadStrapi();
+
             document.getElementById('selectedLanguage').innerHTML=preloaddesc;
-        }
+        // }
 
         
 

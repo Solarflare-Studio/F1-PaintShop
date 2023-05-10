@@ -1,6 +1,6 @@
 export default async function (lang) {
     try {
-      console.log(lang, 'lang')
+      // console.log(lang, 'lang')
   
       // for test
       // const responce = await new Promise((resolve, reject) => {
@@ -36,26 +36,33 @@ export default async function (lang) {
       //   }, 500)
       // })
   
-      const url = 'https://f1-cms.com/api/pit-portal-websites?'
+      const url = 'https://f1-cms.com/api/paint-shop-websites?'
       const params = new URLSearchParams({
         locale: lang,
       })
-      const token = '8519d023a29ce54d24fb80cf4b59b555ee2d7e9f7c5793e757703a5db15e293c639c3b0ebc00c1d39e1af9397c136ca119c7cb719c010d138b125916b740f10a70b314d6600fe5f51532a6463f7d082d114a4df80bf034d4281cc23222a06c62311e6e4cf3169aa59726fb6650506e1c7c5a10c2fee7586683dcb263ece1beeb'
+      // const params = 'lan=' + lang;
+      const token = 'c93e7c383a1fb252d3e00914c6ec99f2ef5d50c407ff587c2e3923315989dddffefc5472feda9ca69db85d9c816cc897b66dc2e59ea00855b02b89940f8233d4153a262d2735024beeb91aea2cb99a75bf733b5c7ba286dcc0dd74c18bcf78fd79db9053b7f74a74a68e95d6487dc536efa8e77f689f6aae9fedbcab2e21d8b0'
       const headers = new Headers({
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       })
   
-      const responce = await fetch(url + params, {
+
+      // const params = 'locale=' + lang;
+
+      const responce = await fetch(url + params.toString(), {
         method: 'GET',
         headers,
       })
   
       const parseData = await responce.json()
   
-      console.log(parseData, 'parseData')
+      // console.log(parseData, 'parseData')
   
       if (parseData && parseData.data && parseData.data.length > 0) {
+
+        // console.log('language attributes = ' + parseData.data[0].attributes)
+
         return parseData.data[0]?.attributes || {}
       }
     } catch (err) {
