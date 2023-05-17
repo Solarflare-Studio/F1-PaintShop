@@ -1769,13 +1769,13 @@ function onRandomPaint() {
 		//
 		if(!patternItems.useCustomTagColours && t==1) {
 			processJSON.liveryData['Layers'][1].Channels[0].metalroughtype = glosstype;
-			f1MetalRough.mapUniforms.tagChannel1Metal.value = metal;
-			f1MetalRough.mapUniforms.tagChannel1Rough.value = rough;
+			// f1MetalRough.mapUniforms.tagChannel1Metal.value = metal;
+			// f1MetalRough.mapUniforms.tagChannel1Rough.value = rough;
 		}
 		if(!patternItems.useCustomTagColours && t==2) {
 			processJSON.liveryData['Layers'][1].Channels[1].tint = tmp1;
-			f1MetalRough.mapUniforms.tagChannel2Metal.value = metal;
-			f1MetalRough.mapUniforms.tagChannel2Rough.value = rough;
+			// f1MetalRough.mapUniforms.tagChannel2Metal.value = metal;
+			// f1MetalRough.mapUniforms.tagChannel2Rough.value = rough;
 		}
 		//
 
@@ -1874,13 +1874,13 @@ function onMaterialbutton(glosstype) {
 	//
 	if(!patternItems.useCustomTagColours && chan==1) {
 		processJSON.liveryData['Layers'][1].Channels[0].metalroughtype = glosstype;
-		setMaterial(glosstype,3);
+		// setMaterial(glosstype,3);
 		// f1MetalRough.mapUniforms.tagChannel1Metal.value = metal;
 		// f1MetalRough.mapUniforms.tagChannel1Rough.value = rough;
 	}
 	if(!patternItems.useCustomTagColours && chan==2) {
 		processJSON.liveryData['Layers'][1].Channels[1].metalroughtype = glosstype;
-		setMaterial(glosstype,4);
+		// setMaterial(glosstype,4);
 		// f1MetalRough.mapUniforms.tagChannel2Metal.value = metal;
 		// f1MetalRough.mapUniforms.tagChannel2Rough.value = rough;
 	}
