@@ -9,11 +9,11 @@
     "fontfile": ""
   },
   {
-    "name": "ITALIAN",
-    "code": "it",
-    "description": "Italiana",
+    "name": "SPANISH",
+    "code": "es",
+    "description": "Español",
     "iconimage": "",
-    "file": "english.json",
+    "file": "spanish.json",
     "fontfile": ""
   }
 ]
