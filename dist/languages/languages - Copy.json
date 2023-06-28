@@ -9,11 +9,11 @@
     "fontfile": ""
   },
   {
-    "name": "CANADIAN_FRENCH",
-    "code": "fr-CA",
-    "description": "Québécois",
+    "name": "SPANISH",
+    "code": "es",
+    "description": "Español",
     "iconimage": "",
-    "file": "canadianfrench.json",
+    "file": "spanish.json",
     "fontfile": ""
   }
 ]

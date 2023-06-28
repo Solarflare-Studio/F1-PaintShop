@@ -41,7 +41,15 @@ also:  example of an URL we'd link users to would be https://webactivationaddres
         this.userConsole = (params.get('c') ? params.get('c') : 0); // console
         this.userGFX = (params.get('g') ? params.get('g') : 1); // user gfx mode 1,2 or 4k!
         
-        this.languageCode = (params.get('lan') ? params.get('lan').toLowerCase() : "en"); // language
+        // this.languageCode = (params.get('lan') ? params.get('lan').toLowerCase() : "en"); // language
+        
+        // changed from forced lowercase for french canadian fr-CA 14/6/23
+        this.languageCode = (params.get('lan') ? params.get('lan') : "en"); // language
+
+        if(this.languageCode == 'qf') {
+            this.languageCode = 'fr-CA';
+        }
+
         // this.languageCode = "ENG";
         this.capturemode = 0;
         if(this.userConsole==2) {
