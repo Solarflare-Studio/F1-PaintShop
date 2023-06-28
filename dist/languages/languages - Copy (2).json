@@ -5,15 +5,15 @@
     "code": "en",
     "description": "English",
     "iconimage": "",
-    "file": "",
+    "file": "english.json",
     "fontfile": ""
   },
   {
-    "name": "Deutsch",
-    "code": "de",
-    "description": "Deutsch",
+    "name": "CANADIAN_FRENCH",
+    "code": "fr-CA",
+    "description": "Québécois",
     "iconimage": "",
-    "file": "",
+    "file": "canadianfrench.json",
     "fontfile": ""
   }
 ]
