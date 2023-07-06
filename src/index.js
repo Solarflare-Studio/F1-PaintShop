@@ -116,6 +116,8 @@ var wasincolourpicker = false;
 var f1Aws = new F1Aws(f1User);
 f1Aws.preloadlanguagecode = f1User.languageCode;
 
+// 06/7/2023 = replaced aws call for a driverDelta strapi call to retrieve which languages are available
+
 f1Aws.loadfromAWS('languages','languages.json',0,null,f1Aws);
 
 var patternItems = new PatternItems(!f1User.cookie_livery_value == "");

@@ -1,5 +1,6 @@
 import {DEBUG_MODE} from './adminuser'
 import getLanguagesApi from './languages-api.js'
+import getLanguagesListApi from './languages-list-api.js'
 
 
 class F1Aws {
@@ -51,6 +52,87 @@ class F1Aws {
     loadStrapi() {
         const {userData} = window.store;
         const _self = this;
+
+        async function loadLanguagesList() {
+            const languagesList = await getLanguagesListApi();
+            console.log(`languagesList=${languagesList}`);
+
+            if(DEBUG_MODE)
+                console.log(">> have loaded language choice json file from strapi.");
+
+            let data = '{"languages": [  ';
+            let firstone = true;
+            languagesList.forEach((lan) => {
+                if (firstone) {
+                    firstone=false;
+                    data = data + `{"name": "${lan.attributes.name}", "code": "${lan.attributes.code}", "description": "${lan.attributes.name}" }`;
+                } else {
+                    data = data + `,{"name": "${lan.attributes.name}", "code": "${lan.attributes.code}", "description": "${lan.attributes.name}" }`;
+                }
+            });
+            data = data + "]}";
+
+            // {
+            //     "languages": [  
+            //       {
+            //         "name": "ENGLISH",
+            //         "code": "en",
+            //         "description": "English",
+            //         "iconimage": "",
+            //         "file": "",
+            //         "fontfile": ""
+            //       }
+            //     ]
+            //     }
+
+
+            _self.languageSettingsJson = JSON.parse(data);
+    
+            const languageChoiceDropdown = document.getElementById('languageChoices');
+    
+            // now interpret and put language choices in UI
+            var lingos = new Array();
+            const langs = _self.languageSettingsJson['languages'];
+            var preloadfile = "";
+            var preloaddesc = "";
+            for(var i = 0;i<langs.length;i++) {
+                const alingo = langs[i].description;
+                const lingofile = langs[i].file;
+                const lingoISO =  langs[i].code;
+                lingos.push( [ alingo, lingofile, lingoISO]);
+                if(lingoISO == _self.preloadlanguagecode) {
+                    preloadfile = lingoISO + "/" + lingofile;
+                    preloaddesc = alingo;
+                }
+            }
+            if(DEBUG_MODE)
+                console.log(">> languages available : " + lingos);
+    
+            let choicesHtml = "";
+            for(var i = 0;i<lingos.length;i++) {
+                if(i!=0)
+                    choicesHtml = choicesHtml + '<hr class="border-netural border-t-2">';
+                
+                choicesHtml = choicesHtml + '<li class="language-option" onclick="handleLanguageChange(';
+                choicesHtml = choicesHtml + "'" + lingos[i] + "'" + ')">' + lingos[i][0] + '</li>';
+            }
+            languageChoiceDropdown.innerHTML = choicesHtml;
+    
+            // auto switch language if we had one passed via url
+            // if(preloadfile!="") {
+                // _self.loadfromAWS('languages',preloadfile,1,null,_self);
+    
+                // _self.loadStrapi();// ????
+    
+                document.getElementById('selectedLanguage').innerHTML=preloaddesc;
+            // }
+        }
+
+        
+
+
+
+
 
         const texts = document.querySelectorAll('[data-change-language]');
     
@@ -110,6 +192,8 @@ class F1Aws {
             // }
 
         }
+
+        loadLanguagesList();
     
         loadAndTranslateAll(); 
     }
@@ -176,6 +260,10 @@ class F1Aws {
     }
     //======================
     haveLoadedLanguageChoice(data,f1Aws) {
+
+        this.loadStrapi();
+        return;
+
         var _self = f1Aws;
         if(DEBUG_MODE)
             console.log(">> have loaded language choice json file from aws.");
