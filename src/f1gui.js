@@ -62,7 +62,7 @@ export function uihandlelanguageChange(e,f1Aws,f1User) {
 
 //   f1Aws.loadfromAWS('languages',langfile,1,null,f1Aws);
     f1Aws.f1User_languageCode = f1User.languageCode;
-    f1Aws.loadStrapi();
+    f1Aws.loadStrapi(false);
 }
 
 export function setAutoSelectingPattern(_val) {

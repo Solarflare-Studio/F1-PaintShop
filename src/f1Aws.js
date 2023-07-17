@@ -49,7 +49,7 @@ class F1Aws {
 
     }
     //======================
-    loadStrapi() {
+    loadStrapi(buildMenuList) {
         const {userData} = window.store;
         const _self = this;
 
@@ -193,7 +193,8 @@ class F1Aws {
 
         }
 
-        loadLanguagesList();
+        if(buildMenuList)
+            loadLanguagesList();
     
         loadAndTranslateAll(); 
     }
@@ -261,7 +262,7 @@ class F1Aws {
     //======================
     haveLoadedLanguageChoice(data,f1Aws) {
 
-        this.loadStrapi();
+        this.loadStrapi(true);
         return;
 
         var _self = f1Aws;
